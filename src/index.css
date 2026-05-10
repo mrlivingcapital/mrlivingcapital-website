@@ -1,0 +1,284 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --deep-forest: #0A1F1A;
+    --deep-forest-80: rgba(10, 31, 26, 0.8);
+    --deep-forest-light: #0F2A23;
+    --gold: #C9A87C;
+    --gold-light: #D4B896;
+    --gold-muted: rgba(201, 168, 124, 0.15);
+    --sage: #5A7A72;
+    --sage-muted: rgba(90, 122, 114, 0.12);
+    --warm-cream: #E8DDD0;
+    --warm-cream-60: rgba(232, 221, 208, 0.6);
+    --bright-mint: #D4F1F4;
+    --bg-footer: #081A16;
+
+    --background: 160 50% 6%;
+    --foreground: 30 30% 86%;
+    --card: 160 50% 8%;
+    --card-foreground: 30 30% 86%;
+    --primary: 35 36% 64%;
+    --primary-foreground: 160 50% 6%;
+    --secondary: 160 15% 42%;
+    --secondary-foreground: 30 30% 86%;
+    --muted: 160 15% 42%;
+    --muted-foreground: 160 15% 42%;
+    --accent: 185 52% 90%;
+    --accent-foreground: 160 50% 6%;
+    --border: 160 15% 42%;
+    --input: 160 15% 42%;
+    --ring: 35 36% 64%;
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: auto;
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+
+  body {
+    background-color: var(--deep-forest);
+    color: var(--warm-cream);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .font-heading {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+
+  .font-body {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .font-caption {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .font-nav {
+    font-family: 'Inter', system-ui, sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .font-stat {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .glass-card {
+    background: rgba(10, 31, 26, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(90, 122, 114, 0.2);
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+  }
+
+  .glass-card:hover {
+    border-color: rgba(201, 168, 124, 0.3);
+  }
+
+  .section-divider {
+    height: 1px;
+    background: rgba(90, 122, 114, 0.2);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+@layer utilities {
+  .text-gold {
+    color: var(--gold);
+  }
+
+  .text-sage {
+    color: var(--sage);
+  }
+
+  .text-warm-cream {
+    color: var(--warm-cream);
+  }
+
+  .text-warm-cream-60 {
+    color: var(--warm-cream-60);
+  }
+
+  .text-bright-mint {
+    color: var(--bright-mint);
+  }
+
+  .bg-deep-forest {
+    background-color: var(--deep-forest);
+  }
+
+  .bg-gold {
+    background-color: var(--gold);
+  }
+
+  .border-gold-muted {
+    border-color: rgba(201, 168, 124, 0.2);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes waveIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(201, 168, 124, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(201, 168, 124, 0);
+  }
+}
+
+/* Responsive stat grid */
+.stats-grid {
+  grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+/* Dubai 2040 equal-height cards */
+.dubai2040-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.dubai2040-card {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.dubai2040-card p {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .dubai2040-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(3, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .dubai2040-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+}
+
+/* Corridor summary grid responsive */
+.corridor-summary-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+  .corridor-summary-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .corridor-summary-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
