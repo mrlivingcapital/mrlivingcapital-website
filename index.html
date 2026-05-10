@@ -14,6 +14,11 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://mrlivingcapital.com" />
 
+    <!-- Hreflang Tags -->
+    <link rel="alternate" hreflang="en" href="https://mrlivingcapital.com/" />
+    <link rel="alternate" hreflang="fa" href="https://mrlivingcapital.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://mrlivingcapital.com/" />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mrlivingcapital.com" />
@@ -112,11 +117,45 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B651X4S3J7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-B651X4S3J7', {
+        send_page_view: true,
+        cookie_flags: 'SameSite=None;Secure',
+        custom_map: {
+          'dimension1': 'report_download',
+          'dimension2': 'geo_region',
+          'dimension3': 'form_type',
+        }
+      });
+      // Track PDF downloads as events
+      function trackDownload(reportName, geo) {
+        gtag('event', 'download', {
+          event_category: 'report',
+          event_label: reportName,
+          report_download: reportName,
+          geo_region: geo || 'unknown',
+        });
+      }
+      // Track form submissions
+      function trackFormSubmit(formType) {
+        gtag('event', 'submit', {
+          event_category: 'form',
+          event_label: formType,
+          form_type: formType,
+        });
+      }
+    </script>
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/images/favicon.png" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
-    <script type="module" crossorigin src="./assets/index-BorA99O1.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-D_9_vrEp.css">
+    <script type="module" crossorigin src="./assets/index-LvneDgGg.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-B3lWOKzC.css">
   </head>
   <body>
     <div id="root"></div>
