@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
   <url>
     <loc>https://mrlivingcapital.com/</loc>
     <lastmod>2026-05-18</lastmod>
@@ -9,52 +9,122 @@
   </url>
 
   <url>
+    <loc>https://mrlivingcapital.com/blog/dubai-q1-2026-market-brief.html</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/cash-buyer-market-analysis-2026.html</loc>
+    <lastmod>2026-05-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/london-investors-dubai-capital-shift-2026.html</loc>
+    <lastmod>2026-05-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/toronto-vs-dubai-property-comparison-2026.html</loc>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/balkans-dubai-investment-guide-2026.html</loc>
+    <lastmod>2026-05-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/farsi-diaspora-dubai-investment-guide-2026.html</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/uae-golden-visa-real-estate-2026-guide.html</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/dubai-mortgage-non-residents-2026-guide.html</loc>
+    <lastmod>2026-05-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/dubai-abu-dhabi-rak-three-emirates-comparison-2026.html</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mrlivingcapital.com/blog/ras-al-khaimah-real-estate-yield-play-2026.html</loc>
+    <lastmod>2026-05-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://mrlivingcapital.com/downloads/Dubai-Real-Estate-Brief-Q1-2026.pdf</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://mrlivingcapital.com/downloads/cash-buyer-market-analysis-2026.pdf</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
   <url>
     <loc>https://mrlivingcapital.com/downloads/blog-dubai-cash-buyers-2026.pdf</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://mrlivingcapital.com/downloads/blog-london-to-dubai-2026.pdf</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://mrlivingcapital.com/downloads/blog-toronto-dubai-comparison-2026.pdf</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://mrlivingcapital.com/downloads/blog-balkans-dubai-guide-2026.pdf</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.6</priority>
   </url>
 
   <url>
     <loc>https://mrlivingcapital.com/downloads/blog-farsi-dubai-investment-2026.pdf</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.7</priority>
   </url>
 
 </urlset>
