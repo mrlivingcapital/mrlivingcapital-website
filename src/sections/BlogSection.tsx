@@ -141,7 +141,7 @@ export default function BlogSection() {
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="font-caption" style={{ color: '#C9A87C', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 16 }}>
-              INVESTOR INTELLIGENCE
+              INVESTOR'S DESK
             </span>
             <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#E8DDD0', marginBottom: 12 }}>
               THE <span style={{ color: '#C9A87C' }}>INVESTOR&apos;S DESK</span>
