@@ -8,6 +8,7 @@ interface BlogPost {
   pdfPath: string
   color: string
   icon: string
+  preview: string[]
 }
 
 const blogPosts: BlogPost[] = [
@@ -18,6 +19,7 @@ const blogPosts: BlogPost[] = [
     pdfPath: '/downloads/blog-dubai-cash-buyers-2026.pdf',
     color: '#C9A87C',
     icon: 'AE',
+    preview: ['Q1 2026 DLD transaction breakdown by corridor', 'Cash buyer advantage vs mortgage financing', 'Entry price points per sqft by area', '5-year capital appreciation forecast'],
   },
   {
     title: 'Why British Investors Are Shifting Capital from London to Dubai in 2026',
@@ -26,6 +28,7 @@ const blogPosts: BlogPost[] = [
     pdfPath: '/downloads/blog-london-to-dubai-2026.pdf',
     color: '#D4F1F4',
     icon: 'GB',
+    preview: ['London vs Dubai yield comparison table', 'Tax implications for UK tax residents', 'Currency hedging strategies (GBP/AED)', 'Best corridors for British investors'],
   },
   {
     title: 'For Canadian Investors: Dubai vs. Toronto Real Estate in 2026',
@@ -34,6 +37,7 @@ const blogPosts: BlogPost[] = [
     pdfPath: '/downloads/blog-toronto-dubai-comparison-2026.pdf',
     color: '#5A7A72',
     icon: 'CA',
+    preview: ['Toronto vs Dubai price per sqft analysis', 'Zero income tax impact on net returns', 'Golden Visa pathway for Canadian families', 'CAD/AED currency considerations'],
   },
   {
     title: 'From the Balkans to Dubai: A Regional Investor\'s Guide to UAE Real Estate',
@@ -42,6 +46,7 @@ const blogPosts: BlogPost[] = [
     pdfPath: '/downloads/blog-balkans-dubai-guide-2026.pdf',
     color: '#C9A87C',
     icon: 'RS',
+    preview: ['Balkan investor case studies and allocations', 'Flight connectivity and relocation logistics', 'Legal framework for Serbian/Croatian buyers', 'Recommended developers with Balkan community presence'],
   },
   {
     title: 'سرمایه‌گذاری در دبی ۲۰۲۶: راهنمای جامع برای خریداران نقدی',
@@ -50,6 +55,7 @@ const blogPosts: BlogPost[] = [
     pdfPath: '/downloads/blog-farsi-dubai-investment-2026.pdf',
     color: '#D4F1F4',
     icon: 'FA',
+    preview: ['Farsi-speaking community corridors in Dubai', 'Golden Visa step-by-step for Farsi speakers', 'Negotiation strategies specific to UAE market', 'Currency transfer and banking setup guide'],
   },
 ]
 
@@ -62,11 +68,12 @@ function validateWhatsApp(num: string): boolean {
 
 export default function BlogSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  const [fullName, setFullName] = useState('')
   const [email, setEmail] = useState('')
   const [whatsapp, setWhatsapp] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [submitting, setSubmitting] = useState(false)
-  const [errors, setErrors] = useState<{ email?: string; whatsapp?: string }>({})
+  const [errors, setErrors] = useState<{ fullName?: string; email?: string; whatsapp?: string }>({})
   const linkRef = useRef<HTMLAnchorElement>(null)
   const [downloadPath, setDownloadPath] = useState('')
 
@@ -74,10 +81,13 @@ export default function BlogSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    const newErrors: { email?: string; whatsapp?: string } = {}
+    const newErrors: { fullName?: string; email?: string; whatsapp?: string } = {}
 
-    if (!email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = 'Valid email required'
+    if (!fullName.trim()) {
+      newErrors.fullName = 'Your name is required'
+    }
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = 'Please enter a valid email or leave blank'
     }
     if (!whatsapp.trim() || !validateWhatsApp(whatsapp)) {
       newErrors.whatsapp = 'Valid WhatsApp number with country code required'
@@ -98,7 +108,8 @@ export default function BlogSection() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          email,
+          full_name: fullName,
+          email: email || 'Not provided',
           whatsapp,
           source: `Blog Download - ${activePost.geo}`,
           post_title: activePost.title,
@@ -116,6 +127,7 @@ export default function BlogSection() {
 
   const reset = () => {
     setActiveIndex(null)
+    setFullName('')
     setEmail('')
     setWhatsapp('')
     setSubmitted(false)
@@ -242,21 +254,61 @@ export default function BlogSection() {
               <h3 style={{ color: '#E8DDD0', fontSize: 20, fontWeight: 600, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8, lineHeight: 1.3 }}>
                 {activePost.title}
               </h3>
-              <p style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 14, marginBottom: 28 }}>
+              <p style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 14, marginBottom: 20 }}>
                 {activePost.subtitle}
               </p>
+
+              {/* PDF Preview */}
+              <div style={{ marginBottom: 24, padding: '14px 16px', borderRadius: 6, background: 'rgba(201, 168, 124, 0.06)', border: '1px solid rgba(201, 168, 124, 0.12)' }}>
+                <p style={{ color: '#C9A87C', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600, letterSpacing: '0.1em', marginBottom: 8 }}>WHAT&apos;S INSIDE THIS BRIEF</p>
+                <ul style={{ margin: 0, padding: '0 0 0 16px', listStyle: 'none' }}>
+                  {activePost.preview.map((item, idx) => (
+                    <li key={idx} style={{ color: 'rgba(232, 221, 208, 0.55)', fontSize: 12, lineHeight: 1.6, marginBottom: 4, position: 'relative', paddingLeft: 12 }}>
+                      <span style={{ position: 'absolute', left: 0, color: '#C9A87C' }}>&#8250;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Trust Badge */}
+              <div style={{ marginBottom: 20, textAlign: 'center' }}>
+                <p style={{ color: 'rgba(90, 122, 114, 0.7)', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', lineHeight: 1.5 }}>
+                  All inquiries handled personally by Masoud &middot; BRN: 94316 &middot; Dubai, UAE
+                </p>
+                <p style={{ color: 'rgba(201, 168, 124, 0.6)', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', marginTop: 2 }}>
+                  2 decades of institutional strategy &amp; private portfolio management
+                </p>
+              </div>
 
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                 <div>
                   <label style={{ color: '#5A7A72', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.06em', display: 'block', marginBottom: 6 }}>
-                    EMAIL ADDRESS *
+                    FULL NAME *
+                  </label>
+                  <input
+                    type="text"
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    placeholder="Your full name"
+                    style={{
+                      width: '100%', padding: '12px 16px', borderRadius: 6,
+                      background: 'rgba(10, 31, 26, 0.5)', border: errors.fullName ? '1px solid #E74C3C' : '1px solid rgba(90, 122, 114, 0.2)',
+                      color: '#E8DDD0', fontSize: 14, outline: 'none',
+                    }}
+                  />
+                  {errors.fullName && <span style={{ color: '#E74C3C', fontSize: 11, marginTop: 4, display: 'block' }}>{errors.fullName}</span>}
+                </div>
+
+                <div>
+                  <label style={{ color: '#5A7A72', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.06em', display: 'block', marginBottom: 6 }}>
+                    EMAIL ADDRESS (optional)
                   </label>
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    required
                     style={{
                       width: '100%', padding: '12px 16px', borderRadius: 6,
                       background: 'rgba(10, 31, 26, 0.5)', border: errors.email ? '1px solid #E74C3C' : '1px solid rgba(90, 122, 114, 0.2)',
@@ -275,7 +327,6 @@ export default function BlogSection() {
                     value={whatsapp}
                     onChange={(e) => setWhatsapp(e.target.value)}
                     placeholder="+971501234567"
-                    required
                     style={{
                       width: '100%', padding: '12px 16px', borderRadius: 6,
                       background: 'rgba(10, 31, 26, 0.5)', border: errors.whatsapp ? '1px solid #E74C3C' : '1px solid rgba(90, 122, 114, 0.2)',
@@ -284,7 +335,7 @@ export default function BlogSection() {
                   />
                   {errors.whatsapp && <span style={{ color: '#E74C3C', fontSize: 11, marginTop: 4, display: 'block' }}>{errors.whatsapp}</span>}
                   <span style={{ color: 'rgba(90, 122, 114, 0.6)', fontSize: 10, marginTop: 4, display: 'block' }}>
-                    Include country code (e.g., +971, +44, +1, +381)
+                    We&apos;ll send you the PDF via WhatsApp within 5 minutes
                   </span>
                 </div>
 
