@@ -98,7 +98,7 @@ export default function CalculatorSection() {
             <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
               FIND YOUR <span style={{ color: '#0F6B62' }}>OPTIMAL</span> CORRIDOR
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 16, maxWidth: 500, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 16, maxWidth: 500, margin: '0 auto' }}>
               Answer 2 quick questions. See projected returns across all 4 corridors.
             </p>
           </div>
@@ -153,7 +153,7 @@ export default function CalculatorSection() {
                 <h3 className="font-heading" style={{ fontSize: 18, color: '#5A6662', marginBottom: 6, textAlign: 'center' }}>
                   WHAT'S YOUR INVESTMENT BUDGET?
                 </h3>
-                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
+                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
                   Select a range in AED
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
@@ -195,7 +195,7 @@ export default function CalculatorSection() {
                 <h3 className="font-heading" style={{ fontSize: 18, color: '#5A6662', marginBottom: 6, textAlign: 'center' }}>
                   PROPERTY TYPE?
                 </h3>
-                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
+                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
                   What are you looking to invest in?
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>

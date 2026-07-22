@@ -65,7 +65,7 @@ export default function InquirySection() {
             <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 56px)', color: '#5A6662', marginBottom: 16 }}>
               THE <span style={{ color: '#0F6B62' }}>PARTNERSHIP</span> CONVERSATION
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 16, maxWidth: 520, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 16, maxWidth: 520, margin: '0 auto' }}>
               Enter your capital allocation objectives for a tailored briefing. All inquiries handled with complete discretion. I review every submission personally.
             </p>
           </div>
@@ -84,7 +84,7 @@ export default function InquirySection() {
               <h3 className="font-heading" style={{ fontSize: 24, color: '#0F6B62', marginBottom: 12 }}>
                 INQUIRY RECEIVED
               </h3>
-              <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 15 }}>
+              <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 15 }}>
                 We will contact you within 24 hours.
               </p>
             </div>

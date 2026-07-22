@@ -2,14 +2,14 @@ import { useEffect, useRef } from 'react'
 
 const tickerItems = [
   { label: 'AED/USD', value: '3.67', change: '0.00%' },
-  { label: 'DLD Q1 2026', value: 'AED 252B', change: '+26% YoY' },
-  { label: 'Off-Plan Share', value: '73%', change: 'Record High' },
-  { label: 'Transactions Q1', value: '60,303', change: '+41% YoY' },
-  { label: 'Total Investors', value: '48,448', change: '+35% YoY' },
-  { label: 'Avg Price/Sqft', value: 'AED 1,550', change: '+15% YoY' },
-  { label: 'Mortgage Rate', value: '5.25%', change: 'Stable' },
+  { label: 'DLD H1 2026', value: 'AED 419.9B', change: 'Second-best ever' },
+  { label: 'Ready Sales Flip', value: 'AED 146.7B', change: 'H1 largest share' },
+  { label: 'Transactions H1', value: '112,850', change: 'DLD 2026' },
+  { label: 'Total Investors', value: '48,448', change: '+8% YoY' },
+  { label: 'Avg Price/Sqft', value: 'AED 1,841', change: '+8.5% YoY' },
+  { label: 'Mortgage Rates', value: '4–6%', change: '2026 range' },
   { label: 'Gold Line', value: '18 Stations', change: '2032 Target' },
-  { label: 'Etihad Rail', value: 'Q2 2026', change: 'Launch' },
+  { label: 'Etihad Rail', value: '2026', change: 'Passenger launch' },
   { label: 'Population 2040', value: '5.8M', change: '+45%' },
 ]
 

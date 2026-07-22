@@ -64,22 +64,20 @@ export default function HeroSection() {
           }}
         >
           <h1
-            className="font-display"
+            className="font-hero"
             style={{
-              fontSize: 'clamp(44px, 8vw, 88px)',
-              color: '#5A6662',
+              fontSize: 'clamp(38px, 6.2vw, 68px)',
+              color: '#4A5552',
               marginBottom: 4,
-              textShadow: '0 2px 30px rgba(246, 241, 231, 0.88)',
             }}
           >
             LIVING PROOF.
           </h1>
           <h1
-            className="font-display"
+            className="font-hero"
             style={{
-              fontSize: 'clamp(44px, 8vw, 88px)',
+              fontSize: 'clamp(38px, 6.2vw, 68px)',
               color: '#0F6B62',
-              textShadow: '0 2px 30px rgba(246, 241, 231, 0.88)',
             }}
           >
             LASTING LEGACY.
@@ -90,11 +88,10 @@ export default function HeroSection() {
         <p
           className="font-body"
           style={{
-            fontSize: 'clamp(16px, 2.5vw, 20px)',
+            fontSize: 'clamp(16px, 2.5vw, 19px)',
             fontStyle: 'italic',
-            color: 'rgba(90, 102, 98, 0.75)',
+            color: '#5A6662',
             marginBottom: 6,
-            textShadow: '0 1px 10px rgba(246, 241, 231, 0.9)',
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(15px)',
             transition: 'opacity 0.8s ease 1s, transform 0.8s ease 1s',
@@ -109,9 +106,8 @@ export default function HeroSection() {
           className="font-body"
           style={{
             fontSize: 13,
-            color: 'rgba(90, 102, 98, 0.5)',
+            color: 'rgba(90, 102, 98, 0.85)',
             marginBottom: 24,
-            textShadow: '0 1px 8px rgba(246, 241, 231, 0.9)',
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(15px)',
             transition: 'opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s',

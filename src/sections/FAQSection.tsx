@@ -112,7 +112,7 @@ export default function FAQSection() {
                     <div
                       style={{
                         padding: '0 24px 20px',
-                        color: 'rgba(90, 102, 98, 0.6)',
+                        color: 'rgba(90, 102, 98, 0.85)',
                         fontSize: 14,
                         lineHeight: 1.7,
                       }}

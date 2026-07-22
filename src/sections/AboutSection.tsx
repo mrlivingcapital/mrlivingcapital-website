@@ -90,7 +90,7 @@ export default function AboutSection() {
             <ScrollReveal delay={0.2}>
               <p
                 className="font-body"
-                style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}
+                style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}
               >
                 I spent two decades designing and implementing strategies within financial institutions and freelance private portfolio management, managing capital across three continents. I survived what should have killed me. Then I built MR Living Capital to bring that same institutional discipline to serious investors building real wealth in the UAE. Cold-blooded analysis. Zero sales agenda.
               </p>
@@ -99,7 +99,7 @@ export default function AboutSection() {
             <ScrollReveal delay={0.3}>
               <p
                 className="font-body"
-                style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, lineHeight: 1.7, marginBottom: 40 }}
+                style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, lineHeight: 1.7, marginBottom: 40 }}
               >
                 Every engagement begins with one question: what does your capital need to achieve? From there, we build a tailor-made investment roadmap — not a sales pitch. The same rigorous process I forged over two decades, now applied across the UAE&apos;s highest-growth corridors in Dubai, Abu Dhabi, and Ras Al Khaimah.
               </p>

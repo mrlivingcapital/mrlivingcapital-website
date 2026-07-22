@@ -40,7 +40,7 @@ export default function FounderLetterSection() {
             </h2>
             <p
               className="font-body"
-              style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}
+              style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}
             >
               Why institutional discipline matters in every allocation decision.
             </p>

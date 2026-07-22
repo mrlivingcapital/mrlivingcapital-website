@@ -20,10 +20,10 @@ export default function LeadMagnetSection() {
 
   const reports = {
     q1: {
-      title: 'DUBAI Q1 2026',
+      title: 'DUBAI H1 2026',
       subtitle: 'MARKET INTELLIGENCE BRIEF',
-      badge: '12 PAGES',
-      pdfPath: '/downloads/Dubai-Real-Estate-Brief-Q1-2026.pdf',
+      badge: 'FRESH DATA · JULY 2026',
+      pdfPath: '/downloads/Dubai-Real-Estate-Brief-H1-2026.pdf',
       color: '#0F6B62',
     },
     cashbuyer: {
@@ -134,7 +134,7 @@ export default function LeadMagnetSection() {
                     <h3 className="font-heading" style={{ fontSize: 18, color: '#5A6662', marginBottom: 6 }}>
                       {reportType === 'q1' ? 'Dubai Q1 2026 Market Intelligence Brief' : 'The Cash Buyer\'s Guide to UAE Real Estate'}
                     </h3>
-                    <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 13, marginBottom: 20 }}>
+                    <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 13, marginBottom: 20 }}>
                       {reportType === 'q1'
                         ? 'Verified DLD data. Institutional-grade corridor analysis. Not public research — partner-only intelligence.'
                         : 'Negotiating below market value. Price per sqft analysis. The same framework forged over two decades.'}
@@ -193,7 +193,7 @@ export default function LeadMagnetSection() {
             ) : (
               <div style={{ textAlign: 'center' }}>
                 <h3 className="font-heading" style={{ fontSize: 18, color: '#0F6B62', marginBottom: 8 }}>DOWNLOAD STARTED</h3>
-                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 14 }}>
+                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 14 }}>
                   Your {reportType === 'q1' ? 'Q1 2026 Market Brief' : 'Cash Buyer Guide'} is downloading. We will also WhatsApp you a copy.
                 </p>
                 <a ref={linkRef} href={downloadPath} download style={{ display: 'none' }} aria-hidden="true" />

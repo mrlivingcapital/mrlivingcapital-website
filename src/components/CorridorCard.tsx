@@ -97,7 +97,7 @@ export default function CorridorCard({
           ))}
         </div>
 
-        <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 15, lineHeight: 1.6, marginBottom: 16 }}>
+        <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 15, lineHeight: 1.6, marginBottom: 16 }}>
           {description}
         </p>
 
@@ -106,7 +106,7 @@ export default function CorridorCard({
             <li
               key={i}
               style={{
-                color: 'rgba(90, 102, 98, 0.6)',
+                color: 'rgba(90, 102, 98, 0.85)',
                 fontSize: 14,
                 marginBottom: 6,
                 display: 'flex',

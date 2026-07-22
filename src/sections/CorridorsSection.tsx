@@ -7,7 +7,7 @@ const emirates = [
     name: 'THE GLOBAL GATEWAY',
     growth: '+31% YoY (Q1 2026)',
     yield: '5-8%',
-    description: 'AED 252 billion in Q1 2026 transactions across 60,303 deals. The UAE\'s most liquid property market with the deepest developer ecosystem and the strongest infrastructure pipeline. From Dubai South\'s Al Maktoum Airport (AED 128B) to the Metro Gold Line (18 stations, 2032), capital appreciation is infrastructure-led.',
+    description: 'AED 419.9 billion in H1 2026 transactions across 112,850 deals. The UAE\'s most liquid property market with the deepest developer ecosystem and the strongest infrastructure pipeline. From Dubai South\'s Al Maktoum Airport (AED 128B) to the Metro Gold Line (18 stations, 2032), capital appreciation is infrastructure-led.',
     bullets: [
       'Al Maktoum Airport: 5x capacity by 2030 — 750,000+ jobs created',
       'Metro Gold Line: 18 stations, completion 2032, AED 15B+ investment',
@@ -17,7 +17,7 @@ const emirates = [
       'Freehold: 100% foreign ownership in designated zones, full title deed at DLD',
     ],
     accentColor: '#0F6B62',
-    stats: { transactions: '60,303', value: 'AED 252B', priceSqft: 'AED 800-3,000+', population: '3.8M → 5.8M (2040)' },
+    stats: { transactions: '112,850', value: 'AED 419.9B', priceSqft: 'AED 1,300-4,200+', population: '3.8M → 5.8M (2040)' },
   },
   {
     tag: 'ABU DHABI',
@@ -41,17 +41,17 @@ const emirates = [
     name: 'THE HIGH-YIELD FRONTIER',
     growth: '+35% YoY (2025)',
     yield: '7-9%',
-    description: 'The UAE\'s highest-yielding emirate with the lowest entry point. Wynn Al Marjan — the first integrated gaming resort in the GCC — opens 2027 and will transform RAK into a global tourism destination. Entry at AED 500-900/sqft with 7-9% gross yields and zero taxes makes this the purest risk-adjusted play in the UAE.',
+    description: 'The UAE\'s highest-yielding emirate with the lowest entry point. Wynn Al Marjan — the first integrated gaming resort in the GCC — opens 2027 and will transform RAK into a global tourism destination. Entry at AED 1,000-1,600/sqft with 7-9% gross yields and zero taxes makes this the purest risk-adjusted play in the UAE.',
     bullets: [
-      'Wynn Al Marjan: First GCC gaming resort, AED 12B investment, opening 2027',
+      'Wynn Al Marjan: First GCC gaming resort, $5.1B investment, opening Spring 2027',
       'Al Marjan Island: 4.5 km of beachfront, master-planned tourism destination',
       'RAK Central: New business district, government offices, healthcare hub',
-      'Highest yields in UAE: 7-9% gross rental, lowest entry: AED 500-900/sqft',
+      'Highest yields in UAE: 7-9% gross rental, entry from ~AED 1,000/sqft',
       'Population growing 400K → 600K by 2030 — 50% increase in housing demand',
       'No property tax, no income tax, 100% foreign ownership, streamlined DLD process',
     ],
     accentColor: '#7D8A86',
-    stats: { transactions: '3,200+', value: 'AED 8.5B', priceSqft: 'AED 500-900', population: '400K → 600K (2030)' },
+    stats: { transactions: '3,200+', value: 'AED 8.5B', priceSqft: 'AED 1,000-1,600', population: '400K → 600K (2030)' },
   },
 ]
 
@@ -88,7 +88,7 @@ function DeveloperBarChart({ emirateData }: { emirateData: typeof topDevelopers[
       </div>
       {emirateData.developers.map((d, i) => (
         <div key={i} style={{ marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div className="dev-label" style={{ width: 80, color: 'rgba(90, 102, 98, 0.5)', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', textAlign: 'right', flexShrink: 0 }}>
+          <div className="dev-label" style={{ width: 80, color: 'rgba(90, 102, 98, 0.8)', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', textAlign: 'right', flexShrink: 0 }}>
             {d.name}
           </div>
           <div style={{ flex: 1, height: 20, background: 'rgba(125, 138, 134, 0.08)', borderRadius: 4, overflow: 'hidden' }}>
@@ -138,7 +138,7 @@ export default function CorridorsSection() {
               <br />
               ONE <span style={{ color: '#0F6B62' }}>ALLOCATION STRATEGY.</span>
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', maxWidth: 700, margin: '24px auto 0', fontSize: 16 }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', maxWidth: 700, margin: '24px auto 0', fontSize: 16 }}>
               Dubai for liquidity and infrastructure. Abu Dhabi for stability and cultural capital. Ras Al Khaimah for yield and the Wynn catalyst. Each emirate serves a different function in a diversified UAE portfolio.
             </p>
           </div>
@@ -218,7 +218,7 @@ export default function CorridorsSection() {
 
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {emirates[activeEmirate].bullets.map((b, i) => (
-                <li key={i} style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 14, marginBottom: 8, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                <li key={i} style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 14, marginBottom: 8, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
                   <span style={{ color: '#0F6B62', fontSize: 12, marginTop: 2 }}>✦</span>
                   {b}
                 </li>
@@ -236,7 +236,7 @@ export default function CorridorsSection() {
             <h3 className="font-heading" style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#5A6662', marginBottom: 8 }}>
               WHO IS <span style={{ color: '#0F6B62' }}>BUILDING</span> THE FUTURE
             </h3>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 14, maxWidth: 600, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 14, maxWidth: 600, margin: '0 auto' }}>
               Units in pipeline by top developer per emirate. Data sourced from DLD, Abu Dhabi DMT, and RAK DLD.
             </p>
           </div>

@@ -3,22 +3,23 @@ import StatCounter from '../components/StatCounter'
 
 const stats = [
   {
-    value: 252,
+    value: 419.9,
     prefix: 'AED ',
     suffix: 'B',
-    label: 'Q1 2026 Total Transactions',
+    label: 'H1 2026 Total Transactions',
     source: 'UAE Land Departments — Q1 2026',
   },
   {
-    value: 73,
-    suffix: '%',
-    label: 'Off-Plan Market Share',
+    value: 146.7,
+    prefix: 'AED ',
+    suffix: 'B',
+    label: 'Ready Sales H1 — Largest Share',
     source: 'DXB Interact / DLD — Q1 2026',
   },
   {
-    value: 60303,
+    value: 112850,
     suffix: '',
-    label: 'Sales Transactions Q1',
+    label: 'Total Transactions H1',
     source: 'UAE Land Departments — Q1 2026',
   },
   {
@@ -84,8 +85,8 @@ export default function MarketIntelligenceSection() {
             <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 56px)', color: '#5A6662', marginBottom: 16 }}>
               THE NUMBERS BEHIND <span style={{ color: '#0F6B62' }}>THE UAE 2026</span>
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
-              Dubai leads with AED 252B in Q1 transactions. Abu Dhabi accelerates with AED 71B in 2025 and Saadiyat Cultural District. Ras Al Khaimah delivers 7-9% yields — the highest in the UAE. Off-plan now dominates 70–73% of all transactions. This is a structural shift across all three emirates.
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
+              Dubai recorded AED 419.9B in H1 2026 transactions — and for the first time in years, ready homes (AED 146.7B) outsold off-plan (AED 139.8B) by value. Abu Dhabi accelerates with AED 71B in 2025 and Saadiyat Cultural District. Ras Al Khaimah delivers 7-9% yields — the highest in the UAE. This is a structural maturity shift across all three emirates.
             </p>
           </div>
         </ScrollReveal>
@@ -237,7 +238,7 @@ export default function MarketIntelligenceSection() {
                     <StatCounter end={pt.pct} suffix="%" duration={1.5} />
                   </div>
                   <div style={{ color: '#5A6662', fontSize: 14, fontWeight: 500, marginBottom: 4 }}>{pt.label}</div>
-                  <div style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 12, marginBottom: 4 }}>{pt.desc}</div>
+                  <div style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 12, marginBottom: 4 }}>{pt.desc}</div>
                   <div style={{ color: '#7D8A86', fontSize: 11 }}>{pt.note}</div>
                 </div>
               ))}

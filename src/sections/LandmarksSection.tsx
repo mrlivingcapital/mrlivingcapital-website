@@ -49,7 +49,7 @@ export default function LandmarksSection() {
             <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
               THE <span style={{ color: '#0F6B62' }}>CITY</span> WE KNOW
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 15, maxWidth: 500, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 15, maxWidth: 500, margin: '0 auto' }}>
               Iconic destinations across Dubai and the UAE — the landscape we navigate for our investors.
             </p>
           </div>

@@ -26,7 +26,7 @@
     --secondary: 38 30% 79%;
     --secondary-foreground: 160 6% 38%;
     --muted: 38 25% 88%;
-    --muted-foreground: 162 5% 52%;
+    --muted-foreground: 160 6% 40%;
     --accent: 168 33% 91%;
     --accent-foreground: 174 75% 24%;
     --border: 38 30% 79%;
@@ -75,6 +75,13 @@
     line-height: 1.05;
     letter-spacing: -0.02em;
     text-transform: uppercase;
+  }
+
+  .font-hero {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 600;
+    line-height: 1.08;
+    letter-spacing: 0.02em;
   }
 
   .font-body {

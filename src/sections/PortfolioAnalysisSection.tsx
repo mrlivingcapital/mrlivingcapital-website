@@ -60,7 +60,7 @@ export default function PortfolioAnalysisSection() {
             </h2>
             <p
               className="font-body"
-              style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, maxWidth: 620, margin: '0 auto' }}
+              style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 620, margin: '0 auto' }}
             >
               Not what I&apos;m selling you — how I manage my own family portfolio through market cycles. This is the same discipline forged over 19 years of institutional financial management.
             </p>

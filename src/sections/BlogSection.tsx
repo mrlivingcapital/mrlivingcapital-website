@@ -146,7 +146,7 @@ export default function BlogSection() {
             <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
               THE <span style={{ color: '#0F6B62' }}>INVESTOR&apos;S DESK</span>
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}>
               Geo-specific market briefings for Dubai, London, Toronto, the Balkans, and the Farsi Speaking Diaspora. Data-driven. DLD-verified.
             </p>
           </div>
@@ -254,7 +254,7 @@ export default function BlogSection() {
               <h3 style={{ color: '#5A6662', fontSize: 20, fontWeight: 600, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 8, lineHeight: 1.3 }}>
                 {activePost.title}
               </h3>
-              <p style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 14, marginBottom: 20 }}>
+              <p style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 14, marginBottom: 20 }}>
                 {activePost.subtitle}
               </p>
 
@@ -363,7 +363,7 @@ export default function BlogSection() {
             <div className="glass-card" style={{ maxWidth: 520, margin: '0 auto', padding: '40px 36px', textAlign: 'center' }}>
               <div style={{ color: '#7D8A86', fontSize: 11, marginBottom: 8 }}>✓ Download Started</div>
               <h3 style={{ color: '#0F6B62', fontSize: 18, marginBottom: 8 }}>{activePost.title}</h3>
-              <p style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 14, marginBottom: 20 }}>
+              <p style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 14, marginBottom: 20 }}>
                 Your report is downloading. We will also reach out via WhatsApp shortly.
               </p>
               <button

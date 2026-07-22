@@ -67,7 +67,7 @@ export default function ExplorerSection() {
           <p
             className="font-body"
             style={{
-              color: 'rgba(90, 102, 98, 0.6)',
+              color: 'rgba(90, 102, 98, 0.85)',
               fontSize: 16,
               textAlign: 'center',
               maxWidth: 400,

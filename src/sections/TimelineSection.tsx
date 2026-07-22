@@ -95,7 +95,7 @@ export default function TimelineSection() {
             <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
               WHAT HAPPENS AFTER YOU <span style={{ color: '#0F6B62' }}>INVEST?</span>
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, maxWidth: 500, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 500, margin: '0 auto' }}>
               A clear timeline from reservation to first rental income.
             </p>
           </div>
@@ -150,7 +150,7 @@ export default function TimelineSection() {
                     <div style={{ color: '#5A6662', fontSize: 16, fontWeight: 500, marginBottom: 6, fontFamily: 'Space Grotesk, sans-serif' }}>
                       {step.title}
                     </div>
-                    <div style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 13, lineHeight: 1.5 }}>
+                    <div style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 13, lineHeight: 1.5 }}>
                       {step.desc}
                     </div>
                   </div>

@@ -70,7 +70,7 @@ export default function InfrastructureSection() {
             <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: '#0F6B62', marginBottom: 12 }}>
               WHY <span style={{ color: '#5A6662' }}>THESE</span> CORRIDORS?
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
               Our allocation strategy is directly tied to sovereign-backed infrastructure across all three emirates: Dubai 2040, Abu Dhabi Economic Vision 2030, and Ras Al Khaimah's Wynn Al Marjan. Government projects drive capital appreciation — not market speculation.
             </p>
           </div>
