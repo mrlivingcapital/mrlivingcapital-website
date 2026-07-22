@@ -7,32 +7,32 @@ const stats = [
     prefix: 'AED ',
     suffix: 'B',
     label: 'H1 2026 Total Transactions',
-    source: 'UAE Land Departments — Q1 2026',
+    source: 'Dubai Land Department — H1 2026',
   },
   {
     value: 146.7,
     prefix: 'AED ',
     suffix: 'B',
     label: 'Ready Sales H1 — Largest Share',
-    source: 'DXB Interact / DLD — Q1 2026',
+    source: 'Dubai Land Department — H1 2026',
   },
   {
     value: 112850,
     suffix: '',
     label: 'Total Transactions H1',
-    source: 'UAE Land Departments — Q1 2026',
+    source: 'Dubai Land Department — H1 2026',
   },
   {
     value: 26,
     prefix: '+', suffix: '%',
     label: 'Foreign Investment Growth',
-    source: 'Dubai Land Department — Q1 2026 YoY',
+    source: 'Dubai Land Department — Q1 2026 YoY (latest published)',
   },
   {
     value: 48448,
     suffix: '',
     label: 'Total Investors',
-    source: 'UAE Land Departments — Q1 2026',
+    source: 'Dubai Land Department — H1 2026',
   },
 ]
 
@@ -40,7 +40,7 @@ const offPlanEvolution = [
   { year: '2021', share: 42 },
   { year: '2024', share: 55 },
   { year: '2025', share: 65 },
-  { year: 'Q1 2026', share: 73 },
+  { year: 'H1 2026', share: 49 },
 ]
 
 const topDevelopers = [
@@ -149,7 +149,7 @@ export default function MarketIntelligenceSection() {
               })}
             </div>
             <p className="font-body" style={{ color: 'rgba(125, 138, 134, 0.6)', fontSize: 12, textAlign: 'center', marginTop: 16, fontStyle: 'italic' }}>
-              Source: DXB Interact, Dubai Land Department — Q1 2026 data
+              Source: Dubai Land Department — H1 2026 (off-plan share of sales value: AED 139.8B of 286.4B)
             </p>
           </div>
         </ScrollReveal>
