@@ -16,7 +16,7 @@ const emirates = [
       'D33 Agenda: AED 32 trillion GDP target by 2033 — 1M new jobs',
       'Freehold: 100% foreign ownership in designated zones, full title deed at DLD',
     ],
-    accentColor: '#C9A87C',
+    accentColor: '#0F6B62',
     stats: { transactions: '60,303', value: 'AED 252B', priceSqft: 'AED 800-3,000+', population: '3.8M → 5.8M (2040)' },
   },
   {
@@ -33,7 +33,7 @@ const emirates = [
       'No property tax, no income tax, 100% foreign ownership in investment zones',
       'Etihad Rail direct link: Abu Dhabi-Dubai in 57 minutes from Q2 2026',
     ],
-    accentColor: '#D4F1F4',
+    accentColor: '#0F6B62',
     stats: { transactions: '12,500+', value: 'AED 71B', priceSqft: 'AED 900-2,500', population: '3.8M → 5M (2030)' },
   },
   {
@@ -50,28 +50,28 @@ const emirates = [
       'Population growing 400K → 600K by 2030 — 50% increase in housing demand',
       'No property tax, no income tax, 100% foreign ownership, streamlined DLD process',
     ],
-    accentColor: '#5A7A72',
+    accentColor: '#7D8A86',
     stats: { transactions: '3,200+', value: 'AED 8.5B', priceSqft: 'AED 500-900', population: '400K → 600K (2030)' },
   },
 ]
 
 const topDevelopers = [
   { emirate: 'DUBAI', developers: [
-    { name: 'Emaar', units: 28000, color: '#C9A87C' },
-    { name: 'DAMAC', units: 22000, color: '#B8986C' },
-    { name: 'Sobha', units: 8500, color: '#A7885C' },
-    { name: 'MERAAS', units: 12000, color: '#97804C' },
-    { name: 'Nakheel', units: 15000, color: '#87703C' },
+    { name: 'Emaar', units: 28000, color: '#0F6B62' },
+    { name: 'DAMAC', units: 22000, color: '#0C564F' },
+    { name: 'Sobha', units: 8500, color: '#0A4D47' },
+    { name: 'MERAAS', units: 12000, color: '#094540' },
+    { name: 'Nakheel', units: 15000, color: '#073E39' },
   ]},
   { emirate: 'ABU DHABI', developers: [
-    { name: 'Aldar', units: 15000, color: '#D4F1F4' },
-    { name: 'IMKAN', units: 6000, color: '#B4D1D4' },
-    { name: 'Reportage', units: 4500, color: '#94B1B4' },
-    { name: 'Bloom', units: 3500, color: '#749194' },
-    { name: 'Eagle Hills', units: 5000, color: '#647174' },
+    { name: 'Aldar', units: 15000, color: '#0F6B62' },
+    { name: 'IMKAN', units: 6000, color: '#C4DAD6' },
+    { name: 'Reportage', units: 4500, color: '#9DB3AF' },
+    { name: 'Bloom', units: 3500, color: '#7D9490' },
+    { name: 'Eagle Hills', units: 5000, color: '#6E7C78' },
   ]},
   { emirate: 'RAK', developers: [
-    { name: 'RAK Properties', units: 4000, color: '#5A7A72' },
+    { name: 'RAK Properties', units: 4000, color: '#7D8A86' },
     { name: 'Al Hamra', units: 2800, color: '#4A6A62' },
     { name: 'Marjan', units: 3200, color: '#3A5A52' },
     { name: 'RAK Central', units: 1500, color: '#2A4A42' },
@@ -83,15 +83,15 @@ function DeveloperBarChart({ emirateData }: { emirateData: typeof topDevelopers[
   const maxUnits = Math.max(...emirateData.developers.map(d => d.units))
   return (
     <div style={{ padding: '24px 0' }}>
-      <div style={{ color: '#C9A87C', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.12em', marginBottom: 16, fontWeight: 600 }}>
+      <div style={{ color: '#0F6B62', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.12em', marginBottom: 16, fontWeight: 600 }}>
         {emirateData.emirate}
       </div>
       {emirateData.developers.map((d, i) => (
         <div key={i} style={{ marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div className="dev-label" style={{ width: 80, color: 'rgba(232,221,208,0.5)', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', textAlign: 'right', flexShrink: 0 }}>
+          <div className="dev-label" style={{ width: 80, color: 'rgba(90, 102, 98, 0.5)', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', textAlign: 'right', flexShrink: 0 }}>
             {d.name}
           </div>
-          <div style={{ flex: 1, height: 20, background: 'rgba(90,122,114,0.08)', borderRadius: 4, overflow: 'hidden' }}>
+          <div style={{ flex: 1, height: 20, background: 'rgba(125, 138, 134, 0.08)', borderRadius: 4, overflow: 'hidden' }}>
             <div
               style={{
                 width: `${(d.units / maxUnits) * 100}%`,
@@ -102,7 +102,7 @@ function DeveloperBarChart({ emirateData }: { emirateData: typeof topDevelopers[
               }}
             />
           </div>
-          <div style={{ width: 50, color: '#E8DDD0', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}>
+          <div style={{ width: 50, color: '#5A6662', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}>
             {(d.units / 1000).toFixed(0)}K
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function CorridorsSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#0A1F1A',
+        background: '#F6F1E7',
         padding: '120px 24px',
       }}
     >
@@ -130,15 +130,15 @@ export default function CorridorsSection() {
         {/* Header */}
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="font-caption" style={{ color: '#C9A87C', display: 'block', marginBottom: 16, fontSize: 12, letterSpacing: '0.12em' }}>
+            <span className="font-caption" style={{ color: '#0F6B62', display: 'block', marginBottom: 16, fontSize: 12, letterSpacing: '0.12em' }}>
               CAPITAL ALLOCATION
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#E8DDD0' }}>
-              THREE <span style={{ color: '#C9A87C' }}>EMIRATES.</span>
+            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662' }}>
+              THREE <span style={{ color: '#0F6B62' }}>EMIRATES.</span>
               <br />
-              ONE <span style={{ color: '#C9A87C' }}>ALLOCATION STRATEGY.</span>
+              ONE <span style={{ color: '#0F6B62' }}>ALLOCATION STRATEGY.</span>
             </h2>
-            <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.6)', maxWidth: 700, margin: '24px auto 0', fontSize: 16 }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', maxWidth: 700, margin: '24px auto 0', fontSize: 16 }}>
               Dubai for liquidity and infrastructure. Abu Dhabi for stability and cultural capital. Ras Al Khaimah for yield and the Wynn catalyst. Each emirate serves a different function in a diversified UAE portfolio.
             </p>
           </div>
@@ -154,9 +154,9 @@ export default function CorridorsSection() {
                 style={{
                   padding: '12px 28px',
                   borderRadius: 4,
-                  border: activeEmirate === i ? '1px solid #C9A87C' : '1px solid rgba(90,122,114,0.2)',
-                  background: activeEmirate === i ? 'rgba(201,168,124,0.08)' : 'transparent',
-                  color: activeEmirate === i ? '#C9A87C' : '#5A7A72',
+                  border: activeEmirate === i ? '1px solid #0F6B62' : '1px solid rgba(125, 138, 134, 0.2)',
+                  background: activeEmirate === i ? 'rgba(15, 107, 98, 0.08)' : 'transparent',
+                  color: activeEmirate === i ? '#0F6B62' : '#7D8A86',
                   fontFamily: 'Space Grotesk, sans-serif',
                   fontSize: 13,
                   fontWeight: 600,
@@ -183,43 +183,43 @@ export default function CorridorsSection() {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 24, marginBottom: 20 }}>
               <div>
-                <div className="font-caption" style={{ color: '#C9A87C', fontSize: 12, marginBottom: 8 }}>
+                <div className="font-caption" style={{ color: '#0F6B62', fontSize: 12, marginBottom: 8 }}>
                   {emirates[activeEmirate].tag}
                 </div>
-                <h3 className="font-heading" style={{ fontSize: 28, color: '#E8DDD0', textTransform: 'uppercase' }}>
+                <h3 className="font-heading" style={{ fontSize: 28, color: '#5A6662', textTransform: 'uppercase' }}>
                   {emirates[activeEmirate].name}
                 </h3>
               </div>
               <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
                 <div>
-                  <div style={{ color: '#5A7A72', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>GROWTH</div>
-                  <div style={{ color: '#C9A87C', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].growth}</div>
+                  <div style={{ color: '#7D8A86', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>GROWTH</div>
+                  <div style={{ color: '#0F6B62', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].growth}</div>
                 </div>
                 <div>
-                  <div style={{ color: '#5A7A72', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>YIELD</div>
-                  <div style={{ color: '#C9A87C', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].yield}</div>
+                  <div style={{ color: '#7D8A86', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>YIELD</div>
+                  <div style={{ color: '#0F6B62', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].yield}</div>
                 </div>
               </div>
             </div>
 
-            <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.65)', fontSize: 15, lineHeight: 1.7, marginBottom: 20 }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.65)', fontSize: 15, lineHeight: 1.7, marginBottom: 20 }}>
               {emirates[activeEmirate].description}
             </p>
 
             {/* Key Stats Row */}
-            <div className="emirate-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24, padding: '16px 0', borderTop: '1px solid rgba(90,122,114,0.1)', borderBottom: '1px solid rgba(90,122,114,0.1)' }}>
+            <div className="emirate-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24, padding: '16px 0', borderTop: '1px solid rgba(125, 138, 134, 0.1)', borderBottom: '1px solid rgba(125, 138, 134, 0.1)' }}>
               {Object.entries(emirates[activeEmirate].stats).map(([key, value]) => (
                 <div key={key} style={{ textAlign: 'center' }}>
-                  <div className="stat-label" style={{ color: '#5A7A72', fontSize: 9, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{key.replace(/([A-Z])/g, ' $1').trim()}</div>
-                  <div className="stat-value" style={{ color: '#E8DDD0', fontSize: 13, fontWeight: 600, fontFamily: 'Space Grotesk, sans-serif' }}>{value}</div>
+                  <div className="stat-label" style={{ color: '#7D8A86', fontSize: 9, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                  <div className="stat-value" style={{ color: '#5A6662', fontSize: 13, fontWeight: 600, fontFamily: 'Space Grotesk, sans-serif' }}>{value}</div>
                 </div>
               ))}
             </div>
 
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {emirates[activeEmirate].bullets.map((b, i) => (
-                <li key={i} style={{ color: 'rgba(232, 221, 208, 0.6)', fontSize: 14, marginBottom: 8, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                  <span style={{ color: '#C9A87C', fontSize: 12, marginTop: 2 }}>✦</span>
+                <li key={i} style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 14, marginBottom: 8, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                  <span style={{ color: '#0F6B62', fontSize: 12, marginTop: 2 }}>✦</span>
                   {b}
                 </li>
               ))}
@@ -230,13 +230,13 @@ export default function CorridorsSection() {
         {/* Developer Bar Charts */}
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <span className="font-caption" style={{ color: '#C9A87C', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 16 }}>
+            <span className="font-caption" style={{ color: '#0F6B62', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 16 }}>
               TOP DEVELOPERS BY PIPELINE
             </span>
-            <h3 className="font-heading" style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#E8DDD0', marginBottom: 8 }}>
-              WHO IS <span style={{ color: '#C9A87C' }}>BUILDING</span> THE FUTURE
+            <h3 className="font-heading" style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#5A6662', marginBottom: 8 }}>
+              WHO IS <span style={{ color: '#0F6B62' }}>BUILDING</span> THE FUTURE
             </h3>
-            <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 14, maxWidth: 600, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 14, maxWidth: 600, margin: '0 auto' }}>
               Units in pipeline by top developer per emirate. Data sourced from DLD, Abu Dhabi DMT, and RAK DLD.
             </p>
           </div>

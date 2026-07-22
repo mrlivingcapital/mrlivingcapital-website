@@ -4,34 +4,34 @@
 
 @layer base {
   :root {
-    --deep-forest: #0A1F1A;
-    --deep-forest-80: rgba(10, 31, 26, 0.8);
-    --deep-forest-light: #0F2A23;
-    --gold: #C9A87C;
-    --gold-light: #D4B896;
-    --gold-muted: rgba(201, 168, 124, 0.15);
-    --sage: #5A7A72;
-    --sage-muted: rgba(90, 122, 114, 0.12);
-    --warm-cream: #E8DDD0;
-    --warm-cream-60: rgba(232, 221, 208, 0.6);
-    --bright-mint: #D4F1F4;
-    --bg-footer: #081A16;
+    --deep-forest: #F6F1E7;
+    --deep-forest-80: rgba(246, 241, 231, 0.88);
+    --deep-forest-light: #FFFFFF;
+    --gold: #0F6B62;
+    --gold-light: #2E8A80;
+    --gold-muted: rgba(15, 107, 98, 0.12);
+    --sage: #7D8A86;
+    --sage-muted: rgba(125, 138, 134, 0.15);
+    --warm-cream: #5A6662;
+    --warm-cream-60: rgba(90, 102, 98, 0.6);
+    --bright-mint: #0F6B62;
+    --bg-footer: #0B2925;
 
-    --background: 160 50% 6%;
-    --foreground: 30 30% 86%;
-    --card: 160 50% 8%;
-    --card-foreground: 30 30% 86%;
-    --primary: 35 36% 64%;
-    --primary-foreground: 160 50% 6%;
-    --secondary: 160 15% 42%;
-    --secondary-foreground: 30 30% 86%;
-    --muted: 160 15% 42%;
-    --muted-foreground: 160 15% 42%;
-    --accent: 185 52% 90%;
-    --accent-foreground: 160 50% 6%;
-    --border: 160 15% 42%;
-    --input: 160 15% 42%;
-    --ring: 35 36% 64%;
+    --background: 40 45% 94%;
+    --foreground: 160 6% 38%;
+    --card: 0 0% 100%;
+    --card-foreground: 160 6% 38%;
+    --primary: 174 75% 24%;
+    --primary-foreground: 40 45% 94%;
+    --secondary: 38 30% 79%;
+    --secondary-foreground: 160 6% 38%;
+    --muted: 38 25% 88%;
+    --muted-foreground: 162 5% 52%;
+    --accent: 168 33% 91%;
+    --accent-foreground: 174 75% 24%;
+    --border: 38 30% 79%;
+    --input: 38 30% 79%;
+    --ring: 174 75% 24%;
     --radius: 0.5rem;
   }
 
@@ -109,21 +109,21 @@
   }
 
   .glass-card {
-    background: rgba(10, 31, 26, 0.8);
+    background: rgba(246, 241, 231, 0.88);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(90, 122, 114, 0.2);
+    border: 1px solid rgba(125, 138, 134, 0.2);
     border-radius: 8px;
     transition: border-color 0.3s ease;
   }
 
   .glass-card:hover {
-    border-color: rgba(201, 168, 124, 0.3);
+    border-color: rgba(15, 107, 98, 0.25);
   }
 
   .section-divider {
     height: 1px;
-    background: rgba(90, 122, 114, 0.2);
+    background: rgba(125, 138, 134, 0.2);
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -160,7 +160,7 @@
   }
 
   .border-gold-muted {
-    border-color: rgba(201, 168, 124, 0.2);
+    border-color: rgba(15, 107, 98, 0.18);
   }
 }
 
@@ -210,10 +210,10 @@
 
 @keyframes pulse-gold {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(201, 168, 124, 0.4);
+    box-shadow: 0 0 0 0 rgba(15, 107, 98, 0.35);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(201, 168, 124, 0);
+    box-shadow: 0 0 0 8px rgba(15, 107, 98, 0);
   }
 }
 

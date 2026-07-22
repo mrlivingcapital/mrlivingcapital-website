@@ -3,7 +3,7 @@ import ScrollReveal from '../components/ScrollReveal'
 const reasons = [
   {
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6B62" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
         <path d="M9 12l2 2 4-4" />
       </svg>
@@ -13,7 +13,7 @@ const reasons = [
   },
   {
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6B62" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
         <polyline points="12 6 12 12 16 14" />
       </svg>
@@ -23,7 +23,7 @@ const reasons = [
   },
   {
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6B62" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M3 3v18h18" />
         <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
       </svg>
@@ -33,7 +33,7 @@ const reasons = [
   },
   {
     icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C9A87C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6B62" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
         <line x1="2" y1="12" x2="22" y2="12" />
         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
@@ -48,7 +48,7 @@ export default function AboutSection() {
   return (
     <section
       id="about"
-      style={{ position: 'relative', zIndex: 2, background: '#0A1F1A', padding: '120px 24px' }}
+      style={{ position: 'relative', zIndex: 2, background: '#F6F1E7', padding: '120px 24px' }}
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         {/* Two-column layout */}
@@ -66,7 +66,7 @@ export default function AboutSection() {
             <ScrollReveal>
               <span
                 className="font-caption"
-                style={{ color: '#C9A87C', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 20 }}
+                style={{ color: '#0F6B62', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 20 }}
               >
                 ABOUT
               </span>
@@ -81,16 +81,16 @@ export default function AboutSection() {
                   marginBottom: 24,
                 }}
               >
-                <span style={{ color: '#E8DDD0' }}>THE ARCHITECT,</span>
+                <span style={{ color: '#5A6662' }}>THE ARCHITECT,</span>
                 <br />
-                <span style={{ color: '#C9A87C' }}>NOT THE BROKER.</span>
+                <span style={{ color: '#0F6B62' }}>NOT THE BROKER.</span>
               </h2>
             </ScrollReveal>
 
             <ScrollReveal delay={0.2}>
               <p
                 className="font-body"
-                style={{ color: 'rgba(232, 221, 208, 0.6)', fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}
+                style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}
               >
                 I spent two decades designing and implementing strategies within financial institutions and freelance private portfolio management, managing capital across three continents. I survived what should have killed me. Then I built MR Living Capital to bring that same institutional discipline to serious investors building real wealth in the UAE. Cold-blooded analysis. Zero sales agenda.
               </p>
@@ -99,7 +99,7 @@ export default function AboutSection() {
             <ScrollReveal delay={0.3}>
               <p
                 className="font-body"
-                style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 15, lineHeight: 1.7, marginBottom: 40 }}
+                style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, lineHeight: 1.7, marginBottom: 40 }}
               >
                 Every engagement begins with one question: what does your capital need to achieve? From there, we build a tailor-made investment roadmap — not a sales pitch. The same rigorous process I forged over two decades, now applied across the UAE&apos;s highest-growth corridors in Dubai, Abu Dhabi, and Ras Al Khaimah.
               </p>
@@ -116,7 +116,7 @@ export default function AboutSection() {
                       display: 'flex',
                       gap: 16,
                       alignItems: 'flex-start',
-                      borderLeft: '2px solid #C9A87C',
+                      borderLeft: '2px solid #0F6B62',
                       transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
@@ -132,7 +132,7 @@ export default function AboutSection() {
                     <div>
                       <div
                         style={{
-                          color: '#E8DDD0',
+                          color: '#5A6662',
                           fontSize: 14,
                           fontWeight: 600,
                           fontFamily: 'Space Grotesk, sans-serif',
@@ -142,7 +142,7 @@ export default function AboutSection() {
                       >
                         {r.title}
                       </div>
-                      <div style={{ color: 'rgba(232, 221, 208, 0.45)', fontSize: 13, lineHeight: 1.6 }}>
+                      <div style={{ color: 'rgba(90, 102, 98, 0.45)', fontSize: 13, lineHeight: 1.6 }}>
                         {r.desc}
                       </div>
                     </div>
@@ -167,7 +167,7 @@ export default function AboutSection() {
                 <div
                   style={{
                     borderRadius: 24,
-                    border: '1px solid rgba(201, 168, 124, 0.25)',
+                    border: '1px solid rgba(15, 107, 98, 0.25)',
                     padding: 10,
                     transition: 'all 0.5s ease',
                   }}
@@ -176,7 +176,7 @@ export default function AboutSection() {
                   <div
                     style={{
                       borderRadius: 16,
-                      border: '1px solid rgba(201, 168, 124, 0.4)',
+                      border: '1px solid rgba(15, 107, 98, 0.4)',
                       padding: 8,
                       overflow: 'hidden',
                       position: 'relative',
@@ -201,7 +201,7 @@ export default function AboutSection() {
                         position: 'absolute',
                         inset: 8,
                         borderRadius: 10,
-                        background: 'linear-gradient(180deg, transparent 60%, rgba(10,31,26,0.5) 100%)',
+                        background: 'linear-gradient(180deg, transparent 60%, rgba(246, 241, 231, 0.5) 100%)',
                         pointerEvents: 'none',
                       }}
                     />
@@ -214,7 +214,7 @@ export default function AboutSection() {
                     position: 'absolute',
                     inset: -20,
                     borderRadius: 32,
-                    background: 'radial-gradient(ellipse at center, rgba(201,168,124,0.06) 0%, transparent 70%)',
+                    background: 'radial-gradient(ellipse at center, rgba(15, 107, 98, 0.06) 0%, transparent 70%)',
                     zIndex: -1,
                     pointerEvents: 'none',
                   }}
@@ -227,7 +227,7 @@ export default function AboutSection() {
               <div style={{ textAlign: 'center', marginTop: 24 }}>
                 <div
                   style={{
-                    color: '#C9A87C',
+                    color: '#0F6B62',
                     fontSize: 18,
                     fontWeight: 600,
                     fontFamily: 'Space Grotesk, sans-serif',
@@ -239,7 +239,7 @@ export default function AboutSection() {
                 </div>
                 <div
                   style={{
-                    color: '#5A7A72',
+                    color: '#7D8A86',
                     fontSize: 12,
                     fontFamily: 'Space Grotesk, sans-serif',
                     letterSpacing: '0.1em',

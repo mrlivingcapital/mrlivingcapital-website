@@ -71,24 +71,24 @@ export default function FloatingSocials() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: '#5A7A72',
-            background: 'rgba(10, 31, 26, 0.6)',
+            color: '#7D8A86',
+            background: 'rgba(246, 241, 231, 0.6)',
             backdropFilter: 'blur(8px)',
-            borderLeft: '1px solid rgba(90, 122, 114, 0.2)',
-            borderTop: '1px solid rgba(90, 122, 114, 0.2)',
-            borderBottom: '1px solid rgba(90, 122, 114, 0.2)',
+            borderLeft: '1px solid rgba(125, 138, 134, 0.2)',
+            borderTop: '1px solid rgba(125, 138, 134, 0.2)',
+            borderBottom: '1px solid rgba(125, 138, 134, 0.2)',
             borderRadius: '4px 0 0 4px',
             transition: 'all 0.3s ease',
             textDecoration: 'none',
             outline: 'none',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.color = '#C9A87C'
-            e.currentTarget.style.background = 'rgba(201, 168, 124, 0.1)'
+            e.currentTarget.style.color = '#0F6B62'
+            e.currentTarget.style.background = 'rgba(15, 107, 98, 0.1)'
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.color = '#5A7A72'
-            e.currentTarget.style.background = 'rgba(10, 31, 26, 0.6)'
+            e.currentTarget.style.color = '#7D8A86'
+            e.currentTarget.style.background = 'rgba(246, 241, 231, 0.6)'
           }}
         >
           {s.icon}

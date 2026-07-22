@@ -82,13 +82,13 @@ function ParticleField() {
 
       const ci = i * 3
       if (cell.speed > 0.01 && colorArray) {
-        colorArray[ci] = 0.8 + cell.speed * 0.1
-        colorArray[ci + 1] = 0.68 + cell.speed * 0.08
-        colorArray[ci + 2] = 0.5 + cell.speed * 0.08
+        colorArray[ci] = 0.3 + cell.speed * 0.1
+        colorArray[ci + 1] = 0.85 + cell.speed * 0.05
+        colorArray[ci + 2] = 0.78 + cell.speed * 0.05
       } else if (colorArray) {
-        colorArray[ci] = 0.6 * brightness
-        colorArray[ci + 1] = 0.48 * brightness
-        colorArray[ci + 2] = 0.32 * brightness
+        colorArray[ci] = 0.06 * brightness
+        colorArray[ci + 1] = 0.45 * brightness
+        colorArray[ci + 2] = 0.41 * brightness
       }
 
       dummy.position.set(cell.x, cell.y, cell.z)
@@ -105,16 +105,16 @@ function ParticleField() {
   const colors = useMemo(() => {
     const c = new Float32Array(INSTANCE_COUNT * 3)
     for (let i = 0; i < INSTANCE_COUNT; i++) {
-      c[i * 3] = 0.6
-      c[i * 3 + 1] = 0.48
-      c[i * 3 + 2] = 0.32
+      c[i * 3] = 0.059
+      c[i * 3 + 1] = 0.42
+      c[i * 3 + 2] = 0.384
     }
     return c
   }, [])
 
   return (
     <group ref={groupRef}>
-      <fog attach="fog" args={['#0A1F1A', 50, 140]} />
+      <fog attach="fog" args={['#F6F1E7', 50, 140]} />
       <instancedMesh ref={meshRef} args={[undefined, undefined, INSTANCE_COUNT]}>
         <planeGeometry args={[0.2, 0.2]}>
           <instancedBufferAttribute attach="attributes-color" args={[colors, 3]} />
@@ -135,17 +135,17 @@ export default function ParticleGrid() {
         width: '100%',
         height: '100%',
         zIndex: 0,
-        background: 'radial-gradient(ellipse at center, #0F2A23 0%, #0A1F1A 70%)',
+        background: 'radial-gradient(ellipse at center, #FFFFFF 0%, #F6F1E7 70%)',
       }}
     >
       <Canvas
         camera={{ position: [0, -15, 60], fov: 50 }}
         dpr={[1, 1.5]}
-        gl={{ antialias: false, alpha: false }}
+        gl={{ antialias: false, alpha: true }}
       >
         <ParticleField />
         <EffectComposer>
-          <Bloom intensity={0.8} luminanceThreshold={0.5} luminanceSmoothing={0.6} />
+          <Bloom intensity={0.35} luminanceThreshold={0.85} luminanceSmoothing={0.6} />
         </EffectComposer>
       </Canvas>
     </div>

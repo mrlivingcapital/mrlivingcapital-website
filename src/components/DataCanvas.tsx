@@ -34,7 +34,7 @@ export default function DataCanvas() {
     const baseSpeed = 1.0
     const spawnRate = 3
 
-    const colors = ['#C9A87C', '#D4B896', '#B8956A', '#E8DDD0']
+    const colors = ['#0F6B62', '#2E8A80', '#0D5F57', '#5A6662']
     let particles: Particle[] = []
     let mouse = { x: -1, y: -1 }
     let cursor = { x: 0.5, y: 0.5 }
@@ -71,7 +71,7 @@ export default function DataCanvas() {
           alpha: 0.6 + Math.random() * 0.4,
           life: 0,
           maxLife: 200 + Math.random() * 300,
-          color: bright ? '#D4F1F4' : colors[Math.floor(Math.random() * colors.length)],
+          color: bright ? '#0F6B62' : colors[Math.floor(Math.random() * colors.length)],
           bright,
         })
       }
@@ -143,7 +143,7 @@ export default function DataCanvas() {
       const h = container.offsetHeight
 
       // Fade trail
-      ctx.fillStyle = 'rgba(10, 31, 26, 0.15)'
+      ctx.fillStyle = 'rgba(246, 241, 231, 0.15)'
       ctx.fillRect(0, 0, w, h)
 
       // Spawn ambient particles
@@ -191,8 +191,8 @@ export default function DataCanvas() {
 
       // Radial vignette
       const gradient = ctx.createRadialGradient(w / 2, h / 2, w * 0.2, w / 2, h / 2, w * 0.8)
-      gradient.addColorStop(0, 'rgba(10, 31, 26, 0)')
-      gradient.addColorStop(1, 'rgba(10, 31, 26, 0.8)')
+      gradient.addColorStop(0, 'rgba(246, 241, 231, 0)')
+      gradient.addColorStop(1, 'rgba(246, 241, 231, 0.88)')
       ctx.fillStyle = gradient
       ctx.fillRect(0, 0, w, h)
 
@@ -217,7 +217,7 @@ export default function DataCanvas() {
       style={{
         position: 'absolute',
         inset: 0,
-        background: '#0A1F1A',
+        background: '#F6F1E7',
         cursor: 'crosshair',
       }}
     >

@@ -7,7 +7,7 @@ export default function FounderLetterSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#0A1F1A',
+        background: '#F6F1E7',
         padding: '120px 24px',
       }}
     >
@@ -16,7 +16,7 @@ export default function FounderLetterSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse at 20% 50%, rgba(201, 168, 124, 0.03) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse at 20% 50%, rgba(15, 107, 98, 0.03) 0%, transparent 50%)',
           pointerEvents: 'none',
         }}
       />
@@ -26,21 +26,21 @@ export default function FounderLetterSection() {
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <span
               className="font-caption"
-              style={{ color: '#C9A87C', fontSize: 12, letterSpacing: '0.15em', display: 'block', marginBottom: 16 }}
+              style={{ color: '#0F6B62', fontSize: 12, letterSpacing: '0.15em', display: 'block', marginBottom: 16 }}
             >
               THE FOUNDER&apos;S LETTER
             </span>
             <h2
               className="font-heading"
-              style={{ fontSize: 'clamp(28px, 4vw, 44px)', color: '#E8DDD0', marginBottom: 12 }}
+              style={{ fontSize: 'clamp(28px, 4vw, 44px)', color: '#5A6662', marginBottom: 12 }}
             >
-              INSTITUTIONAL <span style={{ color: '#C9A87C' }}>DISCIPLINE.</span>
+              INSTITUTIONAL <span style={{ color: '#0F6B62' }}>DISCIPLINE.</span>
               <br />
-              PERSONAL <span style={{ color: '#C9A87C' }}>CONVICTION.</span>
+              PERSONAL <span style={{ color: '#0F6B62' }}>CONVICTION.</span>
             </h2>
             <p
               className="font-body"
-              style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}
+              style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}
             >
               Why institutional discipline matters in every allocation decision.
             </p>
@@ -64,8 +64,8 @@ export default function FounderLetterSection() {
                   height: 200,
                   objectFit: 'cover',
                   borderRadius: '50%',
-                  border: '2px solid #C9A87C',
-                  boxShadow: '0 0 30px rgba(201, 168, 124, 0.15)',
+                  border: '2px solid #0F6B62',
+                  boxShadow: '0 0 30px rgba(15, 107, 98, 0.12)',
                 }}
                 loading="eager"
               />
@@ -76,15 +76,15 @@ export default function FounderLetterSection() {
                   right: 4,
                   width: 20,
                   height: 20,
-                  background: '#C9A87C',
+                  background: '#0F6B62',
                   borderRadius: '50%',
-                  border: '3px solid #0A1F1A',
+                  border: '3px solid #F6F1E7',
                 }}
               />
             </div>
             <p
               className="font-body"
-              style={{ color: 'rgba(232, 221, 208, 0.3)', fontSize: 12, marginTop: 12, fontStyle: 'italic' }}
+              style={{ color: 'rgba(90, 102, 98, 0.3)', fontSize: 12, marginTop: 12, fontStyle: 'italic' }}
             >
               Two decades of institutional financial DNA.
             </p>
@@ -97,7 +97,7 @@ export default function FounderLetterSection() {
             style={{
               padding: '56px 48px',
               position: 'relative',
-              borderLeft: '3px solid #C9A87C',
+              borderLeft: '3px solid #0F6B62',
             }}
           >
             {/* Decorative quote mark */}
@@ -107,7 +107,7 @@ export default function FounderLetterSection() {
                 top: 24,
                 left: 36,
                 fontSize: 96,
-                color: 'rgba(201, 168, 124, 0.08)',
+                color: 'rgba(15, 107, 98, 0.08)',
                 fontFamily: 'Georgia, serif',
                 lineHeight: 1,
                 userSelect: 'none',
@@ -119,21 +119,21 @@ export default function FounderLetterSection() {
             <div style={{ position: 'relative', zIndex: 1 }}>
               <p
                 className="font-body"
-                style={{ color: 'rgba(232, 221, 208, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
+                style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
               >
                 I spent two decades designing and implementing strategies within financial institutions and freelance private portfolio management — navigating market cycles across three continents, and learning how big money actually moves. Not how it talks. How it moves.
               </p>
 
               <p
                 className="font-body"
-                style={{ color: 'rgba(232, 221, 208, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
+                style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
               >
                 I started working at fourteen. Not because I had to — because I understood early that how you steward capital defines the life you live and the legacy you leave. Today, MR Living Capital exists because I believe investors deserve the same institutional-grade discipline that the big institutions use — but accessible to serious individuals and families building real wealth.
               </p>
 
               <p
                 className="font-body"
-                style={{ color: 'rgba(232, 221, 208, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 28 }}
+                style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 28 }}
               >
                 This is not a property shop. This is real estate investment advisory engineered by someone who spent two decades inside the machine — designing strategies and managing private portfolios. I don&apos;t chase commissions. I architect capital. If the numbers don&apos;t make sense, we don&apos;t proceed. That is the only rule.
               </p>
@@ -141,7 +141,7 @@ export default function FounderLetterSection() {
               {/* Signature */}
               <div
                 style={{
-                  borderTop: '1px solid rgba(90, 122, 114, 0.15)',
+                  borderTop: '1px solid rgba(125, 138, 134, 0.15)',
                   paddingTop: 24,
                   display: 'flex',
                   justifyContent: 'space-between',
@@ -153,7 +153,7 @@ export default function FounderLetterSection() {
                 <div>
                   <div
                     style={{
-                      color: '#C9A87C',
+                      color: '#0F6B62',
                       fontSize: 18,
                       fontWeight: 600,
                       fontFamily: 'Space Grotesk, sans-serif',
@@ -165,7 +165,7 @@ export default function FounderLetterSection() {
                   </div>
                   <div
                     style={{
-                      color: '#5A7A72',
+                      color: '#7D8A86',
                       fontSize: 12,
                       fontFamily: 'Space Grotesk, sans-serif',
                       letterSpacing: '0.1em',
@@ -178,7 +178,7 @@ export default function FounderLetterSection() {
                 <div style={{ textAlign: 'right' }}>
                   <div
                     style={{
-                      color: 'rgba(232, 221, 208, 0.35)',
+                      color: 'rgba(90, 102, 98, 0.35)',
                       fontSize: 11,
                       fontFamily: 'Space Grotesk, sans-serif',
                       fontStyle: 'italic',

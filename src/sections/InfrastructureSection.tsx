@@ -56,7 +56,7 @@ export default function InfrastructureSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: 'radial-gradient(ellipse at center, #0F2A23 0%, #0A1F1A 70%)',
+        background: 'radial-gradient(ellipse at center, #FFFFFF 0%, #F6F1E7 70%)',
         padding: '120px 24px',
       }}
     >
@@ -64,13 +64,13 @@ export default function InfrastructureSection() {
         {/* Header */}
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 60 }}>
-            <span className="font-caption" style={{ color: '#C9A87C', display: 'block', marginBottom: 16, fontSize: 12 }}>
+            <span className="font-caption" style={{ color: '#0F6B62', display: 'block', marginBottom: 16, fontSize: 12 }}>
               INFRASTRUCTURE & GOVERNMENT STRATEGY
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: '#C9A87C', marginBottom: 12 }}>
-              WHY <span style={{ color: '#E8DDD0' }}>THESE</span> CORRIDORS?
+            <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: '#0F6B62', marginBottom: 12 }}>
+              WHY <span style={{ color: '#5A6662' }}>THESE</span> CORRIDORS?
             </h2>
-            <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.6)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
               Our allocation strategy is directly tied to sovereign-backed infrastructure across all three emirates: Dubai 2040, Abu Dhabi Economic Vision 2030, and Ras Al Khaimah's Wynn Al Marjan. Government projects drive capital appreciation — not market speculation.
             </p>
           </div>
@@ -93,16 +93,16 @@ export default function InfrastructureSection() {
                   className="font-heading"
                   style={{
                     fontSize: 'clamp(32px, 4vw, 48px)',
-                    color: '#D4F1F4',
+                    color: '#0F6B62',
                     marginBottom: 8,
                   }}
                 >
                   {stat.number}
                 </div>
-                <div className="font-caption" style={{ color: '#C9A87C', marginBottom: 4, fontSize: 11 }}>
+                <div className="font-caption" style={{ color: '#0F6B62', marginBottom: 4, fontSize: 11 }}>
                   {stat.label}
                 </div>
-                <div className="font-caption" style={{ color: '#5A7A72', fontSize: 11 }}>
+                <div className="font-caption" style={{ color: '#7D8A86', fontSize: 11 }}>
                   {stat.sublabel}
                 </div>
               </div>
@@ -120,11 +120,11 @@ export default function InfrastructureSection() {
         {/* Dubai 2040 Facts */}
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <span className="font-caption" style={{ color: '#C9A87C', display: 'block', marginBottom: 8, fontSize: 11 }}>
+            <span className="font-caption" style={{ color: '#0F6B62', display: 'block', marginBottom: 8, fontSize: 11 }}>
               DUBAI 2040 URBAN MASTER PLAN
             </span>
-            <h3 className="font-heading" style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#E8DDD0' }}>
-              GOVERNMENT <span style={{ color: '#C9A87C' }}>STRATEGY</span> & FACTS
+            <h3 className="font-heading" style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#5A6662' }}>
+              GOVERNMENT <span style={{ color: '#0F6B62' }}>STRATEGY</span> & FACTS
             </h3>
           </div>
         </ScrollReveal>
@@ -136,7 +136,7 @@ export default function InfrastructureSection() {
               <div style={{ marginTop: emirateIndex > 0 ? 48 : 0, marginBottom: 20 }}>
                 <span
                   style={{
-                    color: '#C9A87C',
+                    color: '#0F6B62',
                     fontSize: 12,
                     fontWeight: 600,
                     fontFamily: 'Space Grotesk, sans-serif',
@@ -163,7 +163,7 @@ export default function InfrastructureSection() {
                     className="glass-card dubai2040-card"
                     style={{
                       padding: '24px',
-                      borderLeft: '3px solid #C9A87C',
+                      borderLeft: '3px solid #0F6B62',
                       height: '100%',
                       display: 'flex',
                       flexDirection: 'column',
@@ -175,7 +175,7 @@ export default function InfrastructureSection() {
                       style={{
                         fontSize: 'clamp(22px, 2.5vw, 28px)',
                         fontWeight: 700,
-                        color: '#D4F1F4',
+                        color: '#0F6B62',
                         fontFamily: 'Space Grotesk, sans-serif',
                         marginBottom: 4,
                         lineHeight: 1,
@@ -185,7 +185,7 @@ export default function InfrastructureSection() {
                     </div>
                     <div
                       style={{
-                        color: '#C9A87C',
+                        color: '#0F6B62',
                         fontSize: 12,
                         fontWeight: 500,
                         fontFamily: 'Space Grotesk, sans-serif',
@@ -198,7 +198,7 @@ export default function InfrastructureSection() {
                     <p
                       className="font-body"
                       style={{
-                        color: 'rgba(232, 221, 208, 0.55)',
+                        color: 'rgba(90, 102, 98, 0.55)',
                         fontSize: 13,
                         lineHeight: 1.6,
                       }}
@@ -216,7 +216,7 @@ export default function InfrastructureSection() {
         <p
           className="font-body"
           style={{
-            color: 'rgba(90, 122, 114, 0.5)',
+            color: 'rgba(125, 138, 134, 0.5)',
             fontSize: 11,
             textAlign: 'center',
             fontStyle: 'italic',

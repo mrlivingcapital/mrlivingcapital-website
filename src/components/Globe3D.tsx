@@ -47,7 +47,7 @@ export default function Globe3D() {
           transform: 'translateX(-50%)',
           width: 180,
           height: 25,
-          background: 'radial-gradient(ellipse, rgba(201, 168, 124, 0.08), transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(15, 107, 98, 0.08), transparent 70%)',
           filter: 'blur(10px)',
         }}
       />
@@ -76,12 +76,12 @@ export default function Globe3D() {
               position: 'absolute',
               inset: 0,
               borderRadius: '50%',
-              border: '1.5px solid rgba(201, 168, 124, 0.2)',
-              background: 'radial-gradient(circle at 35% 35%, rgba(201, 168, 124, 0.06), transparent 65%)',
+              border: '1.5px solid rgba(15, 107, 98, 0.2)',
+              background: 'radial-gradient(circle at 35% 35%, rgba(15, 107, 98, 0.06), transparent 65%)',
               boxShadow: `
-                inset -20px -20px 40px rgba(10, 31, 26, 0.8),
-                inset 10px 10px 30px rgba(201, 168, 124, 0.05),
-                0 0 60px rgba(201, 168, 124, 0.06)
+                inset -20px -20px 40px rgba(246, 241, 231, 0.88),
+                inset 10px 10px 30px rgba(15, 107, 98, 0.05),
+                0 0 60px rgba(15, 107, 98, 0.06)
               `,
             }}
           />
@@ -100,7 +100,7 @@ export default function Globe3D() {
                   width: `${100 * scale}%`,
                   height: 1,
                   borderRadius: '50%',
-                  border: '1px solid rgba(201, 168, 124, 0.08)',
+                  border: '1px solid rgba(15, 107, 98, 0.08)',
                   transform: 'translateY(-50%)',
                 }}
               />
@@ -117,7 +117,7 @@ export default function Globe3D() {
                   position: 'absolute',
                   inset: 0,
                   borderRadius: '50%',
-                  border: '1px solid rgba(201, 168, 124, 0.06)',
+                  border: '1px solid rgba(15, 107, 98, 0.06)',
                   transform: `rotateY(${rot}deg)`,
                 }}
               />
@@ -141,12 +141,12 @@ export default function Globe3D() {
         >
           <span
             style={{
-              color: '#C9A87C',
+              color: '#0F6B62',
               fontSize: 12,
               letterSpacing: '0.25em',
               fontWeight: 600,
               fontFamily: 'Space Grotesk, sans-serif',
-              textShadow: '0 0 15px rgba(201, 168, 124, 0.5), 0 2px 10px rgba(10, 31, 26, 0.9)',
+              textShadow: '0 0 15px rgba(15, 107, 98, 0.45), 0 2px 10px rgba(246, 241, 231, 0.9)',
               whiteSpace: 'nowrap',
             }}
           >

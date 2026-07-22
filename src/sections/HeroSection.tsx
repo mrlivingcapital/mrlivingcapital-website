@@ -25,7 +25,7 @@ export default function HeroSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse 60% 55% at 50% 50%, rgba(10, 31, 26, 0.88) 0%, rgba(10, 31, 26, 0.4) 50%, transparent 80%)',
+          background: 'radial-gradient(ellipse 60% 55% at 50% 50%, rgba(246, 241, 231, 0.88) 0%, rgba(246, 241, 231, 0.4) 50%, transparent 80%)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -51,7 +51,7 @@ export default function HeroSection() {
               margin: '0 auto',
             }}
           />
-          <div style={{ width: 40, height: 1, background: 'rgba(201, 168, 124, 0.3)', margin: '10px auto 0' }} />
+          <div style={{ width: 40, height: 1, background: 'rgba(15, 107, 98, 0.25)', margin: '10px auto 0' }} />
         </div>
 
         {/* Main Headline */}
@@ -67,9 +67,9 @@ export default function HeroSection() {
             className="font-display"
             style={{
               fontSize: 'clamp(44px, 8vw, 88px)',
-              color: '#E8DDD0',
+              color: '#5A6662',
               marginBottom: 4,
-              textShadow: '0 2px 30px rgba(10, 31, 26, 0.8)',
+              textShadow: '0 2px 30px rgba(246, 241, 231, 0.88)',
             }}
           >
             LIVING PROOF.
@@ -78,8 +78,8 @@ export default function HeroSection() {
             className="font-display"
             style={{
               fontSize: 'clamp(44px, 8vw, 88px)',
-              color: '#C9A87C',
-              textShadow: '0 2px 30px rgba(10, 31, 26, 0.8)',
+              color: '#0F6B62',
+              textShadow: '0 2px 30px rgba(246, 241, 231, 0.88)',
             }}
           >
             LASTING LEGACY.
@@ -92,9 +92,9 @@ export default function HeroSection() {
           style={{
             fontSize: 'clamp(16px, 2.5vw, 20px)',
             fontStyle: 'italic',
-            color: 'rgba(232, 221, 208, 0.75)',
+            color: 'rgba(90, 102, 98, 0.75)',
             marginBottom: 6,
-            textShadow: '0 1px 10px rgba(10, 31, 26, 0.9)',
+            textShadow: '0 1px 10px rgba(246, 241, 231, 0.9)',
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(15px)',
             transition: 'opacity 0.8s ease 1s, transform 0.8s ease 1s',
@@ -109,9 +109,9 @@ export default function HeroSection() {
           className="font-body"
           style={{
             fontSize: 13,
-            color: 'rgba(232, 221, 208, 0.5)',
+            color: 'rgba(90, 102, 98, 0.5)',
             marginBottom: 24,
-            textShadow: '0 1px 8px rgba(10, 31, 26, 0.9)',
+            textShadow: '0 1px 8px rgba(246, 241, 231, 0.9)',
             opacity: loaded ? 1 : 0,
             transform: loaded ? 'translateY(0)' : 'translateY(15px)',
             transition: 'opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s',
@@ -140,8 +140,8 @@ export default function HeroSection() {
             style={{
               padding: '14px 28px',
               borderRadius: 4,
-              background: '#C9A87C',
-              color: '#0A1F1A',
+              background: '#0F6B62',
+              color: '#F6F1E7',
               textDecoration: 'none',
               fontSize: 12,
               display: 'flex',
@@ -152,11 +152,11 @@ export default function HeroSection() {
               fontWeight: 600,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#D4B896'
+              e.currentTarget.style.background = '#2E8A80'
               e.currentTarget.style.transform = 'scale(1.02)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#C9A87C'
+              e.currentTarget.style.background = '#0F6B62'
               e.currentTarget.style.transform = 'scale(1)'
             }}
           >
@@ -180,8 +180,8 @@ export default function HeroSection() {
               padding: '14px 28px',
               borderRadius: 4,
               background: 'transparent',
-              color: '#E8DDD0',
-              border: '1px solid rgba(90, 122, 114, 0.4)',
+              color: '#5A6662',
+              border: '1px solid rgba(125, 138, 134, 0.4)',
               textDecoration: 'none',
               fontSize: 12,
               display: 'flex',
@@ -191,12 +191,12 @@ export default function HeroSection() {
               letterSpacing: '0.06em',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(201, 168, 124, 0.5)'
-              e.currentTarget.style.color = '#C9A87C'
+              e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.45)'
+              e.currentTarget.style.color = '#0F6B62'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(90, 122, 114, 0.4)'
-              e.currentTarget.style.color = '#E8DDD0'
+              e.currentTarget.style.borderColor = 'rgba(125, 138, 134, 0.4)'
+              e.currentTarget.style.color = '#5A6662'
             }}
           >
             START A CONVERSATION
@@ -217,7 +217,7 @@ export default function HeroSection() {
             transition: 'opacity 1s ease 2s',
           }}
         >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5A7A72" strokeWidth="1.5">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7D8A86" strokeWidth="1.5">
             <path d="M12 5v14M5 12l7 7 7-7" />
           </svg>
         </div>

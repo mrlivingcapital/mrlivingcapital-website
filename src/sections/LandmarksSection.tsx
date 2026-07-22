@@ -36,20 +36,20 @@ export default function LandmarksSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#0A1F1A',
+        background: '#F6F1E7',
         padding: '120px 24px',
       }}
     >
       <div style={{ maxWidth: 1000, margin: '0 auto' }}>
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="font-caption" style={{ color: '#C9A87C', display: 'block', marginBottom: 16, fontSize: 12 }}>
+            <span className="font-caption" style={{ color: '#0F6B62', display: 'block', marginBottom: 16, fontSize: 12 }}>
               DUBAI LANDMARKS
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#E8DDD0', marginBottom: 12 }}>
-              THE <span style={{ color: '#C9A87C' }}>CITY</span> WE KNOW
+            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
+              THE <span style={{ color: '#0F6B62' }}>CITY</span> WE KNOW
             </h2>
-            <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.6)', fontSize: 15, maxWidth: 500, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 15, maxWidth: 500, margin: '0 auto' }}>
               Iconic destinations across Dubai and the UAE — the landscape we navigate for our investors.
             </p>
           </div>
@@ -62,7 +62,7 @@ export default function LandmarksSection() {
               position: 'relative',
               borderRadius: 8,
               overflow: 'hidden',
-              border: '1px solid rgba(90, 122, 114, 0.15)',
+              border: '1px solid rgba(125, 138, 134, 0.15)',
               aspectRatio: '16/9',
               maxHeight: 480,
             }}
@@ -90,22 +90,22 @@ export default function LandmarksSection() {
                 left: 0,
                 right: 0,
                 padding: '80px 32px 32px',
-                background: 'linear-gradient(transparent, rgba(10, 31, 26, 0.95))',
+                background: 'linear-gradient(transparent, rgba(246, 241, 231, 0.95))',
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'flex-end',
               }}
             >
               <div>
-                <div style={{ color: '#E8DDD0', fontSize: 28, fontWeight: 700, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 4 }}>
+                <div style={{ color: '#5A6662', fontSize: 28, fontWeight: 700, fontFamily: 'Space Grotesk, sans-serif', marginBottom: 4 }}>
                   {currentLm.name}
                 </div>
-                <div className="font-caption" style={{ color: '#C9A87C', fontSize: 11 }}>
+                <div className="font-caption" style={{ color: '#0F6B62', fontSize: 11 }}>
                   {currentLm.location}
                 </div>
               </div>
               <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <span className="font-caption" style={{ color: '#5A7A72', fontSize: 10 }}>
+                <span className="font-caption" style={{ color: '#7D8A86', fontSize: 10 }}>
                   {String(current + 1).padStart(2, '0')} / {String(landmarks.length).padStart(2, '0')}
                 </span>
               </div>
@@ -122,9 +122,9 @@ export default function LandmarksSection() {
                 width: 40,
                 height: 40,
                 borderRadius: '50%',
-                background: 'rgba(10, 31, 26, 0.6)',
-                border: '1px solid rgba(90, 122, 114, 0.2)',
-                color: '#E8DDD0',
+                background: 'rgba(246, 241, 231, 0.6)',
+                border: '1px solid rgba(125, 138, 134, 0.2)',
+                color: '#5A6662',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
@@ -134,8 +134,8 @@ export default function LandmarksSection() {
                 transition: 'all 0.3s ease',
                 zIndex: 5,
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(201, 168, 124, 0.4)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(90, 122, 114, 0.2)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.4)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(125, 138, 134, 0.2)' }}
             >
               ‹
             </button>
@@ -149,9 +149,9 @@ export default function LandmarksSection() {
                 width: 40,
                 height: 40,
                 borderRadius: '50%',
-                background: 'rgba(10, 31, 26, 0.6)',
-                border: '1px solid rgba(90, 122, 114, 0.2)',
-                color: '#E8DDD0',
+                background: 'rgba(246, 241, 231, 0.6)',
+                border: '1px solid rgba(125, 138, 134, 0.2)',
+                color: '#5A6662',
                 cursor: 'pointer',
                 display: 'flex',
                 alignItems: 'center',
@@ -161,8 +161,8 @@ export default function LandmarksSection() {
                 transition: 'all 0.3s ease',
                 zIndex: 5,
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(201, 168, 124, 0.4)' }}
-              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(90, 122, 114, 0.2)' }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.4)' }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = 'rgba(125, 138, 134, 0.2)' }}
             >
               ›
             </button>
@@ -175,14 +175,14 @@ export default function LandmarksSection() {
                 left: 0,
                 right: 0,
                 height: 3,
-                background: 'rgba(90, 122, 114, 0.15)',
+                background: 'rgba(125, 138, 134, 0.15)',
               }}
             >
               <div
                 style={{
                   height: '100%',
                   width: `${((current + 1) / landmarks.length) * 100}%`,
-                  background: '#C9A87C',
+                  background: '#0F6B62',
                   transition: 'width 0.5s ease',
                 }}
               />
@@ -211,7 +211,7 @@ export default function LandmarksSection() {
                 height: 48,
                 borderRadius: 4,
                 overflow: 'hidden',
-                border: current === i ? '2px solid #C9A87C' : '2px solid transparent',
+                border: current === i ? '2px solid #0F6B62' : '2px solid transparent',
                 opacity: current === i ? 1 : 0.5,
                 cursor: 'pointer',
                 padding: 0,

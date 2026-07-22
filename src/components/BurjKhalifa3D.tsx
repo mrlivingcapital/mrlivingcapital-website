@@ -58,7 +58,7 @@ export default function BurjKhalifa3D() {
           transform: 'translateX(-50%)',
           width: 120,
           height: 20,
-          background: 'radial-gradient(ellipse, rgba(201, 168, 124, 0.08), transparent 70%)',
+          background: 'radial-gradient(ellipse, rgba(15, 107, 98, 0.08), transparent 70%)',
           filter: 'blur(8px)',
         }}
       />
@@ -85,15 +85,15 @@ export default function BurjKhalifa3D() {
               width: `${tier.w * 0.8}%`,
               height: tier.h,
               background: i === tiers.length - 1
-                ? 'linear-gradient(180deg, rgba(212, 241, 244, 0.3), rgba(212, 241, 244, 0.6))'
-                : `linear-gradient(180deg, rgba(201, 168, 124, ${0.06 + i * 0.008}), rgba(201, 168, 124, ${0.1 + i * 0.01}))`,
+                ? 'linear-gradient(180deg, rgba(15, 107, 98, 0.3), rgba(15, 107, 98, 0.6))'
+                : `linear-gradient(180deg, rgba(15, 107, 98, ${0.06 + i * 0.008}), rgba(15, 107, 98, ${0.1 + i * 0.01}))`,
               transform: 'translateZ(-10px)',
               borderLeft: i === tiers.length - 1
-                ? '1px solid rgba(212, 241, 244, 0.2)'
-                : '1px solid rgba(201, 168, 124, 0.08)',
+                ? '1px solid rgba(15, 107, 98, 0.2)'
+                : '1px solid rgba(15, 107, 98, 0.08)',
               borderRight: i === tiers.length - 1
-                ? '1px solid rgba(212, 241, 244, 0.2)'
-                : '1px solid rgba(201, 168, 124, 0.08)',
+                ? '1px solid rgba(15, 107, 98, 0.2)'
+                : '1px solid rgba(15, 107, 98, 0.08)',
             }}
           />
         ))}
@@ -108,12 +108,12 @@ export default function BurjKhalifa3D() {
               width: `${tier.w}%`,
               height: tier.h,
               background: i === tiers.length - 1
-                ? 'linear-gradient(180deg, rgba(212, 241, 244, 0.15), rgba(212, 241, 244, 0.5))'
-                : `linear-gradient(180deg, rgba(201, 168, 124, ${0.08 + i * 0.012}), rgba(201, 168, 124, ${0.15 + i * 0.015}))`,
-              borderLeft: `1px solid ${i === tiers.length - 1 ? 'rgba(212, 241, 244, 0.25)' : 'rgba(201, 168, 124, 0.15)'}`,
-              borderRight: `1px solid ${i === tiers.length - 1 ? 'rgba(212, 241, 244, 0.25)' : 'rgba(201, 168, 124, 0.15)'}`,
-              borderBottom: i > 0 ? `1px solid rgba(201, 168, 124, 0.06)` : 'none',
-              boxShadow: i === tiers.length - 1 ? '0 0 15px 2px rgba(212, 241, 244, 0.2)' : 'none',
+                ? 'linear-gradient(180deg, rgba(15, 107, 98, 0.15), rgba(15, 107, 98, 0.5))'
+                : `linear-gradient(180deg, rgba(15, 107, 98, ${0.08 + i * 0.012}), rgba(15, 107, 98, ${0.15 + i * 0.015}))`,
+              borderLeft: `1px solid ${i === tiers.length - 1 ? 'rgba(15, 107, 98, 0.25)' : 'rgba(15, 107, 98, 0.12)'}`,
+              borderRight: `1px solid ${i === tiers.length - 1 ? 'rgba(15, 107, 98, 0.25)' : 'rgba(15, 107, 98, 0.12)'}`,
+              borderBottom: i > 0 ? `1px solid rgba(15, 107, 98, 0.06)` : 'none',
+              boxShadow: i === tiers.length - 1 ? '0 0 15px 2px rgba(15, 107, 98, 0.2)' : 'none',
             }}
           />
         ))}
@@ -126,8 +126,8 @@ export default function BurjKhalifa3D() {
             width: 4,
             height: 4,
             borderRadius: '50%',
-            background: '#D4F1F4',
-            boxShadow: '0 0 12px 4px rgba(212, 241, 244, 0.5)',
+            background: '#0F6B62',
+            boxShadow: '0 0 12px 4px rgba(15, 107, 98, 0.5)',
             transform: 'translateZ(2px)',
           }}
         />
@@ -144,7 +144,7 @@ export default function BurjKhalifa3D() {
                   left: `50%`,
                   width: 8,
                   height: tier.h,
-                  background: `linear-gradient(90deg, rgba(201, 168, 124, ${0.05 + i * 0.005}), transparent)`,
+                  background: `linear-gradient(90deg, rgba(15, 107, 98, ${0.05 + i * 0.005}), transparent)`,
                   transform: `translateX(-50%) translateX(-${tier.w / 2}%) rotateY(-90deg)`,
                   transformOrigin: 'left center',
                 }}
@@ -156,7 +156,7 @@ export default function BurjKhalifa3D() {
                   left: `50%`,
                   width: 8,
                   height: tier.h,
-                  background: `linear-gradient(-90deg, rgba(201, 168, 124, ${0.05 + i * 0.005}), transparent)`,
+                  background: `linear-gradient(-90deg, rgba(15, 107, 98, ${0.05 + i * 0.005}), transparent)`,
                   transform: `translateX(-50%) translateX(${tier.w / 2}%) rotateY(90deg)`,
                   transformOrigin: 'right center',
                 }}
@@ -177,7 +177,7 @@ export default function BurjKhalifa3D() {
           pointerEvents: 'none',
         }}
       >
-        <span className="font-caption" style={{ color: '#5A7A72', fontSize: 9 }}>
+        <span className="font-caption" style={{ color: '#7D8A86', fontSize: 9 }}>
           BURJ KHALIFA · 828M · 163 FLOORS
         </span>
       </div>

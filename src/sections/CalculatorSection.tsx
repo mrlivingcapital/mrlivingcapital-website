@@ -85,20 +85,20 @@ export default function CalculatorSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#0A1F1A',
+        background: '#F6F1E7',
         padding: '120px 24px',
       }}
     >
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span className="font-caption" style={{ color: '#C9A87C', display: 'block', marginBottom: 16, fontSize: 12 }}>
+            <span className="font-caption" style={{ color: '#0F6B62', display: 'block', marginBottom: 16, fontSize: 12 }}>
               INVESTMENT CALCULATOR
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#E8DDD0', marginBottom: 12 }}>
-              FIND YOUR <span style={{ color: '#C9A87C' }}>OPTIMAL</span> CORRIDOR
+            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
+              FIND YOUR <span style={{ color: '#0F6B62' }}>OPTIMAL</span> CORRIDOR
             </h2>
-            <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.6)', fontSize: 16, maxWidth: 500, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 16, maxWidth: 500, margin: '0 auto' }}>
               Answer 2 quick questions. See projected returns across all 4 corridors.
             </p>
           </div>
@@ -113,14 +113,14 @@ export default function CalculatorSection() {
                   width: 28,
                   height: 28,
                   borderRadius: '50%',
-                  border: `2px solid ${step >= s ? '#C9A87C' : 'rgba(90, 122, 114, 0.3)'}`,
-                  background: step >= s ? 'rgba(201, 168, 124, 0.15)' : 'transparent',
+                  border: `2px solid ${step >= s ? '#0F6B62' : 'rgba(125, 138, 134, 0.3)'}`,
+                  background: step >= s ? 'rgba(15, 107, 98, 0.12)' : 'transparent',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   fontSize: 11,
                   fontWeight: 600,
-                  color: step >= s ? '#C9A87C' : '#5A7A72',
+                  color: step >= s ? '#0F6B62' : '#7D8A86',
                   fontFamily: 'Space Grotesk, sans-serif',
                   flexShrink: 0,
                   transition: 'all 0.4s ease',
@@ -133,7 +133,7 @@ export default function CalculatorSection() {
                   style={{
                     flex: 1,
                     height: 2,
-                    background: step > s ? '#C9A87C' : 'rgba(90, 122, 114, 0.2)',
+                    background: step > s ? '#0F6B62' : 'rgba(125, 138, 134, 0.2)',
                     transition: 'background 0.4s ease',
                   }}
                 />
@@ -150,10 +150,10 @@ export default function CalculatorSection() {
             {/* STEP 1: Budget */}
             {step === 0 && (
               <div>
-                <h3 className="font-heading" style={{ fontSize: 18, color: '#E8DDD0', marginBottom: 6, textAlign: 'center' }}>
+                <h3 className="font-heading" style={{ fontSize: 18, color: '#5A6662', marginBottom: 6, textAlign: 'center' }}>
                   WHAT'S YOUR INVESTMENT BUDGET?
                 </h3>
-                <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
+                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
                   Select a range in AED
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
@@ -164,25 +164,25 @@ export default function CalculatorSection() {
                       style={{
                         padding: '20px 12px',
                         borderRadius: 8,
-                        border: budget === b.label ? '1.5px solid #C9A87C' : '1px solid rgba(90, 122, 114, 0.25)',
-                        background: budget === b.label ? 'rgba(201, 168, 124, 0.1)' : 'rgba(90, 122, 114, 0.05)',
+                        border: budget === b.label ? '1.5px solid #0F6B62' : '1px solid rgba(125, 138, 134, 0.25)',
+                        background: budget === b.label ? 'rgba(15, 107, 98, 0.1)' : 'rgba(125, 138, 134, 0.05)',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         textAlign: 'center',
                       }}
                       onMouseEnter={(e) => {
                         if (budget !== b.label) {
-                          e.currentTarget.style.borderColor = 'rgba(201, 168, 124, 0.4)'
+                          e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.4)'
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (budget !== b.label) {
-                          e.currentTarget.style.borderColor = 'rgba(90, 122, 114, 0.25)'
+                          e.currentTarget.style.borderColor = 'rgba(125, 138, 134, 0.25)'
                         }
                       }}
                     >
-                      <div style={{ color: '#E8DDD0', fontSize: 16, fontWeight: 500, marginBottom: 4 }}>{b.label}</div>
-                      <div style={{ color: '#5A7A72', fontSize: 11 }}>AED</div>
+                      <div style={{ color: '#5A6662', fontSize: 16, fontWeight: 500, marginBottom: 4 }}>{b.label}</div>
+                      <div style={{ color: '#7D8A86', fontSize: 11 }}>AED</div>
                     </button>
                   ))}
                 </div>
@@ -192,10 +192,10 @@ export default function CalculatorSection() {
             {/* STEP 2: Property Type */}
             {step === 1 && (
               <div>
-                <h3 className="font-heading" style={{ fontSize: 18, color: '#E8DDD0', marginBottom: 6, textAlign: 'center' }}>
+                <h3 className="font-heading" style={{ fontSize: 18, color: '#5A6662', marginBottom: 6, textAlign: 'center' }}>
                   PROPERTY TYPE?
                 </h3>
-                <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
+                <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 13, textAlign: 'center', marginBottom: 28 }}>
                   What are you looking to invest in?
                 </p>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 12 }}>
@@ -206,24 +206,24 @@ export default function CalculatorSection() {
                       style={{
                         padding: '20px 12px',
                         borderRadius: 8,
-                        border: propertyType === p.label ? '1.5px solid #C9A87C' : '1px solid rgba(90, 122, 114, 0.25)',
-                        background: propertyType === p.label ? 'rgba(201, 168, 124, 0.1)' : 'rgba(90, 122, 114, 0.05)',
+                        border: propertyType === p.label ? '1.5px solid #0F6B62' : '1px solid rgba(125, 138, 134, 0.25)',
+                        background: propertyType === p.label ? 'rgba(15, 107, 98, 0.1)' : 'rgba(125, 138, 134, 0.05)',
                         cursor: 'pointer',
                         transition: 'all 0.3s ease',
                         textAlign: 'center',
                       }}
                       onMouseEnter={(e) => {
                         if (propertyType !== p.label) {
-                          e.currentTarget.style.borderColor = 'rgba(201, 168, 124, 0.4)'
+                          e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.4)'
                         }
                       }}
                       onMouseLeave={(e) => {
                         if (propertyType !== p.label) {
-                          e.currentTarget.style.borderColor = 'rgba(90, 122, 114, 0.25)'
+                          e.currentTarget.style.borderColor = 'rgba(125, 138, 134, 0.25)'
                         }
                       }}
                     >
-                      <div style={{ color: '#E8DDD0', fontSize: 15, fontWeight: 500 }}>{p.label}</div>
+                      <div style={{ color: '#5A6662', fontSize: 15, fontWeight: 500 }}>{p.label}</div>
                     </button>
                   ))}
                 </div>
@@ -233,7 +233,7 @@ export default function CalculatorSection() {
                     marginTop: 24,
                     background: 'none',
                     border: 'none',
-                    color: '#5A7A72',
+                    color: '#7D8A86',
                     fontSize: 13,
                     cursor: 'pointer',
                     display: 'block',
@@ -250,35 +250,35 @@ export default function CalculatorSection() {
             {step === 2 && results && (
               <div>
                 <div style={{ textAlign: 'center', marginBottom: 24 }}>
-                  <div className="font-caption" style={{ color: '#C9A87C', marginBottom: 6, fontSize: 11 }}>
+                  <div className="font-caption" style={{ color: '#0F6B62', marginBottom: 6, fontSize: 11 }}>
                     YOUR OPTIMAL MATCH
                   </div>
-                  <h3 className="font-heading" style={{ fontSize: 24, color: '#E8DDD0' }}>
+                  <h3 className="font-heading" style={{ fontSize: 24, color: '#5A6662' }}>
                     {bestMatch?.name}
                   </h3>
                   <div style={{ display: 'flex', justifyContent: 'center', gap: 24, marginTop: 12 }}>
                     <div>
-                      <div style={{ color: '#D4F1F4', fontSize: 22, fontWeight: 700, fontFamily: 'Space Grotesk' }}>
+                      <div style={{ color: '#0F6B62', fontSize: 22, fontWeight: 700, fontFamily: 'Space Grotesk' }}>
                         {bestMatch?.yield}%
                       </div>
-                      <div className="font-caption" style={{ color: '#5A7A72', fontSize: 10 }}>Est. Yield</div>
+                      <div className="font-caption" style={{ color: '#7D8A86', fontSize: 10 }}>Est. Yield</div>
                     </div>
                     <div>
-                      <div style={{ color: '#D4F1F4', fontSize: 22, fontWeight: 700, fontFamily: 'Space Grotesk' }}>
+                      <div style={{ color: '#0F6B62', fontSize: 22, fontWeight: 700, fontFamily: 'Space Grotesk' }}>
                         +{bestMatch?.appreciation}%
                       </div>
-                      <div className="font-caption" style={{ color: '#5A7A72', fontSize: 10 }}>Appreciation</div>
+                      <div className="font-caption" style={{ color: '#7D8A86', fontSize: 10 }}>Appreciation</div>
                     </div>
                     <div>
-                      <div style={{ color: '#C9A87C', fontSize: 22, fontWeight: 700, fontFamily: 'Space Grotesk' }}>
+                      <div style={{ color: '#0F6B62', fontSize: 22, fontWeight: 700, fontFamily: 'Space Grotesk' }}>
                         {bestMatch?.match}%
                       </div>
-                      <div className="font-caption" style={{ color: '#5A7A72', fontSize: 10 }}>Match Score</div>
+                      <div className="font-caption" style={{ color: '#7D8A86', fontSize: 10 }}>Match Score</div>
                     </div>
                   </div>
                 </div>
 
-                <div className="font-caption" style={{ color: '#5A7A72', marginBottom: 12, fontSize: 10 }}>
+                <div className="font-caption" style={{ color: '#7D8A86', marginBottom: 12, fontSize: 10 }}>
                   ALL CORRIDORS COMPARISON
                 </div>
                 {results.map((r, i) => (
@@ -290,13 +290,13 @@ export default function CalculatorSection() {
                       gap: 8,
                       alignItems: 'center',
                       padding: '8px 0',
-                      borderBottom: '1px solid rgba(90, 122, 114, 0.1)',
+                      borderBottom: '1px solid rgba(125, 138, 134, 0.1)',
                     }}
                   >
-                    <span style={{ color: '#E8DDD0', fontSize: 13 }}>{r.name}</span>
-                    <span style={{ color: '#D4F1F4', fontSize: 12, textAlign: 'right' }}>{r.yield}%</span>
-                    <span style={{ color: '#D4F1F4', fontSize: 12, textAlign: 'right' }}>+{r.appreciation}%</span>
-                    <span style={{ color: '#C9A87C', fontSize: 12, textAlign: 'right', fontWeight: 500 }}>{r.match}%</span>
+                    <span style={{ color: '#5A6662', fontSize: 13 }}>{r.name}</span>
+                    <span style={{ color: '#0F6B62', fontSize: 12, textAlign: 'right' }}>{r.yield}%</span>
+                    <span style={{ color: '#0F6B62', fontSize: 12, textAlign: 'right' }}>+{r.appreciation}%</span>
+                    <span style={{ color: '#0F6B62', fontSize: 12, textAlign: 'right', fontWeight: 500 }}>{r.match}%</span>
                   </div>
                 ))}
 
@@ -311,8 +311,8 @@ export default function CalculatorSection() {
                     style={{
                       padding: '12px 24px',
                       borderRadius: 8,
-                      background: '#C9A87C',
-                      color: '#0A1F1A',
+                      background: '#0F6B62',
+                      color: '#F6F1E7',
                       textDecoration: 'none',
                       fontSize: 11,
                       letterSpacing: '0.08em',
@@ -327,8 +327,8 @@ export default function CalculatorSection() {
                       padding: '12px 20px',
                       borderRadius: 8,
                       background: 'transparent',
-                      border: '1px solid rgba(90, 122, 114, 0.3)',
-                      color: '#5A7A72',
+                      border: '1px solid rgba(125, 138, 134, 0.3)',
+                      color: '#7D8A86',
                       fontSize: 11,
                       cursor: 'pointer',
                       fontFamily: 'Inter, sans-serif',

@@ -1,0 +1,37 @@
+# MR Living Capital — robots.txt
+# Last updated: 2026-05-09
+# Website: https://mrlivingcapital.com
+
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# AI Crawler Directives (GEO — Generative Engine Optimization)
+# Allowing AI crawlers to index our authoritative real estate content
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Block non-AI crawlers that waste bandwidth
+User-agent: AhrefsBot
+Crawl-delay: 5
+
+User-agent: SemrushBot
+Crawl-delay: 5
+
+# Sitemap
+Sitemap: https://mrlivingcapital.com/sitemap.xml

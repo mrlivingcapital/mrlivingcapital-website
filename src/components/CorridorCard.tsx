@@ -65,7 +65,7 @@ export default function CorridorCard({
           }}
         />
 
-        <div className="font-caption" style={{ color: '#C9A87C', marginBottom: 8, fontSize: 12 }}>
+        <div className="font-caption" style={{ color: '#0F6B62', marginBottom: 8, fontSize: 12 }}>
           {tag}
         </div>
 
@@ -73,7 +73,7 @@ export default function CorridorCard({
           className="font-heading"
           style={{
             fontSize: 24,
-            color: '#E8DDD0',
+            color: '#5A6662',
             marginBottom: 16,
             textTransform: 'uppercase',
           }}
@@ -87,17 +87,17 @@ export default function CorridorCard({
             { label: 'INCOME', value: yieldVal },
           ].map((stat) => (
             <div key={stat.label}>
-              <div className="font-caption" style={{ color: '#5A7A72', fontSize: 11, marginBottom: 2 }}>
+              <div className="font-caption" style={{ color: '#7D8A86', fontSize: 11, marginBottom: 2 }}>
                 {stat.label}
               </div>
-              <div style={{ color: '#C9A87C', fontSize: 14, fontWeight: 500 }}>
+              <div style={{ color: '#0F6B62', fontSize: 14, fontWeight: 500 }}>
                 {stat.value}
               </div>
             </div>
           ))}
         </div>
 
-        <p className="font-body" style={{ color: 'rgba(232, 221, 208, 0.6)', fontSize: 15, lineHeight: 1.6, marginBottom: 16 }}>
+        <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.6)', fontSize: 15, lineHeight: 1.6, marginBottom: 16 }}>
           {description}
         </p>
 
@@ -106,7 +106,7 @@ export default function CorridorCard({
             <li
               key={i}
               style={{
-                color: 'rgba(232, 221, 208, 0.6)',
+                color: 'rgba(90, 102, 98, 0.6)',
                 fontSize: 14,
                 marginBottom: 6,
                 display: 'flex',
@@ -114,7 +114,7 @@ export default function CorridorCard({
                 gap: 8,
               }}
             >
-              <span style={{ color: '#C9A87C', fontSize: 12, marginTop: 2 }}>✦</span>
+              <span style={{ color: '#0F6B62', fontSize: 12, marginTop: 2 }}>✦</span>
               {b}
             </li>
           ))}

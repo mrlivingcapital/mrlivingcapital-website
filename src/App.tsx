@@ -41,7 +41,7 @@ const ParticleGrid = lazy(() => import('./components/ParticleGrid'))
 
 function App() {
   return (
-    <div style={{ background: '#0A1F1A', minHeight: '100vh' }}>
+    <div style={{ background: '#F6F1E7', minHeight: '100vh' }}>
       <Suspense fallback={null}>
         <ParticleGrid />
       </Suspense>

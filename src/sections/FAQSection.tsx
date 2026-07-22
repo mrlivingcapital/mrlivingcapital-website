@@ -41,18 +41,18 @@ export default function FAQSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: 'linear-gradient(180deg, #0A1F1A 0%, #0D2420 50%, #0A1F1A 100%)',
+        background: 'linear-gradient(180deg, #F6F1E7 0%, #D9CDB8 50%, #F6F1E7 100%)',
         padding: '120px 24px',
       }}
     >
       <div style={{ maxWidth: 800, margin: '0 auto' }}>
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="font-caption" style={{ color: '#C9A87C', display: 'block', marginBottom: 16, fontSize: 12 }}>
+            <span className="font-caption" style={{ color: '#0F6B62', display: 'block', marginBottom: 16, fontSize: 12 }}>
               COMMON QUESTIONS
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#E8DDD0' }}>
-              WHAT INVESTORS <span style={{ color: '#C9A87C' }}>ASK US</span>
+            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662' }}>
+              WHAT INVESTORS <span style={{ color: '#0F6B62' }}>ASK US</span>
             </h2>
           </div>
         </ScrollReveal>
@@ -67,7 +67,7 @@ export default function FAQSection() {
                   style={{
                     padding: 0,
                     overflow: 'hidden',
-                    border: isOpen ? '1px solid rgba(201, 168, 124, 0.25)' : undefined,
+                    border: isOpen ? '1px solid rgba(15, 107, 98, 0.25)' : undefined,
                   }}
                 >
                   <button
@@ -77,7 +77,7 @@ export default function FAQSection() {
                       padding: '20px 24px',
                       background: 'none',
                       border: 'none',
-                      color: '#E8DDD0',
+                      color: '#5A6662',
                       textAlign: 'left',
                       cursor: 'pointer',
                       display: 'flex',
@@ -91,7 +91,7 @@ export default function FAQSection() {
                     <span>{faq.question}</span>
                     <span
                       style={{
-                        color: '#C9A87C',
+                        color: '#0F6B62',
                         fontSize: 20,
                         transition: 'transform 0.3s ease',
                         transform: isOpen ? 'rotate(45deg)' : 'rotate(0)',
@@ -112,7 +112,7 @@ export default function FAQSection() {
                     <div
                       style={{
                         padding: '0 24px 20px',
-                        color: 'rgba(232, 221, 208, 0.6)',
+                        color: 'rgba(90, 102, 98, 0.6)',
                         fontSize: 14,
                         lineHeight: 1.7,
                       }}

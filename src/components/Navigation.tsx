@@ -41,7 +41,7 @@ export default function Navigation() {
         className="fixed top-0 left-0 w-full z-50 transition-all duration-400"
         style={{
           height: 70,
-          backgroundColor: scrolled || mobileOpen ? 'rgba(10, 31, 26, 0.95)' : 'transparent',
+          backgroundColor: scrolled || mobileOpen ? 'rgba(246, 241, 231, 0.95)' : 'transparent',
           backdropFilter: scrolled || mobileOpen ? 'blur(12px)' : 'none',
           WebkitBackdropFilter: scrolled || mobileOpen ? 'blur(12px)' : 'none',
           transition: 'all 0.4s ease',
@@ -58,9 +58,9 @@ export default function Navigation() {
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
                 className="font-nav transition-colors duration-300"
-                style={{ color: '#E8DDD0', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', opacity: 0.85 }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = '#C9A87C'; e.currentTarget.style.opacity = '1' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = '#E8DDD0'; e.currentTarget.style.opacity = '0.85' }}
+                style={{ color: '#5A6662', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', opacity: 0.85 }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = '#0F6B62'; e.currentTarget.style.opacity = '1' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = '#5A6662'; e.currentTarget.style.opacity = '0.85' }}
               >
                 {item.label}
               </button>
@@ -72,15 +72,15 @@ export default function Navigation() {
               style={{
                 padding: '10px 22px',
                 borderRadius: 3,
-                background: '#C9A87C',
+                background: '#0F6B62',
                 border: 'none',
-                color: '#0A1F1A',
+                color: '#F6F1E7',
                 fontSize: 11,
                 cursor: 'pointer',
                 letterSpacing: '0.08em',
               }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = '#D4B896' }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = '#C9A87C' }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = '#2E8A80' }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = '#0F6B62' }}
             >
               BOOK A CALL
             </button>
@@ -93,9 +93,9 @@ export default function Navigation() {
               style={{
                 padding: '8px 14px',
                 borderRadius: 3,
-                background: '#C9A87C',
+                background: '#0F6B62',
                 border: 'none',
-                color: '#0A1F1A',
+                color: '#F6F1E7',
                 fontSize: 10,
                 fontWeight: 600,
                 cursor: 'pointer',
@@ -123,7 +123,7 @@ export default function Navigation() {
                 display: 'block',
                 width: 22,
                 height: 2,
-                background: mobileOpen ? '#C9A87C' : '#E8DDD0',
+                background: mobileOpen ? '#0F6B62' : '#5A6662',
                 transition: 'all 0.3s ease',
                 transform: mobileOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
               }} />
@@ -131,7 +131,7 @@ export default function Navigation() {
                 display: 'block',
                 width: 22,
                 height: 2,
-                background: mobileOpen ? '#C9A87C' : '#E8DDD0',
+                background: mobileOpen ? '#0F6B62' : '#5A6662',
                 transition: 'all 0.3s ease',
                 opacity: mobileOpen ? 0 : 1,
               }} />
@@ -139,7 +139,7 @@ export default function Navigation() {
                 display: 'block',
                 width: 22,
                 height: 2,
-                background: mobileOpen ? '#C9A87C' : '#E8DDD0',
+                background: mobileOpen ? '#0F6B62' : '#5A6662',
                 transition: 'all 0.3s ease',
                 transform: mobileOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
               }} />
@@ -172,9 +172,9 @@ export default function Navigation() {
               width: '80%',
               maxWidth: 320,
               height: 'calc(100vh - 70px)',
-              background: 'rgba(10, 31, 26, 0.98)',
+              background: 'rgba(246, 241, 231, 0.98)',
               backdropFilter: 'blur(20px)',
-              borderLeft: '1px solid rgba(201, 168, 124, 0.15)',
+              borderLeft: '1px solid rgba(15, 107, 98, 0.12)',
               padding: '32px 24px',
               display: 'flex',
               flexDirection: 'column',
@@ -184,7 +184,7 @@ export default function Navigation() {
           >
             <div style={{ flex: 1 }}>
               <div style={{
-                color: '#C9A87C',
+                color: '#0F6B62',
                 fontSize: 10,
                 letterSpacing: '0.15em',
                 fontFamily: 'Space Grotesk, sans-serif',
@@ -205,16 +205,16 @@ export default function Navigation() {
                     padding: '14px 0',
                     background: 'none',
                     border: 'none',
-                    borderBottom: '1px solid rgba(90, 122, 114, 0.15)',
-                    color: '#E8DDD0',
+                    borderBottom: '1px solid rgba(125, 138, 134, 0.15)',
+                    color: '#5A6662',
                     fontSize: 14,
                     fontWeight: 600,
                     letterSpacing: '0.08em',
                     cursor: 'pointer',
                     fontFamily: 'Space Grotesk, sans-serif',
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.color = '#C9A87C' }}
-                  onMouseLeave={(e) => { e.currentTarget.style.color = '#E8DDD0' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.color = '#0F6B62' }}
+                  onMouseLeave={(e) => { e.currentTarget.style.color = '#5A6662' }}
                 >
                   {item.label}
                 </button>
@@ -224,7 +224,7 @@ export default function Navigation() {
             {/* Social Links */}
             <div style={{ marginTop: 'auto' }}>
               <div style={{
-                color: '#5A7A72',
+                color: '#7D8A86',
                 fontSize: 10,
                 letterSpacing: '0.15em',
                 fontFamily: 'Space Grotesk, sans-serif',
@@ -241,21 +241,21 @@ export default function Navigation() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      color: '#5A7A72',
+                      color: '#7D8A86',
                       fontSize: 12,
                       textDecoration: 'none',
                       fontFamily: 'Space Grotesk, sans-serif',
                       transition: 'color 0.3s ease',
                     }}
-                    onMouseEnter={(e) => { e.currentTarget.style.color = '#C9A87C' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.color = '#5A7A72' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.color = '#0F6B62' }}
+                    onMouseLeave={(e) => { e.currentTarget.style.color = '#7D8A86' }}
                   >
                     {s.label.toUpperCase()}
                   </a>
                 ))}
               </div>
               <div style={{
-                color: 'rgba(90, 122, 114, 0.4)',
+                color: 'rgba(125, 138, 134, 0.4)',
                 fontSize: 10,
                 marginTop: 20,
                 fontFamily: 'Space Grotesk, sans-serif',

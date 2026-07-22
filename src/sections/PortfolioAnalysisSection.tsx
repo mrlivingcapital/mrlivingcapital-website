@@ -42,7 +42,7 @@ export default function PortfolioAnalysisSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#0A1F1A',
+        background: '#F6F1E7',
         padding: '120px 24px',
       }}
     >
@@ -51,16 +51,16 @@ export default function PortfolioAnalysisSection() {
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span
               className="font-caption"
-              style={{ color: '#C9A87C', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 16 }}
+              style={{ color: '#0F6B62', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 16 }}
             >
               LIVE ALLOCATIONS
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#E8DDD0', marginBottom: 12 }}>
-              HOW I <span style={{ color: '#C9A87C' }}>ALLOCATE</span> CAPITAL
+            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
+              HOW I <span style={{ color: '#0F6B62' }}>ALLOCATE</span> CAPITAL
             </h2>
             <p
               className="font-body"
-              style={{ color: 'rgba(232, 221, 208, 0.5)', fontSize: 15, maxWidth: 620, margin: '0 auto' }}
+              style={{ color: 'rgba(90, 102, 98, 0.5)', fontSize: 15, maxWidth: 620, margin: '0 auto' }}
             >
               Not what I&apos;m selling you — how I manage my own family portfolio through market cycles. This is the same discipline forged over 19 years of institutional financial management.
             </p>
@@ -75,7 +75,7 @@ export default function PortfolioAnalysisSection() {
                 className="glass-card"
                 style={{
                   padding: '28px 32px',
-                  borderLeft: `3px solid ${a.status === 'ACCUMULATING' ? '#C9A87C' : a.status === 'SELECTIVE ENTRY' ? '#D4F1F4' : '#5A7A72'}`,
+                  borderLeft: `3px solid ${a.status === 'ACCUMULATING' ? '#0F6B62' : a.status === 'SELECTIVE ENTRY' ? '#0F6B62' : '#7D8A86'}`,
                   transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={(e) => {
@@ -99,7 +99,7 @@ export default function PortfolioAnalysisSection() {
                   <div>
                     <div
                       style={{
-                        color: '#C9A87C',
+                        color: '#0F6B62',
                         fontSize: 13,
                         fontWeight: 600,
                         fontFamily: 'Space Grotesk, sans-serif',
@@ -109,7 +109,7 @@ export default function PortfolioAnalysisSection() {
                     >
                       {a.corridor}
                     </div>
-                    <div style={{ color: '#5A7A72', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif' }}>
+                    <div style={{ color: '#7D8A86', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif' }}>
                       {a.country}
                     </div>
                   </div>
@@ -118,7 +118,7 @@ export default function PortfolioAnalysisSection() {
                   <div>
                     <div
                       style={{
-                        color: 'rgba(232, 221, 208, 0.4)',
+                        color: 'rgba(90, 102, 98, 0.4)',
                         fontSize: 10,
                         fontFamily: 'Space Grotesk, sans-serif',
                         letterSpacing: '0.12em',
@@ -129,7 +129,7 @@ export default function PortfolioAnalysisSection() {
                     </div>
                     <div
                       style={{
-                        color: '#E8DDD0',
+                        color: '#5A6662',
                         fontSize: 14,
                         fontFamily: 'Space Grotesk, sans-serif',
                         fontWeight: 600,
@@ -143,7 +143,7 @@ export default function PortfolioAnalysisSection() {
                   <div style={{ gridColumn: 'span 2' }}>
                     <div
                       style={{
-                        color: 'rgba(232, 221, 208, 0.4)',
+                        color: 'rgba(90, 102, 98, 0.4)',
                         fontSize: 10,
                         fontFamily: 'Space Grotesk, sans-serif',
                         letterSpacing: '0.12em',
@@ -154,7 +154,7 @@ export default function PortfolioAnalysisSection() {
                     </div>
                     <div
                       className="font-body"
-                      style={{ color: 'rgba(232, 221, 208, 0.65)', fontSize: 13, lineHeight: 1.6 }}
+                      style={{ color: 'rgba(90, 102, 98, 0.65)', fontSize: 13, lineHeight: 1.6 }}
                     >
                       {a.thesis}
                     </div>
@@ -169,12 +169,12 @@ export default function PortfolioAnalysisSection() {
                         borderRadius: 4,
                         background:
                           a.status === 'ACCUMULATING'
-                            ? 'rgba(201, 168, 124, 0.12)'
+                            ? 'rgba(15, 107, 98, 0.12)'
                             : a.status === 'SELECTIVE ENTRY'
-                              ? 'rgba(212, 241, 244, 0.08)'
-                              : 'rgba(90, 122, 114, 0.12)',
-                        border: `1px solid ${a.status === 'ACCUMULATING' ? 'rgba(201, 168, 124, 0.25)' : a.status === 'SELECTIVE ENTRY' ? 'rgba(212, 241, 244, 0.15)' : 'rgba(90, 122, 114, 0.2)'}`,
-                        color: a.status === 'ACCUMULATING' ? '#C9A87C' : a.status === 'SELECTIVE ENTRY' ? '#D4F1F4' : '#5A7A72',
+                              ? 'rgba(15, 107, 98, 0.08)'
+                              : 'rgba(125, 138, 134, 0.15)',
+                        border: `1px solid ${a.status === 'ACCUMULATING' ? 'rgba(15, 107, 98, 0.25)' : a.status === 'SELECTIVE ENTRY' ? 'rgba(15, 107, 98, 0.15)' : 'rgba(125, 138, 134, 0.2)'}`,
+                        color: a.status === 'ACCUMULATING' ? '#0F6B62' : a.status === 'SELECTIVE ENTRY' ? '#0F6B62' : '#7D8A86',
                         fontSize: 9,
                         fontFamily: 'Space Grotesk, sans-serif',
                         fontWeight: 600,
@@ -184,7 +184,7 @@ export default function PortfolioAnalysisSection() {
                     >
                       {a.status}
                     </div>
-                    <div style={{ color: '#5A7A72', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif' }}>
+                    <div style={{ color: '#7D8A86', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif' }}>
                       Horizon: {a.horizon}
                     </div>
                   </div>
@@ -199,7 +199,7 @@ export default function PortfolioAnalysisSection() {
           <p
             className="font-body"
             style={{
-              color: 'rgba(90, 122, 114, 0.5)',
+              color: 'rgba(125, 138, 134, 0.5)',
               fontSize: 11,
               textAlign: 'center',
               marginTop: 32,

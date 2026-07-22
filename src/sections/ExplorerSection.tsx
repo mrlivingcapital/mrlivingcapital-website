@@ -14,9 +14,9 @@ function useIsMobile() {
 }
 
 const corridorLabels = [
-  { name: 'DUBAI', color: '#C9A87C' },
-  { name: 'ABU DHABI', color: '#D4F1F4' },
-  { name: 'RAS AL KHAIMAH', color: '#5A7A72' },
+  { name: 'DUBAI', color: '#0F6B62' },
+  { name: 'ABU DHABI', color: '#0F6B62' },
+  { name: 'RAS AL KHAIMAH', color: '#7D8A86' },
 ]
 
 export default function ExplorerSection() {
@@ -53,10 +53,10 @@ export default function ExplorerSection() {
             className="font-heading"
             style={{
               fontSize: 'clamp(32px, 5vw, 64px)',
-              color: '#E8DDD0',
+              color: '#5A6662',
               textAlign: 'center',
               marginBottom: 16,
-              textShadow: '0 2px 20px rgba(10, 31, 26, 0.8)',
+              textShadow: '0 2px 20px rgba(246, 241, 231, 0.88)',
             }}
           >
             LET&apos;S TALK PRIVATELY
@@ -67,12 +67,12 @@ export default function ExplorerSection() {
           <p
             className="font-body"
             style={{
-              color: 'rgba(232, 221, 208, 0.6)',
+              color: 'rgba(90, 102, 98, 0.6)',
               fontSize: 16,
               textAlign: 'center',
               maxWidth: 400,
               marginBottom: 48,
-              textShadow: '0 1px 10px rgba(10, 31, 26, 0.8)',
+              textShadow: '0 1px 10px rgba(246, 241, 231, 0.88)',
             }}
           >
             Tap and drag to trace investment pathways. Tap to reveal opportunity zones. Or reach out directly below.
@@ -106,7 +106,7 @@ export default function ExplorerSection() {
                     display: 'inline-block',
                   }}
                 />
-                <span className="font-caption" style={{ color: '#5A7A72', fontSize: 12 }}>
+                <span className="font-caption" style={{ color: '#7D8A86', fontSize: 12 }}>
                   {c.name}
                 </span>
               </div>
@@ -124,8 +124,8 @@ export default function ExplorerSection() {
                 alignItems: 'center',
                 gap: 8,
                 padding: '14px 32px',
-                background: '#C9A87C',
-                color: '#0A1F1A',
+                background: '#0F6B62',
+                color: '#F6F1E7',
                 fontFamily: 'Space Grotesk, sans-serif',
                 fontSize: 14,
                 fontWeight: 600,

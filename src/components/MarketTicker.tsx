@@ -50,19 +50,19 @@ export default function MarketTicker() {
             flexShrink: 0,
           }}
         >
-          <span className="ticker-label" style={{ color: '#5A7A72', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>{item.label}</span>
-          <span className="ticker-value" style={{ color: '#E8DDD0', fontSize: 12, fontWeight: 500, fontFamily: 'Space Grotesk, sans-serif' }}>{item.value}</span>
+          <span className="ticker-label" style={{ color: '#7D8A86', fontSize: 11, fontFamily: 'Inter, sans-serif' }}>{item.label}</span>
+          <span className="ticker-value" style={{ color: '#5A6662', fontSize: 12, fontWeight: 500, fontFamily: 'Space Grotesk, sans-serif' }}>{item.value}</span>
           <span
             className="ticker-change"
             style={{
-              color: item.change.includes('+') || item.change.includes('High') || item.change.includes('Launch') ? '#D4F1F4' : 'rgba(90, 122, 114, 0.6)',
+              color: item.change.includes('+') || item.change.includes('High') || item.change.includes('Launch') ? '#0F6B62' : 'rgba(125, 138, 134, 0.6)',
               fontSize: 10,
               fontFamily: 'Inter, sans-serif',
             }}
           >
             {item.change}
           </span>
-          <span style={{ color: 'rgba(90, 122, 114, 0.15)', marginLeft: 8 }}>|</span>
+          <span style={{ color: 'rgba(125, 138, 134, 0.15)', marginLeft: 8 }}>|</span>
         </span>
       ))}
     </>
@@ -73,9 +73,9 @@ export default function MarketTicker() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: 'rgba(10, 31, 26, 0.95)',
-        borderTop: '1px solid rgba(90, 122, 114, 0.1)',
-        borderBottom: '1px solid rgba(90, 122, 114, 0.1)',
+        background: 'rgba(246, 241, 231, 0.95)',
+        borderTop: '1px solid rgba(125, 138, 134, 0.1)',
+        borderBottom: '1px solid rgba(125, 138, 134, 0.1)',
         padding: '10px 0',
         overflow: 'hidden',
       }}

@@ -14,7 +14,7 @@ export default function FounderStatsSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#0A1F1A',
+        background: '#F6F1E7',
         padding: '80px 24px',
       }}
     >
@@ -35,7 +35,7 @@ export default function FounderStatsSection() {
                 style={{
                   fontSize: 'clamp(36px, 5vw, 56px)',
                   fontWeight: 700,
-                  color: '#C9A87C',
+                  color: '#0F6B62',
                   fontFamily: 'Space Grotesk, sans-serif',
                   lineHeight: 1,
                   marginBottom: 8,
@@ -44,7 +44,7 @@ export default function FounderStatsSection() {
                 <StatCounter end={stat.value} duration={2.5} />
                 <span style={{ fontSize: '0.6em' }}>{stat.suffix}</span>
               </div>
-              <div className="font-caption" style={{ color: '#5A7A72', fontSize: 11 }}>
+              <div className="font-caption" style={{ color: '#7D8A86', fontSize: 11 }}>
                 {stat.label}
               </div>
             </div>
