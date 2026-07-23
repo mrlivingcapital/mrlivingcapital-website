@@ -154,6 +154,39 @@ export default function MarketIntelligenceSection() {
           </div>
         </ScrollReveal>
 
+        {/* Off-Plan H1 2026: Residential vs Commercial (stacked) */}
+        <ScrollReveal>
+          <div style={{ marginBottom: 80 }}>
+            <h3 className="font-heading" style={{ fontSize: 20, color: '#5A6662', textAlign: 'center', marginBottom: 12 }}>
+              OFF-PLAN H1 2026 — <span style={{ color: '#0F6B62' }}>RESIDENTIAL VS COMMERCIAL</span>
+            </h3>
+            <p className="font-body" style={{ color: '#7D8A86', fontSize: 13, textAlign: 'center', marginBottom: 32 }}>
+              Total market: AED 419.9B across residential + commercial (112,850 transactions) · Off-plan sales value: AED 139.8B
+            </p>
+            <div style={{ maxWidth: 900, margin: '0 auto' }}>
+              <div style={{ display: 'flex', height: 64, borderRadius: 8, overflow: 'hidden' }}>
+                <div style={{ width: '90.6%', background: '#0F6B62', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#F6F1E7', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600, fontSize: 'clamp(11px, 1.6vw, 15px)', textAlign: 'center', padding: '0 8px' }}>
+                  RESIDENTIAL OFF-PLAN · AED 126.7B · 90.6%
+                </div>
+                <div style={{ width: '9.4%', background: '#B08D4A' }} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 16 }}>
+                <div style={{ borderLeft: '3px solid #B08D4A', paddingLeft: 12, maxWidth: 520 }}>
+                  <div style={{ color: '#38413E', fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600, fontSize: 14, marginBottom: 4 }}>
+                    COMMERCIAL OFF-PLAN (office-led): AED 13.1B · 1,668 deals
+                  </div>
+                  <div style={{ color: '#7D8A86', fontSize: 12, lineHeight: 1.5 }}>
+                    Record — more than 2019–2025 combined. Off-plan offices overtook ready offices for the first time since 2010.
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="font-body" style={{ color: 'rgba(125, 138, 134, 0.6)', fontSize: 12, textAlign: 'center', marginTop: 16, fontStyle: 'italic' }}>
+              Source: Dubai Land Department · Gulf Business · Cavendish Maxwell — H1 2026
+            </p>
+          </div>
+        </ScrollReveal>
+
         {/* Top Developers */}
         <ScrollReveal>
           <div style={{ marginBottom: 80 }}>
