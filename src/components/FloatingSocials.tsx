@@ -24,6 +24,15 @@ export default function FloatingSocials() {
       ),
     },
     {
+      href: 'https://www.tiktok.com/@mrlivingcapital',
+      label: 'TikTok',
+      icon: (
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M9 12a4 4 0 104 4V4c.6 2.5 2.4 4.4 5 5" />
+        </svg>
+      ),
+    },
+    {
       href: 'https://t.me/mrlivingcapital',
       label: 'Telegram',
       icon: (
