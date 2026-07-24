@@ -24,6 +24,7 @@ export default function Navigation() {
     { label: 'MY STORY', id: 'founder-letter' },
     { label: 'MARKET DATA', id: 'market-intelligence' },
     { label: 'CORRIDORS', id: 'corridors' },
+    { label: 'DISTRESS DEALS', id: 'distress-deals' },
     { label: 'BLOG', id: 'blog' },
     { label: 'CONTACT', id: 'inquiry' },
   ]

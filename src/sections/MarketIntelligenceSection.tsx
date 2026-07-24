@@ -43,21 +43,6 @@ const offPlanEvolution = [
   { year: 'H1 2026', share: 49 },
 ]
 
-const topDevelopers = [
-  { rank: '01', name: 'Emaar Properties', units: '18,500+', color: '#0F6B62' },
-  { rank: '02', name: 'Damac', units: '12,300+', color: '#2E8A80' },
-  { rank: '03', name: 'Sobha Realty', units: '9,800+', color: '#7D8A86' },
-  { rank: '04', name: 'Azizi Developments', units: '7,200+', color: '#93A39F' },
-  { rank: '05', name: 'Binghatti', units: '6,100+', color: '#0D5F57' },
-  { rank: '06', name: 'Ellington Properties', units: '4,500+', color: '#85A19B' },
-  { rank: '07', name: 'MAG Lifestyle', units: '3,800+', color: '#93A39F' },
-  { rank: '08', name: 'Nshama', units: '3,200+', color: '#77958D' },
-  { rank: '09', name: 'Dubai Properties', units: '2,900+', color: '#57A99F' },
-  { rank: '10', name: 'Select Group', units: '2,400+', color: '#5F9087' },
-  { rank: '11', name: 'Others (80+ developers)', units: '295,300+', color: '#3A5A50' },
-]
-
-const totalDeveloperUnits = '366,000+'
 
 const propertyTypeSplit = [
   { pct: 80, label: 'Apartments', desc: 'Studios, 1–4 BR, penthouses', note: 'Primary market driver' },
@@ -183,65 +168,6 @@ export default function MarketIntelligenceSection() {
             </div>
             <p className="font-body" style={{ color: 'rgba(125, 138, 134, 0.6)', fontSize: 12, textAlign: 'center', marginTop: 16, fontStyle: 'italic' }}>
               Source: Dubai Land Department · Gulf Business · Cavendish Maxwell — H1 2026
-            </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Top Developers */}
-        <ScrollReveal>
-          <div style={{ marginBottom: 80 }}>
-            <h3 className="font-heading" style={{ fontSize: 20, color: '#5A6662', textAlign: 'center', marginBottom: 8 }}>
-              TOP DEVELOPERS — <span style={{ color: '#0F6B62' }}>UNITS UNDER CONSTRUCTION</span>
-            </h3>
-            <div style={{ textAlign: 'center', marginBottom: 32 }}>
-              <span className="font-caption" style={{ color: '#7D8A86', fontSize: 11 }}>
-                TOTAL PIPELINE: <span style={{ color: '#0F6B62', fontWeight: 500 }}>{totalDeveloperUnits}</span> UNITS TO 2028
-              </span>
-            </div>
-            <div style={{ maxWidth: 700, margin: '0 auto' }}>
-              {topDevelopers.map((dev, i) => (
-                <div
-                  key={i}
-                  style={{
-                    display: 'grid',
-                    gridTemplateColumns: '30px 20px 1fr 80px',
-                    gap: 12,
-                    alignItems: 'center',
-                    padding: '10px 0',
-                    borderBottom: i === topDevelopers.length - 1 ? '1px solid rgba(15, 107, 98, 0.12)' : '1px solid rgba(125, 138, 134, 0.1)',
-                  }}
-                >
-                  <span style={{ color: '#7D8A86', fontSize: 12, fontFamily: 'Space Grotesk, sans-serif' }}>{dev.rank}</span>
-                  <div
-                    style={{
-                      width: 24,
-                      height: 24,
-                      borderRadius: 4,
-                      background: dev.color,
-                      flexShrink: 0,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: 9,
-                      fontWeight: 700,
-                      color: '#F6F1E7',
-                      fontFamily: 'Space Grotesk, sans-serif',
-                      letterSpacing: '-0.02em',
-                    }}
-                  >
-                    {dev.name.split(' ').map((w) => w[0]).join('').substring(0, 2).toUpperCase()}
-                  </div>
-                  <span style={{ color: dev.rank === '11' ? '#7D8A86' : '#5A6662', fontSize: 14, fontStyle: dev.rank === '11' ? 'italic' : undefined }}>
-                    {dev.name}
-                  </span>
-                  <span style={{ color: dev.rank === '11' ? '#7D8A86' : '#0F6B62', fontSize: 13, fontWeight: 500, textAlign: 'right', fontFamily: 'Space Grotesk, sans-serif' }}>
-                    <StatCounter end={parseInt(dev.units.replace(/,/g, '').replace(/\+/g, ''))} suffix="+" duration={1.5} />
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="font-body" style={{ color: 'rgba(125, 138, 134, 0.6)', fontSize: 12, textAlign: 'center', marginTop: 16, fontStyle: 'italic' }}>
-              Source: DXB Interact — Top Property Developers Under Construction, Dubai 2026
             </p>
           </div>
         </ScrollReveal>

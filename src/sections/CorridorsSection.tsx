@@ -55,62 +55,6 @@ const emirates = [
   },
 ]
 
-const topDevelopers = [
-  { emirate: 'DUBAI', developers: [
-    { name: 'Emaar', units: 28000, color: '#0F6B62' },
-    { name: 'DAMAC', units: 22000, color: '#0C564F' },
-    { name: 'Sobha', units: 8500, color: '#0A4D47' },
-    { name: 'MERAAS', units: 12000, color: '#094540' },
-    { name: 'Nakheel', units: 15000, color: '#073E39' },
-  ]},
-  { emirate: 'ABU DHABI', developers: [
-    { name: 'Aldar', units: 15000, color: '#0F6B62' },
-    { name: 'IMKAN', units: 6000, color: '#C4DAD6' },
-    { name: 'Reportage', units: 4500, color: '#9DB3AF' },
-    { name: 'Bloom', units: 3500, color: '#7D9490' },
-    { name: 'Eagle Hills', units: 5000, color: '#6E7C78' },
-  ]},
-  { emirate: 'RAK', developers: [
-    { name: 'RAK Properties', units: 4000, color: '#7D8A86' },
-    { name: 'Al Hamra', units: 2800, color: '#4A6A62' },
-    { name: 'Marjan', units: 3200, color: '#3A5A52' },
-    { name: 'RAK Central', units: 1500, color: '#2A4A42' },
-    { name: 'Riviera', units: 800, color: '#1A3A32' },
-  ]},
-]
-
-function DeveloperBarChart({ emirateData }: { emirateData: typeof topDevelopers[0] }) {
-  const maxUnits = Math.max(...emirateData.developers.map(d => d.units))
-  return (
-    <div style={{ padding: '24px 0' }}>
-      <div style={{ color: '#0F6B62', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.12em', marginBottom: 16, fontWeight: 600 }}>
-        {emirateData.emirate}
-      </div>
-      {emirateData.developers.map((d, i) => (
-        <div key={i} style={{ marginBottom: 10, display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div className="dev-label" style={{ width: 80, color: 'rgba(90, 102, 98, 0.8)', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', textAlign: 'right', flexShrink: 0 }}>
-            {d.name}
-          </div>
-          <div style={{ flex: 1, height: 20, background: 'rgba(125, 138, 134, 0.08)', borderRadius: 4, overflow: 'hidden' }}>
-            <div
-              style={{
-                width: `${(d.units / maxUnits) * 100}%`,
-                height: '100%',
-                background: d.color,
-                borderRadius: 4,
-                transition: 'width 1s ease',
-              }}
-            />
-          </div>
-          <div style={{ width: 50, color: '#5A6662', fontSize: 11, fontFamily: 'Space Grotesk, sans-serif', fontWeight: 600 }}>
-            {(d.units / 1000).toFixed(0)}K
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-}
-
 export default function CorridorsSection() {
   const sectionRef = useRef<HTMLElement>(null)
   const [activeEmirate, setActiveEmirate] = useState(0)
@@ -227,46 +171,7 @@ export default function CorridorsSection() {
           </div>
         </ScrollReveal>
 
-        {/* Developer Bar Charts */}
-        <ScrollReveal>
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <span className="font-caption" style={{ color: '#0F6B62', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 16 }}>
-              TOP DEVELOPERS BY PIPELINE
-            </span>
-            <h3 className="font-heading" style={{ fontSize: 'clamp(20px, 3vw, 32px)', color: '#5A6662', marginBottom: 8 }}>
-              WHO IS <span style={{ color: '#0F6B62' }}>BUILDING</span> THE FUTURE
-            </h3>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 14, maxWidth: 600, margin: '0 auto' }}>
-              Units in pipeline by top developer per emirate. Data sourced from DLD, Abu Dhabi DMT, and RAK DLD.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 32,
-          }}
-          className="developer-charts-grid"
-        >
-          {topDevelopers.map((ed, i) => (
-            <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="glass-card" style={{ padding: '24px 28px', height: '100%' }}>
-                <DeveloperBarChart emirateData={ed} />
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .developer-charts-grid {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

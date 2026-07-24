@@ -65,8 +65,8 @@ export default function LeadMagnetSection() {
         body: JSON.stringify({
           email,
           whatsapp,
-          source: `Lead Magnet - ${reportType === 'q1' ? 'Q1 2026 Brief' : 'Cash Buyer Guide'}`,
-          _subject: `Download: ${reportType === 'q1' ? 'Q1 2026 Brief' : 'Cash Buyer Guide'}`,
+          source: `Lead Magnet - ${reportType === 'q1' ? 'H1 2026 Brief' : 'Cash Buyer Guide'}`,
+          _subject: `Download: ${reportType === 'q1' ? 'H1 2026 Brief' : 'Cash Buyer Guide'}`,
         }),
       })
     } catch {
@@ -104,7 +104,7 @@ export default function LeadMagnetSection() {
                         transition: 'all 0.25s ease',
                       }}
                     >
-                      {rt === 'q1' ? 'Q1 2026 BRIEF' : 'CASH BUYER GUIDE'}
+                      {rt === 'q1' ? 'H1 2026 BRIEF' : 'CASH BUYER GUIDE'}
                     </button>
                   ))}
                 </div>
@@ -132,7 +132,7 @@ export default function LeadMagnetSection() {
                   {/* Form */}
                   <div style={{ flex: 1, minWidth: 260 }}>
                     <h3 className="font-heading" style={{ fontSize: 18, color: '#5A6662', marginBottom: 6 }}>
-                      {reportType === 'q1' ? 'Dubai Q1 2026 Market Intelligence Brief' : 'The Cash Buyer\'s Guide to UAE Real Estate'}
+                      {reportType === 'q1' ? 'Dubai H1 2026 Market Intelligence Brief' : 'The Cash Buyer\'s Guide to UAE Real Estate'}
                     </h3>
                     <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 13, marginBottom: 20 }}>
                       {reportType === 'q1'
@@ -194,7 +194,7 @@ export default function LeadMagnetSection() {
               <div style={{ textAlign: 'center' }}>
                 <h3 className="font-heading" style={{ fontSize: 18, color: '#0F6B62', marginBottom: 8 }}>DOWNLOAD STARTED</h3>
                 <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 14 }}>
-                  Your {reportType === 'q1' ? 'Q1 2026 Market Brief' : 'Cash Buyer Guide'} is downloading. We will also WhatsApp you a copy.
+                  Your {reportType === 'q1' ? 'H1 2026 Market Brief' : 'Cash Buyer Guide'} is downloading. We will also WhatsApp you a copy.
                 </p>
                 <a ref={linkRef} href={downloadPath} download style={{ display: 'none' }} aria-hidden="true" />
               </div>
