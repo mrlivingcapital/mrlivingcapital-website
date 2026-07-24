@@ -3,6 +3,6 @@ export const INTEGRATIONS = {
   formspreeEndpoint: 'https://formspree.io/f/xkokazvz',
   whatsapp: 'https://wa.me/971585899112',
   // Analytics / retargeting — inject only when IDs are provided
-  metaPixelId: '',
+  metaPixelId: '1366298528654246',
   linkedInPartnerId: '',
 } as const
