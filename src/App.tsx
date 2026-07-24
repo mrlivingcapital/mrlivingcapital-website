@@ -11,6 +11,7 @@ import InfrastructureSection from './sections/InfrastructureSection'
 import BlogSection from './sections/BlogSection'
 import FAQSection from './sections/FAQSection'
 import LeadMagnetSection from './sections/LeadMagnetSection'
+import CorridorBriefSection from './sections/CorridorBriefSection'
 import InquirySection from './sections/InquirySection'
 import ExplorerSection from './sections/ExplorerSection'
 import FooterSection from './sections/FooterSection'
@@ -96,6 +97,10 @@ function App() {
 
         {/* 12. REINFORCE — Live data ticker */}
         <MarketTicker />
+        <div className="section-divider" />
+
+        {/* 13. CAPTURE — Corridor Brief email subscription */}
+        <CorridorBriefSection />
       </main>
 
       <FooterSection />
