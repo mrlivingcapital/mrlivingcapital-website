@@ -1,6 +1,6 @@
 # MR Living Capital — Dubai Real Estate Investment Advisory
 
-> Data-driven real estate investment advisory in Dubai's highest-growth corridors. Two decades of institutional financial management experience. BRN 94316.
+> Data-driven real estate investment advisory in Dubai's highest-growth corridors. Two decades of institutional financial management experience.
 
 ## About
 
@@ -8,7 +8,7 @@ MR Living Capital is a Dubai-based real estate investment advisory built on two 
 
 Every client engagement begins with a fundamental question: what does your capital need to achieve? From there, we build a tailor-made investment roadmap — not a sales pitch.
 
-- **License**: BRN 94316, Dubai, UAE
+- **License**: RERA-registered advisory
 - **Languages**: English, Persian (Farsi)
 - **Contact**: Masoud@mrlivingcapital.com
 - **WhatsApp**: +971 58 589 9112
@@ -103,7 +103,7 @@ Under the updated Federal Decree-Law, ANY real estate purchase in the UAE now qu
 - **Instagram**: https://instagram.com/mrlivingcapital
 - **Telegram**: https://t.me/mrlivingcapital
 - **Location**: Dubai, UAE
-- **License**: BRN 94316
+- **License**: RERA-registered advisory
 
 ## Sources
 
