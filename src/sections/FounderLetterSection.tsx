@@ -63,7 +63,7 @@ export default function FounderLetterSection() {
                   width: 200,
                   height: 200,
                   objectFit: 'cover',
-                  borderRadius: '50%',
+                  borderRadius: 20,
                   border: '2px solid #0F6B62',
                   boxShadow: '0 0 30px rgba(15, 107, 98, 0.12)',
                 }}

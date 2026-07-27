@@ -36,7 +36,7 @@ const reasons = [
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0F6B62" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
         <line x1="2" y1="12" x2="22" y2="12" />
-        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10z" />
       </svg>
     ),
     title: 'Multilingual. Multicultural.',
@@ -188,7 +188,7 @@ export default function AboutSection() {
                       alt="Masoud - Founder, MR Living Capital"
                       style={{
                         width: '100%',
-                        aspectRatio: '3/4',
+                        aspectRatio: '1/1',
                         objectFit: 'cover',
                         borderRadius: 10,
                         display: 'block',
@@ -266,4 +266,3 @@ export default function AboutSection() {
     </section>
   )
 }
-         
