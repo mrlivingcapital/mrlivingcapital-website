@@ -251,6 +251,32 @@
 <div style="text-align:center;padding:40px 20px;">
   <a href="/blog/" style="color:#0F6B62;text-decoration:none;font-size:1.1rem;font-weight:600;">Investor Intelligence (Blog)</a>
 </div>
+
+    <!-- Founder headshot 2026: swaps the About-section portrait to the latest studio photo.
+         The AVIF payload lives as base64 in /images/founder-2026.avif.part1-4.txt
+         (GitHub token cannot write binary; decoded client-side into a blob URL). -->
+    <script>
+    (function () {
+      var T = "masoud-founder.jpg";
+      var P = [1, 2, 3, 4].map(function (i) { return "/images/founder-2026.avif.part" + i + ".txt"; });
+      function swap(u) {
+        var imgs = document.querySelectorAll('img[src*="' + T + '"]');
+        for (var i = 0; i < imgs.length; i++) imgs[i].src = u;
+        return imgs.length;
+      }
+      Promise.all(P.map(function (p) { return fetch(p).then(function (r) { return r.text(); }); }))
+        .then(function (parts) {
+          var bin = atob(parts.join("").replace(/\s+/g, ""));
+          var bytes = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          var url = URL.createObjectURL(new Blob([bytes], { type: "image/avif" }));
+          if (!swap(url)) {
+            var obs = new MutationObserver(function () { if (swap(url)) obs.disconnect(); });
+            obs.observe(document.documentElement, { childList: true, subtree: true });
+          }
+        })
+        .catch(function () { /* keep existing photo if payload unavailable */ });
+    })();
+    </script>
   </body>
 </html>
-
