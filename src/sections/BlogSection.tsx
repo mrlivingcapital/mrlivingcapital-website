@@ -274,7 +274,7 @@ export default function BlogSection() {
               {/* Trust Badge */}
               <div style={{ marginBottom: 20, textAlign: 'center' }}>
                 <p style={{ color: 'rgba(125, 138, 134, 0.7)', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', lineHeight: 1.5 }}>
-                  All inquiries handled personally by Masoud &middot; BRN: 94316 &middot; Dubai, UAE
+                  All inquiries handled personally by Masoud &middot; Dubai, UAE
                 </p>
                 <p style={{ color: 'rgba(15, 107, 98, 0.6)', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', marginTop: 2 }}>
                   2 decades of institutional strategy &amp; private portfolio management
