@@ -242,7 +242,6 @@ export default function InquirySection() {
               { label: 'Email', value: 'Masoud@mrlivingcapital.com', href: 'mailto:Masoud@mrlivingcapital.com' },
               { label: 'WhatsApp', value: 'Chat on WhatsApp', href: 'https://wa.me/971585899112' },
               { label: 'Location', value: 'Dubai, UAE', href: undefined },
-              { label: 'License', value: 'BRN: 94316', href: undefined },
             ].map((item, i) => (
               <div key={i}>
                 <div className="font-caption" style={{ color: '#7D8A86', fontSize: 11, marginBottom: 4 }}>
