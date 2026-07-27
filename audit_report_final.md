@@ -98,7 +98,7 @@
 |---------|--------|--------|
 | Title Tag | Optimized | "MR Living Capital \| Dubai Real Estate Investment Advisory" |
 | Meta Description | Optimized | 155 chars with keywords |
-| Meta Keywords | Complete | Dubai real estate, investment corridors, BRN 94316, DLD data |
+| Meta Keywords | Complete | Dubai real estate, investment corridors, DLD data |
 | Canonical URL | Set | https://mrlivingcapital.com |
 | Open Graph Tags | Complete | All 12 OG properties + image dimensions |
 | Twitter Cards | Complete | summary_large_image with all fields |
@@ -139,7 +139,7 @@
 
 | Signal | Status |
 |--------|--------|
-| BRN Number | 94316 — displayed in footer and on the RERA.gov.ae FAQ |
+| Broker license number | Removed from all public materials (owner request, July 2026) |
 | DLD Data Citations | Every financial figure attributes DLD/DXB Interact |
 | Government Source | Dubai 2040 Master Plan cited with official stats |
 | 20+ Years Experience | Founder stats + About section narrative |

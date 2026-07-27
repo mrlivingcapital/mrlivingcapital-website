@@ -81,7 +81,7 @@
 ### 10. FAQ ACCORDION — PASS
 - 7 questions with detailed answers
 - Expand/collapse animation
-- Covers: advisory vs broker, BRN 94316, minimum investment, off-plan, timeline, residency, discretion
+- Covers: advisory vs broker, minimum investment, off-plan, timeline, residency, discretion
 
 ### 11. LEAD MAGNET — PASS
 - Title: "DUBAI Q1 2026 MARKET INTELLIGENCE BRIEF"
@@ -116,7 +116,7 @@
 ### 15. FOOTER — PASS
 - Logo: "MR LIVING CAPITAL" + tagline
 - Quick Links: Market Data, Niche Areas, About, Contact
-- Connect: masoud@mrlivingcapital.com, Dubai UAE, BRN: 94316
+- Connect: masoud@mrlivingcapital.com, Dubai UAE
 - Social: WhatsApp, Instagram, Telegram, LinkedIn — all 4 URLs verified
 - Copyright: 2026 MR Living Capital. All rights reserved.
 
