@@ -113,7 +113,7 @@ export default function HeroSection() {
             transition: 'opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s',
           }}
         >
-          Dubai · Real Estate Investment Advisory · BRN: 94316
+          Dubai · Real Estate Investment Advisory
         </p>
 
         {/* CTAs */}

@@ -184,7 +184,7 @@ export default function FounderLetterSection() {
                       fontStyle: 'italic',
                     }}
                   >
-                    Dubai, UAE · BRN: 94316
+                    Dubai, UAE
                   </div>
                 </div>
               </div>
