@@ -261,7 +261,7 @@ export default function Navigation() {
                 marginTop: 20,
                 fontFamily: 'Space Grotesk, sans-serif',
               }}>
-                Dubai, UAE · BRN: 94316
+                Dubai, UAE
               </div>
             </div>
           </div>

@@ -53,7 +53,7 @@ export default function FounderStatsSection() {
         ))}
       </div>
       <p className="font-caption" style={{ textAlign: 'center', color: 'rgba(125, 138, 134, 0.75)', fontSize: 11, marginTop: 40, letterSpacing: '0.12em' }}>
-        LICENSED ADVISOR — STRADA UAE · BRN 94316 · DLD-VERIFIED RESEARCH
+        LICENSED ADVISOR — STRADA UAE · DLD-VERIFIED RESEARCH
       </p>
     </section>
   )

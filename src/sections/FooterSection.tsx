@@ -74,7 +74,7 @@ export default function FooterSection() {
               Masoud@mrlivingcapital.com
             </a>
             <div className="font-body" style={{ color: 'rgba(246, 241, 231, 0.62)', fontSize: 14, marginBottom: 12 }}>
-              Dubai, UAE · BRN: 94316
+              Dubai, UAE
             </div>
             <div style={{ display: 'flex', gap: 16, marginTop: 12 }}>
               {socials.map((s) => (
@@ -111,7 +111,7 @@ export default function FooterSection() {
             © 2026 MR Living Capital. All rights reserved. Dubai, UAE.
           </span>
           <span className="font-caption" style={{ color: 'rgba(246, 241, 231, 0.38)', fontSize: 10 }}>
-            BRN: 94316 · mrlivingcapital.com
+            mrlivingcapital.com
           </span>
         </div>
       </div>
