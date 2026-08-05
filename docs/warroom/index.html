@@ -2,932 +2,821 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MR Living Capital — War Room v3 · The Brain</title>
-<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>War Room — MR LIVING CAPITAL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --ivory:#F6F1E7; --slate:#5A6662; --slate-dk:#38413E; --turquoise:#0F6B62; --turq-soft:#57A99F;
-  --sand:#D9CDB8; --sand-soft:#EEE7DA; --dark:#123B37; --gold:#B08D4A; --mute:#8C9592;
-  --fh:'Space Grotesk',sans-serif; --fb:'Inter',sans-serif; --fd:'Cormorant Garamond',serif;
-}
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
-body{font-family:var(--fb);background:var(--ivory);color:var(--slate);overflow-x:hidden}
-body::before{content:'';position:fixed;top:-20%;left:-10%;width:50%;height:60%;background:radial-gradient(ellipse at center,rgba(217,205,184,.35) 0%,transparent 70%);pointer-events:none;z-index:0}
-body::after{content:'';position:fixed;bottom:-20%;right:-10%;width:50%;height:60%;background:radial-gradient(ellipse at center,rgba(15,107,98,.08) 0%,transparent 70%);pointer-events:none;z-index:0}
-.app{display:flex;min-height:100vh;position:relative;z-index:1}
-.sidebar{width:280px;flex-shrink:0;background:rgba(246,241,231,.92);backdrop-filter:blur(18px);padding:26px 20px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100vh;overflow-y:auto}
-.brand{font-family:var(--fh);font-weight:700;font-size:.95rem;letter-spacing:.12em;color:var(--dark)}
-.tagline{font-family:var(--fb);font-weight:600;font-size:.55rem;letter-spacing:.22em;color:var(--turquoise);margin:3px 0 22px}
-.nav-label{font-weight:600;font-size:.58rem;letter-spacing:.16em;color:var(--sand);text-transform:uppercase;margin:14px 0 7px;padding-left:12px}
-.nav-btn{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 14px;margin-bottom:4px;border:none;background:transparent;font-family:var(--fb);font-size:.78rem;font-weight:500;color:var(--slate);cursor:pointer;border-radius:14px;transition:all .2s}
-.nav-btn:hover{background:rgba(15,107,98,.06);color:var(--turquoise)}
-.nav-btn.active{background:var(--turquoise);color:var(--ivory)}
-.nav-btn .dot{width:7px;height:7px;border-radius:50%;background:var(--sand);flex-shrink:0}
-.nav-btn.active .dot{background:var(--ivory)}
-.side-foot{margin-top:auto;padding-top:18px;text-align:center;font-size:.58rem;color:var(--mute);line-height:1.7}
-.side-foot b{color:var(--turquoise);font-weight:600}
-.pub-count{font-family:var(--fh);font-weight:700;color:var(--dark);font-size:.8rem}
-.main{flex:1;padding:30px 34px 60px;min-width:0;max-width:1240px}
-.page-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:6px;flex-wrap:wrap}
-.page-title{font-family:var(--fh);font-weight:700;font-size:1.5rem;letter-spacing:.02em;color:var(--slate-dk)}
-.page-sub{font-size:.78rem;color:var(--mute);margin-bottom:24px}
-.card{background:rgba(255,255,255,.55);border-radius:22px;padding:22px 24px;margin-bottom:18px;box-shadow:0 8px 30px rgba(18,59,55,.05)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border:none;border-radius:999px;font-family:var(--fb);font-size:.76rem;font-weight:600;letter-spacing:.04em;cursor:pointer;transition:all .2s}
-.btn-primary{background:var(--turquoise);color:var(--ivory)}
-.btn-primary:hover{background:var(--dark);transform:translateY(-1px)}
-.btn-ghost{background:transparent;color:var(--turquoise);box-shadow:inset 0 0 0 1.5px rgba(15,107,98,.35)}
-.btn-ghost:hover{background:rgba(15,107,98,.07)}
-.btn-sand{background:var(--sand-soft);color:var(--slate-dk)}
-.btn-sand:hover{background:var(--sand)}
-.btn:disabled{opacity:.45;cursor:default;transform:none}
-.slot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:16px}
-.slot{position:relative}
-.slot .day{font-family:var(--fh);font-weight:700;font-size:.72rem;letter-spacing:.14em;color:var(--turquoise);text-transform:uppercase}
-.slot .fmt{display:inline-block;font-size:.58rem;font-weight:600;letter-spacing:.1em;padding:4px 12px;border-radius:999px;background:var(--sand-soft);color:var(--slate-dk);margin:6px 0 10px;text-transform:uppercase}
-.slot .fmt.carousel{background:var(--dark);color:var(--ivory)}
-.slot .topic{font-family:var(--fh);font-weight:600;font-size:.98rem;color:var(--slate-dk);line-height:1.35;min-height:52px}
-.slot .pillar{font-size:.66rem;color:var(--mute);margin:6px 0 14px}
-.slot .done{position:absolute;top:18px;right:20px;font-size:.6rem;font-weight:700;color:var(--gold);letter-spacing:.1em}
-.topic-row{display:flex;align-items:center;gap:16px;padding:15px 6px;border-bottom:1px solid rgba(90,102,98,.08);flex-wrap:wrap}
-.topic-row:last-child{border-bottom:none}
-.topic-row .tid{font-family:var(--fh);font-weight:700;font-size:.78rem;color:var(--sand);width:34px;flex-shrink:0}
-.topic-row .tt{flex:1;min-width:220px}
-.topic-row .tt b{display:block;font-family:var(--fh);font-weight:600;font-size:.9rem;color:var(--slate-dk)}
-.topic-row .tt span{font-size:.68rem;color:var(--mute)}
-.badge{font-size:.56rem;font-weight:700;letter-spacing:.08em;padding:4px 11px;border-radius:999px;text-transform:uppercase;flex-shrink:0}
-.badge.mi{background:rgba(15,107,98,.1);color:var(--turquoise)} .badge.co{background:var(--dark);color:var(--ivory)}
-.badge.ie{background:var(--sand-soft);color:var(--slate-dk)} .badge.aw{background:rgba(176,141,74,.14);color:var(--gold)}
-.badge.st{background:rgba(87,169,159,.18);color:var(--dark)}
-.pub-stamp{font-size:.6rem;font-weight:700;color:var(--gold);letter-spacing:.08em}
-label.fl{display:block;font-size:.64rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute);margin:14px 0 6px}
-input.fi,textarea.fta,select.fs{width:100%;padding:12px 16px;border:1.5px solid rgba(90,102,98,.14);border-radius:14px;background:rgba(255,255,255,.7);font-family:var(--fb);font-size:.82rem;color:var(--slate-dk);outline:none;transition:border .2s}
-input.fi:focus,textarea.fta:focus{border-color:var(--turquoise)}
-textarea.fta{min-height:90px;resize:vertical;line-height:1.55}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.preview-strip{display:flex;gap:14px;overflow-x:auto;padding:6px 2px 18px}
-.pv{flex-shrink:0;width:158px}
-.pv canvas{width:158px;border-radius:12px;box-shadow:0 10px 26px rgba(18,59,55,.12);display:block}
-.pv .pv-name{font-size:.6rem;color:var(--mute);text-align:center;margin-top:7px;letter-spacing:.04em}
-.pv a{font-size:.62rem;font-weight:600;color:var(--turquoise);text-decoration:none;display:block;text-align:center;margin-top:3px}
-.copy-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:4px 0 12px}
-.copy-tab{padding:8px 18px;border:none;border-radius:999px;background:var(--sand-soft);font-family:var(--fb);font-size:.7rem;font-weight:600;color:var(--slate);cursor:pointer;transition:all .2s}
-.copy-tab.active{background:var(--turquoise);color:var(--ivory)}
-.copy-box{position:relative;background:rgba(255,255,255,.75);border-radius:18px;padding:20px 22px}
-.copy-box pre{white-space:pre-wrap;font-family:var(--fb);font-size:.8rem;line-height:1.65;color:var(--slate-dk);max-height:480px;overflow-y:auto}
-.copy-box .btn{position:absolute;top:14px;right:14px}
-.kv{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(90,102,98,.07);font-size:.8rem;line-height:1.55}
-.kv:last-child{border:none}
-.kv b{font-family:var(--fh);color:var(--turquoise);min-width:74px;flex-shrink:0}
-.toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--dark);color:var(--ivory);padding:12px 26px;border-radius:999px;font-size:.76rem;font-weight:600;letter-spacing:.05em;transition:transform .3s;z-index:99;box-shadow:0 14px 34px rgba(18,59,55,.3)}
-.toast.on{transform:translateX(-50%) translateY(0)}
-.view{display:none}.view.active{display:block}
-.gen-bar{display:flex;gap:12px;align-items:center;margin:8px 0 20px;flex-wrap:wrap}
-.spin{display:inline-block;width:14px;height:14px;border:2px solid rgba(246,241,231,.35);border-top-color:var(--ivory);border-radius:50%;animation:sp .7s linear infinite}
-@keyframes sp{to{transform:rotate(360deg)}}
-@media(max-width:900px){.app{flex-direction:column}.sidebar{width:100%;height:auto;position:static;flex-direction:row;flex-wrap:wrap;align-items:center}.side-foot{display:none}.main{padding:20px}}
+:root{--ivory:#F6F1E7;--slate:#5A6662;--slate-dk:#2E3835;--turq:#0F6B62;--turq-soft:#57A99F;--sand:#D9CDB8;--sand-soft:#EFE8DA;--dark:#123B37;--mute:#8C9592;--gold:#B08D4A}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#E7DFCF;font-family:Inter,sans-serif;color:var(--slate-dk);min-height:100vh}
+.topbar{background:var(--dark);color:var(--ivory);padding:22px 34px;display:flex;align-items:center;gap:26px;flex-wrap:wrap;border-radius:0 0 34px 34px}
+.topbar .wm{font-family:"Space Grotesk";font-weight:700;font-size:19px;letter-spacing:6px}
+.topbar .wm span{color:var(--turq-soft)}
+.topbar .sub{font-size:11px;letter-spacing:3.5px;color:var(--turq-soft);font-weight:600}
+.topbar .spacer{flex:1}
+.jabBadge{font-size:12.5px;font-weight:600;letter-spacing:1.2px;padding:9px 18px;border-radius:999px;background:rgba(87,169,159,.16);color:var(--turq-soft)}
+.jabBadge.due{background:var(--gold);color:#fff}
+.dateChip{font-size:12.5px;color:rgba(246,241,231,.55);letter-spacing:1px}
+.tabs{display:flex;gap:10px;flex-wrap:wrap;padding:22px 34px 0}
+.tab{font-family:"Space Grotesk";font-weight:600;font-size:13px;letter-spacing:2px;padding:11px 22px;border-radius:999px;background:var(--sand-soft);color:var(--slate);cursor:pointer;border:none;transition:.18s}
+.tab:hover{background:var(--sand)}
+.tab.on{background:var(--turq);color:#fff}
+#view{padding:26px 34px 60px;max-width:1500px;margin:0 auto}
+.briefHead{font-family:"Cormorant Garamond";font-weight:700;font-size:34px;color:var(--slate-dk);margin:6px 0 4px}
+.briefSub{color:var(--slate);font-size:15px;margin-bottom:24px;max-width:760px;line-height:1.55}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
+.card{background:var(--ivory);border-radius:24px;padding:24px 26px;box-shadow:0 10px 34px rgba(18,59,55,.10);display:flex;flex-direction:column;gap:12px}
+.card .prio{display:flex;align-items:center;gap:10px}
+.card .pnum{font-family:"Cormorant Garamond";font-weight:700;font-size:30px;color:var(--turq)}
+.card .ptype{font-size:10.5px;font-weight:700;letter-spacing:2px;padding:5px 12px;border-radius:999px}
+.ptype.jab{background:var(--sand-soft);color:var(--slate)}
+.ptype.hook{background:var(--turq);color:#fff}
+.card h3{font-family:"Cormorant Garamond";font-weight:700;font-size:23px;line-height:1.22;color:var(--slate-dk)}
+.card .pillar{font-size:11px;letter-spacing:2.5px;font-weight:600;color:var(--mute)}
+.card .why{font-size:13.5px;color:var(--slate);line-height:1.5}
+.card .asof{font-size:11.5px;color:var(--mute);font-style:italic}
+.btn{font-family:"Space Grotesk";font-weight:600;font-size:13px;letter-spacing:1.6px;padding:13px 24px;border-radius:999px;border:none;cursor:pointer;background:var(--turq);color:#fff;transition:.18s}
+.btn:hover{background:#0d5f57}
+.btn.ghost{background:var(--sand-soft);color:var(--slate-dk)}
+.btn.ghost:hover{background:var(--sand)}
+.btn:disabled{opacity:.45;cursor:default}
+.figGrid{display:flex;flex-wrap:wrap;gap:22px;margin-top:20px}
+figure{margin:0}
+figure canvas{width:300px;border-radius:14px;box-shadow:0 12px 36px rgba(18,59,55,.20);display:block}
+figcaption{font-size:12px;color:var(--slate);margin-top:8px;text-align:center;max-width:300px;line-height:1.4}
+figcaption a{color:var(--turq);font-weight:600;text-decoration:none}
+.txtBlock{background:var(--ivory);border-radius:20px;padding:22px 24px;margin-top:16px;box-shadow:0 8px 26px rgba(18,59,55,.08)}
+.txtBlock h4{font-family:"Space Grotesk";font-weight:600;font-size:14px;letter-spacing:2px;color:var(--turq);margin-bottom:10px}
+.txtBlock pre{white-space:pre-wrap;font-family:Inter;font-size:13.5px;line-height:1.6;color:var(--slate-dk)}
+.txtBlock .rowBtns{margin-top:12px;display:flex;gap:10px}
+.copyBtn{font-size:12px;font-weight:600;letter-spacing:1px;padding:8px 16px;border-radius:999px;border:none;cursor:pointer;background:var(--sand-soft);color:var(--slate-dk)}
+.copyBtn:hover{background:var(--sand)}
+.sectionTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:26px;color:var(--slate-dk);margin:30px 0 12px}
+.ruleList{list-style:none;display:flex;flex-direction:column;gap:10px;max-width:860px}
+.ruleList li{background:var(--ivory);border-radius:16px;padding:15px 20px;font-size:14px;line-height:1.55;box-shadow:0 6px 20px rgba(18,59,55,.07)}
+.ruleList li b{color:var(--turq)}
+.pillRow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.pill{font-size:11.5px;font-weight:600;letter-spacing:1.4px;padding:7px 15px;border-radius:999px;background:var(--sand-soft);color:var(--slate);cursor:pointer;border:none}
+.pill.on{background:var(--slate-dk);color:#fff}
+.publishedTag{font-size:10.5px;font-weight:700;letter-spacing:1.6px;color:var(--gold)}
+.statusLine{margin-top:18px;font-size:13.5px;color:var(--slate);font-style:italic}
+h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;margin-bottom:6px}
+.viewSub{color:var(--slate);font-size:14.5px;margin-bottom:22px;max-width:780px;line-height:1.55}
+.weekRow{background:var(--ivory);border-radius:20px;padding:20px 24px;margin-bottom:14px;display:flex;gap:18px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px rgba(18,59,55,.08)}
+.weekDay{font-family:"Space Grotesk";font-weight:700;font-size:15px;letter-spacing:2px;color:var(--turq);width:56px}
+.weekMeta{flex:1;min-width:240px}
+.weekMeta .wp{font-size:11px;letter-spacing:2.4px;font-weight:600;color:var(--mute)}
+.weekMeta .wt{font-family:"Cormorant Garamond";font-weight:700;font-size:21px;color:var(--slate-dk);margin-top:3px}
+.weekMeta .wn{font-size:12.5px;color:var(--slate);margin-top:2px}
 </style>
 </head>
 <body>
-<div class="app">
-  <aside class="sidebar">
-    <div class="brand">MR LIVING CAPITAL</div>
-    <div class="tagline">LIVING PROOF. LASTING LEGACY.</div>
-    <div class="nav-label">The Brain</div>
-    <button class="nav-btn active" data-v="week"><span class="dot"></span>This Week</button>
-    <button class="nav-btn" data-v="bank"><span class="dot"></span>Topics Bank</button>
-    <button class="nav-btn" data-v="custom"><span class="dot"></span>Custom Topic</button>
-    <div class="nav-label">Conversion</div>
-    <button class="nav-btn" data-v="convo"><span class="dot"></span>Conversation Engine</button>
-    <button class="nav-btn" data-v="playbook"><span class="dot"></span>Playbook Checks</button>
-    <div class="nav-label">Output</div>
-    <button class="nav-btn" data-v="pack"><span class="dot"></span>Current Pack <span id="packBadge" style="margin-left:auto;font-size:.6rem;color:var(--gold)"></span></button>
-    <div class="side-foot">
-      <div class="pub-count"><span id="pubCount">0</span> / 12 topics published</div>
-      War Room <b>v3.0 · The Brain</b><br>Locked Brand System · Offline
-    </div>
-  </aside>
-  <main class="main">
-
-    <!-- THIS WEEK -->
-    <section class="view active" id="v-week">
-      <div class="page-head"><div class="page-title">This Week</div>
-        <button class="btn btn-ghost" onclick="resetPublished()">Reset published</button></div>
-      <div class="page-sub">Cadence: Mon reel · Wed carousel · Fri carousel · Sun reel. The brain picks the next unpublished topic per pillar — you just generate and post.</div>
-      <div class="slot-grid" id="weekGrid"></div>
-      <div class="card" style="margin-top:20px">
-        <b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">Serhant matrix — weekly check</b>
-        <div class="kv"><b>Educate</b><span>Mon / Wed / Fri data posts — covered by cadence.</span></div>
-        <div class="kv"><b>Entertain</b><span>Contrarian hook in at least one reel (check the script's opening line).</span></div>
-        <div class="kv"><b>Encourage</b><span>Sun personal + Stories — The Strategist slot.</span></div>
-        <div class="kv"><b>Rotate</b><span>Advisor → Strategist → Investor characters across the week.</span></div>
-      </div>
-    </section>
-
-    <!-- TOPICS BANK -->
-    <section class="view" id="v-bank">
-      <div class="page-head"><div class="page-title">Topics Bank</div></div>
-      <div class="page-sub">12 banked topics, verified July 2026 data. One click = full pack: lead PNG, carousel slides, CTA closer, reel cover, reel script, 4 platform captions.</div>
-      <div class="card" id="bankList"></div>
-    </section>
-
-    <!-- CUSTOM TOPIC -->
-    <section class="view" id="v-custom">
-      <div class="page-head"><div class="page-title">Custom Topic</div></div>
-      <div class="page-sub">Paste raw numbers and notes — the brain structures them into your locked format: hook, slides, closer, captions, script. One idea per post.</div>
-      <div class="card">
-        <label class="fl">Headline (verdict, not question)</label>
-        <input class="fi" id="cTitle" placeholder="ABU DHABI IS INVESTING FOR DECADES, NOT YEARS.">
-        <label class="fl">Subtitle — the 'read that twice' line</label>
-        <input class="fi" id="cSub" placeholder="While feeds argue about villas, the office market quietly did AED 7.5B in one quarter.">
-        <label class="fl">Hook — first line of captions &amp; reel (hard number in first 8 words)</label>
-        <textarea class="fta" id="cHook" placeholder="Dubai offices just did something residential hasn't done in years."></textarea>
-        <div class="frow">
-          <div><label class="fl">Hero number (optional)</label><input class="fi" id="cHeroV" placeholder="+190%"></div>
-          <div><label class="fl">Hero label</label><input class="fi" id="cHeroL" placeholder="Q2 2026 OFFICE SALES GROWTH, YOY"></div>
-        </div>
-        <label class="fl">Key points — one per line (each becomes a carousel slide)</label>
-        <textarea class="fta" id="cPoints" style="min-height:130px" placeholder="Q2 office sales: AED 7.5B, +190% YoY — nearly tripled.&#10;Grade A vacancy under 5% across prime districts.&#10;No meaningful new office supply until 2027–28."></textarea>
-        <label class="fl">Strategist's read — 1–2 lines (advisory panel + punchline)</label>
-        <textarea class="fta" id="cAdv" placeholder="Portfolios that are 100% residential are reading yesterday's news.&#10;Small offices under 1,500 sqft are the hottest ticket."></textarea>
-        <label class="fl">CTA (organic — question or save prompt)</label>
-        <input class="fi" id="cCta" placeholder="Comment OFFICE and I'll send you the commercial brief.">
-        <label class="fl">Hashtags</label>
-        <input class="fi" id="cTags" value="#DubaiRealEstate #DubaiInvestors #MRLivingCapital">
-        <div class="gen-bar" style="margin-top:20px">
-          <button class="btn btn-primary" onclick="generateCustom()">Generate Full Pack</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONVERSATIONS -->
-    <section class="view" id="v-convo">
-      <div class="page-head"><div class="page-title">Conversation Engine</div></div>
-      <div class="page-sub">Comment → DM → call. Reply to every keyword comment within 1 hour. The DM qualifies; the call closes.</div>
-      <div class="card"><b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">1 · Keyword → DM openers</b><div id="kwList" style="margin-top:8px"></div></div>
-      <div class="card"><b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">2 · ACA flow — every DM</b><div id="acaList" style="margin-top:8px"></div></div>
-      <div class="card"><b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">3 · Qualifying (max 2 per message)</b><div id="qualList" style="margin-top:8px"></div></div>
-      <div class="card"><b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">4 · Follow-up cadence</b><div id="fuList" style="margin-top:8px"></div></div>
-      <div class="card"><b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">5 · Book the call</b>
-        <div class="kv"><b>Script</b><span id="bookCall"></span></div>
-        <button class="btn btn-sand" style="margin-top:12px" onclick="copyText(document.getElementById('bookCall').textContent)">Copy script</button></div>
-    </section>
-
-    <!-- PLAYBOOK -->
-    <section class="view" id="v-playbook">
-      <div class="page-head"><div class="page-title">Playbook Checks</div></div>
-      <div class="page-sub">Run every pack against this before posting. The brain enforces most of it — the rest is your eye.</div>
-      <div class="card"><b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">Hormozi writing — every post</b><div id="hookRules" style="margin-top:8px"></div></div>
-      <div class="card"><b style="font-family:var(--fh);color:var(--slate-dk);font-size:.85rem">Never do</b><div id="bannedList" style="margin-top:8px"></div></div>
-    </section>
-
-    <!-- PACK OUTPUT -->
-    <section class="view" id="v-pack">
-      <div class="page-head"><div class="page-title" id="packTitle">Current Pack</div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <button class="btn btn-sand" id="btnTexts" onclick="downloadTexts()">Download texts (.txt)</button>
-          <button class="btn btn-primary" id="btnAll" onclick="downloadAllPng()">Download all PNGs</button>
-        </div></div>
-      <div class="page-sub" id="packSub"></div>
-      <div class="preview-strip" id="pvStrip"></div>
-      <div class="copy-tabs" id="copyTabs"></div>
-      <div class="copy-box"><button class="btn btn-ghost" onclick="copyCurrent()">Copy</button><pre id="copyPre"></pre></div>
-    </section>
-
-  </main>
+<div class="topbar">
+  <div>
+    <div class="wm">MR LIVING <span>CAPITAL</span></div>
+    <div class="sub">WAR ROOM · CONTENT ENGINE v4</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="jabBadge" id="jabBadge">—</div>
+  <div class="dateChip" id="dateChip"></div>
 </div>
-<div class="toast" id="toast">Copied.</div>
+<div class="tabs" id="tabs"></div>
+<div id="view"></div>
 <script>
-/* ============ BRAND (locked) ============ */
-const B = {
-  ivory:'#F6F1E7', slate:'#5A6662', slateDk:'#38413E', turquoise:'#0F6B62', turqSoft:'#57A99F',
-  sand:'#D9CDB8', sandSoft:'#EEE7DA', dark:'#123B37', gold:'#B08D4A', mute:'#8C9592', muteDk:'#B0BBB7',
-  FH:'"Space Grotesk"', FB:'"Inter"', FD:'"Cormorant Garamond"',
-  IG_W:1080, IG_H:1350, REEL_W:1080, REEL_H:1920, M:72
-};
-const TAGLINE = 'LIVING PROOF. LASTING LEGACY.';
-const CONTACT_LINE = 'mrlivingcapital@gmail.com  ·  mrlivingcapital.com';
-const SOCIALS_LINE = 'IG · TikTok · Telegram  @mrlivingcapital';
+/* ============ LOCKED BRAND — Turquoise Signature ============ */
+const IVORY='#F6F1E7',SLATE='#5A6662',SLATE_DK='#2E3835',TURQ='#0F6B62',TURQ_SOFT='#57A99F',
+      SAND='#D9CDB8',SAND_SOFT='#EFE8DA',DARK='#123B37',MUTE='#9AA39F',GOLD='#B08D4A';
+const FH='"Space Grotesk"',FB='"Inter"',FD='"Cormorant Garamond"';
+const W=1080,M=64;
+const PORTRAIT_B64="data:image/jpeg;base64,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";
+const IMG={skyline:'https://mrlivingcapital.com/images/dubai-skyline.jpg',
+           jvc:'https://mrlivingcapital.com/images/jvc-community.jpg',
+           louvre:'https://mrlivingcapital.com/images/landmark-louvre.jpg',
+           marina:'https://mrlivingcapital.com/images/dubai-marina.jpg',
+           portrait:PORTRAIT_B64};
 
-/* ============ PLAYBOOK DATA ============ */
-const PILLAR_BADGE = {'Market Intelligence':'mi','Commercial':'co','Investor Education':'ie','Advisory Warnings':'aw','The Strategist':'st'};
-const CADENCE = [
-  {day:'Monday',   pillar:'Market Intelligence', fmt:'reel',     note:'Numbers drop: weekly DLD / Corridor Brief'},
-  {day:'Wednesday',pillar:'Commercial',          fmt:'carousel', note:'Differentiation: the story nobody posts'},
-  {day:'Friday',   pillar:'Investor Education',  fmt:'carousel', note:'Save-worthy: framework they screenshot'},
-  {day:'Sunday',   pillar:'The Strategist',      fmt:'reel',     note:'Personal: opinion, story, behind the scenes'},
-];
-const HOOK_RULES = [
-  'Hard number in the first 8 words (numbered specificity)',
-  'Verdict, not question — tell them, don’t ask them',
-  'Contrarian reframe: “X isn’t A. It’s B.”',
-  'Identity statement: agreeing makes the reader the smart one',
-  'One post = one idea. Two ideas = two posts',
-  'Claim + 3 bullets + takeaway (punchline close, 6–10 words)',
-  'Bullets in 3s. Line breaks every 1–2 sentences'];
-const BANNED = [
-  'No “Dubai is booming” hype openers','No Lambo / marina B-roll flex intros',
-  'No “DM me for the list” bait','No fake urgency “last units”',
-  'No walking-and-talking with no point','No green-screen news reading without a take',
-  'No “5 reasons to invest in Dubai” generic lists','No recycled 2021 stats',
-  'No “what do you think?” engagement begging'];
-const KEYWORD_DM = {
-  OFFICE:'Thanks for commenting OFFICE. Are you still looking at commercial units, or just watching the space for now?',
-  SOUTH:'Thanks for commenting SOUTH. Are you still looking at Dubai South, or comparing corridors?',
-  BRIEF:'Here’s the corridor brief. Are you still deciding between ready and off-plan, or already shortlisted?',
-  YIELD:'Here’s the commercial income brief. Is your portfolio 100% residential right now?',
-  CALL:'Happy to talk. What does your calendar look like Thursday — morning or afternoon?'};
-const ACA = [
-  'ACKNOWLEDGE: reference something specific (their comment, their city, their portfolio question). Never “thanks for reaching out”.',
-  'COMPLIMENT: connect it sincerely — “comparing corridors before committing tells me you underwrite like an investor”.',
-  'ASK: one question toward the goal — “are you still looking to deploy before Q4, or is this a 2027 plan?”'];
-const QUALIFYING = ['Budget band (under 2M / 2–5M / 5M+)?','Timeline (this quarter / this year / exploring)?','Cash or mortgage?','Yield-first or growth-first?','Which corridor caught your eye?'];
-const FOLLOWUP = [
-  'D0: reply to comment publicly (question back) + DM the keyword asset within 1 hour',
-  'D+1: send one extra data point relevant to THEIR situation',
-  'D+3: check-in with a new angle (new weekly number)',
-  'D+7: invite to Corridor Brief / send H1 PDF',
-  'D+14: close the loop — “should I keep you on the brief list or park this?”'];
-const BOOK_CALL = 'No pitch on the first call. 20 minutes: your numbers, my read, next step only if it makes sense. Thursday 10:00 or 16:30 GST?';
+let grainPat=null;
+function grain(x,h){if(!grainPat){const g=document.createElement('canvas');g.width=g.height=200;const gx=g.getContext('2d'),id=gx.createImageData(200,200);for(let i=0;i<id.data.length;i+=4){const v=Math.random()*255|0;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=11;}gx.putImageData(id,0,0);grainPat=x.createPattern(g,'repeat');}x.save();x.globalAlpha=.5;x.fillStyle=grainPat;x.fillRect(0,0,W,h);x.restore();}
+function rrect(x,px,py,w,h,r){x.beginPath();x.moveTo(px+r,py);x.arcTo(px+w,py,px+w,py+h,r);x.arcTo(px+w,py+h,px,py+h,r);x.arcTo(px,py+h,px,py,r);x.arcTo(px,py,px+w,py,r);x.closePath();}
+function wrap(x,t,mw){const ws=String(t).split(' '),ls=[];let c='';for(const w of ws){const s=c?c+' '+w:w;if(x.measureText(s).width>mw&&c){ls.push(c);c=w;}else c=s;}if(c)ls.push(c);return ls;}
+function loadImg(src){return new Promise(res=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>res(i);i.onerror=()=>res(null);i.src=src;});}
+function mkCanvas(h){const S=2,c=document.createElement('canvas');c.width=W*S;c.height=h*S;const x=c.getContext('2d');x.scale(S,S);return[c,x];}
+function finish(c,h){const f=document.createElement('canvas');f.width=W;f.height=h;const fx=f.getContext('2d');fx.imageSmoothingQuality='high';fx.drawImage(c,0,0,W,h);return f;}
 
-/* ============ TOPICS DB (verified July 2026) ============ */
-const TOPICS = [
-{id:26,title:'DEVELOPERS JUST STOPPED LAUNCHING.',layout:'hero_table',pillar:'Market Intelligence',asof:'July 2026',
- subtitle:'Q2 2026 saw the fewest new launches in years — while handovers hit a record. Read that twice.',
+/* ---- chrome (locked; identical on every page) ---- */
+function bgBase(x,h){x.fillStyle=IVORY;x.fillRect(0,0,W,h);
+  let g=x.createRadialGradient(W*.1,0,0,W*.1,0,W*.8);g.addColorStop(0,'rgba(217,205,184,.35)');g.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g;x.fillRect(0,0,W,h);}
+function softWaves(x,h){
+  x.save();
+  const w=(col,a,dy)=>{x.globalAlpha=a;x.fillStyle=col;x.beginPath();x.moveTo(0,h);x.lineTo(0,h*.62+dy);
+    x.bezierCurveTo(W*.25,h*.52+dy,W*.42,h*.78+dy,W*.68,h*.72+dy);
+    x.bezierCurveTo(W*.85,h*.68+dy,W*.95,h*.6+dy,W,h*.62+dy);x.lineTo(W,h);x.closePath();x.fill();};
+  w(TURQ_SOFT,.10,90); w(TURQ_SOFT,.13,40); w(TURQ,.10,0);
+  x.restore();}
+function ringMark(x,s){const cx=W+30,cy=-14,r=150*s;x.save();
+  x.strokeStyle='rgba(15,107,98,.55)';x.lineWidth=2.6;x.beginPath();x.arc(cx,cy,r,0,Math.PI*2);x.stroke();
+  x.strokeStyle='rgba(176,141,74,.35)';x.lineWidth=1.6;x.beginPath();x.arc(cx,cy,r*.78,0,Math.PI*2);x.stroke();x.restore();}
+function silkRibbon(x,h){const base=h-84;
+  const wave=(amp,ph,col,a,y0)=>{x.save();x.globalAlpha=a;x.fillStyle=col;x.beginPath();x.moveTo(0,h);x.lineTo(0,y0);
+    for(let i=0;i<=W;i+=8)x.lineTo(i,y0+Math.sin(i/W*Math.PI*2.1+ph)*amp+Math.sin(i/W*Math.PI*4.7+ph*1.6)*amp*.35);
+    x.lineTo(W,h);x.closePath();x.fill();x.restore();};
+  wave(16,.4,SAND,.42,base-16);wave(11,2.1,'rgba(87,169,159,.30)',1,base);wave(8,4,'rgba(15,107,98,.28)',1,base+16);}
+function headerCenter(x){x.textAlign='center';
+  x.fillStyle=SLATE_DK;x.font='700 36px '+FH;
+  x.save();if(x.letterSpacing!==undefined)x.letterSpacing='9px';
+  x.fillText('MR LIVING CAPITAL',W/2,86);x.restore();
+  x.fillStyle=TURQ;rrect(x,W/2-26,104,52,5,2.5);x.fill();
+  x.fillStyle=TURQ;x.font='600 15px '+FB;
+  x.save();if(x.letterSpacing!==undefined)x.letterSpacing='5px';
+  x.fillText('LIVING PROOF. LASTING LEGACY.',W/2,136);x.restore();x.textAlign='left';}
+function footerCenter(x,h){silkRibbon(x,h);x.textAlign='center';
+  x.fillStyle=SLATE_DK;x.font='700 28px '+FH;
+  x.save();if(x.letterSpacing!==undefined)x.letterSpacing='8px';
+  x.fillText('MR LIVING CAPITAL',W/2,h-150);x.restore();
+  x.fillStyle=TURQ;rrect(x,W/2-22,h-136,44,4,2);x.fill();
+  x.fillStyle=TURQ;x.font='600 13px '+FB;
+  x.save();if(x.letterSpacing!==undefined)x.letterSpacing='4px';
+  x.fillText('LIVING PROOF. LASTING LEGACY.',W/2,h-112);x.restore();x.textAlign='left';}
+
+/* ---- photo panel: organic curve mask, right side (locked) ---- */
+function photoPanel(x,img,top,bot){
+  if(!img)return;
+  x.save();x.beginPath();
+  x.moveTo(W,top);x.lineTo(W,bot);x.lineTo(W*.66,bot);
+  x.bezierCurveTo(W*.44,bot-140, W*.54,(top+bot)/2, W*.60,top+130);
+  x.bezierCurveTo(W*.63,top+40, W*.70,top, W*.76,top);
+  x.closePath();x.clip();
+  const iw=img.width,ih=img.height,tw=W*.44,th=bot-top,s=Math.max(tw/iw,th/ih);
+  const dw=iw*s,dh=ih*s,dx=W*.56-(dw-tw)/2,dy=top-(dh-th)/2;
+  x.drawImage(img,dx,dy,dw,dh);
+  const g=x.createLinearGradient(W*.42,0,W*.68,0);
+  g.addColorStop(0,'rgba(246,241,231,1)');g.addColorStop(1,'rgba(246,241,231,0)');
+  x.fillStyle=g;x.fillRect(W*.40,top,W*.32,th);
+  x.restore();}
+
+/* ---- line icons (stroke only, turquoise) ---- */
+function icon(x,name,cx,cy,r){
+  x.save();x.translate(cx,cy);x.strokeStyle=TURQ;x.lineWidth=3.2;x.lineCap='round';x.lineJoin='round';
+  const u=r/16;
+  x.beginPath();
+  switch(name){
+    case 'bank': x.moveTo(-14*u,10*u);x.lineTo(14*u,10*u);x.moveTo(-11*u,10*u);x.lineTo(-11*u,-2*u);x.moveTo(-3.6*u,10*u);x.lineTo(-3.6*u,-2*u);x.moveTo(3.6*u,10*u);x.lineTo(3.6*u,-2*u);x.moveTo(11*u,10*u);x.lineTo(11*u,-2*u);x.moveTo(-14*u,-3*u);x.lineTo(0,-13*u);x.lineTo(14*u,-3*u);x.closePath();x.moveTo(0,-16*u);x.lineTo(0,-19*u);break;
+    case 'chart': x.moveTo(-13*u,11*u);x.lineTo(13*u,11*u);x.moveTo(-9*u,11*u);x.lineTo(-9*u,3*u);x.moveTo(-2*u,11*u);x.lineTo(-2*u,-3*u);x.moveTo(5*u,11*u);x.lineTo(5*u,-8*u);x.moveTo(-12*u,-6*u);x.lineTo(3*u,-14*u);x.moveTo(3*u,-14*u);x.lineTo(12*u,-8*u);x.moveTo(8*u,-12*u);x.lineTo(12*u,-8*u);x.lineTo(7*u,-5*u);break;
+    case 'plane': x.moveTo(-13*u,8*u);x.lineTo(13*u,-8*u);x.moveTo(13*u,-8*u);x.lineTo(3*u,10*u);x.moveTo(13*u,-8*u);x.lineTo(-4*u,-12*u);x.moveTo(-4*u,-12*u);x.lineTo(-13*u,8*u);break;
+    case 'bridge': x.moveTo(-14*u,10*u);x.lineTo(14*u,10*u);x.moveTo(-10*u,10*u);x.lineTo(-10*u,-8*u);x.moveTo(10*u,10*u);x.lineTo(10*u,-8*u);x.moveTo(-14*u,2*u);x.quadraticCurveTo(0,-14*u,14*u,2*u);x.moveTo(-6*u,10*u);x.lineTo(-6*u,4*u);x.moveTo(0,10*u);x.lineTo(0,1.5*u);x.moveTo(6*u,10*u);x.lineTo(6*u,4*u);break;
+    case 'shield': x.moveTo(0,-14*u);x.lineTo(12*u,-9*u);x.lineTo(12*u,2*u);x.quadraticCurveTo(12*u,11*u,0,15*u);x.quadraticCurveTo(-12*u,11*u,-12*u,2*u);x.lineTo(-12*u,-9*u);x.closePath();x.moveTo(-5*u,0);x.lineTo(-1*u,5*u);x.lineTo(6*u,-4*u);break;
+    case 'globe': x.arc(0,0,13*u,0,Math.PI*2);x.moveTo(-13*u,0);x.lineTo(13*u,0);x.moveTo(0,-13*u);x.ellipse?x.ellipse(0,0,6*u,13*u,0,0,Math.PI*2):x.moveTo(0,13*u);break;
+    case 'metro': rrect(x,-10*u,-13*u,20*u,26*u,5*u);x.moveTo(-10*u,2*u);x.lineTo(10*u,2*u);x.moveTo(-4*u,8*u);x.lineTo(-4*u,8*u);x.moveTo(4*u,8*u);x.lineTo(4*u,8*u);x.moveTo(-6*u,14*u);x.lineTo(-9*u,18*u);x.moveTo(6*u,14*u);x.lineTo(9*u,18*u);break;
+    case 'building': rrect(x,-11*u,-13*u,15*u,26*u,2*u);x.moveTo(4*u,-6*u);x.lineTo(13*u,-6*u);x.lineTo(13*u,13*u);x.moveTo(-7*u,-8*u);x.lineTo(-3*u,-8*u);x.moveTo(-7*u,-2*u);x.lineTo(-3*u,-2*u);x.moveTo(-7*u,4*u);x.lineTo(-3*u,4*u);break;
+    case 'home': x.moveTo(-13*u,0);x.lineTo(0,-12*u);x.lineTo(13*u,0);x.moveTo(-9*u,-3*u);x.lineTo(-9*u,12*u);x.lineTo(9*u,12*u);x.lineTo(9*u,-3*u);break;
+    case 'people': x.arc(-6*u,-5*u,5*u,0,Math.PI*2);x.moveTo(-13*u,13*u);x.quadraticCurveTo(-13*u,3*u,-6*u,3*u);x.quadraticCurveTo(1*u,3*u,1*u,13*u);x.moveTo(4*u,-9*u);x.arc(7*u,-6*u,4.4*u,-.8,Math.PI*1.2);x.moveTo(5*u,2*u);x.quadraticCurveTo(13*u,2*u,13*u,12*u);break;
+    case 'key': x.arc(-6*u,-4*u,6*u,0,Math.PI*2);x.moveTo(-1.5*u,1*u);x.lineTo(11*u,13*u);x.moveTo(6*u,8*u);x.lineTo(9.5*u,4.5*u);x.moveTo(9*u,11*u);x.lineTo(12.5*u,7.5*u);break;
+    default: x.arc(0,0,11*u,0,Math.PI*2);
+  }
+  x.stroke();x.restore();}
+
+/* ---- text pieces ---- */
+function headline(x,t,left,y0,mw,maxSize){
+  x.textBaseline='alphabetic';
+  const size=maxSize||66;
+  const acc=(t.accents||[]).map(a=>a.toUpperCase().replace(/[^A-Z0-9%+.]/g,''));
+  let s=size;
+  const tokens=String(t.title).toUpperCase().split(' ').map(w=>{const cw=w.replace(/[^A-Z0-9%+.]/g,'');
+    return{w,a:acc.some(ac=>ac===cw||(ac.length>3&&cw.length>3&&(ac.includes(cw)||cw.includes(ac))))};});
+  let lines=[];
+  while(true){
+    x.font='700 '+s+'px '+FD;
+    lines=[];let cur=[];
+    for(const tk of tokens){
+      const trial=cur.concat([tk]);
+      const txt=trial.map(z=>z.w).join(' ');
+      if(x.measureText(txt).width>mw&&cur.length){lines.push(cur);cur=[tk];}
+      else cur=trial;
+    }
+    if(cur.length)lines.push(cur);
+    if(lines.length<=4||s<=40)break;
+    s-=4;
+  }
+  let y=y0;const lh=s*1.12;
+  for(const ln of lines){let lx=left;
+    for(const tk of ln){x.fillStyle=tk.a?TURQ:SLATE_DK;x.fillText(tk.w,lx,y);lx+=x.measureText(tk.w+' ').width;}
+    y+=lh;}
+  y+=2;x.fillStyle=TURQ;rrect(x,left+2,y,58,6,3);x.fill();
+  return y+40;}
+function subline(x,t,left,y,mw,maxLines){
+  if(!t.sub)return y;
+  const acc=(t.subAccent||'').toLowerCase();
+  x.font='400 27px '+FB;
+  const allSub=wrap(x,t.sub,mw);const lines=allSub.slice(0,maxLines||3);
+  if(allSub.length>lines.length)lines[lines.length-1]=lines[lines.length-1].replace(/[—\-,;\s]+$/,'')+' …';
+  for(const ln of lines){
+    if(acc&&ln.toLowerCase().includes(acc)){
+      const i=ln.toLowerCase().indexOf(acc);
+      const pre=ln.slice(0,i),mid=ln.slice(i,i+acc.length),post=ln.slice(i+acc.length);
+      x.fillStyle=SLATE_DK;x.fillText(pre,left,y);let wpre=x.measureText(pre).width;
+      x.fillStyle=TURQ;x.font='600 27px '+FB;x.fillText(mid,left+wpre,y);
+      x.font='400 27px '+FB;let wmid=x.measureText(mid).width;
+      x.fillStyle=SLATE_DK;x.fillText(post,left+wpre+wmid,y);
+    }else{x.fillStyle=SLATE_DK;x.fillText(ln,left,y);}
+    y+=38;}
+  return y+8;}
+function featureRow(x,f,left,y,colW,statW,maxDesc){
+  const chipR=36;
+  x.fillStyle=SAND_SOFT;x.beginPath();x.arc(left+chipR,y+chipR-6,chipR,0,Math.PI*2);x.fill();
+  icon(x,f.icon,left+chipR,y+chipR-6,20);
+  const tx=left+chipR*2+26;
+  x.fillStyle=TURQ;x.font='600 25px '+FH;let ty=y+22;
+  for(const ln of wrap(x,f.title.toUpperCase(),colW-(statW||0)-chipR*2-40)){x.fillText(ln,tx,ty);ty+=30;}
+  x.fillStyle=SLATE;x.font='400 22px '+FB;ty+=6;
+  const descLines=wrap(x,f.desc,colW-(statW||0)-chipR*2-40);
+  const shown=descLines.slice(0,maxDesc||3);
+  if(descLines.length>shown.length)shown[shown.length-1]=shown[shown.length-1].replace(/[—\-,;\s]+$/,'')+' …';
+  for(const ln of shown){x.fillText(ln,tx,ty);ty+=29;}
+  if(f.stat&&statW){
+    const sx=left+colW-statW+20;
+    x.fillStyle=TURQ;x.font='700 46px '+FH;x.fillText(f.stat,sx,y+42);
+    x.fillStyle=SLATE_DK;x.font='500 20px '+FB;let sy=y+72;
+    for(const ln of wrap(x,f.statDesc,statW-20)){x.fillText(ln,sx,sy);sy+=26;}
+    if(f.source){x.fillStyle=MUTE;x.font='italic 400 17px '+FB;x.fillText(f.source,sx,sy+6);}
+  }
+  const endY=y+Math.max(ty-y,statW?110:0,86);
+  x.strokeStyle='rgba(90,102,98,.14)';x.lineWidth=1.2;
+  x.beginPath();x.moveTo(left,endY+10);x.lineTo(left+colW,endY+10);x.stroke();
+  return endY+34;}
+function quoteBar(x,q,left,y,mw){
+  x.font='400 24px '+FB;
+  const l1=wrap(x,q.line1,mw-140),l2=wrap(x,q.line2,mw-140);
+  const h=56+l1.length*30+l2.length*30+18;
+  x.fillStyle=SAND_SOFT;rrect(x,left,y,mw,h,26);x.fill();
+  x.fillStyle=TURQ;x.font='700 74px '+FD;x.fillText('“',left+28,y+68);
+  let ty=y+52;const tx=left+96;
+  x.fillStyle=SLATE_DK;x.font='400 24px '+FB;
+  for(const ln of l1){x.fillText(ln,tx,ty);ty+=30;}
+  x.fillStyle=TURQ;x.font='600 24px '+FB;
+  for(const ln of l2){x.fillText(ln,tx,ty);ty+=30;}
+  return y+h+20;}
+function sourceLine(x,src,y){x.fillStyle=MUTE;x.font='italic 400 18px '+FB;x.fillText(src,M,y);return y+30;}
+</script>
+<script>
+/* ============ LOCKED TEMPLATE RENDERERS ============ */
+function renderCover(t){
+  const h=1350,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,1);headerCenter(x);
+  const hasPhoto=!!t._photo,left=M,colW=hasPhoto?W*.44:W-M*2;
+  if(hasPhoto)photoPanel(x,t._photo,190,h-170);
+  let y=headline(x,t,left,320,colW,t.title.length>58?58:70);
+  y=subline(x,t,left,y+10,colW,hasPhoto?3:4)+20;
+  const feats=hasPhoto?t.features.slice(0,2):t.features.slice(0,3);
+  for(const f of feats){ if(y>h-330)break; y=featureRow(x,f,left,y,colW,hasPhoto?0:300,hasPhoto?2:3); }
+  if(t.quote&&!hasPhoto&&y<h-400) y=quoteBar(x,t.quote,left,y+6,W-M*2);
+  if(t.source&&y<h-230) sourceLine(x,t.source,y+2);
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+function renderIdea(t,point,i,n){
+  const h=1350,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,.8);headerCenter(x);
+  x.fillStyle='rgba(15,107,98,.08)';x.font='700 230px '+FH;x.textAlign='center';
+  x.fillText(String(i+1),W/2,430);x.textAlign='left';
+  const mw=W-M*2-80;let s=56;x.font='600 '+s+'px '+FD;
+  while(s>30&&wrap(x,point,mw).length>5){s-=2;x.font='600 '+s+'px '+FD;}
+  const lines=wrap(x,point,mw),lh=s*1.3;let y=h/2-lines.length*lh/2+30;
+  x.fillStyle=SLATE_DK;x.textAlign='center';
+  for(const ln of lines){x.fillText(ln,W/2,y);y+=lh;}
+  x.textAlign='left';
+  const dr=7,dg=26,dw=n*dr*2+(n-1)*(dg-dr*2);let dx=W/2-dw/2;
+  for(let k=0;k<n;k++){x.fillStyle=k===i?TURQ:'rgba(15,107,98,.22)';x.beginPath();x.arc(dx+dr,h-240,dr,0,Math.PI*2);x.fill();dx+=dg;}
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+function renderChartSlide(t){
+  const h=1350,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,.8);headerCenter(x);
+  x.fillStyle=SLATE_DK;x.font='600 27px '+FB;x.textAlign='center';
+  let y=250;for(const ln of wrap(x,t.chart.title||'THE PATTERN, IN ONE CHART',W-240)){x.fillText(ln,W/2,y);y+=36;}
+  x.fillStyle=TURQ;rrect(x,W/2-29,y+4,58,6,3);x.fill();
+  const ch=t.chart,mw=W-M*2-120;
+  const n=ch.bars.length,gap=44,bw=Math.min(120,(mw-gap*(n-1))/n);
+  const max=Math.max(...ch.bars.map(b=>b[1])),hgt=430,baseY=250+90+hgt;
+  const totalW=n*bw+(n-1)*gap,ox=W/2-totalW/2;
+  ch.bars.forEach((b,i)=>{
+    const bx=ox+i*(bw+gap),bh=Math.max(18,(b[1]/max)*hgt),hot=i===n-1;
+    x.fillStyle=hot?TURQ:SAND;
+    rrect(x,bx,baseY-bh,bw,bh,14);x.fill();
+    x.fillStyle=hot?TURQ:SLATE_DK;x.font='700 26px '+FH;x.textAlign='center';
+    x.fillText(b[2]||String(b[1]),bx+bw/2,baseY-bh-16);
+    x.fillStyle=MUTE;x.font='400 21px '+FB;x.fillText(b[0],bx+bw/2,baseY+34);});
+  x.strokeStyle='rgba(90,102,98,.25)';x.lineWidth=1.6;
+  x.beginPath();x.moveTo(ox-20,baseY);x.lineTo(ox+totalW+20,baseY);x.stroke();
+  x.textAlign='center';x.fillStyle=SLATE_DK;x.font='italic 500 34px '+FD;
+  let ty=baseY+130;for(const ln of wrap(x,'“'+(t.chart.takeaway||t.sowhat)+'”',W-260)){x.fillText(ln,W/2,ty);ty+=46;}
+  x.textAlign='left';
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+function renderCloser(t,portrait){
+  const h=1350,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,1);
+  x.fillStyle=SLATE_DK;x.font='italic 600 52px '+FD;x.textAlign='center';
+  const sl=(t.quote?t.quote.line1:t.sowhat);
+  let y=360;for(const ln of wrap(x,'“'+sl+'”',W-220)){x.fillText(ln,W/2,y);y+=66;}
+  x.fillStyle=TURQ;x.font='700 168px '+FD;
+  x.fillText('CALL ME.',W/2,y+190);
+  x.fillStyle=TURQ;rrect(x,W/2-44,y+222,88,8,4);x.fill();
+  x.fillStyle=MUTE;x.font='400 26px '+FB;
+  x.fillText('20 minutes. Your numbers, my read. No pitch.',W/2,y+290);
+  const bw=W-M*2,bh=250,by=h-bh-190;
+  x.fillStyle=SAND_SOFT;rrect(x,M,by,bw,bh,60);x.fill();
+  const cx=M+135,cy=by+bh/2,pr=84;
+  if(portrait){x.save();x.beginPath();x.arc(cx,cy,pr,0,Math.PI*2);x.clip();
+    const s=Math.max(pr*2/portrait.width,pr*2/portrait.height);
+    x.drawImage(portrait,cx-portrait.width*s/2,cy-portrait.height*s/2,portrait.width*s,portrait.height*s);x.restore();}
+  x.strokeStyle=TURQ;x.lineWidth=5;x.beginPath();x.arc(cx,cy,pr+8,0,Math.PI*2);x.stroke();
+  x.textAlign='left';
+  x.fillStyle=TURQ;x.font='700 33px '+FH;
+  x.save();if(x.letterSpacing!==undefined)x.letterSpacing='1px';
+  x.fillText('MR LIVING CAPITAL',cx+pr+38,cy-14);x.restore();
+  x.fillStyle=TURQ;x.font='500 25px '+FB;
+  x.fillText('DM for a conversation, anytime',cx+pr+38,cy+34);
+  const glyphs=['camera','in','phone','plane','note'];
+  const gy=cy-42;
+  glyphs.forEach((g2,k)=>{
+    const gx=(M+bw-64)-(4-k)*52;
+    x.save();x.translate(gx,gy);x.strokeStyle=TURQ;x.lineWidth=3;x.lineCap='round';x.lineJoin='round';x.beginPath();
+    if(g2==='camera'){rrect(x,-13,-13,26,26,8);x.moveTo(6,0);x.arc(0,0,6,0,Math.PI*2);x.moveTo(9,-9);x.lineTo(9.2,-9);}
+    else if(g2==='in'){rrect(x,-13,-13,26,26,6);x.moveTo(-6,8);x.lineTo(-6,-2);x.moveTo(-6,-8);x.lineTo(-5.8,-8);x.moveTo(0,8);x.lineTo(0,-8);x.lineTo(6,-8);x.quadraticCurveTo(9,-8,9,-3);x.lineTo(9,8);}
+    else if(g2==='phone'){x.moveTo(-8,-11);x.quadraticCurveTo(-11,-11,-11,-7);x.quadraticCurveTo(-11,6,2,11);x.quadraticCurveTo(6,13,9,10);x.lineTo(6,6);x.lineTo(2,7);x.quadraticCurveTo(-3,4,-4,-2);x.lineTo(0,-5);x.lineTo(-4,-11);x.quadraticCurveTo(-6,-12,-8,-11);}
+    else if(g2==='plane'){x.moveTo(-12,7);x.lineTo(12,-8);x.lineTo(2,9);x.lineTo(-1,2);x.closePath();x.moveTo(12,-8);x.lineTo(-1,2);}
+    else{x.moveTo(-4,8);x.arc(-6,8,3.4,0,Math.PI*2);x.moveTo(-2.6,8);x.lineTo(-2.6,-9);x.quadraticCurveTo(3,-9,6,-5);x.moveTo(9,4);x.arc(6,4,3.4,0,Math.PI*2);x.moveTo(9.4,4);x.lineTo(9.4,-13);}
+    x.stroke();x.restore();});
+  x.textAlign='right';x.fillStyle=TURQ;x.font='600 25px '+FB;
+  x.fillText('@mrlivingcapital',M+bw-64,cy+16);
+  x.font='500 23px '+FB;x.fillText('mrlivingcapital.com',M+bw-64,cy+54);
+  x.textAlign='left';
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+function renderReel(t){
+  const h=1920,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,1.15);headerCenter(x);
+  const hasPhoto=!!t._photo,left=M,colW=hasPhoto?W*.46:W-M*2;
+  if(hasPhoto)photoPanel(x,t._photo,260,h-260);
+  let y=headline(x,t,left,520,colW,t.title.length>58?60:76);
+  y=subline(x,t,left,y+16,colW,4)+26;
+  x.fillStyle=TURQ;x.font='600 24px '+FB;
+  x.save();if(x.letterSpacing!==undefined)x.letterSpacing='3px';
+  x.fillText((t.pillar||'MARKET INTELLIGENCE').toUpperCase(),left,y+10);x.restore();
+  x.fillStyle=SLATE_DK;x.font='italic 500 34px '+FD;
+  let qy=y+96;
+  for(const ln of wrap(x,'“'+(t.quote?t.quote.line1:t.sowhat)+'”',colW+140)){x.fillText(ln,left,qy);qy+=48;}
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+</script>
+<script>
+/* ============ THE BRAIN — topic bank (verified data only) ============ */
+const TOPICS=[
+/* ---- DAILY BRIEF PRIORITIES (time-sensitive, Aug 2026) ---- */
+{key:'ad-rush',type:'hook',pillar:'Commercial',asof:'August 2026',
+ title:'Abu Dhabi is investing for decades, not years.',accents:['decades,'],
+ sub:'A long-term vision backed by strong institutions and world-class infrastructure.',subAccent:'',
+ photo:'louvre',
+ features:[
+  {icon:'bank',title:'Sovereign-backed growth strategy',desc:'Major developments led by government entities like Modon — long-term alignment with Abu Dhabi’s economic vision.',stat:'AED 500B+',statDesc:'Diversification programmes by 2030',source:'Source: AD Government'},
+  {icon:'chart',title:'ADGM: a global financial centre',desc:'Global institutions, asset managers and fintech keep registering — positioning Abu Dhabi as a leading finance hub.',stat:'180+',statDesc:'Registered financial institutions',source:'Source: ADGM'},
+  {icon:'plane',title:'Connectivity that drives opportunity',desc:'Zayed International expansion strengthens the capital’s position as a global gateway.',stat:'45M+',statDesc:'Passenger capacity by 2030',source:'Source: Abu Dhabi Airports'},
+  {icon:'shield',title:'Infrastructure today, value tomorrow',desc:'Transport, utilities, tourism, healthcare — building sustainable long-term value.',stat:'AED 120B+',statDesc:'Infrastructure pipeline',source:'Source: AD Government'}],
+ chart:null,
+ quote:{line1:'These aren’t short-term projects.',line2:'They’re the foundation of Abu Dhabi’s next era.'},
+ source:'Sources: AD Government · ADGM · Abu Dhabi Airports · Modon Media Centre',
+ hook:'Abu Dhabi isn’t investing for years. It’s investing for decades — and the launches start mid-August.',
+ points:['AED 500B+ diversification programmes across sectors by 2030.','180+ financial institutions registered in ADGM.','Zayed International: 45M+ passenger capacity by 2030.','AED 120B+ infrastructure pipeline — transport, tourism, healthcare.','Hudayriyat Golf Estates: AED 13B+ in sales within days — a UAE record.'],
+ sowhat:'Sovereign-backed masterplans de-risk the entry. When the government is the developer’s largest shareholder, timelines and quality stop being hopes and start being policy.',
+ cta:'100+ launches land from mid-August across Abu Dhabi, Dubai and RAK. My shortlist goes to my call list first — DM me if you want on it.',
+ tags:'#AbuDhabi #ADGM #Modon #UAEInvestment #OffPlan #MRLivingCapital'},
+
+{key:'uk-exodus',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
+ title:'16,500 millionaires left the UK this year.',accents:['16,500','millionaires'],
+ sub:'The largest wealth exodus ever recorded — and 12,000 of them chose one destination.',subAccent:'12,000',
+ photo:'skyline',
+ features:[
+  {icon:'chart',title:'The UK just lost 16,500 millionaires',desc:'Net outflow in 2026 — the largest single-year exodus recorded for any country. Taxes did what no crash could.',stat:'-16.5K',statDesc:'UK net millionaire outflow, 2026',source:'Source: Henley PWM 2025'},
+  {icon:'globe',title:'165,000 are relocating globally',desc:'A record year for wealth migration — $63B in investable assets moving with them.',stat:'$63B',statDesc:'Wealth relocating in 2026',source:'Source: New World Wealth'},
+  {icon:'home',title:'The UAE is the #1 destination. Again.',desc:'12,000 net inflow projected for 2026 — top of the table for the 6th consecutive year. Zero income tax, 0% capital gains, AED stability.',stat:'+12K',statDesc:'UAE net inflow 2026 (6th yr #1)',source:'Source: Henley PWM 2025'}],
+ chart:{label:'UAE population (millions)',title:'THE RECEIVING END, IN ONE CHART',takeaway:'One new resident every minute. Housing demand is arithmetic, not opinion.',bars:[['2015',9.26,'9.26M'],['2020',9.89,'9.89M'],['2024',10.24,'10.24M'],['2025',11.35,'11.35M'],['2026',11.57,'11.57M']]},
+ quote:{line1:'Capital doesn’t protest. It relocates.',line2:'The smart money already picked its address.'},
+ source:'Sources: Henley Private Wealth Migration Report 2025 · Worldometers Aug 2026',
+ hook:'16,500 millionaires are leaving the UK in 2026. The largest exodus ever recorded — and they all picked the same address.',
+ points:['UK net millionaire outflow: -16,500 in 2026 — a record for any country.','165,000 HNWIs relocating globally this year, carrying $63B.','UAE projected +12,000 net inflow — #1 for the 6th straight year.','UAE population: 11.57M and adding one resident every minute.'],
+ sowhat:'Migration of capital is the loudest signal in real estate. Where millionaires move, prime property reprices — Dubai and Abu Dhabi are the receiving end of that trade.',
+ cta:'Where they’re buying inside the UAE — that’s the conversation we have privately.',
+ tags:'#WealthMigration #UKExodus #DubaiRealEstate #AbuDhabi #HNWI #MRLivingCapital'},
+
+{key:'gold-line',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
+ title:'Dubai just drew a Gold Line through 55 mega projects.',accents:['Gold Line'],
+ sub:'AED 34 billion. 42km underground. 18 stations. The biggest transport project in Dubai’s history — approved.',subAccent:'AED 34 billion.',
+ photo:'jvc',
+ features:[
+  {icon:'metro',title:'AED 34B · 42km · fully underground',desc:'Approved 22 April 2026 by Sheikh Mohammed. Dubai’s first fully underground metro — 40 metres deep, opening 9 September 2032.',stat:'2032',statDesc:'Opening 9 Sep — 30% faster than Blue Line',source:'Source: Dubai Media Office'},
+  {icon:'building',title:'55 mega developments connected',desc:'Al Ghubaiba to Jumeirah Golf Estates — City Walk, Business Bay, Meydan, JVC. 1.5 million residents served.',stat:'1.5M',statDesc:'Residents served by the line',source:'Source: Dubai Media Office'},
+  {icon:'chart',title:'465,000 daily riders projected',desc:'The network expands 35%. Every station corridor historically reprices before the line opens — not after.',stat:'+35%',statDesc:'Dubai Metro network expansion',source:'Source: RTA / Media Office'}],
+ chart:null,
+ quote:{line1:'Infrastructure is announced in press releases.',line2:'Value is captured in the corridors — years early.'},
+ source:'Sources: Dubai Media Office, 22 Apr 2026 · Wikipedia Gold Line',
+ hook:'AED 34 billion. 42 kilometres. 40 metres underground. Dubai just approved the Gold Line — and it runs through 55 mega projects.',
+ points:['Gold Line approved: AED 34B, 42km, 18 stations, opening 9 Sep 2032.','Dubai’s first fully underground metro — 40m deep.','Connects 55 mega developments; serves 1.5M residents.','JVC, Business Bay, Meydan, City Walk are on the route.'],
+ sowhat:'Every Dubai metro corridor has repriced years before opening day. The map is public — the entry prices along it won’t stay where they are.',
+ cta:'Which corridor fits your ticket size — that’s the private conversation.',
+ tags:'#DubaiMetro #GoldLine #DubaiRealEstate #JVC #Infrastructure #MRLivingCapital'},
+
+/* ---- BANKED TOPICS (July 2026 verified) ---- */
+{key:'p26',type:'jab',pillar:'Market Intelligence',asof:'July 2026',
+ title:'Developers just stopped launching.',accents:['stopped'],
+ sub:'Q2 2026 saw the fewest new launches in years — while handovers hit a record. Read that twice.',subAccent:'fewest',
+ photo:'skyline',
+ features:[
+  {icon:'chart',title:'Q2 launches: 5,335 units',desc:'The lowest quarterly launch volume in years — developers are pacing, not panicking.',stat:'5,335',statDesc:'New units launched, Q2 2026',source:'Source: DLD / DXB Interact'},
+  {icon:'home',title:'Handovers hit a multi-year peak',desc:'Record deliveries in the same quarter. Off-plan still ~72% of sales: demand held, supply paused.',stat:'~72%',statDesc:'Off-plan share of sales',source:'Source: DLD'}],
+ chart:null,
+ quote:{line1:'Less new stock + record deliveries = the calmest buyer window in recent memory.',line2:'The next 2–3 months favour prepared buyers, not waiting ones.'},
+ source:'Sources: DLD · DXB Interact, July 2026',
  hook:'While everyone was waiting for prices to crash, developers quietly stopped launching.',
- heroLabel:'NEW UNITS LAUNCHED IN Q2 2026',heroValue:'5,335',
- heroDesc:'The lowest quarterly launch volume in years — against a multi-year peak in handovers.',
- table:[['New units launched','5,335 — lowest in years'],['Handovers','Multi-year peak'],['Off-plan share of sales','~72%'],['Buyer competition','Lowest since 2021']],
- advisory:{title:'The strategist’s read',lines:['Less new stock + record deliveries = the calmest buyer window in recent memory.','The next 2–3 months favour prepared buyers, not waiting ones.']},
  points:['Q2 launches collapsed to 5,335 units — developers are pacing, not panicking.','Handovers hit a multi-year peak in the same quarter.','Off-plan still ~72% of sales volume: demand held, supply paused.','Fewer launch events = real negotiating room for the first time in years.','Windows like this are measured in weeks, not quarters.'],
+ sowhat:'Less new stock plus record deliveries equals the calmest buyer window in recent memory — and windows like this are measured in weeks, not quarters.',
  cta:'Send this to the friend still “waiting for the right time.”',
- tags:'#DubaiRealEstate #DubaiProperty #OffPlanDubai #DubaiInvestors #MarketData #MRLivingCapital',ftag:'Data first. Opinion second.'},
-{id:27,title:'OFFICES TRIPLED. NOBODY POSTED ABOUT IT.',layout:'stat_split',pillar:'Commercial',asof:'July 2026',
- subtitle:'While feeds argue about villas, Dubai’s office market quietly did AED 7.5B in one quarter.',
+ tags:'#DubaiRealEstate #DubaiProperty #OffPlanDubai #DubaiInvestors #MarketData #MRLivingCapital'},
+
+{key:'p27',type:'jab',pillar:'Commercial',asof:'July 2026',
+ title:'Offices tripled. Nobody posted about it.',accents:['tripled.'],
+ sub:'While feeds argue about villas, Dubai’s office market quietly did AED 7.5B in one quarter.',subAccent:'AED 7.5B',
+ photo:'marina',
+ features:[
+  {icon:'chart',title:'Office sales +190% year-on-year',desc:'Q2 2026 office sales hit AED 7.5 billion — effectively tripled in twelve months.',stat:'+190%',statDesc:'Q2 office sales growth YoY',source:'Source: CBRE / DLD'},
+  {icon:'building',title:'Grade A vacancy under 5%',desc:'DIFC, Business Bay, Downtown — effectively full. Prime DIFC rents at AED 537 per sqft and climbing.',stat:'<5%',statDesc:'Grade A vacancy, prime districts',source:'Source: CBRE, July 2026'}],
+ chart:null,
+ quote:{line1:'Portfolios that are 100% residential are reading yesterday’s news.',line2:'Small offices under 1,500 sqft are the hottest ticket.'},
+ source:'Sources: CBRE · DLD, July 2026',
  hook:'Dubai offices just did something residential hasn’t done in years.',
- heroLabel:'Q2 2026 OFFICE SALES GROWTH, YEAR-ON-YEAR',heroValue:'+190%',
- heroDesc:'Office sales hit AED 7.5 billion in Q2 — effectively tripled in twelve months.',
- stats:[{v:'<5%',l:'Grade A vacancy',d:'DIFC, Business Bay, Downtown — effectively full.'},{v:'537',l:'AED per sqft — DIFC rents',d:'Record prime rents, still climbing.'},{v:'2028',l:'No meaningful supply until',d:'The shortage is structural, not cyclical.'}],
- advisory:{title:'Who this is for',lines:['Portfolios that are 100% residential are reading yesterday’s news.','Small offices under 1,500 sqft are the hottest ticket — family offices and relocating firms.']},
  points:['Q2 office sales: AED 7.5B, +190% YoY — nearly tripled.','Grade A vacancy under 5% across prime districts.','DIFC prime rents at AED 537/sqft.','No meaningful new office supply until 2027–28.','Logistics warehouses quietly pay 8–10% net yields.'],
+ sowhat:'The shortage is structural, not cyclical. Owners of small strata offices collect the premium while everyone argues about apartments.',
  cta:'Comment OFFICE and I’ll send you the commercial brief.',
- tags:'#CommercialRealEstate #DubaiOffices #DIFC #OfficeInvestment #DubaiRealEstate #MRLivingCapital',ftag:'Research-driven. Always verify.'},
-{id:28,title:'PRICES DIPPED TWO MONTHS. HERE’S THE HONEST READ.',layout:'comparison',pillar:'Advisory Warnings',asof:'July 2026',
- subtitle:'Two consecutive monthly declines — and what I’m telling my own money.',
+ tags:'#CommercialRealEstate #DubaiOffices #DIFC #OfficeInvestment #DubaiRealEstate #MRLivingCapital'},
+
+{key:'p28',type:'jab',pillar:'Advisory Warnings',asof:'July 2026',
+ title:'Prices dipped two months. Here’s the honest read.',accents:['honest'],
+ sub:'Two consecutive monthly declines — and what I’m telling my own money.',subAccent:'',
+ photo:null,
+ features:[
+  {icon:'chart',title:'The headline: -1.24%',desc:'Sales price index, June 2026 — second consecutive monthly decline.',stat:'-1.24%',statDesc:'Price index, June 2026 (MoM)',source:'Source: Property Monitor'},
+  {icon:'globe',title:'The context: +1.86%',desc:'Year-on-year. A breather inside an uptrend, not a reversal.',stat:'+1.86%',statDesc:'Price index, year-on-year',source:'Source: Property Monitor'},
+  {icon:'people',title:'Volume didn’t leave',desc:'3,202 sales in the latest weekly count — demand is still here.',stat:'3,202',statDesc:'Weekly transactions',source:'Source: DLD weekly'}],
+ chart:null,
+ quote:{line1:'A two-month dip in a structural uptrend is where disciplined buyers shop.',line2:'Buy the corridor, not the headline.'},
+ source:'Sources: Property Monitor · DLD weekly, July 2026',
  hook:'Dubai prices dropped two months in a row. Here’s what I’m telling my own money.',
- versus:{left:{label:'The headline',value:'-1.24%',desc:'Sales price index, June 2026 — second consecutive monthly decline.',dark:true},
-         right:{label:'The context',value:'+1.86%',desc:'Year-on-year. A breather inside an uptrend, not a reversal.'}},
- table:[['Prime corridors','Holding / rising'],['Over-hyped clusters','Correcting'],['Transaction volume','Still strong (3,202/week)']],
- advisory:{title:'No hype, either direction',lines:['A two-month dip in a structural uptrend is where disciplined buyers shop.','Buy the corridor, not the headline.']},
  points:['Price index -1.24% MoM in June — second monthly dip.','Still +1.86% YoY: a maturing market, not a crashing one.','Divergence is the story: location selection now decides returns.','Weekly volume (3,202 sales) shows demand didn’t leave.'],
+ sowhat:'Divergence is the story: prime corridors hold while over-hyped clusters correct. Location selection now decides returns — buy the corridor, not the headline.',
  cta:'Comment your community — I’ll tell you which side of the divergence it’s on. No pitch, just data.',
- tags:'#DubaiRealEstate #DubaiPropertyMarket #RealEstateInvesting #DubaiInvestors #MRLivingCapital',ftag:'Advised like an investor. Not a broker.'},
-{id:29,title:'DUBAI SOUTH JUST LED THE CITY.',layout:'hero_table',pillar:'Market Intelligence',asof:'Week of July 20, 2026',
- subtitle:'The area agents laughed at two years ago posted the most transactions in Dubai last week.',
+ tags:'#DubaiRealEstate #DubaiPropertyMarket #RealEstateInvesting #DubaiInvestors #MRLivingCapital'},
+
+{key:'p29',type:'jab',pillar:'Market Intelligence',asof:'Week of July 20, 2026',
+ title:'Dubai South just led the city.',accents:['South'],
+ sub:'The area agents laughed at two years ago posted the most transactions in Dubai last week.',subAccent:'',
+ photo:'jvc',
+ features:[
+  {icon:'chart',title:'668 transactions in one week',desc:'#1 area citywide. That week: 3,202 sales, AED 6.58B, median AED 1,710 psf.',stat:'668',statDesc:'Dubai South deals, week of Jul 20',source:'Source: DLD weekly'},
+  {icon:'plane',title:'Infrastructure-led demand',desc:'Al Maktoum airport expansion underway, Expo City live — entry prices still far below the city median.',stat:'#1',statDesc:'Weekly rank, citywide',source:'Source: DLD weekly'}],
+ chart:null,
+ quote:{line1:'Early is uncomfortable. Late is expensive.',line2:'Every corridor you wish you bought was once “too far out”.'},
+ source:'Source: DLD weekly transactions, week of July 20, 2026',
  hook:'The area agents laughed at two years ago just led all of Dubai in weekly deals.',
- heroLabel:'DUBAI SOUTH TRANSACTIONS — WEEK OF JULY 20',heroValue:'668',
- heroDesc:'#1 area citywide. That week: 3,202 sales, AED 6.58B, median AED 1,710 psf.',
- table:[['Al Maktoum airport expansion','Underway'],['Expo City infrastructure','Live'],['Entry price vs city median','Deep discount'],['Weekly rank','#1 — 668 deals']],
- advisory:{title:'The pattern repeats',lines:['Early is uncomfortable. Late is expensive.','Every corridor you wish you bought was once “too far out”.']},
  points:['Dubai South: 668 transactions in one week — #1 citywide.','Citywide week: 3,202 sales, AED 6.58B, 73% off-plan.','Airport + Expo City = infrastructure-led demand, not speculation.','Entry prices still far below the AED 1,710 psf city median.'],
+ sowhat:'The pattern repeats: early is uncomfortable, late is expensive. Every corridor you wish you bought was once “too far out”.',
  cta:'DM me SOUTH on Instagram or WhatsApp for the shortlist.',
- tags:'#DubaiSouth #DubaiRealEstate #OffPlanDubai #DubaiInvestment #AlMaktoumAirport #MRLivingCapital',ftag:'Data first. Opinion second.'},
-{id:30,title:'AED 15.6 BILLION IN “DEAD” JULY.',layout:'stat_split',pillar:'Market Intelligence',asof:'Week of July 6–10, 2026',
- subtitle:'The summer slowdown is a story agents tell themselves. Capital didn’t get the memo.',
+ tags:'#DubaiSouth #DubaiRealEstate #OffPlanDubai #DubaiInvestment #AlMaktoumAirport #MRLivingCapital'},
+
+{key:'p30',type:'jab',pillar:'Market Intelligence',asof:'Week of July 6–10, 2026',
+ title:'AED 15.6 billion in “dead” July.',accents:['15.6'],
+ sub:'The summer slowdown is a story agents tell themselves. Capital didn’t get the memo.',subAccent:'',
+ photo:'marina',
+ features:[
+  {icon:'chart',title:'AED 15.6B in one midsummer week',desc:'2,734 sales in the week of July 6–10 — while half the city is on holiday.',stat:'15.6B',statDesc:'AED, week of July 6–10',source:'Source: DLD weekly'},
+  {icon:'globe',title:'H1 2026: second-best half ever',desc:'AED 419.9B across 112,850 transactions. July is accelerating, not cooling.',stat:'419.9B',statDesc:'AED — H1 2026 total',source:'Source: DLD'}],
+ chart:null,
+ quote:{line1:'Half the city is on holiday. The capital isn’t.',line2:'Global money doesn’t take summers off — it looks for windows like this one.'},
+ source:'Source: DLD weekly + H1 2026 totals',
  hook:'July is supposed to be Dubai’s dead month. One week in July did AED 15.6 billion.',
- heroLabel:'TRANSACTIONS — WEEK OF JULY 6–10, 2026',heroValue:'AED 15.6B',heroDesc:'2,734 sales in a single midsummer week.',
- stats:[{v:'419.9B',l:'AED — H1 2026 total',d:'112,850 transactions. Second-best half ever.'},{v:'73%',l:'Off-plan share, weekly',d:'Demand for new stock never paused.'},{v:'6.58B',l:'AED — week of Jul 20',d:'3,202 sales. July is accelerating, not cooling.'}],
- advisory:{title:'Seasonality is a mood',lines:['Half the city is on holiday. The capital isn’t.','Global money doesn’t take summers off — it looks for windows like this one.']},
  points:['AED 15.6B in the week of July 6–10 — midsummer.','H1 2026 closed at AED 419.9B / 112,850 transactions.','Weekly data shows July accelerating, not cooling.','Low-competition months reward active buyers.'],
+ sowhat:'Seasonality is a mood, not a metric. Low-competition months reward the buyers who stay active while everyone else waits for September.',
  cta:'Weekly numbers every Monday in the Corridor Brief on Telegram — link in bio.',
- tags:'#DubaiRealEstate #DubaiProperty #DLD #MarketUpdate #DubaiInvestors #MRLivingCapital',ftag:'Data first. Opinion second.'},
-{id:31,title:'READY BEAT OFF-PLAN. MOST PEOPLE READ IT WRONG.',layout:'comparison',pillar:'Investor Education',asof:'H1 2026',
- subtitle:'For the first time in years, ready homes outsold off-plan. Here’s what the flip actually means.',
+ tags:'#DubaiRealEstate #DubaiProperty #DLD #MarketUpdate #DubaiInvestors #MRLivingCapital'},
+
+{key:'p31',type:'jab',pillar:'Investor Education',asof:'H1 2026',
+ title:'Ready beat off-plan. Most people read it wrong.',accents:['wrong.'],
+ sub:'For the first time in years, ready homes outsold off-plan. Here’s what the flip actually means.',subAccent:'',
+ photo:null,
+ features:[
+  {icon:'home',title:'Ready sales: AED 146.7B',desc:'Record handovers created supply; ~6.6% average yields created demand.',stat:'146.7B',statDesc:'AED — ready sales, H1 2026',source:'Source: DLD'},
+  {icon:'chart',title:'Off-plan: AED 139.8B',desc:'Still ~72–73% of weekly volume — split by ticket size, not by trend.',stat:'139.8B',statDesc:'AED — off-plan sales, H1 2026',source:'Source: DLD'}],
+ chart:null,
+ quote:{line1:'“Ready or off-plan?” is the wrong question.',line2:'“Which corridor, at what entry price?” is the right one.'},
+ source:'Source: DLD H1 2026 splits',
  hook:'For the first time in years, ready homes outsold off-plan in Dubai. Most people read that wrong.',
- versus:{left:{label:'Ready sales H1 2026',value:'AED 146.7B',desc:'Record handovers + investors wanting rent now at ~6.6% average yields.',dark:true},
-         right:{label:'Off-plan sales H1 2026',value:'AED 139.8B',desc:'Still ~72% of weekly volume — split by ticket size, not by trend.'}},
- table:[['Yield-focused investor','Ready'],['Capital-growth investor','Off-plan, prime corridors'],['End user, 2026 mortgage rates','Ready, negotiated']],
- advisory:{title:'The wrong question',lines:['“Ready or off-plan?” is the wrong question.','“Which corridor, at what entry price?” is the right one.']},
  points:['H1 2026: ready AED 146.7B vs off-plan AED 139.8B — the flip.','Record handovers created ready supply; ~6.6% yields created ready demand.','Weekly data: off-plan still 73% of volume — the market split by ticket size.','Corridor selection now matters more than the ready/off-plan label.'],
+ sowhat:'The market split by buyer type, not by trend: yield investors buy ready, growth investors buy off-plan corridors. The label matters less than the corridor.',
  cta:'DM me BRIEF for the corridor breakdown.',
- tags:'#DubaiRealEstate #OffPlan #ReadyProperty #DubaiInvestors #PropertyInvestment #MRLivingCapital',ftag:'Research-driven. Always verify.'},
-{id:32,title:'WHERE THE YIELD ACTUALLY IS IN 2026.',layout:'three_cards',pillar:'Commercial',asof:'July 2026',
- subtitle:'Same capital, three asset classes, three very different incomes.',
+ tags:'#DubaiRealEstate #OffPlan #ReadyProperty #DubaiInvestors #PropertyInvestment #MRLivingCapital'},
+
+{key:'p32',type:'jab',pillar:'Commercial',asof:'July 2026',
+ title:'Where the yield actually is in 2026.',accents:['actually'],
+ sub:'Same capital, three asset classes, three very different incomes.',subAccent:'',
+ photo:'skyline',
+ features:[
+  {icon:'home',title:'Residential: 6–7%',desc:'Liquid, familiar, competitive. The default — priced accordingly.',stat:'6–7%',statDesc:'Gross residential yield',source:'Source: CBRE / Bayut'},
+  {icon:'building',title:'Small offices: 7–8%',desc:'<1,500 sqft units, prime districts at <5% vacancy. Rents at records.',stat:'7–8%',statDesc:'Prime small-office yield',source:'Source: CBRE, July 2026'}],
+ chart:null,
+ quote:{line1:'This is not “sell residential”. It is “stop holding only residential”.',line2:'One commercial unit beside your apartments changes the whole income line.'},
+ source:'Sources: CBRE · market net-yield ranges, July 2026',
  hook:'Your apartment pays 6%. A warehouse pays 9%. Nobody on your feed mentioned the warehouse.',
- heroLabel:'AVERAGE RESIDENTIAL YIELD, DUBAI',heroValue:'6.58%',
- heroDesc:'The benchmark everyone quotes. Now compare what commercial quietly pays.',
- cards:[{l:'Residential',v:'6–7%',d:'Liquid, familiar, competitive. The default — priced accordingly.'},{l:'Small offices',v:'7–8%',d:'<1,500 sqft units, prime districts at <5% vacancy. Rents at records.',hl:true},{l:'Logistics',v:'8–10%',d:'Net yields. E-commerce + trade corridors. Least glamorous, best paid.'}],
- advisory:{title:'Allocation, not abandonment',lines:['This is not “sell residential”. It is “stop holding only residential”.','One commercial unit beside your apartments changes the whole income line.']},
  points:['Residential: 6–7% gross — the crowded trade.','Small offices in prime districts: 7–8% with <5% vacancy.','Logistics: 8–10% net — the least glamorous, the best paid.','Diversification inside Dubai, not outside it.'],
+ sowhat:'Allocation, not abandonment: one commercial unit beside your apartments changes the whole income line — diversification inside Dubai, not outside it.',
  cta:'Comment YIELD and I’ll send the commercial income brief.',
- tags:'#RealEstateYields #CommercialRealEstate #DubaiInvestors #PassiveIncome #Logistics #MRLivingCapital',ftag:'Research-driven. Always verify.'},
-{id:33,title:'WHY I JOINED STRADA.',layout:'numbered_list',pillar:'The Strategist',asof:'July 2026',
- subtitle:'Twenty years in banking. Investor in three countries. Now at Strada UAE. Here’s the logic.',
+ tags:'#RealEstateYields #CommercialRealEstate #DubaiInvestors #PassiveIncome #Logistics #MRLivingCapital'},
+
+{key:'p33',type:'hook',pillar:'The Strategist',asof:'July 2026',
+ title:'Why I joined Strada.',accents:['Strada.'],
+ sub:'Twenty years in banking. Investor in three countries. Now at Strada UAE. Here’s the logic.',subAccent:'',
+ photo:'portrait',
+ features:[
+  {icon:'bank',title:'Banking discipline',desc:'Two decades of risk frameworks. I underwrite deals like credit, not like hope.',stat:'20y',statDesc:'In banking, risk first',source:''},
+  {icon:'key',title:'Skin in the game',desc:'I invested my own money across three countries before advising anyone else’s.',stat:'3',statDesc:'Countries, own portfolio',source:''}],
+ chart:null,
+ quote:{line1:'I don’t advise anything I wouldn’t buy myself.',line2:'Living proof. Lasting legacy.'},
+ source:'',
  hook:'Twenty years in banking taught me one thing about real estate: it’s not rocket science — it’s networks.',
- steps:[['Banking discipline','Two decades of risk frameworks. I underwrite deals like credit, not like hope.'],['Skin in the game','I invested my own money across three countries before advising anyone else’s.'],['Networks, not luck','Real estate is not rocket science. Access, timing and trust close deals.'],['Institutional standard, personal advice','Strada gives the platform. The advice stays mine — investor to investor.']],
- advisory:{title:'The promise',lines:['I don’t advise anything I wouldn’t buy myself.','Living proof. Lasting legacy.']},
  points:['20 years in banking — risk first, return second.','Own-money investor in 3 countries.','Strada UAE platform, independent advice.','Networks beat luck. Every time.'],
+ sowhat:'Real estate is not rocket science — access, timing and trust close deals. Institutional standard, personal advice: the platform is Strada’s, the advice stays mine.',
  cta:'If you want an advisor who puts his own money in first — you know where to find me.',
- tags:'#StradaUAE #InvestmentAdvisor #DubaiRealEstate #MRLivingCapital #LivingProofLastingLegacy',ftag:'Living Proof. Lasting Legacy.'},
-{id:34,title:'THE OFFICE SHORTAGE RUNS TO 2028.',layout:'advisory',pillar:'Commercial',asof:'July 2026',
- subtitle:'Three forces converged on Dubai offices. The math only works one way for owners.',
+ tags:'#StradaUAE #InvestmentAdvisor #DubaiRealEstate #MRLivingCapital #LivingProofLastingLegacy'},
+
+{key:'p34',type:'jab',pillar:'Commercial',asof:'July 2026',
+ title:'The office shortage runs to 2028.',accents:['2028.'],
+ sub:'Three forces converged on Dubai offices. The math only works one way for owners.',subAccent:'',
+ photo:'marina',
+ features:[
+  {icon:'people',title:'Demand: companies are actually moving',desc:'Family offices, hedge funds and regional HQs keep relocating. Q2 office sales tripled year-on-year to AED 7.5B.',stat:'7.5B',statDesc:'AED — Q2 office sales',source:'Source: DLD / CBRE'},
+  {icon:'building',title:'Supply: the pipeline is empty',desc:'No meaningful new Grade A completions until 2027–28. DIFC prime rents at AED 537/sqft — records.',stat:'<5%',statDesc:'Grade A vacancy, prime districts',source:'Source: CBRE, July 2026'}],
+ chart:null,
+ quote:{line1:'You cannot build your way out of this in 18 months.',line2:'Landlords hold every card — owners collect the premium.'},
+ source:'Sources: CBRE · DLD, July 2026',
  hook:'Dubai has run out of good offices. The shortage is scheduled to last until 2028.',
- heroLabel:'GRADE A VACANCY, PRIME DISTRICTS',heroValue:'<5%',heroDesc:'DIFC, Business Bay, Downtown — functionally full.',
- sections:[{t:'Demand: companies are actually moving',b:'Family offices, hedge funds and regional HQs keep relocating. Q2 office sales tripled year-on-year to AED 7.5B.'},{t:'Supply: the pipeline is empty',b:'No meaningful new Grade A completions until 2027–28. You cannot build your way out of this in 18 months.'},{t:'Price: rents at records, still climbing',b:'DIFC prime rents at AED 537 per sqft. Landlords hold every card. Owners of small strata offices collect the premium.'}],
- advisory:{title:'The entry ticket',lines:['Strata offices under 1,500 sqft are the entry ticket.','Owners of small offices collect the premium the shortage creates.']},
  points:['Grade A vacancy under 5% in prime districts.','No meaningful new supply until 2027–28.','DIFC prime rents AED 537/sqft — records.','Strata offices under 1,500 sqft are the entry ticket.'],
+ sowhat:'Demand up, pipeline empty, rents at records — the math only works one way for owners of small strata offices until at least 2028.',
  cta:'Serious about commercial? DM OFFICE — I’ll walk you through actual units, not brochures.',
- tags:'#DubaiOffices #CommercialRealEstate #DIFC #OfficeMarket #DubaiRealEstate #MRLivingCapital',ftag:'Research-driven. Always verify.'},
-{id:35,title:'SELL-OUTS STILL HAPPEN. HERE’S THE PATTERN.',layout:'hero_table',pillar:'Market Intelligence',asof:'July 2026',
- subtitle:'Five towers gone. Final tower just released. What sold-out projects have in common.',
+ tags:'#DubaiOffices #CommercialRealEstate #DIFC #OfficeMarket #DubaiRealEstate #MRLivingCapital'},
+
+{key:'p35',type:'jab',pillar:'Market Intelligence',asof:'July 2026',
+ title:'Sell-outs still happen. Here’s the pattern.',accents:['pattern.'],
+ sub:'Five towers gone. Final tower just released. What sold-out projects have in common.',subAccent:'',
+ photo:'skyline',
+ features:[
+  {icon:'home',title:'Chelsea Residences: 5 of 6 sold out',desc:'DAMAC released the final tower after the first five sold out — in a slow-launch quarter.',stat:'5/6',statDesc:'Towers sold out',source:'Source: DAMAC, July 2026'},
+  {icon:'shield',title:'The sell-out checklist',desc:'Global brand tie-in, lifestyle district, developer delivery record, accessible ticket. Four of four = speed matters.',stat:'4',statDesc:'Factors every sell-out shares',source:''}],
+ chart:null,
+ quote:{line1:'Sell-outs are engineered: brand, location, developer, ticket size.',line2:'When four of four line up, speed matters more than negotiation.'},
+ source:'Source: DAMAC launch releases, July 2026',
  hook:'Five towers sold out. The sixth just launched. Here’s what every sell-out has in common.',
- heroLabel:'CHELSEA RESIDENCES — TOWERS SOLD OUT',heroValue:'5 of 6',
- heroDesc:'DAMAC’s Chelsea Residences released its final tower after the first five sold out.',
- table:[['Global brand tie-in','Chelsea FC'],['Waterfront / lifestyle district','Maritime City'],['Developer delivery record','DAMAC'],['Entry ticket','Accessible']],
- advisory:{title:'Pattern over hype',lines:['Sell-outs are engineered: brand, location, developer, ticket size.','When four of four line up, speed matters more than negotiation.']},
  points:['Chelsea Residences: 5 towers sold out, final tower just released.','Sell-outs share four factors: brand, district, developer, ticket.','In a slow-launch quarter, credible projects still clear fast.','Know the checklist before launch day, not after.'],
+ sowhat:'Sell-outs are engineered, not lucky: brand, district, developer, ticket size. When four of four line up, speed matters more than negotiation.',
  cta:'Want the launch calendar? Follow the Corridor Brief on Telegram.',
- tags:'#DubaiRealEstate #DAMAC #ChelseaResidences #OffPlanDubai #NewLaunch #MRLivingCapital',ftag:'Data first. Opinion second.'},
-{id:36,title:'HOW TO READ A LAUNCH IN 2026.',layout:'checklist',pillar:'Investor Education',asof:'July 2026',
- subtitle:'Five checks, five minutes, before you wire a dirham. The quiet window rewards the prepared.',
+ tags:'#DubaiRealEstate #DAMAC #ChelseaResidences #OffPlanDubai #NewLaunch #MRLivingCapital'},
+
+{key:'p36',type:'jab',pillar:'Investor Education',asof:'July 2026',
+ title:'How to read a launch in 2026.',accents:['read'],
+ sub:'Five checks, five minutes, before you wire a dirham. The quiet window rewards the prepared.',subAccent:'',
+ photo:null,
+ features:[
+  {icon:'shield',title:'Escrow: RERA-verified or walk',desc:'Project account, not developer account — non-negotiable.',stat:'01',statDesc:'Of 5 checks',source:''},
+  {icon:'chart',title:'Payment plan APR: do the math',desc:'“0% interest” plans hide 10–14% effective premiums.',stat:'02',statDesc:'Of 5 checks',source:''},
+  {icon:'key',title:'Exit liquidity: resale depth',desc:'Who buys this from you in 2029, and at what discount?',stat:'05',statDesc:'Of 5 checks',source:''}],
+ chart:null,
+ quote:{line1:'Fewer launches means time to check — not permission to skip checking.',line2:'Prepared buyers negotiate. Rushed buyers donate.'},
+ source:'',
  hook:'In a slow-launch market, the good projects still sell out. Here’s the 5-minute check that separates them.',
- heroLabel:'CHECKS BEFORE YOU COMMIT',heroValue:'5',
- heroDesc:'Q2’s launches collapsed to 5,335 units — each one now deserves real diligence, not FOMO.',
- items:[['Escrow account','RERA-verified','Project account, not developer account — non-negotiable.'],['Payment plan APR','Do the math','“0% interest” plans hide 10–14% effective premiums.'],['Handover record','Last 3 projects','Delivered on time, or “2025 promised, 2027 delivered”?'],['Service charges','AED/sqft/yr','The silent yield killer — get it in writing.'],['Exit liquidity','Resale depth','Who buys this from you in 2029, and at what discount?']],
- advisory:{title:'The window is calm, not closed',lines:['Fewer launches means time to check — not permission to skip checking.','Prepared buyers negotiate. Rushed buyers donate.']},
  points:['RERA-verified escrow or walk away.','Convert every payment plan to an effective APR.','Check the developer’s last three handovers, not their renders.','Service charges decide your real yield — get the number in writing.','Always underwrite the exit before the entry.'],
+ sowhat:'The window is calm, not closed: five checks — escrow, APR, handover record, service charges, exit liquidity — before you wire a dirham.',
  cta:'Save this — you’ll need it the next launch day.',
- tags:'#DubaiRealEstate #OffPlan #InvestorEducation #DueDiligence #RERA #MRLivingCapital',ftag:'Research-driven. Always verify.'},
-{id:37,title:'GOLDEN VISA 2026: THE REAL RULES.',layout:'numbered_list',pillar:'Investor Education',asof:'July 2026',
- subtitle:'Off-plan now qualifies. Mortgages allowed. But the numbers still matter — most posts get them wrong.',
+ tags:'#DubaiRealEstate #OffPlan #InvestorEducation #DueDiligence #RERA #MRLivingCapital'},
+
+{key:'p37',type:'jab',pillar:'Investor Education',asof:'July 2026',
+ title:'Golden Visa 2026: the real rules.',accents:['real'],
+ sub:'Off-plan now qualifies. Mortgages allowed. But the numbers still matter — most posts get them wrong.',subAccent:'',
+ photo:null,
+ features:[
+  {icon:'home',title:'AED 2M property value',desc:'Single or combined. Off-plan qualifies with Oqood registration — the Feb 2026 change.',stat:'2M',statDesc:'AED minimum qualifying value',source:'Source: UAE ICP / GDRFA'},
+  {icon:'bank',title:'Mortgage is allowed',desc:'Financed properties qualify — the old “fully paid” myth is dead.',stat:'✓',statDesc:'Financed purchases qualify',source:'Source: UAE ICP'},
+  {icon:'shield',title:'PoA sales are banned',desc:'Since June 2025: deed, Emirates ID and bank account must match. Structure purchases cleanly.',stat:'2025',statDesc:'PoA ban in force since June',source:'Source: DLD'}],
+ chart:null,
+ quote:{line1:'Compliance is the new alpha — clean paperwork closes faster.',line2:'Structure first, purchase second.'},
+ source:'Sources: UAE ICP · GDRFA · DLD, July 2026',
  hook:'You no longer need a completed property for the Golden Visa. But the AED 2 million rule didn’t move.',
- heroLabel:'MINIMUM QUALIFYING VALUE',heroValue:'AED 2M',
- heroDesc:'Off-plan included since the February 2026 update — Oqood registration is now accepted.',
- steps:[['AED 2M property value','Single or combined properties. Off-plan qualifies with Oqood registration — the Feb 2026 change.'],['Mortgage is allowed','Financed properties qualify — the old “fully paid” myth is dead.'],['AED 750K alternative','Taskeen route for smaller holdings — different visa terms, know the difference.'],['PoA sales are banned','Since June 2025: deed, Emirates ID and bank account must match. Structure purchases cleanly.']],
- advisory:{title:'Compliance is the new alpha',lines:['Enhanced source-of-funds checks are standard — clean paperwork closes faster.','Structure first, purchase second. Reversing a bad structure costs real money.']},
  points:['AED 2M threshold unchanged — off-plan now qualifies (Oqood, Feb 2026).','Mortgaged properties qualify.','PoA sale ban since June 2025 — deed/ID/bank must match.','Source-of-funds documentation is checked harder than ever.'],
+ sowhat:'Enhanced source-of-funds checks are standard — structure first, purchase second. Reversing a bad structure costs real money.',
  cta:'Structuring a purchase around the visa? mrlivingcapital@gmail.com — do it right the first time.',
- tags:'#GoldenVisa #DubaiRealEstate #UAEResidency #DubaiProperty #InvestorEducation #MRLivingCapital',ftag:'Research-driven. Always verify.'}
+ tags:'#GoldenVisa #DubaiRealEstate #UAEResidency #DubaiProperty #InvestorEducation #MRLivingCapital'}
 ];
-/* ============ CANVAS HELPERS (2x supersampled) ============ */
-let grainPat = null;
-function mkGrain(x){
-  if(grainPat) return grainPat;
-  const g=document.createElement('canvas'); g.width=g.height=220;
-  const gx=g.getContext('2d'), id=gx.createImageData(220,220);
-  for(let i=0;i<id.data.length;i+=4){const v=Math.random()*255|0; id.data[i]=id.data[i+1]=id.data[i+2]=v; id.data[i+3]=14;}
-  gx.putImageData(id,0,0); grainPat=x.createPattern(g,'repeat'); return grainPat;
-}
-function roundRect(x,px,py,w,h,r){
-  x.beginPath(); x.moveTo(px+r,py); x.arcTo(px+w,py,px+w,py+h,r); x.arcTo(px+w,py+h,px,py+h,r);
-  x.arcTo(px,py+h,px,py,r); x.arcTo(px,py,px+w,py,r); x.closePath();
-}
-function wrap(x,text,maxW){
-  const words=String(text).split(' '), lines=[]; let cur='';
-  for(const w of words){const t=cur?cur+' '+w:w;
-    if(x.measureText(t).width>maxW && cur){lines.push(cur);cur=w;} else cur=t;}
-  if(cur)lines.push(cur); return lines;
-}
-/* fit headline: shrink font until wrapped lines <= maxLines */
-function fitHead(x,text,maxW,start,wei,maxLines){
-  let s=start;
-  while(s>26){x.font=wei+' '+s+'px '+B.FH; if(wrap(x,text,maxW).length<=maxLines)break; s-=2;}
-  return s;
-}
-function bgLight(x,W,H){
-  x.fillStyle=B.ivory; x.fillRect(0,0,W,H);
-  let g=x.createRadialGradient(W*.08,H*.04,0,W*.08,H*.04,W*.62);
-  g.addColorStop(0,'rgba(217,205,184,.42)'); g.addColorStop(1,'rgba(217,205,184,0)');
-  x.fillStyle=g; x.fillRect(0,0,W,H);
-  g=x.createRadialGradient(W*.96,H*.97,0,W*.96,H*.97,W*.66);
-  g.addColorStop(0,'rgba(15,107,98,.10)'); g.addColorStop(1,'rgba(15,107,98,0)');
-  x.fillStyle=g; x.fillRect(0,0,W,H);
-}
-function ringMark(x,W,H,scale){ /* signature ring, partially off-canvas top-right */
-  const cx=W+36*scale, cy=-24*scale, r=150*scale;
-  x.save(); x.lineWidth=3*scale;
-  x.strokeStyle='rgba(15,107,98,.5)'; x.beginPath(); x.arc(cx,cy,r,0,Math.PI*2); x.stroke();
-  x.strokeStyle='rgba(217,205,184,.85)'; x.lineWidth=2*scale; x.beginPath(); x.arc(cx,cy,r*.74,0,Math.PI*2); x.stroke();
-  x.restore();
-}
-function silkRibbon(x,W,H,dark){ /* layered wave band across lower third edge */
-  const base=H-118;
-  const wave=(amp,ph,col,alpha,y0)=>{
-    x.save(); x.globalAlpha=alpha; x.fillStyle=col; x.beginPath();
-    x.moveTo(0,H); x.lineTo(0,y0);
-    for(let i=0;i<=W;i+=8){x.lineTo(i, y0 + Math.sin(i/W*Math.PI*2.1+ph)*amp + Math.sin(i/W*Math.PI*4.7+ph*1.6)*amp*.35);}
-    x.lineTo(W,H); x.closePath(); x.fill(); x.restore();
-  };
-  if(dark){ wave(26,0.4,B.turqSoft,.14,base-26); wave(20,2.1,'#1E564F',.55,base-6); wave(13,4.0,B.turquoise,.5,base+18); }
-  else { wave(28,0.4,B.sand,.5,base-30); wave(20,2.1,'rgba(87,169,159,.35)',1,base-8); wave(13,4.0,'rgba(15,107,98,.55)',1,base+16); }
-  x.save(); x.strokeStyle=dark?'rgba(87,169,159,.6)':'rgba(18,59,55,.35)'; x.lineWidth=1.6; x.beginPath();
-  for(let i=0;i<=W;i+=8){const y=base+34+Math.sin(i/W*Math.PI*2.1+2.1)*18+Math.sin(i/W*Math.PI*4.7+3.4)*6; i?x.lineTo(i,y):x.moveTo(i,y);}
-  x.stroke(); x.restore();
-}
-function header(x,t,W,dark){
-  const y=64;
-  x.textAlign='left'; x.textBaseline='alphabetic';
-  x.font='600 21px '+B.FB;
-  const label='MR LIVING CAPITAL'+(t&&t.pillar?'   ·   '+t.pillar.toUpperCase():'');
-  x.fillStyle=dark?B.turqSoft:B.turquoise;
-  x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='3px';
-  x.fillText(label,B.M,y); x.restore();
-  x.fillStyle=dark?'rgba(176,187,183,.8)':B.mute; x.font='500 19px '+B.FB;
-  x.textAlign='right'; x.fillText(t&&t.asof?('DATA · '+String(t.asof).toUpperCase()):'', W-B.M, y);
-  x.textAlign='left';
-}
-function footer(x,t,W,H,dark){
-  const y=H-52;
-  x.textAlign='left'; x.font='700 20px '+B.FH;
-  x.fillStyle=dark?'#F6F1E7':B.dark;
-  x.fillText('MR LIVING CAPITAL',B.M,y);
-  x.font='600 15px '+B.FB; x.fillStyle=dark?B.turqSoft:B.turquoise;
-  x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='2.5px';
-  x.fillText(TAGLINE,B.M,y+26); x.restore();
-  x.textAlign='right'; x.font='italic 500 21px '+B.FD;
-  x.fillStyle=dark?'rgba(246,241,231,.75)':B.slate;
-  x.fillText((t&&t.ftag)||'Research-driven. Always verify.', W-B.M, y+8);
-  x.textAlign='left';
-}
-function grain(x,W,H){x.save();x.globalAlpha=.5;x.fillStyle=mkGrain(x);x.fillRect(0,0,W,H);x.restore();}
-function headlineBlock(x,t,W,y0,maxW){
-  let y=y0;
-  const size=fitHead(x,t.title,maxW,t.title.length>46?54:64,'700',3);
-  x.font='700 '+size+'px '+B.FH; x.fillStyle=B.slateDk;
-  const lines=wrap(x,t.title,maxW), lh=size*1.14;
-  for(const ln of lines){x.fillText(ln,B.M,y); y+=lh;}
-  y+=6;
-  x.fillStyle=B.turquoise; roundRect(x,B.M,y,96,6,3); x.fill();   /* signature turquoise line */
-  y+=40;
-  if(t.subtitle){x.font='400 27px '+B.FB; x.fillStyle=B.slate;
-    for(const ln of wrap(x,t.subtitle,maxW)){x.fillText(ln,B.M,y); y+=38;}}
-  return y+10;
-}
-function advisoryPanel(x,t,W,y,maxW){
-  if(!t.advisory)return y;
-  const pad=30, lines=[];
-  x.font='400 25px '+B.FB;
-  for(const l of t.advisory.lines) lines.push(...wrap(x,'•  '+l,maxW-pad*2));
-  const h=pad+34+lines.length*36+pad-10;
-  x.fillStyle=B.sandSoft; roundRect(x,B.M,y,maxW,h,26); x.fill();
-  x.fillStyle=B.turquoise; x.font='600 19px '+B.FB;
-  x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='2px';
-  x.fillText(t.advisory.title.toUpperCase(),B.M+pad,y+pad+6); x.restore();
-  x.fillStyle=B.slateDk; x.font='400 25px '+B.FB;
-  let ly=y+pad+44;
-  for(const ln of lines){x.fillText(ln,B.M+pad,ly); ly+=36;}
-  return y+h+26;
-}
-function heroBlock(x,t,W,y,maxW,big){
-  if(!t.heroValue)return y;
-  x.fillStyle=B.mute; x.font='600 20px '+B.FB;
-  x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='2.5px';
-  x.fillText(t.heroLabel,B.M,y+8); x.restore();
-  const vs=big||110; x.font='700 '+vs+'px '+B.FH; x.fillStyle=B.turquoise;
-  x.fillText(t.heroValue,B.M-4,y+vs+18);
-  let vy=y+vs+18;
-  if(t.heroDesc){x.font='400 25px '+B.FB; x.fillStyle=B.slate; vy+=44;
-    for(const ln of wrap(x,t.heroDesc,maxW)){x.fillText(ln,B.M,vy); vy+=34;}}
-  return vy+22;
-}
-function tableBlock(x,t,y,maxW){
-  if(!t.table)return y;
-  const rh=64;
-  for(const [l,v] of t.table){
-    x.strokeStyle='rgba(90,102,98,.18)'; x.lineWidth=1.4;
-    x.beginPath(); x.moveTo(B.M,y); x.lineTo(B.M+maxW,y); x.stroke();
-    x.fillStyle=B.slateDk; x.font='600 26px '+B.FB; x.fillText(l,B.M,y+42);
-    x.fillStyle=B.turquoise; x.font='600 26px '+B.FB; x.textAlign='right';
-    x.fillText(v,B.M+maxW,y+42); x.textAlign='left';
-    y+=rh;
-  }
-  x.strokeStyle='rgba(90,102,98,.18)'; x.beginPath(); x.moveTo(B.M,y); x.lineTo(B.M+maxW,y); x.stroke();
-  return y+30;
-}
-/* ============ LEAD LAYOUTS (1080x1350) ============ */
-function renderLead(t){
-  const S=2, W=B.IG_W, H=B.IG_H;
-  const c=document.createElement('canvas'); c.width=W*S; c.height=H*S;
-  const x=c.getContext('2d'); x.scale(S,S);
-  bgLight(x,W,H); ringMark(x,W,H,1); silkRibbon(x,W,H,false);
-  header(x,t,W,false);
-  const maxW=W-B.M*2;
-  let y=headlineBlock(x,t,W,176,maxW);
-  const L=t.layout;
-  if(L==='hero_table'||L==='checklist'){ y=heroBlock(x,t,W,y,maxW,104); }
-  if(L==='stat_split'||L==='advisory'){ y=heroBlock(x,t,W,y,maxW,104); }
-  if(L==='three_cards'){ y=heroBlock(x,t,W,y,maxW,96); }
 
-  if(L==='hero_table'){ y=tableBlock(x,t,y,maxW); }
+/* ---- DAILY BRIEF (refreshed by morning scan) ---- */
+const BRIEF={date:'5 August 2026',note:'Morning scan complete — 3 time-sensitive topics ready. Pick one, generate the pack, post.',
+ items:[
+  {key:'ad-rush',prio:1,why:'RIGHT HOOK WINDOW: 100+ launches land from mid-August across Abu Dhabi, Dubai, RAK. The gold-rush post — soft CTA to your call list.'},
+  {key:'uk-exodus',prio:2,why:'Global hook: record UK wealth exodus confirmed, UAE is the receiving end. Pure value, high shareability.'},
+  {key:'gold-line',prio:3,why:'Evergreen intel with a fresh map — Gold Line corridors are the next repricing story.'}]};
 
-  if(L==='stat_split'&&t.stats){
-    const gap=18, cw=(maxW-gap*2)/3, ch=236;
-    t.stats.forEach((s,i)=>{
-      const px=B.M+i*(cw+gap);
-      x.fillStyle=B.sandSoft; roundRect(x,px,y,cw,ch,24); x.fill();
-      x.fillStyle=B.turquoise; x.font='700 52px '+B.FH; x.fillText(s.v,px+24,y+74);
-      x.fillStyle=B.slateDk; x.font='600 22px '+B.FB;
-      let ly=y+112; for(const ln of wrap(x,s.l,cw-48)){x.fillText(ln,px+24,ly);ly+=28;}
-      x.fillStyle=B.slate; x.font='400 20px '+B.FB; ly+=8;
-      for(const ln of wrap(x,s.d,cw-48)){x.fillText(ln,px+24,ly);ly+=26;}
-    });
-    y+=ch+30;
-  }
+/* ---- CADENCE ---- */
+const CADENCE=[
+ {day:'Mon',pillar:'Market Intelligence',fmt:'REEL 30–60s',note:'Numbers drop: weekly DLD / corridor brief'},
+ {day:'Wed',pillar:'Commercial',fmt:'CAROUSEL 5–7pp',note:'Differentiation: the story nobody posts'},
+ {day:'Fri',pillar:'Investor Education',fmt:'CAROUSEL 5–7pp',note:'Save-worthy: the framework they screenshot'},
+ {day:'Sun',pillar:'The Strategist',fmt:'REEL 30–60s',note:'Personal: opinion, story, behind the scenes'}];
 
-  if(L==='three_cards'&&t.cards){
-    const gap=18, cw=(maxW-gap*2)/3, ch=300;
-    t.cards.forEach((s,i)=>{
-      const px=B.M+i*(cw+gap), hl=s.hl;
-      x.fillStyle=hl?B.dark:B.sandSoft; roundRect(x,px,y,cw,ch,24); x.fill();
-      x.fillStyle=hl?B.turqSoft:B.mute; x.font='600 19px '+B.FB;
-      x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='2px';
-      x.fillText(s.l.toUpperCase(),px+24,y+40); x.restore();
-      x.fillStyle=hl?'#F6F1E7':B.turquoise; x.font='700 62px '+B.FH; x.fillText(s.v,px+24,y+118);
-      x.fillStyle=hl?'rgba(246,241,231,.85)':B.slate; x.font='400 21px '+B.FB;
-      let ly=y+162; for(const ln of wrap(x,s.d,cw-48)){x.fillText(ln,px+24,ly);ly+=28;}
-    });
-    y+=ch+30;
-  }
-
-  if(L==='comparison'&&t.versus){
-    const gap=20, cw=(maxW-gap)/2, ch=290;
-    [['left',B.M],['right',B.M+cw+gap]].forEach(([k,px])=>{
-      const v=t.versus[k], dk=v.dark;
-      x.fillStyle=dk?B.dark:B.sandSoft; roundRect(x,px,y,cw,ch,26); x.fill();
-      x.fillStyle=dk?B.turqSoft:B.mute; x.font='600 19px '+B.FB;
-      x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='2px';
-      x.fillText(v.label.toUpperCase(),px+28,y+44); x.restore();
-      x.fillStyle=dk?'#F6F1E7':B.turquoise;
-      const vs=fitHead(x,v.value,cw-56,64,'700',1); x.font='700 '+vs+'px '+B.FH;
-      x.fillText(v.value,px+28,y+120);
-      x.fillStyle=dk?'rgba(246,241,231,.85)':B.slate; x.font='400 22px '+B.FB;
-      let ly=y+166; for(const ln of wrap(x,v.desc,cw-56)){x.fillText(ln,px+28,ly);ly+=30;}
-    });
-    y+=ch+30; y=tableBlock(x,t,y,maxW);
-  }
-
-  if(L==='numbered_list'&&t.steps){
-    t.steps.forEach((st,i)=>{
-      const cy=y+34;
-      x.strokeStyle=B.turquoise; x.lineWidth=2.4; x.beginPath(); x.arc(B.M+30,cy,26,0,Math.PI*2); x.stroke();
-      x.fillStyle=B.turquoise; x.font='700 26px '+B.FH; x.textAlign='center'; x.fillText(String(i+1),B.M+30,cy+9); x.textAlign='left';
-      x.fillStyle=B.slateDk; x.font='600 27px '+B.FB; x.fillText(st[0],B.M+76,y+26);
-      x.fillStyle=B.slate; x.font='400 23px '+B.FB;
-      let ly=y+58; for(const ln of wrap(x,st[1],maxW-76)){x.fillText(ln,B.M+76,ly);ly+=31;}
-      y=Math.max(ly+16,y+96);
-    });
-    y+=6;
-  }
-
-  if(L==='checklist'&&t.items){
-    t.items.forEach(it=>{
-      x.strokeStyle=B.turquoise; x.lineWidth=2.4; x.beginPath(); x.arc(B.M+24,y+22,20,0,Math.PI*2); x.stroke();
-      x.strokeStyle=B.turquoise; x.lineWidth=3; x.beginPath();
-      x.moveTo(B.M+15,y+22); x.lineTo(B.M+21,y+29); x.lineTo(B.M+34,y+13); x.stroke();
-      x.fillStyle=B.slateDk; x.font='600 25px '+B.FB; x.fillText(it[0],B.M+62,y+18);
-      x.fillStyle=B.gold; x.font='600 21px '+B.FB; x.textAlign='right'; x.fillText(it[1],B.M+maxW,y+18); x.textAlign='left';
-      x.fillStyle=B.slate; x.font='400 21px '+B.FB; x.fillText(it[2],B.M+62,y+50);
-      y+=76;
-    });
-    y+=8;
-  }
-
-  if(L==='advisory'&&t.sections){
-    for(const s of t.sections){
-      x.fillStyle=B.turquoise; x.font='600 21px '+B.FB;
-      x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='1.5px';
-      x.fillText(s.t.toUpperCase(),B.M,y+8); x.restore();
-      x.fillStyle=B.slate; x.font='400 25px '+B.FB;
-      let ly=y+48; for(const ln of wrap(x,s.b,maxW)){x.fillText(ln,B.M,ly);ly+=34;}
-      y=ly+18;
-    }
-  }
-
-  y=advisoryPanel(x,t,W,y,maxW);
-  footer(x,t,W,H,false); grain(x,W,H);
-  /* downscale 2x -> 1x for crisp output */
-  const f=document.createElement('canvas'); f.width=W; f.height=H;
-  const fx=f.getContext('2d'); fx.imageSmoothingEnabled=true; fx.imageSmoothingQuality='high';
-  fx.drawImage(c,0,0,W,H);
-  return f;
-}
-
-/* ============ CAROUSEL IDEA SLIDE ============ */
-function renderSlide(t,point,i,n){
-  const S=2, W=B.IG_W, H=B.IG_H;
-  const c=document.createElement('canvas'); c.width=W*S; c.height=H*S;
-  const x=c.getContext('2d'); x.scale(S,S);
-  bgLight(x,W,H); ringMark(x,W,H,.8); silkRibbon(x,W,H,false);
-  header(x,t,W,false);
-  /* giant faint number */
-  x.fillStyle='rgba(15,107,98,.08)'; x.font='700 400px '+B.FH; x.textAlign='center';
-  x.fillText(String(i+1),W/2,H/2+240); x.textAlign='left';
-  /* centered idea */
-  const maxW=W-B.M*2-40;
-  const size=fitHead(x,point,maxW,52,'600',5);
-  x.font='600 '+size+'px '+B.FH; x.fillStyle=B.slateDk;
-  const lines=wrap(x,point,maxW), lh=size*1.28, tot=lines.length*lh;
-  let y=H/2-tot/2+20;
-  x.textAlign='center';
-  for(const ln of lines){x.fillText(ln,W/2,y); y+=lh;}
-  x.textAlign='left';
-  /* progress dots */
-  const dr=7, dg=26, dw=n*dr*2+(n-1)*(dg-dr*2);
-  let dx=W/2-dw/2;
-  for(let k=0;k<n;k++){x.fillStyle=k===i?B.turquoise:'rgba(15,107,98,.22)';
-    x.beginPath(); x.arc(dx+dr,H-160,dr,0,Math.PI*2); x.fill(); dx+=dg;}
-  footer(x,t,W,H,false); grain(x,W,H);
-  const f=document.createElement('canvas'); f.width=W; f.height=H;
-  const fx=f.getContext('2d'); fx.imageSmoothingQuality='high'; fx.drawImage(c,0,0,W,H);
-  return f;
-}
-
-/* ============ CTA CLOSER (dark) ============ */
-function renderCloser(t){
-  const S=2, W=B.IG_W, H=B.IG_H;
-  const c=document.createElement('canvas'); c.width=W*S; c.height=H*S;
-  const x=c.getContext('2d'); x.scale(S,S);
-  x.fillStyle=B.dark; x.fillRect(0,0,W,H);
-  let g=x.createRadialGradient(W*.1,0,0,W*.1,0,W*.7);
-  g.addColorStop(0,'rgba(87,169,159,.16)'); g.addColorStop(1,'rgba(87,169,159,0)');
-  x.fillStyle=g; x.fillRect(0,0,W,H);
-  ringMark(x,W,H,1); silkRibbon(x,W,H,true);
-  header(x,t,W,true);
-  const maxW=W-B.M*2;
-  let y=300;
-  const smart=(t.advisory&&t.advisory.lines[0])||t.subtitle||'';
-  x.font='italic 500 44px '+B.FD; x.fillStyle='rgba(246,241,231,.92)';
-  for(const ln of wrap(x,'“'+smart+'”',maxW)){x.fillText(ln,B.M,y); y+=58;}
-  y+=66;
-  x.font='700 128px '+B.FH; x.fillStyle='#F6F1E7';
-  x.fillText('CALL ME.',B.M-6,y+110); y+=110+30;
-  x.fillStyle=B.turqSoft; roundRect(x,B.M,y,120,7,3.5); x.fill(); y+=70;
-  x.font='600 30px '+B.FB; x.fillStyle='#F6F1E7';
-  x.fillText('Masoud Rahemi — Investment Advisor',B.M,y); y+=46;
-  x.font='400 26px '+B.FB; x.fillStyle=B.muteDk;
-  x.fillText('WhatsApp  +971 58 589 9112',B.M,y); y+=42;
-  x.fillText(CONTACT_LINE,B.M,y); y+=42;
-  x.fillText(SOCIALS_LINE,B.M,y);
-  footer(x,t,W,H,true); grain(x,W,H);
-  const f=document.createElement('canvas'); f.width=W; f.height=H;
-  const fx=f.getContext('2d'); fx.imageSmoothingQuality='high'; fx.drawImage(c,0,0,W,H);
-  return f;
-}
-
-/* ============ REEL COVER (1080x1920) ============ */
-function renderReelCover(t){
-  const S=2, W=B.REEL_W, H=B.REEL_H;
-  const c=document.createElement('canvas'); c.width=W*S; c.height=H*S;
-  const x=c.getContext('2d'); x.scale(S,S);
-  bgLight(x,W,H); ringMark(x,W,H,1.3); silkRibbon(x,W,H,false);
-  header(x,t,W,false);
-  const maxW=W-B.M*2;
-  let y=t.heroValue?560:640;
-  if(t.heroValue){
-    x.fillStyle=B.mute; x.font='600 22px '+B.FB;
-    x.save(); if(x.letterSpacing!==undefined)x.letterSpacing='2.5px';
-    for(const ln of wrap(x,t.heroLabel,maxW)){x.fillText(ln,B.M,y); y+=32;}
-    x.restore(); y+=30;
-    x.font='700 150px '+B.FH; x.fillStyle=B.turquoise;
-    x.fillText(t.heroValue,B.M-5,y+140); y+=240;
-  }
-  const size=fitHead(x,t.title,maxW,72,'700',4);
-  x.font='700 '+size+'px '+B.FH; x.fillStyle=B.slateDk;
-  for(const ln of wrap(x,t.title,maxW)){x.fillText(ln,B.M,y); y+=size*1.16;}
-  y+=14; x.fillStyle=B.turquoise; roundRect(x,B.M,y,110,7,3.5); x.fill(); y+=66;
-  x.font='italic 500 34px '+B.FD; x.fillStyle=B.slate;
-  for(const ln of wrap(x,t.hook,maxW)){x.fillText(ln,B.M,y); y+=46;}
-  footer(x,t,W,H,false); grain(x,W,H);
-  const f=document.createElement('canvas'); f.width=W; f.height=H;
-  const fx=f.getContext('2d'); fx.imageSmoothingQuality='high'; fx.drawImage(c,0,0,W,H);
-  return f;
-}
-/* ============ THE BRAIN — TEXT GENERATORS ============ */
+/* ---- CONVERSATION ENGINE (ACA + Core Four) ---- */
+const KEYWORD_DM=[
+ ['OFFICE','Thanks for commenting OFFICE. Are you still looking at commercial units, or just watching the space for now?'],
+ ['SOUTH','Thanks for commenting SOUTH. Are you still looking at Dubai South, or comparing corridors?'],
+ ['BRIEF','Here’s the corridor brief. Are you still deciding between ready and off-plan, or already shortlisted?'],
+ ['YIELD','Here’s the commercial income brief. Is your portfolio 100% residential right now?'],
+ ['CALL','Happy to talk. What does your calendar look like Thursday — morning or afternoon?']];
+const ACA=['ACKNOWLEDGE: reference something specific (their comment, their city, their portfolio question). Never “thanks for reaching out”.',
+ 'COMPLIMENT: connect it sincerely — “comparing corridors before committing tells me you underwrite like an investor”.',
+ 'ASK: one question toward the goal — “are you still looking to deploy before Q4, or is this a 2027 plan?”'];
+const QUALIFYING=['Budget band (under 2M / 2–5M / 5M+)?','Timeline (this quarter / this year / exploring)?','Cash or mortgage?','Yield-first or growth-first?','Which corridor caught your eye?'];
+const FOLLOWUP=['D0: reply to comment publicly (question back) + DM the keyword asset within 1 hour','D+1: send one extra data point relevant to THEIR situation','D+3: check-in with a new angle (new weekly number)','D+7: invite to Corridor Brief / send H1 PDF','D+14: close the loop — “should I keep you on the brief list or park this?”'];
+const BOOK_CALL='No pitch on the first call. 20 minutes: your numbers, my read, next step only if it makes sense. Thursday 10:00 or 16:30 GST?';
+const HOOK_RULES=['Hard number in the first 8 words (numbered specificity)','Verdict, not question — tell them, don’t ask them','Contrarian reframe: “X isn’t A. It’s B.”','Identity statement: agreeing makes the reader the smart one','One post = one idea. Two ideas = two posts','Claim + 3 bullets + takeaway (punchline close, 6–10 words)','Bullets in 3s. Line breaks every 1–2 sentences'];
+const GIVE_WITHHOLD=[['GIVE (free, every post)','Market data · corridor analysis · contrarian takes · ready-vs-off-plan comparisons · the “so-what” behind every number'],
+ ['WITHHOLD (paid conversation)','Specific property picks · personalized allocation · which corridor for YOUR profile and ticket size · the shortlist']];
+const BANNED=['No “Dubai is booming” hype openers','No Lambo/marina B-roll flex intros','No “DM me for the list” bait','No fake urgency “last units”','No walking-and-talking with no point','No green-screen news reading without a take','No “5 reasons to invest in Dubai” generic lists','No recycled 2021 stats','No “what do you think?” engagement begging'];
+</script>
+<script>
+/* ============ TEXT GENERATORS (Hook → Story → So-What → Withheld CTA) ============ */
 function capLinkedIn(t){
-  const pts=t.points.map(p=>'→  '+p).join('\n');
-  const adv=t.advisory?t.advisory.lines.join('\n'):'';
-  return `${t.hook}
-
-${t.subtitle}
-
-${pts}
-
-${adv}
-
-THE BOTTOM LINE: ${t.advisory?t.advisory.lines[t.advisory.lines.length-1]:t.subtitle}
-
-${t.cta}
-
-—
-Data: ${t.asof}. Advised like an investor, not a broker.
-${t.tags}`;
-}
+  return `${t.hook}\n\n${t.points.map(p=>'→  '+p).join('\n')}\n\nTHE SO-WHAT:\n${t.sowhat}\n\n${t.cta}\n\n—\nData verified: ${t.asof}. Advised like an investor, not a broker.\n${t.tags}`;}
 function capInstagram(t){
-  const pts=t.points.slice(0,4).map(p=>'▸ '+p).join('\n');
-  return `${t.hook}
-
-${pts}
-
-${t.advisory?t.advisory.lines[0]:''}
-
-${t.cta}
-
-${t.tags}`;
-}
+  return `${t.hook}\n\n${t.points.slice(0,3).map(p=>'→  '+p).join('\n')}\n\n${t.sowhat}\n\n${t.cta}\n\n${t.tags}`;}
 function capTelegram(t){
-  const pts=t.points.map(p=>'• '+p).join('\n');
-  return `📊 ${t.title}
-
-${t.hook}
-
-${pts}
-
-💬 ${t.advisory?t.advisory.lines.join('\n'):''}
-
-Data: ${t.asof} · @mrlivingcapital`;
-}
+  return `CORRIDOR BRIEF — ${t.asof.toUpperCase()}\n\n${t.title.toUpperCase()}\n\n${t.points.map(p=>'• '+p).join('\n')}\n\nThe so-what: ${t.sowhat}\n\n${t.cta}\n\n— MR LIVING CAPITAL · mrlivingcapital.com`;}
 function capWhatsApp(t){
-  return `*${t.title}*
-
-${t.hook}
-
-${t.points.slice(0,3).map(p=>'• '+p).join('\n')}
-
-${t.cta}
-
-— Masoud · MR Living Capital
-mrlivingcapital.com`;
-}
+  return `*${t.title.toUpperCase()}*\n\n${t.hook}\n\n${t.points.slice(0,3).map(p=>'• '+p).join('\n')}\n\n${t.sowhat}\n\n${t.cta}`;}
 function reelScript(t){
-  const cta=t.cta;
-  const beats=t.points.slice(0,3).map((p,i)=>`  Beat ${i+1}: ${p}`).join('\n');
-  const punch=t.advisory?`  Punchline close: ${t.advisory.lines[0]}`:'';
-  return `[0:00–0:03] HOOK — look into lens, no greeting (verdict + hard number):
-  "${t.hook}"
-  TEXT OVERLAY: ${t.heroValue||''} ${t.heroLabel?('— '+t.heroLabel):''}
+  const pts=t.points.slice(0,3);
+  return `[0:00–0:03] HOOK — look into lens, no greeting (verdict + hard number):\n“${t.hook}”\nTEXT OVERLAY: ${t.title.toUpperCase()}\n\n[0:03–0:45] BODY — claim + 3 beats:\n${pts.map((p,i)=>`Beat ${i+1}: ${p}`).join('\n')}\n\n[0:45–0:55] CTA — slower, lower voice:\n“${t.cta}”\n\nDELIVERY: captions ON · cut every 2–3s · key number as overlay · 9:16 · navy blazer, no tie.`;}
 
-[0:03–0:45] BODY — claim + 3 beats (bullets in 3s):
-${beats}
-${punch}
+/* ============ BRAIN: jab tracker + published ============ */
+const LS_PUB='mrlc_pub_v4';
+function getPub(){try{return JSON.parse(localStorage.getItem(LS_PUB)||'[]');}catch(e){return[];}}
+function markPublished(t){const p=getPub();if(!p.some(z=>z.key===t.key)){p.push({key:t.key,type:t.type,title:t.title,date:new Date().toISOString().slice(0,10)});localStorage.setItem(LS_PUB,JSON.stringify(p));}updateJabBadge();}
+function isPublished(k){return getPub().some(z=>z.key===k);}
+function jabStatus(){const p=getPub();let j=0;for(let i=p.length-1;i>=0;i--){if(p[i].type==='hook')break;j++;}return{streak:j,due:j>=3};}
+function updateJabBadge(){const s=jabStatus(),b=document.getElementById('jabBadge');
+  if(s.due){b.textContent='⚖ RIGHT HOOK DUE — post a soft CTA next';b.className='jabBadge due';}
+  else{b.textContent=`JAB ${s.streak}/3 — pure value mode`;b.className='jabBadge';}}
+function suggestType(){return jabStatus().due?'hook':'jab';}
 
-[0:45–0:55] CTA — slower, lower voice:
-  "${cta}"
-
-DELIVERY: captions ON · cut every 2–3s · key number as overlay · 9:16 · navy blazer, no tie.`;
-}
-
-/* ============ PACK PIPELINE ============ */
-let PACK=null;
-async function buildPack(t,fmt){
-  await document.fonts.ready;
-  const imgs=[{n:'01-lead',c:renderLead(t)}];
-  if(fmt==='carousel'){
-    t.points.forEach((p,i)=>imgs.push({n:String(i+2).padStart(2,'0')+'-slide',c:renderSlide(t,p,i,t.points.length)}));
-    imgs.push({n:String(t.points.length+2).padStart(2,'0')+'-closer-CTA',c:renderCloser(t)});
-  } else {
-    imgs.push({n:'02-closer-CTA',c:renderCloser(t)});
-  }
-  imgs.push({n:'reel-cover-9x16',c:renderReelCover(t)});
-  PACK={t,fmt,imgs,texts:{
-    'LinkedIn expanded post':capLinkedIn(t),
-    'Instagram caption':capInstagram(t),
-    'Telegram brief':capTelegram(t),
-    'WhatsApp broadcast':capWhatsApp(t),
-    'Reel script (30–60s)':reelScript(t)}};
-  renderPackView(t,fmt);
-  showView('pack');
-}
-function renderPackView(t,fmt){
-  document.getElementById('packTitle').textContent='Pack · #'+t.id+' '+t.title;
-  document.getElementById('packSub').textContent=
-    (fmt==='carousel'?`Carousel pack — ${t.points.length+2} pages (lead → one idea per slide → CTA closer) + reel cover.`:'Reel pack — lead PNG + CTA closer + reel cover.')
-    +' 4 platform captions + reel script below. Fonts & brand locked.';
-  document.getElementById('packBadge').textContent='#'+t.id;
-  const strip=document.getElementById('pvStrip'); strip.innerHTML='';
-  PACK.imgs.forEach(im=>{
-    const d=document.createElement('div'); d.className='pv';
-    d.appendChild(im.c);
-    const nm=document.createElement('div'); nm.className='pv-name'; nm.textContent='mrlc-p'+t.id+'-'+im.n+'.png'; d.appendChild(nm);
-    const a=document.createElement('a'); a.textContent='Download'; a.href='javascript:void(0)';
-    a.onclick=()=>downloadCanvas(im.c,'mrlc-p'+t.id+'-'+im.n+'.png'); d.appendChild(a);
-    strip.appendChild(d);
-  });
-  const tabs=document.getElementById('copyTabs'); tabs.innerHTML='';
-  Object.keys(PACK.texts).forEach((k,i)=>{
-    const b=document.createElement('button'); b.className='copy-tab'+(i===0?' active':''); b.textContent=k;
-    b.onclick=()=>{tabs.querySelectorAll('.copy-tab').forEach(e=>e.classList.remove('active'));b.classList.add('active');
-      document.getElementById('copyPre').textContent=PACK.texts[k];};
-    tabs.appendChild(b);
-  });
-  document.getElementById('copyPre').textContent=PACK.texts[Object.keys(PACK.texts)[0]];
-}
-function downloadCanvas(c,name){
-  c.toBlob(bl=>{const a=document.createElement('a'); a.href=URL.createObjectURL(bl); a.download=name; a.click();
-    setTimeout(()=>URL.revokeObjectURL(a.href),4000);},'image/png');
-}
-async function downloadAllPng(){
-  if(!PACK)return; const btn=document.getElementById('btnAll');
-  btn.disabled=true; btn.innerHTML='<span class="spin"></span> Exporting…';
-  for(const im of PACK.imgs){downloadCanvas(im.c,'mrlc-p'+PACK.t.id+'-'+im.n+'.png'); await new Promise(r=>setTimeout(r,450));}
-  btn.disabled=false; btn.textContent='Download all PNGs'; toast('All PNGs exported.');
-}
-function downloadTexts(){
-  if(!PACK)return;
-  const body=Object.entries(PACK.texts).map(([k,v])=>'════ '+k.toUpperCase()+' ════\n\n'+v).join('\n\n\n');
-  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([body],{type:'text/plain'}));
-  a.download='mrlc-p'+PACK.t.id+'-texts.txt'; a.click(); toast('Texts downloaded.');
-}
-function copyCurrent(){copyText(document.getElementById('copyPre').textContent);}
-function copyText(s){navigator.clipboard.writeText(s).then(()=>toast('Copied.')).catch(()=>{const ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast('Copied.');});}
-let toastT=null;
-function toast(m){const t=document.getElementById('toast'); t.textContent=m; t.classList.add('on');
-  clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('on'),1800);}
-
-/* ============ STATE / VIEWS ============ */
-const PUB_KEY='mrlc_published_v3';
-const getPub=()=>{try{return JSON.parse(localStorage.getItem(PUB_KEY))||[]}catch(e){return[]}};
-const setPub=a=>localStorage.setItem(PUB_KEY,JSON.stringify(a));
-function resetPublished(){setPub([]); paintWeek(); paintBank(); paintPubCount(); toast('Published list reset.');}
-function paintPubCount(){document.getElementById('pubCount').textContent=getPub().length;}
-function nextTopic(pillar){const pub=getPub(); return TOPICS.find(t=>t.pillar===pillar&&!pub.includes(t.id))||null;}
-function markPublished(id){const p=getPub(); if(!p.includes(id)){p.push(id); setPub(p);} paintWeek(); paintBank(); paintPubCount();}
-function showView(v){document.querySelectorAll('.view').forEach(e=>e.classList.remove('active'));
-  document.getElementById('v-'+v).classList.add('active');
-  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.v===v));
-  window.scrollTo({top:0});}
-document.querySelectorAll('.nav-btn').forEach(b=>b.onclick=()=>showView(b.dataset.v));
-
-function paintWeek(){
-  const g=document.getElementById('weekGrid'); g.innerHTML='';
-  CADENCE.forEach(s=>{
-    const t=nextTopic(s.pillar);
-    const card=document.createElement('div'); card.className='card slot';
-    card.innerHTML=`<div class="day">${s.day}</div>
-      <div class="fmt ${s.fmt}">${s.fmt==='carousel'?'Carousel 5–7 pp':'Reel 30–60s'}</div>
-      ${t?`<div class="topic">#${t.id} · ${t.title}</div>
-           <div class="pillar">${s.pillar} · ${s.note}<br>Data: ${t.asof}</div>`
-          :`<div class="topic" style="color:var(--mute)">Bank empty for ${s.pillar}</div>
-           <div class="pillar">Use Custom Topic or pick any from the bank.</div>`}`;
-    if(t){
-      const row=document.createElement('div'); row.style.cssText='display:flex;gap:10px;flex-wrap:wrap';
-      const b=document.createElement('button'); b.className='btn btn-primary'; b.textContent='Generate Pack';
-      b.onclick=()=>buildPack(t,s.fmt);
-      const m=document.createElement('button'); m.className='btn btn-ghost'; m.textContent='Mark published';
-      m.onclick=()=>{markPublished(t.id); toast('#'+t.id+' marked published.');};
-      row.appendChild(b); row.appendChild(m); card.appendChild(row);
-    }
-    g.appendChild(card);
-  });
-}
-function paintBank(){
-  const list=document.getElementById('bankList'); list.innerHTML='';
-  const pub=getPub();
-  TOPICS.forEach(t=>{
-    const r=document.createElement('div'); r.className='topic-row';
-    const fmt=t.layout==='numbered_list'||t.layout==='checklist'||t.layout==='three_cards'||t.layout==='comparison'?'carousel':'carousel';
-    r.innerHTML=`<div class="tid">${t.id}</div>
-      <div class="tt"><b>${t.title}</b><span>${t.subtitle}</span></div>
-      <span class="badge ${PILLAR_BADGE[t.pillar]}">${t.pillar}</span>
-      ${pub.includes(t.id)?'<span class="pub-stamp">PUBLISHED ✓</span>':''}`;
-    const b=document.createElement('button'); b.className='btn btn-primary'; b.textContent='Generate Pack';
-    b.onclick=()=>buildPack(t,'carousel');
-    r.appendChild(b); list.appendChild(r);
-  });
-}
-function kvList(elId,items,key){
-  const el=document.getElementById(elId); el.innerHTML='';
-  items.forEach(([k,v])=>{const d=document.createElement('div'); d.className='kv';
-    d.innerHTML=`<b>${k}</b><span>${v}</span>`; el.appendChild(d);});
-}
-function generateCustom(){
-  const g=id=>document.getElementById(id).value.trim();
-  const title=g('cTitle'); if(!title){toast('Headline is required.'); return;}
-  const t={id:'X'+Date.now()%1000, title:title.toUpperCase(), layout:'advisory', pillar:'Custom',
-    asof:new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'}),
-    subtitle:g('cSub'), hook:g('cHook')||g('cSub')||title,
-    heroLabel:(g('cHeroL')||'').toUpperCase(), heroValue:g('cHeroV'), heroDesc:'',
-    sections:[],
-    advisory:{title:'The strategist’s read',lines:g('cAdv').split('\n').filter(Boolean)},
-    points:g('cPoints').split('\n').filter(Boolean),
-    cta:g('cCta')||'Save this — you’ll want the number in 3 months.',
-    tags:g('cTags')||'#DubaiRealEstate #MRLivingCapital', ftag:'Data first. Opinion second.'};
-  if(!t.points.length)t.points=[t.hook];
-  buildPack(t,'carousel');
+/* ============ PACK BUILDER ============ */
+let _portrait=null;
+async function buildPack(t,container){
+  container.innerHTML='<div class="statusLine">Rendering pack — one moment…</div>';
+  if(!_portrait)_portrait=await loadImg(IMG.portrait);
+  if(t.photo)t._photo=await loadImg(IMG[t.photo]||t.photo);else t._photo=null;
+  const pages=[];
+  pages.push({cv:renderCover(t),label:'01 · COVER (1080×1350)'});
+  t.points.forEach((p,i)=>pages.push({cv:renderIdea(t,p,i,t.points.length),label:`${String(i+2).padStart(2,'0')} · SLIDE ${i+1}/${t.points.length}`}));
+  if(t.chart)pages.push({cv:renderChartSlide(t),label:`${String(t.points.length+2).padStart(2,'0')} · CHART SLIDE`});
+  pages.push({cv:renderCloser(t,_portrait),label:'CLOSER · CALL ME (contact band)'});
+  pages.push({cv:renderReel(t),label:'REEL COVER (1080×1920)'});
+  const texts=[['LINKEDIN',capLinkedIn(t)],['INSTAGRAM',capInstagram(t)],['TELEGRAM — CORRIDOR BRIEF',capTelegram(t)],['WHATSAPP BROADCAST',capWhatsApp(t)],['REEL SCRIPT (30–60s)',reelScript(t)]];
+  /* render UI */
+  const safe=t.key;
+  let html=`<h2 class="viewTitle">${t.title.toUpperCase()}</h2>
+  <div class="viewSub">${t.type==='hook'?'RIGHT HOOK — soft CTA post':'JAB — pure value post'} · ${t.pillar} · data verified ${t.asof}</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <button class="btn" id="dlAll">⬇ DOWNLOAD ALL ${pages.length} PNGs</button>
+    <button class="btn ghost" id="dlTxt">⬇ ALL CAPTIONS (.txt)</button>
+    <button class="btn ghost" id="markPub">✓ MARK AS PUBLISHED</button>
+  </div>
+  <div class="figGrid" id="figs"></div>
+  <div class="sectionTitle">Captions & script</div><div id="txts"></div>`;
+  container.innerHTML=html;
+  const figs=container.querySelector('#figs');
+  pages.forEach((p,i)=>{
+    const f=document.createElement('figure');f.appendChild(p.cv);
+    const cap=document.createElement('figcaption');
+    const url=p.cv.toDataURL('image/png');
+    cap.innerHTML=`${p.label}<br><a href="${url}" download="MRLC_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
+    f.appendChild(cap);figs.appendChild(f);});
+  const txts=container.querySelector('#txts');
+  texts.forEach(([name,body])=>{
+    const d=document.createElement('div');d.className='txtBlock';
+    d.innerHTML=`<h4>${name}</h4><pre></pre><div class="rowBtns"><button class="copyBtn">COPY</button></div>`;
+    d.querySelector('pre').textContent=body;
+    d.querySelector('.copyBtn').onclick=e=>{navigator.clipboard.writeText(body);e.target.textContent='COPIED ✓';setTimeout(()=>e.target.textContent='COPY',1500);};
+    txts.appendChild(d);});
+  container.querySelector('#dlAll').onclick=()=>{
+    pages.forEach((p,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=p.cv.toDataURL('image/png');a.download=`MRLC_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
+  container.querySelector('#dlTxt').onclick=()=>{
+    const body=texts.map(([n,b])=>`${n}\n${'='.repeat(40)}\n${b}`).join('\n\n\n');
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/plain'}));a.download=`MRLC_${safe}_captions.txt`;a.click();};
+  container.querySelector('#markPub').onclick=e=>{markPublished(t);e.target.textContent='PUBLISHED ✓';e.target.disabled=true;};
 }
 
-/* ============ INIT ============ */
-kvList('kwList',Object.entries(KEYWORD_DM));
-kvList('acaList',ACA.map((s,i)=>['Step '+(i+1),s]));
-kvList('qualList',QUALIFYING.map((s,i)=>['Q'+(i+1),s]));
-kvList('fuList',FOLLOWUP.map(s=>[s.split(':')[0],s.substring(s.indexOf(':')+1).trim()]));
-kvList('hookRules',HOOK_RULES.map((s,i)=>['✓',s]));
-kvList('bannedList',BANNED.map(s=>['✕',s]));
-document.getElementById('bookCall').textContent=BOOK_CALL;
-paintWeek(); paintBank(); paintPubCount();
+/* ============ VIEWS ============ */
+const view=document.getElementById('view');
+function topicCard(t,extra){
+  const pub=isPublished(t.key);
+  return `<div class="card">
+    <div class="prio">${extra||''}<span class="ptype ${t.type}">${t.type==='hook'?'RIGHT HOOK':'JAB'}</span>${pub?'<span class="publishedTag">PUBLISHED</span>':''}</div>
+    <div class="pillar">${t.pillar.toUpperCase()} · ${t.asof.toUpperCase()}</div>
+    <h3>${t.title}</h3>
+    <div class="why">${t.hook}</div>
+    <button class="btn" data-key="${t.key}">GENERATE PACK →</button>
+  </div>`;}
+function bindCards(){
+  view.querySelectorAll('button[data-key]').forEach(b=>b.onclick=()=>{
+    const t=TOPICS.find(z=>z.key===b.dataset.key);buildPack(t,view);window.scrollTo(0,0);});}
+function showBrief(){
+  const sug=suggestType();
+  view.innerHTML=`<div class="briefHead">Daily Brief — ${BRIEF.date}</div>
+  <div class="briefSub">${BRIEF.note} ${sug==='hook'?'<b style="color:var(--gold)">3 jabs done — today calls for a right hook (soft CTA).</b>':'Rhythm check: jab mode — pure value, the right hook comes later.'}</div>
+  <div class="cards">${BRIEF.items.map(it=>{const t=TOPICS.find(z=>z.key===it.key);
+    return `<div class="card">
+      <div class="prio"><span class="pnum">${it.prio}</span><span class="ptype ${t.type}">${t.type==='hook'?'RIGHT HOOK':'JAB'}</span>${isPublished(t.key)?'<span class="publishedTag">PUBLISHED</span>':''}</div>
+      <div class="pillar">${t.pillar.toUpperCase()} · ${t.asof.toUpperCase()}</div>
+      <h3>${t.title}</h3>
+      <div class="why">${it.why}</div>
+      <button class="btn" data-key="${t.key}">GENERATE PACK →</button></div>`;}).join('')}</div>
+  <div class="sectionTitle">The rule behind every pack</div>
+  <ul class="ruleList">
+    <li><b>Hook → Story → So-What → Withheld CTA.</b> Every caption follows the same spine: hard-number hook, the data beats, what it means, and a CTA that holds back the specific picks.</li>
+    <li><b>Jab-jab-jab-right-hook (3:1).</b> Three pure-value posts for every one soft CTA. The badge top-right tracks the rhythm as you mark posts published.</li>
+    <li><b>Give vs withhold.</b> We give market data, corridors and the so-what. We withhold specific picks, personal allocation and the shortlist — that's the paid conversation.</li>
+  </ul>`;
+  bindCards();}
+function showBank(){
+  const pillars=['ALL',...new Set(TOPICS.map(t=>t.pillar))];
+  view.innerHTML=`<h2 class="viewTitle">Topic Bank</h2>
+  <div class="viewSub">Every topic is verified data with sources rendered on-slide. Filter by pillar, generate the pack, post. Published topics are tagged.</div>
+  <div class="pillRow">${pillars.map((p,i)=>`<button class="pill${i===0?' on':''}" data-p="${p}">${p.toUpperCase()}</button>`).join('')}</div>
+  <div class="cards" id="bankCards"></div>`;
+  const render=f=>{document.getElementById('bankCards').innerHTML=
+    TOPICS.filter(t=>f==='ALL'||t.pillar===f).map(t=>topicCard(t)).join('');bindCards();};
+  render('ALL');
+  view.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{
+    view.querySelectorAll('.pill').forEach(z=>z.classList.remove('on'));p.classList.add('on');render(p.dataset.p);});}
+function showWeek(){
+  const sug=suggestType();
+  view.innerHTML=`<h2 class="viewTitle">This Week's Plan</h2>
+  <div class="viewSub">Cadence: Mon reel · Wed carousel · Fri carousel · Sun reel. Suggestions skip published topics and respect the 3:1 rhythm${sug==='hook'?' — <b style="color:var(--gold)">right hook due</b>':''}.</div>`+
+  CADENCE.map(c=>{
+    const pool=TOPICS.filter(t=>t.pillar===c.pillar&&!isPublished(t.key));
+    const t=pool.find(z=>z.type===sug)||pool[0];
+    return `<div class="weekRow"><div class="weekDay">${c.day.toUpperCase()}</div>
+    <div class="weekMeta"><div class="wp">${c.pillar.toUpperCase()} · ${c.fmt}</div>
+    <div class="wt">${t?t.title:'Bank empty — add a topic'}</div>
+    <div class="wn">${c.note}</div></div>
+    ${t?`<button class="btn" data-key="${t.key}">PACK →</button>`:''}</div>`;}).join('');
+  bindCards();}
+function showConvo(){
+  view.innerHTML=`<h2 class="viewTitle">Conversation Engine</h2>
+  <div class="viewSub">Comment → DM → call. DM every keyword commenter within 1 hour. Never pitch in the first message.</div>
+  <div class="sectionTitle">1 · Keyword → DM openers</div>
+  <ul class="ruleList">${KEYWORD_DM.map(([k,v])=>`<li><b>${k}</b> — ${v}</li>`).join('')}</ul>
+  <div class="sectionTitle">2 · ACA flow (every DM)</div>
+  <ul class="ruleList">${ACA.map(s=>`<li>${s}</li>`).join('')}</ul>
+  <div class="sectionTitle">3 · Qualifying (max 2 per message)</div>
+  <ul class="ruleList">${QUALIFYING.map(s=>`<li>${s}</li>`).join('')}</ul>
+  <div class="sectionTitle">4 · Follow-up cadence</div>
+  <ul class="ruleList">${FOLLOWUP.map(s=>`<li>${s}</li>`).join('')}</ul>
+  <div class="sectionTitle">5 · Book the call</div>
+  <ul class="ruleList"><li>“${BOOK_CALL}”</li></ul>`;}
+function showPlaybook(){
+  view.innerHTML=`<h2 class="viewTitle">The Playbook</h2>
+  <div class="viewSub">The rules the brain enforces on every post. Distilled from Serhant's content matrix, Hormozi's hooks & Core Four, and carousel-first research.</div>
+  <div class="sectionTitle">Hook → Story → So-What → Withheld CTA</div>
+  <ul class="ruleList">${HOOK_RULES.map(s=>`<li>${s}</li>`).join('')}</ul>
+  <div class="sectionTitle">Give vs Withhold (hard rule)</div>
+  <ul class="ruleList">${GIVE_WITHHOLD.map(([k,v])=>`<li><b>${k}</b><br>${v}</li>`).join('')}</ul>
+  <div class="sectionTitle">Jab-jab-jab-right-hook (3:1)</div>
+  <ul class="ruleList"><li>Three pure-value posts for every one soft CTA. Content earns attention; the withheld conversation converts it. The tracker badge keeps the rhythm honest.</li></ul>
+  <div class="sectionTitle">Never do</div>
+  <ul class="ruleList">${BANNED.map(s=>`<li>${s}</li>`).join('')}</ul>`;}
+
+/* ============ SHELL ============ */
+const VIEWS=[['DAILY BRIEF',showBrief],['TOPIC BANK',showBank],['WEEK PLAN',showWeek],['CONVERSATIONS',showConvo],['PLAYBOOK',showPlaybook]];
+const tabsEl=document.getElementById('tabs');
+VIEWS.forEach(([name,fn],i)=>{
+  const b=document.createElement('button');b.className='tab'+(i===0?' on':'');b.textContent=name;
+  b.onclick=()=>{tabsEl.querySelectorAll('.tab').forEach(z=>z.classList.remove('on'));b.classList.add('on');fn();};
+  tabsEl.appendChild(b);});
+document.getElementById('dateChip').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+updateJabBadge();
+showBrief();
 </script>
 </body>
 </html>
