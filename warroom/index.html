@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MR Living Capital — War Room Engine v2.0 (EN/FA)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory: #F6F1E7;
+  --slate: #5A6662;
+  --turquoise: #0F6B62;
+  --deep-teal: #123B37;
+  --sand: #D9CDB8;
+  --gold: #B08D4A;
+  --white: #FFFFFF;
+  --font-head: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-ui: 'DM Sans', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --font-fa: 'Vazirmatn', 'Noto Sans Arabic', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { height: 100%; font-family: var(--font-body); background: var(--ivory); color: var(--slate); overflow-x: hidden; }
+body::before { content: ''; position: fixed; top: -20%; left: -10%; width: 50%; height: 60%; background: radial-gradient(ellipse at center, rgba(217,205,184,0.35) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+body::after { content: ''; position: fixed; bottom: -20%; right: -10%; width: 50%; height: 60%; background: radial-gradient(ellipse at center, rgba(15,107,98,0.08) 0%, transparent 70%); pointer-events: none; z-index: 0; }
+.grain { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; opacity: 0.025; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.app-container { display: flex; height: 100vh; position: relative; z-index: 1; }
+.sidebar { width: 300px; background: rgba(246,241,231,0.95); backdrop-filter: blur(20px); border-right: 1px solid rgba(90,102,98,0.08); display: flex; flex-direction: column; padding: 24px 20px; overflow-y: auto; flex-shrink: 0; }
+.brand-mark { font-family: var(--font-head); font-weight: 700; font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--deep-teal); margin-bottom: 2px; }
+.brand-tagline { font-family: var(--font-body); font-weight: 600; font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--turquoise); margin-bottom: 24px; }
+.lang-toggle { display: flex; gap: 8px; margin-bottom: 20px; }
+.lang-btn { flex: 1; padding: 8px; border: 1px solid rgba(90,102,98,0.15); background: transparent; border-radius: 10px; font-family: var(--font-ui); font-size: 0.72rem; font-weight: 600; color: var(--slate); cursor: pointer; transition: all 0.2s; }
+.lang-btn.active { background: var(--turquoise); color: var(--ivory); border-color: var(--turquoise); }
+.nav-section { margin-bottom: 18px; }
+.nav-label { font-family: var(--font-ui); font-weight: 600; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--sand); margin-bottom: 8px; padding-left: 10px; }
+.nav-btn { display: block; width: 100%; text-align: left; padding: 9px 12px; margin-bottom: 5px; border: none; background: transparent; font-family: var(--font-ui); font-size: 0.75rem; font-weight: 500; color: var(--slate); cursor: pointer; border-radius: 10px; transition: all 0.25s ease; position: relative; }
+.nav-btn:hover { background: rgba(15,107,98,0.06); color: var(--turquoise); }
+.nav-btn.active { background: rgba(15,107,98,0.1); color: var(--turquoise); font-weight: 600; }
+.nav-btn.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 16px; background: var(--turquoise); border-radius: 0 3px 3px 0; }
+.main-content { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.top-bar { height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px; border-bottom: 1px solid rgba(90,102,98,0.08); background: rgba(246,241,231,0.8); backdrop-filter: blur(12px); }
+.page-title { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; color: var(--deep-teal); letter-spacing: 0.02em; }
+.page-title::after { content: ''; display: block; width: 36px; height: 2px; background: var(--turquoise); margin-top: 5px; border-radius: 2px; }
+.top-actions { display: flex; gap: 10px; }
+.btn { padding: 8px 16px; border: none; border-radius: 10px; font-family: var(--font-ui); font-weight: 600; font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; transition: all 0.2s ease; }
+.btn-primary { background: var(--turquoise); color: var(--ivory); }
+.btn-primary:hover { background: var(--deep-teal); transform: translateY(-1px); }
+.btn-secondary { background: transparent; color: var(--slate); border: 1px solid rgba(90,102,98,0.2); }
+.btn-secondary:hover { border-color: var(--turquoise); color: var(--turquoise); }
+.workspace { flex: 1; display: flex; overflow: hidden; }
+.panel { flex: 1; padding: 24px; overflow-y: auto; }
+.panel-left { max-width: 380px; border-right: 1px solid rgba(90,102,98,0.08); background: rgba(255,255,255,0.4); }
+.panel-right { flex: 1.6; background: rgba(246,241,231,0.5); display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding: 24px; overflow-y: auto; }
+.form-group { margin-bottom: 16px; }
+.form-label { display: block; font-family: var(--font-ui); font-weight: 600; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--slate); margin-bottom: 5px; }
+.form-input, .form-select, .form-textarea { width: 100%; padding: 9px 12px; border: 1px solid rgba(90,102,98,0.15); border-radius: 10px; background: var(--white); font-family: var(--font-body); font-size: 0.8rem; color: var(--deep-teal); outline: none; transition: all 0.2s ease; }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--turquoise); box-shadow: 0 0 0 3px rgba(15,107,98,0.08); }
+.form-textarea { min-height: 60px; resize: vertical; font-size: 0.78rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.section { display: none; }
+.section.active { display: block; }
+.preview-wrap { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; }
+.slide-canvas { width: 432px; height: 540px; background: var(--ivory); position: relative; overflow: hidden; box-shadow: 0 24px 64px rgba(18,59,55,0.15), 0 6px 16px rgba(18,59,55,0.08); border-radius: 12px; transform-origin: top center; }
+.slide-header { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px 0; z-index: 10; text-align: center; }
+.slide-header-logo { font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--deep-teal); }
+.slide-header-line { width: 28px; height: 2px; background: var(--turquoise); margin: 5px auto 4px; border-radius: 2px; }
+.slide-header-tagline { font-family: var(--font-body); font-weight: 600; font-size: 0.48rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--turquoise); }
+.slide-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 0 36px 18px; z-index: 10; text-align: center; }
+.slide-footer-logo { font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--deep-teal); }
+.slide-footer-line { width: 28px; height: 2px; background: var(--turquoise); margin: 5px auto 4px; border-radius: 2px; }
+.slide-footer-tagline { font-family: var(--font-body); font-weight: 600; font-size: 0.48rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--turquoise); }
+.slide-ribbon { position: absolute; bottom: 58px; left: 0; right: 0; height: 18px; z-index: 5; pointer-events: none; opacity: 0.35; }
+.slide-image-wrap { position: absolute; top: 0; right: 0; width: 48%; height: 100%; z-index: 2; overflow: hidden; }
+.slide-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.organic-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--ivory); clip-path: path('M0,0 C80,60 60,200 90,350 C120,500 70,700 100,900 C130,1100 60,1350 0,1350 L-100,1350 L-100,0 Z'); transform: scaleX(-1); transform-origin: left center; }
+.cover-slide .slide-content { position: absolute; top: 72px; left: 36px; right: 52%; z-index: 8; }
+.cover-slide .cover-headline { font-family: var(--font-head); font-weight: 700; font-size: 1.55rem; line-height: 1.15; color: var(--deep-teal); letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 10px; }
+.cover-slide .cover-headline .accent { color: var(--turquoise); font-family: var(--font-display); font-weight: 600; font-style: italic; text-transform: none; letter-spacing: 0; }
+.cover-slide .cover-line { width: 36px; height: 2.5px; background: var(--turquoise); border-radius: 2px; margin-bottom: 14px; }
+.cover-slide .cover-sub { font-family: var(--font-body); font-size: 0.62rem; line-height: 1.6; color: var(--slate); margin-bottom: 8px; }
+.cover-slide .cover-sub .accent { color: var(--turquoise); font-weight: 600; }
+.cover-slide .cover-pillars { position: absolute; bottom: 64px; left: 36px; right: 52%; display: flex; justify-content: space-between; gap: 8px; z-index: 8; }
+.pillar { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; }
+.pillar-icon { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--turquoise); display: flex; align-items: center; justify-content: center; color: var(--turquoise); }
+.pillar-icon svg { width: 16px; height: 16px; }
+.pillar-label { font-family: var(--font-ui); font-size: 0.42rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--deep-teal); line-height: 1.3; }
+.data-slide .slide-content { position: absolute; top: 68px; left: 32px; right: 50%; bottom: 64px; z-index: 8; display: flex; flex-direction: column; }
+.data-slide .data-headline { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; line-height: 1.18; color: var(--deep-teal); letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 6px; }
+.data-slide .data-headline .accent { color: var(--turquoise); font-family: var(--font-display); font-weight: 600; font-style: italic; text-transform: none; letter-spacing: 0; }
+.data-slide .data-line { width: 32px; height: 2.5px; background: var(--turquoise); border-radius: 2px; margin-bottom: 10px; }
+.data-slide .data-sub { font-family: var(--font-body); font-size: 0.58rem; line-height: 1.55; color: var(--slate); margin-bottom: 14px; }
+.feature-list { display: flex; flex-direction: column; gap: 10px; flex: 1; overflow: hidden; }
+.feature-item { display: flex; gap: 10px; align-items: flex-start; }
+.feature-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.2px solid var(--turquoise); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+.feature-icon svg { width: 14px; height: 14px; }
+.feature-text { flex: 1; }
+.feature-title { font-family: var(--font-head); font-weight: 700; font-size: 0.56rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--turquoise); line-height: 1.3; margin-bottom: 2px; }
+.feature-desc { font-family: var(--font-body); font-size: 0.52rem; line-height: 1.45; color: var(--slate); }
+.stats-col { position: absolute; top: 68px; right: 52%; left: auto; width: 38%; z-index: 8; display: flex; flex-direction: column; gap: 10px; }
+.stat-item {}
+.stat-number { font-family: var(--font-head); font-weight: 700; font-size: 0.95rem; color: var(--turquoise); line-height: 1.1; }
+.stat-label { font-family: var(--font-body); font-size: 0.5rem; line-height: 1.4; color: var(--slate); margin-bottom: 2px; }
+.stat-label strong { color: var(--deep-teal); font-weight: 600; }
+.stat-source { font-family: var(--font-ui); font-size: 0.4rem; color: var(--sand); letter-spacing: 0.05em; }
+.stats-box { position: absolute; top: 140px; right: 52%; width: 36%; background: rgba(15,107,98,0.04); border-radius: 12px; padding: 14px; z-index: 8; border: 1px solid rgba(15,107,98,0.08); }
+.stats-box .stat-number { font-size: 1.1rem; }
+.stats-box .stat-label { font-size: 0.52rem; }
+.quote-block { position: absolute; bottom: 66px; left: 32px; right: 52%; z-index: 8; display: flex; gap: 8px; align-items: flex-start; }
+.quote-mark { font-family: var(--font-display); font-size: 1.8rem; color: var(--turquoise); line-height: 1; margin-top: -6px; }
+.quote-text { font-family: var(--font-body); font-size: 0.58rem; line-height: 1.5; color: var(--slate); }
+.quote-text .accent { color: var(--turquoise); font-weight: 600; }
+body.fa-mode { font-family: var(--font-fa); }
+body.fa-mode .slide-header-logo, body.fa-mode .slide-footer-logo, body.fa-mode .cover-headline, body.fa-mode .data-headline, body.fa-mode .feature-title, body.fa-mode .stat-number, body.fa-mode .page-title, body.fa-mode .brand-mark { font-family: var(--font-fa); }
+body.fa-mode .cover-headline, body.fa-mode .data-headline { text-transform: none; letter-spacing: 0; line-height: 1.35; }
+body.fa-mode .feature-title { text-transform: none; letter-spacing: 0; }
+body.fa-mode .slide-header-tagline, body.fa-mode .slide-footer-tagline, body.fa-mode .brand-tagline, body.fa-mode .nav-label, body.fa-mode .form-label, body.fa-mode .pillar-label { font-family: var(--font-fa); letter-spacing: 0; }
+body.fa-mode .form-input, body.fa-mode .form-textarea, body.fa-mode .form-select { font-family: var(--font-fa); }
+body.fa-mode .cover-slide .slide-content, body.fa-mode .data-slide .slide-content, body.fa-mode .quote-block { left: auto; right: 36px; }
+body.fa-mode .cover-slide .cover-pillars { left: auto; right: 36px; }
+body.fa-mode .slide-image-wrap { right: auto; left: 0; }
+body.fa-mode .organic-mask { transform: scaleX(1); }
+body.fa-mode .stats-col, body.fa-mode .stats-box { right: auto; left: 52%; }
+body.fa-mode .feature-item { flex-direction: row-reverse; }
+body.fa-mode .quote-block { flex-direction: row-reverse; }
+.copy-output { background: var(--white); border-radius: 12px; padding: 16px; margin-top: 12px; border: 1px solid rgba(90,102,98,0.08); width: 100%; max-width: 600px; }
+.copy-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
+.copy-tab { padding: 5px 12px; border: none; background: transparent; font-family: var(--font-ui); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); cursor: pointer; border-radius: 8px; transition: all 0.2s; }
+.copy-tab.active { background: var(--turquoise); color: var(--ivory); }
+.copy-text { font-family: var(--font-body); font-size: 0.78rem; line-height: 1.7; color: var(--deep-teal); white-space: pre-wrap; max-height: 250px; overflow-y: auto; }
+body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-align: right; }
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--sand); border-radius: 10px; }
+@media (max-width: 1100px) { .workspace { flex-direction: column; } .panel-left { max-width: 100%; border-right: none; border-bottom: 1px solid rgba(90,102,98,0.08); } .slide-canvas { transform: scale(0.85); } }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="app-container">
+<aside class="sidebar">
+  <div class="brand-mark" id="sbBrand">MR Living Capital</div>
+  <div class="brand-tagline" id="sbTagline">Living Proof. Lasting Legacy.</div>
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnEn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" id="btnFa" onclick="setLang('fa')">فارسی</button>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label" id="navBuild">Build Slide</div>
+    <button class="nav-btn active" onclick="showTab('cover')" id="navCover">Cover Slide</button>
+    <button class="nav-btn" onclick="showTab('data')" id="navData">Data + Features</button>
+    <button class="nav-btn" onclick="showTab('feature')" id="navFeature">Feature + Stats</button>
+    <button class="nav-btn" onclick="showTab('copy')" id="navCopy">Copy Generator</button>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label" id="navBrain">Brain</div>
+    <button class="nav-btn" onclick="showTab('scenario')" id="navScenario">Scenario Analyzer</button>
+    <button class="nav-btn" onclick="showTab('corridor')" id="navCorridor">Corridor Compare</button>
+    <button class="nav-btn" onclick="showTab('redflag')" id="navRedflag">Red Flag Detector</button>
+  </div>
+  <div style="margin-top:auto; font-family:var(--font-ui); font-size:0.55rem; color:var(--sand); text-align:center; padding-top:16px;" id="versionText">War Room Engine v2.0<br>Locked Brand System</div>
+</aside>
+<main class="main-content">
+  <div class="top-bar">
+    <div class="page-title" id="pageTitle">Cover Slide</div>
+    <div class="top-actions">
+      <button class="btn btn-secondary" onclick="resetForm()" id="btnReset">Reset</button>
+      <button class="btn btn-primary" onclick="generateSlide()" id="btnGenerate">Generate</button>
+      <button class="btn btn-primary" onclick="exportSlide()" id="btnExport" style="display:none;">Export HTML</button>
+    </div>
+  </div>
+  <div class="workspace">
+    <div class="panel panel-left">
+      <div id="tab-cover" class="section active">
+        <div class="form-group"><label class="form-label" id="lblHeadline">Headline</label><input class="form-input" id="inHeadline" placeholder="WHY GLOBAL INVESTORS ARE WATCHING..."></div>
+        <div class="form-group"><label class="form-label" id="lblAccent">Accent Words (turquoise)</label><input class="form-input" id="inAccent" placeholder="ABU DHABI"></div>
+        <div class="form-group"><label class="form-label" id="lblSub">Subheadline</label><textarea class="form-textarea" id="inSub" placeholder="The next wave of growth isn't one project..."></textarea></div>
+        <div class="form-group"><label class="form-label" id="lblSubAccent">Accent Phrase in Subheadline</label><input class="form-input" id="inSubAccent" placeholder="government-backed strategy"></div>
+        <div class="form-group"><label class="form-label" id="lblImage">Image URL</label><input class="form-input" id="inImage" placeholder="https://... or leave blank for placeholder"></div>
+        <div class="form-group"><label class="form-label" id="lblPillars">4 Bottom Pillars (comma separated)</label><input class="form-input" id="inPillars" value="Government Vision,Global Connectivity,World-Class Infrastructure,Long-Term Value Creation"></div>
+      </div>
+      <div id="tab-data" class="section">
+        <div class="form-group"><label class="form-label">Headline</label><input class="form-input" id="inDataHeadline" placeholder="ABU DHABI IS INVESTING FOR DECADES, NOT YEARS."></div>
+        <div class="form-group"><label class="form-label">Accent Word</label><input class="form-input" id="inDataAccent" placeholder="DECADES,"></div>
+        <div class="form-group"><label class="form-label">Subheadline</label><textarea class="form-textarea" id="inDataSub" placeholder="A long-term vision backed by strong institutions..."></textarea></div>
+        <div class="form-group"><label class="form-label">Image URL</label><input class="form-input" id="inDataImage" placeholder="https://..."></div>
+        <div class="form-group"><label class="form-label">Feature 1: Title | Description</label><input class="form-input" id="inF1" placeholder="SOVEREIGN-BACKED GROWTH STRATEGY | Major developments are led by..."></div>
+        <div class="form-group"><label class="form-label">Feature 2: Title | Description</label><input class="form-input" id="inF2" placeholder="ADGM: A GLOBAL FINANCIAL CENTRE | ADGM continues to attract..."></div>
+        <div class="form-group"><label class="form-label">Feature 3: Title | Description</label><input class="form-input" id="inF3" placeholder="CONNECTIVITY THAT DRIVES OPPORTUNITY | Zayed International Airport..."></div>
+        <div class="form-group"><label class="form-label">Feature 4: Title | Description</label><input class="form-input" id="inF4" placeholder="INFRASTRUCTURE TODAY, VALUE TOMORROW | Massive investment in transport..."></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Stat 1: Number</label><input class="form-input" id="inS1Num" placeholder="AED 500B+"></div><div class="form-group"><label class="form-label">Stat 1: Label</label><input class="form-input" id="inS1Label" placeholder="Estimated value of economic diversification..."></div></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Stat 2: Number</label><input class="form-input" id="inS2Num" placeholder="180+"></div><div class="form-group"><label class="form-label">Stat 2: Label</label><input class="form-input" id="inS2Label" placeholder="Registered financial institutions in ADGM..."></div></div>
+        <div class="form-group"><label class="form-label">Quote Text</label><textarea class="form-textarea" id="inQuote" placeholder="These investments aren't short-term projects..."></textarea></div>
+        <div class="form-group"><label class="form-label">Quote Accent</label><input class="form-input" id="inQuoteAccent" placeholder="building the foundation for Abu Dhabi's next era of growth."></div>
+      </div>
+      <div id="tab-feature" class="section">
+        <div class="form-group"><label class="form-label">Headline</label><input class="form-input" id="inFeatHeadline" placeholder="WHY HUDAYRIYAT ISLAND IS GETTING GLOBAL ATTENTION"></div>
+        <div class="form-group"><label class="form-label">Accent Word</label><input class="form-input" id="inFeatAccent" placeholder="HUDAYRIYAT"></div>
+        <div class="form-group"><label class="form-label">Subheadline</label><textarea class="form-textarea" id="inFeatSub" placeholder="A unique island destination where lifestyle, wellness and investment potential come together..."></textarea></div>
+        <div class="form-group"><label class="form-label">Image URL</label><input class="form-input" id="inFeatImage" placeholder="https://..."></div>
+        <div class="form-group"><label class="form-label">Feature 1: Title | Description</label><input class="form-input" id="inFeatF1" placeholder="GOVERNMENT-BACKED MASTERPLAN | Developed by Modon, a key entity of ADQ..."></div>
+        <div class="form-group"><label class="form-label">Feature 2: Title | Description</label><input class="form-input" id="inFeatF2" placeholder="LOW-DENSITY ISLAND COMMUNITY | A rare combination of nature, open spaces..."></div>
+        <div class="form-group"><label class="form-label">Feature 3: Title | Description</label><input class="form-input" id="inFeatF3" placeholder="SPORTS & WELLNESS DESTINATION | Home to world-class facilities including golf..."></div>
+        <div class="form-group"><label class="form-label">Feature 4: Title | Description</label><input class="form-input" id="inFeatF4" placeholder="WATERFRONT LIFESTYLE WITH PHASED SUPPLY | Premium beachfront living with a carefully planned release..."></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Big Stat Number</label><input class="form-input" id="inBigNum" placeholder="AED 13B+"></div><div class="form-group"><label class="form-label">Big Stat Label</label><input class="form-input" id="inBigLabel" placeholder="in sales within days of launch..."></div></div>
+        <div class="form-group"><label class="form-label">Secondary Stat Label</label><input class="form-input" id="inSecStat" placeholder="SOLD OUT | Multiple Modon launches on Hudayriyat Island have sold out quickly..."></div>
+        <div class="form-group"><label class="form-label">Quote</label><textarea class="form-textarea" id="inFeatQuote" placeholder="Great communities are built over time. Infrastructure comes first. Value follows."></textarea></div>
+      </div>
+      <div id="tab-copy" class="section">
+        <div class="form-group"><label class="form-label" id="lblPlatform">Platform</label><select class="form-select" id="cpPlatform"><option value="linkedin">LinkedIn Expanded Post</option><option value="instagram">Instagram Caption</option><option value="telegram">Telegram Brief</option></select></div>
+        <div class="form-group"><label class="form-label" id="lblTopic">Topic / Core Message</label><textarea class="form-textarea" id="cpTopic" placeholder="Describe the investment scenario or market insight..."></textarea></div>
+        <div class="form-group"><label class="form-label" id="lblTone">Tone</label><select class="form-select" id="cpTone"><option value="contrarian">Contrarian / Unpopular Opinion</option><option value="data-driven">Data-Driven / Institutional</option><option value="educational">Educational / Breakdown</option><option value="urgent">Urgent / Time-Sensitive</option></select></div>
+        <div class="form-group"><label class="form-label" id="lblData">Key Data Points (one per line)</label><textarea class="form-textarea" id="cpData" placeholder="JVC yield: 7.2%&#10;Dubai South yield: 5.1%&#10;Service charge: AED 18/sqft"></textarea></div>
+        <button class="btn btn-primary" onclick="generateCopy()" style="width:100%;" id="btnGenCopy">Generate Copy</button>
+      </div>
+      <div id="tab-scenario" class="section">
+        <div class="form-group"><label class="form-label">Scenario A — The Play</label><input class="form-input" id="scAName" placeholder="e.g. JVC Secondary 2BR"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Price (AED)</label><input class="form-input" id="scAPrice" placeholder="1,200,000"></div><div class="form-group"><label class="form-label">Yield %</label><input class="form-input" id="scAYield" placeholder="7.2"></div></div>
+        <div class="form-group"><label class="form-label">Scenario B — The Trap</label><input class="form-input" id="scBName" placeholder="e.g. Dubai South Off-Plan"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Price (AED)</label><input class="form-input" id="scBPrice" placeholder="950,000"></div><div class="form-group"><label class="form-label">Yield %</label><input class="form-input" id="scBYield" placeholder="5.1"></div></div>
+        <div class="form-group"><label class="form-label">Hidden Cost / Red Flag (B)</label><input class="form-input" id="scFlag" placeholder="5-year delivery, AED 18/sqft service charge"></div>
+        <div class="form-group"><label class="form-label">Your Personal Angle</label><textarea class="form-textarea" id="scAngle" placeholder="I walked away from this deal because..."></textarea></div>
+        <button class="btn btn-primary" onclick="runScenario()" style="width:100%;">Analyze & Generate</button>
+      </div>
+      <div id="tab-corridor" class="section">
+        <div class="form-group"><label class="form-label">Corridor 1</label><input class="form-input" id="cor1Name" value="Dubai"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Price/sqft</label><input class="form-input" id="cor1Price" value="1450"></div><div class="form-group"><label class="form-label">Yield %</label><input class="form-input" id="cor1Yield" value="6.8"></div></div>
+        <div class="form-group"><label class="form-label">Corridor 2</label><input class="form-input" id="cor2Name" value="Abu Dhabi"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Price/sqft</label><input class="form-input" id="cor2Price" value="1100"></div><div class="form-group"><label class="form-label">Yield %</label><input class="form-input" id="cor2Yield" value="7.5"></div></div>
+        <div class="form-group"><label class="form-label">Corridor 3</label><input class="form-input" id="cor3Name" value="RAK"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Price/sqft</label><input class="form-input" id="cor3Price" value="650"></div><div class="form-group"><label class="form-label">Yield %</label><input class="form-input" id="cor3Yield" value="8.9"></div></div>
+        <button class="btn btn-primary" onclick="runCorridor()" style="width:100%;">Compare & Generate</button>
+      </div>
+      <div id="tab-redflag" class="section">
+        <div class="form-group"><label class="form-label">Developer</label><input class="form-input" id="rfDev" placeholder="XYZ Developers"></div>
+        <div class="form-group"><label class="form-label">Project</label><input class="form-input" id="rfProject" placeholder="The Residences"></div>
+        <div class="form-row"><div class="form-group"><label class="form-label">Escrow Verified?</label><select class="form-select" id="rfEscrow"><option value="yes">Yes</option><option value="no">No</option><option value="partial">Partial</option></select></div><div class="form-group"><label class="form-label">Track Record</label><select class="form-select" id="rfTrack"><option value="solid">Solid</option><option value="mixed">Mixed</option><option value="poor">Poor</option><option value="new">New</option></select></div></div>
+        <div class="form-group"><label class="form-label">Service Charge (AED/sqft)</label><input class="form-input" id="rfService" placeholder="18"></div>
+        <div class="form-group"><label class="form-label">Other Red Flags</label><textarea class="form-textarea" id="rfFlags"></textarea></div>
+        <button class="btn btn-primary" onclick="runRedFlag()" style="width:100%;">Run Checklist</button>
+      </div>
+    </div>
+    <div class="panel panel-right">
+      <div class="preview-wrap">
+        <div class="slide-canvas" id="slideCanvas"></div>
+        <div class="copy-output" id="copyOutput" style="display:none;">
+          <div class="copy-tabs">
+            <button class="copy-tab active" onclick="showCopy('linkedin')">LinkedIn</button>
+            <button class="copy-tab" onclick="showCopy('instagram')">Instagram</button>
+            <button class="copy-tab" onclick="showCopy('telegram')">Telegram</button>
+          </div>
+          <div class="copy-text" id="copyText"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+</div>
+<script>
+const I18N = {
+  en: {
+    sbBrand: 'MR Living Capital', sbTagline: 'Living Proof. Lasting Legacy.',
+    navBuild: 'Build Slide', navBrain: 'Brain',
+    navCover: 'Cover Slide', navData: 'Data + Features', navFeature: 'Feature + Stats', navCopy: 'Copy Generator',
+    navScenario: 'Scenario Analyzer', navCorridor: 'Corridor Compare', navRedflag: 'Red Flag Detector',
+    versionText: 'War Room Engine v2.0<br>Locked Brand System',
+    btnReset: 'Reset', btnGenerate: 'Generate', btnExport: 'Export HTML', btnGenCopy: 'Generate Copy',
+    lblHeadline: 'Headline', lblAccent: 'Accent Words (turquoise)', lblSub: 'Subheadline', lblSubAccent: 'Accent Phrase in Subheadline',
+    lblImage: 'Image URL', lblPillars: '4 Bottom Pillars (comma separated)',
+    lblPlatform: 'Platform', lblTopic: 'Topic / Core Message', lblTone: 'Tone', lblData: 'Key Data Points (one per line)',
+    pageCover: 'Cover Slide', pageData: 'Data + Features Slide', pageFeature: 'Feature + Stats Slide',
+    pageCopy: 'Copy Generator', pageScenario: 'Scenario Analyzer', pageCorridor: 'Corridor Compare', pageRedflag: 'Red Flag Detector'
+  },
+  fa: {
+    sbBrand: 'ام آر لیوینگ کپیتال', sbTagline: 'اثبات زنده. میراث ماندگار.',
+    navBuild: 'ساخت اسلاید', navBrain: 'مغز متفکر',
+    navCover: 'اسلاید جلد', navData: 'داده + ویژگی‌ها', navFeature: 'ویژگی + آمار', navCopy: 'تولید کپشن',
+    navScenario: 'تحلیل سناریو', navCorridor: 'مقایسه کریدورها', navRedflag: 'شناسایی پرچم قرمز',
+    versionText: 'موتور جنگ v2.0<br>سیستم برند قفل‌شده',
+    btnReset: 'ریست', btnGenerate: 'تولید', btnExport: 'خروجی HTML', btnGenCopy: 'تولید کپشن',
+    lblHeadline: 'تیتر اصلی', lblAccent: 'کلمات برجسته (فیروزه‌ای)', lblSub: 'زیرتیتر', lblSubAccent: 'عبارت برجسته در زیرتیتر',
+    lblImage: 'آدرس تصویر', lblPillars: '۴ ستون پایینی (با کاما جدا کنید)',
+    lblPlatform: 'پلتفرم', lblTopic: 'موضوع / پیام اصلی', lblTone: 'لحن', lblData: 'نقاط داده کلیدی (هر خط یکی)',
+    pageCover: 'اسلاید جلد', pageData: 'اسلاید داده + ویژگی‌ها', pageFeature: 'اسلاید ویژگی + آمار',
+    pageCopy: 'تولید کپشن', pageScenario: 'تحلیل سناریو', pageCorridor: 'مقایسه کریدورها', pageRedflag: 'شناسایی پرچم قرمز'
+  }
+};
+let LANG = 'en';
+let currentTab = 'cover';
+function setLang(l) {
+  LANG = l;
+  document.body.classList.toggle('fa-mode', l === 'fa');
+  document.getElementById('btnEn').classList.toggle('active', l === 'en');
+  document.getElementById('btnFa').classList.toggle('active', l === 'fa');
+  const t = I18N[l];
+  for (const [key, val] of Object.entries(t)) { const el = document.getElementById(key); if (el) el.innerHTML = val; }
+  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
+  if (tabTitles[currentTab]) document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[currentTab]];
+  generateSlide();
+}
+function showTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
+  if (tabTitles[tab]) document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[tab]];
+  document.getElementById('slideCanvas').style.display = tab === 'copy' ? 'none' : 'block';
+  document.getElementById('copyOutput').style.display = tab === 'copy' ? 'block' : 'none';
+  document.getElementById('btnExport').style.display = tab === 'copy' ? 'none' : 'inline-block';
+  if (tab !== 'copy') generateSlide();
+}
+const ICONS = {
+  gov: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L2 9h20L12 3z"/><path d="M4 9v10h16V9"/><path d="M9 21V13h6v8"/></svg>',
+  globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20"/></svg>',
+  bridge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18h16"/><path d="M4 14c4-4 12-4 16 0"/><path d="M8 14v4"/><path d="M16 14v4"/><path d="M12 12v6"/></svg>',
+  chart: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>',
+  shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>',
+  palm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22V12"/><path d="M12 12c-3-4-8-4-10 0 2-1 6-1 10 0z"/><path d="M12 10c3-5 8-5 10-1-2-1-6-1-10 1z"/><path d="M12 8c-1-4-5-5-8-3 2 0 5 1 8 3z"/></svg>',
+  dumbbell: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 5v14"/><path d="M18 5v14"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M6 8h12"/><path d="M6 16h12"/></svg>',
+  waves: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12c4-4 8 0 12-4s8 0 8 0"/><path d="M2 16c4-4 8 0 12-4s8 0 8 0"/></svg>',
+  plane: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12h20"/><path d="M13 2l4 10-4 10"/><path d="M17 12h3"/></svg>',
+  people: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3"/><circle cx="15" cy="8" r="3"/><path d="M4 18c0-3 3-5 5-5s5 2 5 5"/><path d="M16 18c0-3 2-5 4-5"/></svg>',
+  building: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M10 9h4"/><path d="M10 13h4"/></svg>',
+  default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>'
+};
+const PILLAR_ICONS = ['gov', 'globe', 'bridge', 'chart', 'shield', 'palm', 'dumbbell', 'waves', 'plane', 'people', 'building'];
+function getPlaceholderImage() { return 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%271350%27%3E%3Crect fill=%27%23D9CDB8%27 width=%27800%27 height=%271350%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 font-family=%27sans-serif%27 font-size=%2724%27 fill=%27%235A6662%27%3EUpload Image%3C/text%3E%3C/svg%3E'; }
+function renderCover() {
+  const headline = document.getElementById('inHeadline').value || (LANG==='fa' ? 'چرا سرمایه‌گذاران جهانی به این منطقه نگاه می‌کنند' : 'WHY GLOBAL INVESTORS ARE WATCHING');
+  const accent = document.getElementById('inAccent').value || (LANG==='fa' ? 'ابوظبی' : 'ABU DHABI');
+  const sub = document.getElementById('inSub').value || (LANG==='fa' ? 'موج بعدی رشد یک پروژه نیست. یک استراتژی کاملاً حمایت‌شده از سوی دولت است.' : "The next wave of growth isn't one project. It's an entire government-backed strategy.");
+  const subAccent = document.getElementById('inSubAccent').value || (LANG==='fa' ? 'استراتژی حمایت‌شده از سوی دولت' : 'government-backed strategy');
+  const img = document.getElementById('inImage').value || getPlaceholderImage();
+  const pillarsRaw = document.getElementById('inPillars').value || (LANG==='fa' ? 'چشم‌انداز دولت,ارتباطات جهانی,زیرساخت‌های جهانی,ایجاد ارزش بلندمدت' : 'Government Vision,Global Connectivity,World-Class Infrastructure,Long-Term Value Creation');
+  const pillars = pillarsRaw.split(',').map(s => s.trim()).slice(0,4);
+  const subHtml = sub.replace(subAccent, '<span class="accent">' + subAccent + '</span>');
+  let pillarsHtml = '';
+  pillars.forEach((p, i) => { const iconKey = PILLAR_ICONS[i % PILLAR_ICONS.length]; pillarsHtml += '<div class="pillar"><div class="pillar-icon">' + ICONS[iconKey] + '</div><div class="pillar-label">' + p + '</div></div>'; });
+  document.getElementById('slideCanvas').innerHTML = '<div class="cover-slide" style="width:100%;height:100%;position:relative;"><div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div><div class="slide-content"><div class="cover-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="cover-line"></div><div class="cover-sub">' + subHtml + '</div></div><div class="cover-pillars">' + pillarsHtml + '</div><div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div><svg class="slide-ribbon" viewBox="0 0 432 18" preserveAspectRatio="none"><path d="M0,9 Q108,0 216,9 T432,9" fill="none" stroke="#D9CDB8" stroke-width="1.5" opacity="0.4"/><path d="M0,12 Q108,3 216,12 T432,12" fill="none" stroke="#0F6B62" stroke-width="1" opacity="0.25"/></svg><div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+}
+function renderData() {
+  const headline = document.getElementById('inDataHeadline').value || (LANG==='fa' ? 'ابوظبی برای دهه‌ها سرمایه‌گذاری می‌کند، نه سال‌ها.' : 'ABU DHABI IS INVESTING FOR DECADES, NOT YEARS.');
+  const accent = document.getElementById('inDataAccent').value || (LANG==='fa' ? 'دهه‌ها،' : 'DECADES,');
+  const sub = document.getElementById('inDataSub').value || (LANG==='fa' ? 'چشم‌انداز بلندمدت با حمایت نهادهای قوی، زیرساخت‌های جهانی و ارتباطات جهانی.' : 'A long-term vision backed by strong institutions, world-class infrastructure and global connectivity.');
+  const img = document.getElementById('inDataImage').value || getPlaceholderImage();
+  const features = [];
+  for (let i = 1; i <= 4; i++) {
+    const raw = document.getElementById('inF' + i).value;
+    if (raw) { const parts = raw.split('|').map(s => s.trim()); features.push({title: parts[0] || '', desc: parts[1] || ''}); }
+    else {
+      const defaults = LANG==='fa' ? [
+        'استراتژی رشد حمایت‌شده از سوی دولت | توسعه‌های بزرگ توسط نهادهای حمایت‌شده از سوی دولت مانند مودون هدایت می‌شود.',
+        'ADGM: یک مرکز مالی جهانی | ADGM به جذب موسسات مالی جهانی ادامه می‌دهد.',
+        'ارتباطی که فرصت ایجاد می‌کند | توسعه فرودگاه بین‌المللی زاید موقعیت ابوظبی را تقویت می‌کند.',
+        'زیرساخت امروز، ارزش فردا | سرمایه‌گذاری عظیم در حمل‌ونقل، گردشگری و بهداشت.'
+      ] : [
+        'SOVEREIGN-BACKED GROWTH STRATEGY | Major developments are led by government-backed entities like Modon.',
+        'ADGM: A GLOBAL FINANCIAL CENTRE | ADGM continues to attract global financial institutions and fintech firms.',
+        'CONNECTIVITY THAT DRIVES OPPORTUNITY | Zayed International Airport expansion strengthens Abu Dhabi's position.',
+        'INFRASTRUCTURE TODAY, VALUE TOMORROW | Massive investment in transport, utilities, tourism, healthcare and education.'
+      ];
+      const parts = defaults[i-1].split('|').map(s => s.trim()); features.push({title: parts[0], desc: parts[1]});
+    }
+  }
+  const stats = [];
+  for (let i = 1; i <= 2; i++) { const num = document.getElementById('inS' + i + 'Num').value; const label = document.getElementById('inS' + i + 'Label').value; if (num && label) stats.push({num, label}); }
+  if (stats.length === 0) {
+    stats.push(
+      {num: LANG==='fa'?'AED 500B+':'AED 500B+', label: LANG==='fa'?'ارزش تخمینی برنامه‌های تنوع اقتصادی تا ۲۰۳۰.':'Estimated value of economic diversification programmes across sectors by 2030.'},
+      {num: LANG==='fa'?'180+':'180+', label: LANG==='fa'?'موسسات مالی ثبت‌شده در ADGM با حضور جهانی رو به رشد.':'Registered financial institutions in ADGM with growing global presence.'}
+    );
+  }
+  const quote = document.getElementById('inQuote').value || (LANG==='fa' ? 'این سرمایه‌گذاری‌ها پروژه‌های کوتاه‌مدت نیستند. آنها در حال ساختن بنیان برای دوران بعدی رشد ابوظبی هستند.' : "These investments aren't short-term projects. They are building the foundation for Abu Dhabi's next era of growth.");
+  const quoteAccent = document.getElementById('inQuoteAccent').value || (LANG==='fa' ? 'ساختن بنیان برای دوران بعدی رشد ابوظبی.' : "building the foundation for Abu Dhabi's next era of growth.");
+  const quoteHtml = quote.replace(quoteAccent, '<span class="accent">' + quoteAccent + '</span>');
+  let featuresHtml = '';
+  features.forEach((f, i) => { const iconKey = PILLAR_ICONS[i % PILLAR_ICONS.length]; featuresHtml += '<div class="feature-item"><div class="feature-icon">' + ICONS[iconKey] + '</div><div class="feature-text"><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div></div>'; });
+  let statsHtml = '';
+  stats.forEach(s => { statsHtml += '<div class="stat-item"><div class="stat-number">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>'; });
+  document.getElementById('slideCanvas').innerHTML = '<div class="data-slide" style="width:100%;height:100%;position:relative;"><div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div><div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div><div class="stats-col">' + statsHtml + '</div><div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div><div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">' + quoteHtml + '</div></div><div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+}
+function renderFeature() {
+  const headline = document.getElementById('inFeatHeadline').value || (LANG==='fa' ? 'چرا جزیره هدایریات توجه جهانی را جلب کرده است' : 'WHY HUDAYRIYAT ISLAND IS GETTING GLOBAL ATTENTION');
+  const accent = document.getElementById('inFeatAccent').value || (LANG==='fa' ? 'هدایریات' : 'HUDAYRIYAT');
+  const sub = document.getElementById('inFeatSub').value || (LANG==='fa' ? 'یک مقصد منحصربه‌فرد جزیره‌ای که سبک زندگی، سلامتی و پتانسیل سرمایه‌گذاری در یک طرح جامع حمایت‌شده از سوی دولت گرد هم آمده‌اند.' : 'A unique island destination where lifestyle, wellness and investment potential come together in a government-backed masterplan.');
+  const img = document.getElementById('inFeatImage').value || getPlaceholderImage();
+  const features = [];
+  for (let i = 1; i <= 4; i++) {
+    const raw = document.getElementById('inFeatF' + i).value;
+    if (raw) { const parts = raw.split('|').map(s => s.trim()); features.push({title: parts[0] || '', desc: parts[1] || ''}); }
+    else {
+      const defaults = LANG==='fa' ? [
+        'طرح جامع حمایت‌شده از سوی دولت | توسعه‌یافته توسط مودون، نهاد کلیدی ADQ، تضمین‌کننده چشم‌انداز بلندمدت.',
+        'جامعه جزیره‌ای کم‌تراکم | ترکیبی نادر از طبیعت، فضاهای باز و حریم خصوصی.',
+        'مقصد ورزش و سلامتی | میزبان امکانات جهانی شامل گلف، دوچرخه‌سواری و ورزش‌های آبی.',
+        'سبک زندگی ساحلی با عرضه فازی | زندگی ساحلی برتر با عرضه برنامه‌ریزی‌شده جامعه‌ها.'
+      ] : [
+        'GOVERNMENT-BACKED MASTERPLAN | Developed by Modon, a key entity of ADQ, ensuring long-term vision, quality and sustainable growth.',
+        'LOW-DENSITY ISLAND COMMUNITY | A rare combination of nature, open spaces and privacy just minutes from the heart of Abu Dhabi.',
+        'SPORTS & WELLNESS DESTINATION | Home to world-class facilities including golf, cycling, water sports and wellness experiences.',
+        'WATERFRONT LIFESTYLE WITH PHASED SUPPLY | Premium beachfront living with a carefully planned release of communities to protect long-term value.'
+      ];
+      const parts = defaults[i-1].split('|').map(s => s.trim()); features.push({title: parts[0], desc: parts[1]});
+    }
+  }
+  const bigNum = document.getElementById('inBigNum').value || (LANG==='fa'?'AED 13B+':'AED 13B+');
+  const bigLabel = document.getElementById('inBigLabel').value || (LANG==='fa'?'در فروش ظرف چند روز از عرضه هدایریات گلف استیتس — یک رکورد اماراتی*':'in sales within days of launch for Hudayriyat Golf Estates – a UAE record*');
+  const secStat = document.getElementById('inSecStat').value || (LANG==='fa'?'SOLD OUT | چندین عرضه مودون در جزیره هدایریات به سرعت فروش رفته، نشان‌دهنده تقاضای قوی سرمایه‌گذاران و کاربران نهایی.':'SOLD OUT | Multiple Modon launches on Hudayriyat Island have sold out quickly, reflecting strong end-user and investor demand.');
+  const quote = document.getElementById('inFeatQuote').value || (LANG==='fa'?'جوامع بزرگ در طول زمان ساخته می‌شوند. زیرساخت اول می‌آید. ارزش دنبال می‌کند.':'Great communities are built over time. Infrastructure comes first. Value follows.');
+  let featuresHtml = '';
+  features.forEach((f, i) => { const iconKey = PILLAR_ICONS[(i+4) % PILLAR_ICONS.length]; featuresHtml += '<div class="feature-item"><div class="feature-icon">' + ICONS[iconKey] + '</div><div class="feature-text"><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div></div>'; });
+  const secParts = secStat.split('|').map(s => s.trim());
+  const secTitle = secParts[0] || 'SOLD OUT';
+  const secDesc = secParts[1] || secStat;
+  document.getElementById('slideCanvas').innerHTML = '<div class="data-slide" style="width:100%;height:100%;position:relative;"><div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div><div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div><div class="stats-box"><div class="stat-number">' + bigNum + '</div><div class="stat-label">' + bigLabel + '</div><div style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(15,107,98,0.1);"><div class="stat-number" style="font-size:0.85rem;">' + secTitle + '</div><div class="stat-label">' + secDesc + '</div></div></div><div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div><div class="quote-block" style="bottom:64px;"><div class="quote-mark">"</div><div class="quote-text">' + quote + '</div></div><div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+}
+function generateSlide() { if (currentTab === 'cover') renderCover(); else if (currentTab === 'data') renderData(); else if (currentTab === 'feature') renderFeature(); }
+function resetForm() { document.querySelectorAll('.form-input, .form-textarea').forEach(i => i.value = ''); generateSlide(); }
+const BRAIN = {
+  en: {
+    hooks: {
+      contrarian: ['Unpopular opinion:', 'I refuse to believe that', 'Here is what the brochure will not tell you:', 'Most investors are getting this wrong.'],
+      'data-driven': ['The numbers do not lie.', 'DLD data confirms:', 'Let the transaction data speak:', 'Here is the yield gap no one is talking about:'],
+      educational: ['Most investors miss this:', 'Here is the breakdown:', 'If you understand this one metric, you are ahead of 90% of buyers:', 'The hidden cost most agents never disclose:'],
+      urgent: ['Time-sensitive:', 'This window is closing.', 'Smart money is already moving:', 'If you are waiting for the "perfect time" — you already missed it.']
+    },
+    ctas: [
+      "What's your take — would you have walked away from this deal?",
+      "Have you ever discovered a hidden cost that changed your entire calculation?",
+      "Which corridor are you watching closest right now — and why?",
+      "Is yield alone enough, or do you need the full cost picture before you move?",
+      "Would you buy off-plan from a developer with no delivery track record?",
+      "Drop a 🎯 if you believe data beats gut feeling in real estate."
+    ],
+    bottomLine: (a, b) => `At ${a.yield}% yield, ${a.name} preserves capital better than ${b.name} at ${b.yield}%. The gap is not noise — it is the margin of safety.`,
+    corridorBL: (winner) => `${winner.name} offers the best risk-adjusted return. Price and yield are not the only metrics — but they are the only ones that do not lie.`,
+    redflagBL: (verdict) => verdict === 'WALK AWAY' ? 'No commission is worth a failed handover. I refuse to put my name behind this.' : 'Due diligence is not paranoia. It is the price of admission for serious capital.'
+  },
+  fa: {
+    hooks: {
+      contrarian: ['نظر غیرمعمول:', 'من قبول ندارم که', 'این چیزی است که بروشور به شما نمی‌گوید:', 'اکثر سرمایه‌گذاران در این مورد اشتباه می‌کنند.'],
+      'data-driven': ['اعداد دروغ نمی‌گویند.', 'داده‌های DLD تأیید می‌کند:', 'اجازه دهید داده‌های معامله صحبت کنند:', 'این شکاف بازدهی است که هیچ‌کس درباره‌اش صحبت نمی‌کند:'],
+      educational: ['اکثر سرمایه‌گذاران این را از دست می‌دهند:', 'این تحلیل تفکیکی است:', 'اگر این یک معیار را درک کنید، از ۹۰٪ خریداران جلوتر هستید:', 'هزینه پنهانی که اکثر مشاوران هرگز افشا نمی‌کنند:'],
+      urgent: ['حساس به زمان:', 'این پنجره در حال بسته شدن است.', 'سرمایه هوشمند از قبل در حال حرکت است:', 'اگر منتظر "بهترین زمان" هستید — از قبل آن را از دست داده‌اید.']
+    },
+    ctas: [
+      "نظر شما چیست — آیا شما از این معامله کناره‌گیری می‌کردید؟",
+      "آیا تابه‌حال هزینه پنهانی کشف کرده‌اید که کل محاسبه شما را تغییر دهد؟",
+      "کدام کریدور را بیشتر از همه زیر نظر دارید — و چرا؟",
+      "آیا بازده به تنهایی کافی است، یا قبل از حرکت به تصویر کامل هزینه نیاز دارید؟",
+      "آیا از یک توسعه‌دهنده بدون سابقه تحویل، پیش‌فروش می‌خرید؟",
+      "اگر معتقدید داده‌ها در املاک از احساسات پیشی می‌گیرند، 🎯 بگذارید."
+    ],
+    bottomLine: (a, b) => `با بازده ${a.yield}٪، ${a.name} سرمایه را بهتر از ${b.name} با بازده ${b.yield}٪ حفظ می‌کند. این شکاف نویز نیست — حاشیه امنیت است.`,
+    corridorBL: (winner) => `${winner.name} بهترین بازده تنظیم‌شده با ریسک را ارائه می‌دهد. قیمت و بازده تنها معیارها نیستند — اما تنها معیارهایی هستند که دروغ نمی‌گویند.`,
+    redflagBL: (verdict) => verdict === 'WALK AWAY' ? 'هیچ کارمزدی ارزش یک تحویل ناموفق را ندارد. من نامم را پشت این پروژه نمی‌گذارم.' : 'بررسی دقیق پارانویا نیست. قیمت ورود برای سرمایه جدی است.'
+  }
+};
+function runScenario() {
+  const aName = document.getElementById('scAName').value || 'JVC Secondary';
+  const aPrice = document.getElementById('scAPrice').value || '1,200,000';
+  const aYield = document.getElementById('scAYield').value || '7.2';
+  const bName = document.getElementById('scBName').value || 'Dubai South Off-Plan';
+  const bPrice = document.getElementById('scBPrice').value || '950,000';
+  const bYield = document.getElementById('scBYield').value || '5.1';
+  const flag = document.getElementById('scFlag').value || (LANG==='fa'?'تحویل ۵ ساله، شارژ سرویس AED ۱۸/فوت مربع':'5-year delivery, AED 18/sqft service charge');
+  const angle = document.getElementById('scAngle').value;
+  const b = BRAIN[LANG];
+  const hook = b.hooks.contrarian[0];
+  const diff = ((parseFloat(aYield) - parseFloat(bYield)) / parseFloat(bYield) * 100).toFixed(0);
+  const body = hook + '
+
+' + (LANG==='fa'?'اکثر سرمایه‌گذاران در حال تعقیب':'Most investors are chasing') + ' ' + bName + ' ' + (LANG==='fa'?'هستند چون قیمت ورودی جذاب به نظر می‌رسد':'because the entry price looks attractive') + ' ' + (aPrice ? 'AED ' + bPrice : '') + '. ' + (LANG==='fa'?'این چیزی است که بروشور به شما نمی‌گوید:':'Here is what the brochure will not tell you:') + '
+
+' + (flag ? ((LANG==='fa'?'ساختار هزینه پنهان وحشتناک است: ':'The hidden cost structure is brutal: ') + flag + '.') : '') + '
+
+' + (angle || (LANG==='fa'?('من امتناع می‌کنم از مشاوره بر اساس احساسات. داده‌ها می‌گویند ' + aName + ' بازده ' + aYield + '٪ ارائه می‌دهد در مقابل ' + bYield + '٪ — آن هم قبل از اینکه شارژ سرویس و ریسک خالی بودن را محاسبه کنید.'):('I refuse to advise on emotion. The data says ' + aName + ' delivers ' + aYield + '% gross yield versus ' + bYield + '% — that is a ' + diff + '% advantage before service charges and vacancy risk.'))) + '
+
+' + (LANG==='fa'?'این درباره ترجیح نیست. درباره حفظ سرمایه است.':'This is not about preference. It is about capital preservation.');
+  const bl = b.bottomLine({name:aName, yield:aYield}, {name:bName, yield:bYield});
+  const cta = b.ctas[Math.floor(Math.random() * b.ctas.length)];
+  const fullText = body + '
+
+' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
+' + bl + '
+
+—
+
+' + cta + '
+
+' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
+' + (LANG==='fa'?'مشاور سرمایه‌گذاری | املاک دبی':'Investment Advisor | Dubai Real Estate') + '
+WhatsApp: +971 58 589 9112';
+  showCopyOutput(fullText);
+}
+function runCorridor() {
+  const corridors = [];
+  for (let i = 1; i <= 3; i++) {
+    const name = document.getElementById('cor' + i + 'Name').value;
+    const price = document.getElementById('cor' + i + 'Price').value;
+    const yieldVal = document.getElementById('cor' + i + 'Yield').value;
+    if (name) corridors.push({name, price, yield: yieldVal});
+  }
+  if (corridors.length < 2) return;
+  const b = BRAIN[LANG];
+  const sorted = [...corridors].sort((a, b) => parseFloat(b.yield) - parseFloat(a.yield));
+  const gap = (parseFloat(sorted[0].yield) - parseFloat(sorted[sorted.length-1].yield)).toFixed(1);
+  const body = (LANG==='fa'?'تحلیل کریدور جایی است که اکثر مشاوران متوقف می‌شوند و من شروع می‌کنم.':'Corridor analysis is where most agents stop and I start.') + '
+
+' + corridors.map(c => '• ' + c.name + ': AED ' + c.price + '/sqft — ' + c.yield + '% ' + (LANG==='fa'?'بازده ناخالص':'gross yield')).join('
+') + '
+
+' + (LANG==='fa'?('شکاف بین ' + sorted[0].name + ' و ' + sorted[sorted.length-1].name + ' ' + gap + ' درصد است. در تخصیص سرمایه ۳ میلیون درهمی، این شکاف در طول ۵ سال نگهداری به دلتای جدی تبدیل می‌شود.'):('The spread between ' + sorted[0].name + ' and ' + sorted[sorted.length-1].name + ' is ' + gap + ' percentage points. On a AED 3M allocation, that gap compounds to serious delta over a 5-year hold.')) + '
+
+' + (LANG==='fa'?'سرمایه هوشمند از جمعیت پیروی نمی‌کند. از شکاف بازدهی پس از تنظیم ریسک پیروی می‌کند.':'Smart money does not follow the crowd. It follows the yield gap after adjusting for risk.');
+  const bl = b.corridorBL(sorted[0]);
+  const cta = b.ctas[2];
+  const fullText = body + '
+
+' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
+' + bl + '
+
+—
+
+' + cta + '
+
+' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
+WhatsApp: +971 58 589 9112';
+  showCopyOutput(fullText);
+}
+function runRedFlag() {
+  const dev = document.getElementById('rfDev').value || 'Unknown';
+  const project = document.getElementById('rfProject').value || 'Unnamed';
+  const escrow = document.getElementById('rfEscrow').value;
+  const track = document.getElementById('rfTrack').value;
+  const service = document.getElementById('rfService').value || '0';
+  const flags = document.getElementById('rfFlags').value;
+  let riskScore = 0;
+  let warnings = [];
+  if (escrow === 'no') { riskScore += 3; warnings.push(LANG==='fa'?'بدون اسکروی تأییدشده = سپرده شما غیرقابل ضمانت است':'No verified escrow = your deposit is unsecured'); }
+  if (escrow === 'partial') { riskScore += 2; warnings.push(LANG==='fa'?'ثبت اسکروی جزئی شناسایی شد':'Partial escrow registration detected'); }
+  if (track === 'poor') { riskScore += 3; warnings.push(LANG==='fa'?'توسعه‌دهنده تحویل‌های قبلی را از دست داده است':'Developer has missed previous handovers'); }
+  if (track === 'new') { riskScore += 2; warnings.push(LANG==='fa'?'بدون سابقه تحویل — شما آزمایش هستید':'No delivery track record — you are the experiment'); }
+  if (parseFloat(service) > 18) { riskScore += 2; warnings.push((LANG==='fa'?('شارژ سرویس AED ' + service + '/فوت مربع بازده شما را نابود می‌کند'):('Service charge at AED ' + service + '/sqft will eat your yield alive'))); }
+  if (flags) { riskScore += 1; warnings.push(flags); }
+  const verdict = riskScore >= 6 ? 'WALK AWAY' : riskScore >= 3 ? 'PROCEED WITH CAUTION' : 'ACCEPTABLE RISK';
+  const verdictFa = riskScore >= 6 ? 'دور شوید' : riskScore >= 3 ? 'با احتیاط پیش بروید' : 'ریسک قابل قبول';
+  const v = LANG==='fa' ? verdictFa : verdict;
+  const b = BRAIN[LANG];
+  const body = (LANG==='fa'?'بررسی دقیق توسعه‌دهنده':'Developer Due Diligence') + ': ' + dev + ' — ' + project + '
+
+' + (LANG==='fa'?'امتیاز ارزیابی ریسک':'Risk Assessment Score') + ': ' + riskScore + '/10
+
+' + warnings.map(w => '• ' + w).join('
+') + '
+
+' + (LANG==='fa'?'رأی:':'Verdict:') + ' ' + v + '
+
+' + (riskScore >= 6 ? (LANG==='fa'?'برایم مهم نیست رندر چقدر زیبا به نظر برسد. حفظ سرمایه قبل از ترس از دست دادن فرصت است.':'I do not care how good the render looks. Capital preservation comes before FOMO.') : (LANG==='fa'?'اعداد تأیید می‌شوند، اما قبل از تعهد مستقلاً بررسی کنید.':'Numbers check out, but verify independently before committing.'));
+  const bl = b.redflagBL(verdict);
+  const cta = b.ctas[4];
+  const fullText = body + '
+
+' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
+' + bl + '
+
+—
+
+' + cta + '
+
+' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
+WhatsApp: +971 58 589 9112';
+  showCopyOutput(fullText);
+}
+function generateCopy() {
+  const platform = document.getElementById('cpPlatform').value;
+  const topic = document.getElementById('cpTopic').value || (LANG==='fa'?'تحلیل بازار املاک دبی':'Dubai real estate market analysis');
+  const tone = document.getElementById('cpTone').value;
+  const data = document.getElementById('cpData').value;
+  const b = BRAIN[LANG];
+  const hook = b.hooks[tone][Math.floor(Math.random() * b.hooks[tone].length)];
+  let text = hook + '
+
+' + topic;
+  if (data) text += '
+
+' + data;
+  text += '
+
+' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
+' + (LANG==='fa'?'هر ادعای اینجا با داده‌های تأییدشده پشتیبانی می‌شود. من بر اساس احساسات مشاوره نمی‌دهم. من سرمایه را طراحی می‌کنم.':'Every claim here is backed by verified data. I do not advise on emotion. I architect capital.');
+  if (platform === 'linkedin') {
+    text += '
+
+——
+
+' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
+' + (LANG==='fa'?'مشاور سرمایه‌گذاری | املاک دبی':'Investment Advisor | Dubai Real Estate') + '
+WhatsApp: +971 58 589 9112
+
+#LivingProofLastingLegacy #DubaiRealEstate #PropertyInvestment';
+  } else if (platform === 'instagram') {
+    text += '
+
+' + (LANG==='fa'?'برای تحلیل کامل اسلاید کنید →':'Swipe for the full breakdown →') + '
+
+' + (LANG==='fa'?'نتیجه‌گیری در اسلاید ۵.':'THE BOTTOM LINE in slide 5.') + '
+
+' + (LANG==='fa'?'برای تصمیم خرید بعدی خود ذخیره کنید.':'Save this for your next purchase decision.') + '
+
+—
+
+#DubaiRealEstate #PropertyInvestment #UAEProperty #LivingProofLastingLegacy';
+  } else {
+    text += '
+
+💬 ' + (LANG==='fa'?'واتس‌اپ برای گزارش کامل:':'WhatsApp for full brief:') + ' +971 58 589 9112';
+  }
+  showCopyOutput(text);
+}
+function showCopyOutput(text) {
+  document.getElementById('slideCanvas').style.display = 'none';
+  document.getElementById('copyOutput').style.display = 'block';
+  document.getElementById('btnExport').style.display = 'none';
+  showTab('copy');
+  document.getElementById('copyText').textContent = text;
+}
+function showCopy(platform) {
+  document.querySelectorAll('.copy-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+function exportSlide() {
+  const canvas = document.getElementById('slideCanvas');
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{margin:0;background:#e8e2d6;display:flex;justify-content:center;padding:40px;}.slide-box{width:1080px;height:1350px;background:#F6F1E7;position:relative;overflow:hidden;}' + document.querySelector('style').textContent.split('/*')[0] + '</style></head><body><div class="slide-box">' + canvas.innerHTML + '</div></body></html>';
+  const blob = new Blob([html], {type:'text/html'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'MRLC-Slide-' + currentTab + '-' + LANG + '.html';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+window.addEventListener('load', () => { generateSlide(); });
+</script>
+</body>
+</html>
