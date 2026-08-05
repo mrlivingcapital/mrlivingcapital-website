@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MR Living Capital — War Room Engine v2.0 (EN/FA)</title>
+<title>MR Living Capital — War Room Engine v2.1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Vazirmatn:wght@400;500;600;700;800;900&family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --ivory: #F6F1E7;
@@ -64,67 +64,87 @@ body::after { content: ''; position: fixed; bottom: -20%; right: -10%; width: 50
 .section.active { display: block; }
 .preview-wrap { display: flex; flex-direction: column; align-items: center; gap: 20px; width: 100%; }
 .slide-canvas { width: 432px; height: 540px; background: var(--ivory); position: relative; overflow: hidden; box-shadow: 0 24px 64px rgba(18,59,55,0.15), 0 6px 16px rgba(18,59,55,0.08); border-radius: 12px; transform-origin: top center; }
-.slide-header { position: absolute; top: 0; left: 0; right: 0; padding: 22px 36px 0; z-index: 10; text-align: center; }
-.slide-header-logo { font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--deep-teal); }
-.slide-header-line { width: 28px; height: 2px; background: var(--turquoise); margin: 5px auto 4px; border-radius: 2px; }
-.slide-header-tagline { font-family: var(--font-body); font-weight: 600; font-size: 0.48rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--turquoise); }
-.slide-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 0 36px 18px; z-index: 10; text-align: center; }
-.slide-footer-logo { font-family: var(--font-head); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--deep-teal); }
-.slide-footer-line { width: 28px; height: 2px; background: var(--turquoise); margin: 5px auto 4px; border-radius: 2px; }
-.slide-footer-tagline { font-family: var(--font-body); font-weight: 600; font-size: 0.48rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--turquoise); }
-.slide-ribbon { position: absolute; bottom: 58px; left: 0; right: 0; height: 18px; z-index: 5; pointer-events: none; opacity: 0.35; }
-.slide-image-wrap { position: absolute; top: 0; right: 0; width: 48%; height: 100%; z-index: 2; overflow: hidden; }
+.slide-header { position: absolute; top: 0; left: 0; right: 0; padding: 18px 32px 0; z-index: 10; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.slide-header-logo { font-family: var(--font-head); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--deep-teal); }
+.slide-header-line { width: 24px; height: 2px; background: var(--turquoise); margin: 4px auto 3px; border-radius: 2px; }
+.slide-header-tagline { font-family: var(--font-body); font-weight: 600; font-size: 0.44rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--turquoise); }
+.slide-footer { position: absolute; bottom: 0; left: 0; right: 0; padding: 0 32px 14px; z-index: 10; text-align: center; }
+.slide-footer-logo { font-family: var(--font-head); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--deep-teal); }
+.slide-footer-line { width: 24px; height: 2px; background: var(--turquoise); margin: 4px auto 3px; border-radius: 2px; }
+.slide-footer-tagline { font-family: var(--font-body); font-weight: 600; font-size: 0.44rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--turquoise); }
+.slide-footer-socials { display: flex; justify-content: center; gap: 14px; margin-top: 6px; align-items: center; }
+.social-icon { width: 14px; height: 14px; color: var(--slate); opacity: 0.6; }
+.social-handle { font-family: var(--font-ui); font-size: 0.4rem; color: var(--slate); letter-spacing: 0.08em; }
+.slide-ribbon { position: absolute; bottom: 52px; left: 0; right: 0; height: 28px; z-index: 5; pointer-events: none; }
+.slide-image-wrap { position: absolute; top: 0; right: 0; width: 50%; height: 100%; z-index: 2; overflow: hidden; }
 .slide-image-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.organic-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--ivory); clip-path: path('M0,0 C80,60 60,200 90,350 C120,500 70,700 100,900 C130,1100 60,1350 0,1350 L-100,1350 L-100,0 Z'); transform: scaleX(-1); transform-origin: left center; }
-.cover-slide .slide-content { position: absolute; top: 72px; left: 36px; right: 52%; z-index: 8; }
-.cover-slide .cover-headline { font-family: var(--font-head); font-weight: 700; font-size: 1.55rem; line-height: 1.15; color: var(--deep-teal); letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 10px; }
+.organic-mask { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: var(--ivory); clip-path: path('M0,0 C60,80 40,220 80,380 C110,540 50,720 90,920 C120,1120 50,1350 0,1350 L-120,1350 L-120,0 Z'); transform: scaleX(-1); transform-origin: left center; }
+.headshot-circle { position: absolute; top: 14px; width: 36px; height: 36px; border-radius: 50%; border: 2px solid var(--turquoise); overflow: hidden; z-index: 15; background: var(--sand); }
+.headshot-circle img { width: 100%; height: 100%; object-fit: cover; }
+.cover-slide .slide-content { position: absolute; top: 66px; left: 32px; right: 54%; z-index: 8; }
+.cover-slide .cover-headline { font-family: var(--font-head); font-weight: 700; font-size: 1.45rem; line-height: 1.12; color: var(--deep-teal); letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 8px; }
 .cover-slide .cover-headline .accent { color: var(--turquoise); font-family: var(--font-display); font-weight: 600; font-style: italic; text-transform: none; letter-spacing: 0; }
-.cover-slide .cover-line { width: 36px; height: 2.5px; background: var(--turquoise); border-radius: 2px; margin-bottom: 14px; }
-.cover-slide .cover-sub { font-family: var(--font-body); font-size: 0.62rem; line-height: 1.6; color: var(--slate); margin-bottom: 8px; }
+.cover-slide .cover-line { width: 32px; height: 2.5px; background: var(--turquoise); border-radius: 2px; margin-bottom: 12px; }
+.cover-slide .cover-sub { font-family: var(--font-body); font-size: 0.58rem; line-height: 1.55; color: var(--slate); margin-bottom: 6px; }
 .cover-slide .cover-sub .accent { color: var(--turquoise); font-weight: 600; }
-.cover-slide .cover-pillars { position: absolute; bottom: 64px; left: 36px; right: 52%; display: flex; justify-content: space-between; gap: 8px; z-index: 8; }
-.pillar { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 5px; }
-.pillar-icon { width: 32px; height: 32px; border-radius: 50%; border: 1.5px solid var(--turquoise); display: flex; align-items: center; justify-content: center; color: var(--turquoise); }
-.pillar-icon svg { width: 16px; height: 16px; }
-.pillar-label { font-family: var(--font-ui); font-size: 0.42rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--deep-teal); line-height: 1.3; }
-.data-slide .slide-content { position: absolute; top: 68px; left: 32px; right: 50%; bottom: 64px; z-index: 8; display: flex; flex-direction: column; }
-.data-slide .data-headline { font-family: var(--font-head); font-weight: 700; font-size: 1.15rem; line-height: 1.18; color: var(--deep-teal); letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 6px; }
+.cover-slide .cover-pillars { position: absolute; bottom: 58px; left: 32px; right: 54%; display: flex; justify-content: space-between; gap: 6px; z-index: 8; }
+.pillar { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 4px; }
+.pillar-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--turquoise); display: flex; align-items: center; justify-content: center; color: var(--turquoise); }
+.pillar-icon svg { width: 14px; height: 14px; }
+.pillar-label { font-family: var(--font-ui); font-size: 0.38rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--deep-teal); line-height: 1.25; }
+.data-slide .slide-content { position: absolute; top: 62px; left: 28px; right: 52%; bottom: 58px; z-index: 8; display: flex; flex-direction: column; }
+.data-slide .data-headline { font-family: var(--font-head); font-weight: 700; font-size: 1.05rem; line-height: 1.15; color: var(--deep-teal); letter-spacing: 0.01em; text-transform: uppercase; margin-bottom: 5px; }
 .data-slide .data-headline .accent { color: var(--turquoise); font-family: var(--font-display); font-weight: 600; font-style: italic; text-transform: none; letter-spacing: 0; }
-.data-slide .data-line { width: 32px; height: 2.5px; background: var(--turquoise); border-radius: 2px; margin-bottom: 10px; }
-.data-slide .data-sub { font-family: var(--font-body); font-size: 0.58rem; line-height: 1.55; color: var(--slate); margin-bottom: 14px; }
-.feature-list { display: flex; flex-direction: column; gap: 10px; flex: 1; overflow: hidden; }
-.feature-item { display: flex; gap: 10px; align-items: flex-start; }
-.feature-icon { width: 28px; height: 28px; border-radius: 50%; border: 1.2px solid var(--turquoise); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-.feature-icon svg { width: 14px; height: 14px; }
+.data-slide .data-line { width: 28px; height: 2.5px; background: var(--turquoise); border-radius: 2px; margin-bottom: 8px; }
+.data-slide .data-sub { font-family: var(--font-body); font-size: 0.52rem; line-height: 1.5; color: var(--slate); margin-bottom: 10px; }
+.feature-list { display: flex; flex-direction: column; gap: 8px; flex: 1; overflow: hidden; }
+.feature-item { display: flex; gap: 8px; align-items: flex-start; }
+.feature-icon { width: 24px; height: 24px; border-radius: 50%; border: 1.2px solid var(--turquoise); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+.feature-icon svg { width: 12px; height: 12px; }
 .feature-text { flex: 1; }
-.feature-title { font-family: var(--font-head); font-weight: 700; font-size: 0.56rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--turquoise); line-height: 1.3; margin-bottom: 2px; }
-.feature-desc { font-family: var(--font-body); font-size: 0.52rem; line-height: 1.45; color: var(--slate); }
-.stats-col { position: absolute; top: 68px; right: 52%; left: auto; width: 38%; z-index: 8; display: flex; flex-direction: column; gap: 10px; }
-.stat-item {}
-.stat-number { font-family: var(--font-head); font-weight: 700; font-size: 0.95rem; color: var(--turquoise); line-height: 1.1; }
-.stat-label { font-family: var(--font-body); font-size: 0.5rem; line-height: 1.4; color: var(--slate); margin-bottom: 2px; }
+.feature-title { font-family: var(--font-head); font-weight: 700; font-size: 0.5rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--turquoise); line-height: 1.25; margin-bottom: 1px; }
+.feature-desc { font-family: var(--font-body); font-size: 0.46rem; line-height: 1.4; color: var(--slate); }
+.stats-col { position: absolute; top: 62px; right: 52%; left: auto; width: 38%; z-index: 8; display: flex; flex-direction: column; gap: 8px; }
+.stat-number { font-family: var(--font-head); font-weight: 700; font-size: 0.85rem; color: var(--turquoise); line-height: 1.05; }
+.stat-label { font-family: var(--font-body); font-size: 0.44rem; line-height: 1.35; color: var(--slate); margin-bottom: 1px; }
 .stat-label strong { color: var(--deep-teal); font-weight: 600; }
-.stat-source { font-family: var(--font-ui); font-size: 0.4rem; color: var(--sand); letter-spacing: 0.05em; }
-.stats-box { position: absolute; top: 140px; right: 52%; width: 36%; background: rgba(15,107,98,0.04); border-radius: 12px; padding: 14px; z-index: 8; border: 1px solid rgba(15,107,98,0.08); }
-.stats-box .stat-number { font-size: 1.1rem; }
-.stats-box .stat-label { font-size: 0.52rem; }
-.quote-block { position: absolute; bottom: 66px; left: 32px; right: 52%; z-index: 8; display: flex; gap: 8px; align-items: flex-start; }
-.quote-mark { font-family: var(--font-display); font-size: 1.8rem; color: var(--turquoise); line-height: 1; margin-top: -6px; }
-.quote-text { font-family: var(--font-body); font-size: 0.58rem; line-height: 1.5; color: var(--slate); }
+.stat-source { font-family: var(--font-ui); font-size: 0.36rem; color: var(--sand); letter-spacing: 0.04em; margin-top: 2px; }
+.stats-box { position: absolute; top: 120px; right: 52%; width: 36%; background: rgba(15,107,98,0.04); border-radius: 10px; padding: 12px; z-index: 8; border: 1px solid rgba(15,107,98,0.08); }
+.stats-box .stat-number { font-size: 1rem; }
+.stats-box .stat-label { font-size: 0.46rem; }
+.quote-block { position: absolute; bottom: 58px; left: 28px; right: 52%; z-index: 8; display: flex; gap: 6px; align-items: flex-start; }
+.quote-mark { font-family: var(--font-display); font-size: 1.6rem; color: var(--turquoise); line-height: 1; margin-top: -4px; }
+.quote-text { font-family: var(--font-body); font-size: 0.52rem; line-height: 1.45; color: var(--slate); }
 .quote-text .accent { color: var(--turquoise); font-weight: 600; }
+.contact-slide .slide-content { position: absolute; top: 62px; left: 0; right: 0; bottom: 58px; z-index: 8; display: flex; flex-direction: column; align-items: center; padding: 0 40px; }
+.contact-slide .contact-headshot { width: 72px; height: 72px; border-radius: 50%; border: 2.5px solid var(--turquoise); overflow: hidden; margin-bottom: 14px; background: var(--sand); }
+.contact-slide .contact-headshot img { width: 100%; height: 100%; object-fit: cover; }
+.contact-slide .contact-name { font-family: var(--font-head); font-weight: 700; font-size: 0.9rem; color: var(--deep-teal); letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 2px; }
+.contact-slide .contact-title { font-family: var(--font-body); font-size: 0.5rem; color: var(--turquoise); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 16px; }
+.contact-slide .contact-divider { width: 40px; height: 2px; background: var(--turquoise); border-radius: 2px; margin-bottom: 16px; }
+.contact-slide .contact-cta { font-family: var(--font-body); font-size: 0.56rem; color: var(--slate); text-align: center; line-height: 1.5; margin-bottom: 20px; max-width: 80%; }
+.contact-slide .contact-cta .accent { color: var(--turquoise); font-weight: 600; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; width: 100%; max-width: 320px; }
+.contact-item { display: flex; align-items: center; gap: 8px; }
+.contact-item svg { width: 16px; height: 16px; color: var(--turquoise); flex-shrink: 0; }
+.contact-item-text { font-family: var(--font-ui); font-size: 0.44rem; color: var(--slate); letter-spacing: 0.04em; }
+.contact-item-text strong { color: var(--deep-teal); font-weight: 600; }
 body.fa-mode { font-family: var(--font-fa); }
-body.fa-mode .slide-header-logo, body.fa-mode .slide-footer-logo, body.fa-mode .cover-headline, body.fa-mode .data-headline, body.fa-mode .feature-title, body.fa-mode .stat-number, body.fa-mode .page-title, body.fa-mode .brand-mark { font-family: var(--font-fa); }
+body.fa-mode .slide-header-logo, body.fa-mode .slide-footer-logo, body.fa-mode .cover-headline, body.fa-mode .data-headline, body.fa-mode .feature-title, body.fa-mode .stat-number, body.fa-mode .page-title, body.fa-mode .brand-mark, body.fa-mode .contact-name { font-family: var(--font-fa); }
 body.fa-mode .cover-headline, body.fa-mode .data-headline { text-transform: none; letter-spacing: 0; line-height: 1.35; }
 body.fa-mode .feature-title { text-transform: none; letter-spacing: 0; }
-body.fa-mode .slide-header-tagline, body.fa-mode .slide-footer-tagline, body.fa-mode .brand-tagline, body.fa-mode .nav-label, body.fa-mode .form-label, body.fa-mode .pillar-label { font-family: var(--font-fa); letter-spacing: 0; }
+body.fa-mode .slide-header-tagline, body.fa-mode .slide-footer-tagline, body.fa-mode .brand-tagline, body.fa-mode .nav-label, body.fa-mode .form-label, body.fa-mode .pillar-label, body.fa-mode .contact-title { font-family: var(--font-fa); letter-spacing: 0; }
 body.fa-mode .form-input, body.fa-mode .form-textarea, body.fa-mode .form-select { font-family: var(--font-fa); }
-body.fa-mode .cover-slide .slide-content, body.fa-mode .data-slide .slide-content, body.fa-mode .quote-block { left: auto; right: 36px; }
-body.fa-mode .cover-slide .cover-pillars { left: auto; right: 36px; }
+body.fa-mode .cover-slide .slide-content, body.fa-mode .data-slide .slide-content, body.fa-mode .quote-block { left: auto; right: 32px; }
+body.fa-mode .cover-slide .cover-pillars { left: auto; right: 32px; }
 body.fa-mode .slide-image-wrap { right: auto; left: 0; }
 body.fa-mode .organic-mask { transform: scaleX(1); }
 body.fa-mode .stats-col, body.fa-mode .stats-box { right: auto; left: 52%; }
 body.fa-mode .feature-item { flex-direction: row-reverse; }
 body.fa-mode .quote-block { flex-direction: row-reverse; }
+body.fa-mode .headshot-circle { right: auto; left: 14px; }
+body.fa-mode .contact-grid { direction: rtl; }
+body.fa-mode .contact-item { flex-direction: row-reverse; }
 .copy-output { background: var(--white); border-radius: 12px; padding: 16px; margin-top: 12px; border: 1px solid rgba(90,102,98,0.08); width: 100%; max-width: 600px; }
 .copy-tabs { display: flex; gap: 6px; margin-bottom: 12px; }
 .copy-tab { padding: 5px 12px; border: none; background: transparent; font-family: var(--font-ui); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--slate); cursor: pointer; border-radius: 8px; transition: all 0.2s; }
@@ -152,6 +172,7 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
     <button class="nav-btn active" onclick="showTab('cover')" id="navCover">Cover Slide</button>
     <button class="nav-btn" onclick="showTab('data')" id="navData">Data + Features</button>
     <button class="nav-btn" onclick="showTab('feature')" id="navFeature">Feature + Stats</button>
+    <button class="nav-btn" onclick="showTab('contact')" id="navContact">Contact / Final</button>
     <button class="nav-btn" onclick="showTab('copy')" id="navCopy">Copy Generator</button>
   </div>
   <div class="nav-section">
@@ -160,7 +181,7 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
     <button class="nav-btn" onclick="showTab('corridor')" id="navCorridor">Corridor Compare</button>
     <button class="nav-btn" onclick="showTab('redflag')" id="navRedflag">Red Flag Detector</button>
   </div>
-  <div style="margin-top:auto; font-family:var(--font-ui); font-size:0.55rem; color:var(--sand); text-align:center; padding-top:16px;" id="versionText">War Room Engine v2.0<br>Locked Brand System</div>
+  <div style="margin-top:auto; font-family:var(--font-ui); font-size:0.55rem; color:var(--sand); text-align:center; padding-top:16px;" id="versionText">War Room Engine v2.1<br>Locked Brand System</div>
 </aside>
 <main class="main-content">
   <div class="top-bar">
@@ -179,13 +200,16 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
         <div class="form-group"><label class="form-label" id="lblSub">Subheadline</label><textarea class="form-textarea" id="inSub" placeholder="The next wave of growth isn't one project..."></textarea></div>
         <div class="form-group"><label class="form-label" id="lblSubAccent">Accent Phrase in Subheadline</label><input class="form-input" id="inSubAccent" placeholder="government-backed strategy"></div>
         <div class="form-group"><label class="form-label" id="lblImage">Image URL</label><input class="form-input" id="inImage" placeholder="https://... or leave blank for placeholder"></div>
+        <div class="form-group"><label class="form-label" id="lblHeadshot">Headshot URL (optional)</label><input class="form-input" id="inHeadshot" placeholder="https://... your profile photo"></div>
         <div class="form-group"><label class="form-label" id="lblPillars">4 Bottom Pillars (comma separated)</label><input class="form-input" id="inPillars" value="Government Vision,Global Connectivity,World-Class Infrastructure,Long-Term Value Creation"></div>
+        <div class="form-group"><label class="form-label">Show Socials in Footer?</label><select class="form-select" id="inShowSocials"><option value="yes">Yes</option><option value="no">No</option></select></div>
       </div>
       <div id="tab-data" class="section">
         <div class="form-group"><label class="form-label">Headline</label><input class="form-input" id="inDataHeadline" placeholder="ABU DHABI IS INVESTING FOR DECADES, NOT YEARS."></div>
         <div class="form-group"><label class="form-label">Accent Word</label><input class="form-input" id="inDataAccent" placeholder="DECADES,"></div>
         <div class="form-group"><label class="form-label">Subheadline</label><textarea class="form-textarea" id="inDataSub" placeholder="A long-term vision backed by strong institutions..."></textarea></div>
         <div class="form-group"><label class="form-label">Image URL</label><input class="form-input" id="inDataImage" placeholder="https://..."></div>
+        <div class="form-group"><label class="form-label">Headshot URL (optional)</label><input class="form-input" id="inDataHeadshot" placeholder="https://..."></div>
         <div class="form-group"><label class="form-label">Feature 1: Title | Description</label><input class="form-input" id="inF1" placeholder="SOVEREIGN-BACKED GROWTH STRATEGY | Major developments are led by..."></div>
         <div class="form-group"><label class="form-label">Feature 2: Title | Description</label><input class="form-input" id="inF2" placeholder="ADGM: A GLOBAL FINANCIAL CENTRE | ADGM continues to attract..."></div>
         <div class="form-group"><label class="form-label">Feature 3: Title | Description</label><input class="form-input" id="inF3" placeholder="CONNECTIVITY THAT DRIVES OPPORTUNITY | Zayed International Airport..."></div>
@@ -194,12 +218,14 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
         <div class="form-row"><div class="form-group"><label class="form-label">Stat 2: Number</label><input class="form-input" id="inS2Num" placeholder="180+"></div><div class="form-group"><label class="form-label">Stat 2: Label</label><input class="form-input" id="inS2Label" placeholder="Registered financial institutions in ADGM..."></div></div>
         <div class="form-group"><label class="form-label">Quote Text</label><textarea class="form-textarea" id="inQuote" placeholder="These investments aren't short-term projects..."></textarea></div>
         <div class="form-group"><label class="form-label">Quote Accent</label><input class="form-input" id="inQuoteAccent" placeholder="building the foundation for Abu Dhabi's next era of growth."></div>
+        <div class="form-group"><label class="form-label">Show Socials in Footer?</label><select class="form-select" id="inDataShowSocials"><option value="yes">Yes</option><option value="no">No</option></select></div>
       </div>
       <div id="tab-feature" class="section">
         <div class="form-group"><label class="form-label">Headline</label><input class="form-input" id="inFeatHeadline" placeholder="WHY HUDAYRIYAT ISLAND IS GETTING GLOBAL ATTENTION"></div>
         <div class="form-group"><label class="form-label">Accent Word</label><input class="form-input" id="inFeatAccent" placeholder="HUDAYRIYAT"></div>
         <div class="form-group"><label class="form-label">Subheadline</label><textarea class="form-textarea" id="inFeatSub" placeholder="A unique island destination where lifestyle, wellness and investment potential come together..."></textarea></div>
         <div class="form-group"><label class="form-label">Image URL</label><input class="form-input" id="inFeatImage" placeholder="https://..."></div>
+        <div class="form-group"><label class="form-label">Headshot URL (optional)</label><input class="form-input" id="inFeatHeadshot" placeholder="https://..."></div>
         <div class="form-group"><label class="form-label">Feature 1: Title | Description</label><input class="form-input" id="inFeatF1" placeholder="GOVERNMENT-BACKED MASTERPLAN | Developed by Modon, a key entity of ADQ..."></div>
         <div class="form-group"><label class="form-label">Feature 2: Title | Description</label><input class="form-input" id="inFeatF2" placeholder="LOW-DENSITY ISLAND COMMUNITY | A rare combination of nature, open spaces..."></div>
         <div class="form-group"><label class="form-label">Feature 3: Title | Description</label><input class="form-input" id="inFeatF3" placeholder="SPORTS & WELLNESS DESTINATION | Home to world-class facilities including golf..."></div>
@@ -207,6 +233,21 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
         <div class="form-row"><div class="form-group"><label class="form-label">Big Stat Number</label><input class="form-input" id="inBigNum" placeholder="AED 13B+"></div><div class="form-group"><label class="form-label">Big Stat Label</label><input class="form-input" id="inBigLabel" placeholder="in sales within days of launch..."></div></div>
         <div class="form-group"><label class="form-label">Secondary Stat Label</label><input class="form-input" id="inSecStat" placeholder="SOLD OUT | Multiple Modon launches on Hudayriyat Island have sold out quickly..."></div>
         <div class="form-group"><label class="form-label">Quote</label><textarea class="form-textarea" id="inFeatQuote" placeholder="Great communities are built over time. Infrastructure comes first. Value follows."></textarea></div>
+        <div class="form-group"><label class="form-label">Show Socials in Footer?</label><select class="form-select" id="inFeatShowSocials"><option value="yes">Yes</option><option value="no">No</option></select></div>
+      </div>
+      <div id="tab-contact" class="section">
+        <div class="form-group"><label class="form-label">Headshot URL</label><input class="form-input" id="inContactHeadshot" placeholder="https://... your profile photo"></div>
+        <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" id="inContactName" value="Masoud Rahemi" placeholder="Masoud Rahemi"></div>
+        <div class="form-group"><label class="form-label">Title / Role</label><input class="form-input" id="inContactTitle" value="Investment Advisor | Dubai Real Estate" placeholder="Investment Advisor | Dubai Real Estate"></div>
+        <div class="form-group"><label class="form-label">CTA Headline</label><input class="form-input" id="inContactCTA" placeholder="Ready to architect your capital?"></div>
+        <div class="form-group"><label class="form-label">CTA Body</label><textarea class="form-textarea" id="inContactBody" placeholder="Every portfolio starts with one conversation..."></textarea></div>
+        <div class="form-group"><label class="form-label">WhatsApp Number</label><input class="form-input" id="inContactWA" value="+971 58 589 9112" placeholder="+971 58 589 9112"></div>
+        <div class="form-group"><label class="form-label">Website</label><input class="form-input" id="inContactWeb" value="mrlivingcapital.com" placeholder="mrlivingcapital.com"></div>
+        <div class="form-group"><label class="form-label">Email</label><input class="form-input" id="inContactEmail" value="mrlivingcapital@gmail.com" placeholder="mrlivingcapital@gmail.com"></div>
+        <div class="form-group"><label class="form-label">Instagram Handle</label><input class="form-input" id="inContactIG" value="@mrlivingcapital" placeholder="@mrlivingcapital"></div>
+        <div class="form-group"><label class="form-label">TikTok Handle</label><input class="form-input" id="inContactTT" value="@mrlivingcapital" placeholder="@mrlivingcapital"></div>
+        <div class="form-group"><label class="form-label">LinkedIn URL</label><input class="form-input" id="inContactLI" value="linkedin.com/in/mrlivingcapital" placeholder="linkedin.com/in/mrlivingcapital"></div>
+        <div class="form-group"><label class="form-label">Telegram Handle</label><input class="form-input" id="inContactTG" value="@mrlivingcapital" placeholder="@mrlivingcapital"></div>
       </div>
       <div id="tab-copy" class="section">
         <div class="form-group"><label class="form-label" id="lblPlatform">Platform</label><select class="form-select" id="cpPlatform"><option value="linkedin">LinkedIn Expanded Post</option><option value="instagram">Instagram Caption</option><option value="telegram">Telegram Brief</option></select></div>
@@ -263,27 +304,27 @@ const I18N = {
   en: {
     sbBrand: 'MR Living Capital', sbTagline: 'Living Proof. Lasting Legacy.',
     navBuild: 'Build Slide', navBrain: 'Brain',
-    navCover: 'Cover Slide', navData: 'Data + Features', navFeature: 'Feature + Stats', navCopy: 'Copy Generator',
+    navCover: 'Cover Slide', navData: 'Data + Features', navFeature: 'Feature + Stats', navContact: 'Contact / Final', navCopy: 'Copy Generator',
     navScenario: 'Scenario Analyzer', navCorridor: 'Corridor Compare', navRedflag: 'Red Flag Detector',
-    versionText: 'War Room Engine v2.0<br>Locked Brand System',
+    versionText: 'War Room Engine v2.1<br>Locked Brand System',
     btnReset: 'Reset', btnGenerate: 'Generate', btnExport: 'Export HTML', btnGenCopy: 'Generate Copy',
     lblHeadline: 'Headline', lblAccent: 'Accent Words (turquoise)', lblSub: 'Subheadline', lblSubAccent: 'Accent Phrase in Subheadline',
-    lblImage: 'Image URL', lblPillars: '4 Bottom Pillars (comma separated)',
+    lblImage: 'Image URL', lblHeadshot: 'Headshot URL (optional)', lblPillars: '4 Bottom Pillars (comma separated)',
     lblPlatform: 'Platform', lblTopic: 'Topic / Core Message', lblTone: 'Tone', lblData: 'Key Data Points (one per line)',
-    pageCover: 'Cover Slide', pageData: 'Data + Features Slide', pageFeature: 'Feature + Stats Slide',
+    pageCover: 'Cover Slide', pageData: 'Data + Features Slide', pageFeature: 'Feature + Stats Slide', pageContact: 'Contact / Final Slide',
     pageCopy: 'Copy Generator', pageScenario: 'Scenario Analyzer', pageCorridor: 'Corridor Compare', pageRedflag: 'Red Flag Detector'
   },
   fa: {
     sbBrand: 'ام آر لیوینگ کپیتال', sbTagline: 'اثبات زنده. میراث ماندگار.',
     navBuild: 'ساخت اسلاید', navBrain: 'مغز متفکر',
-    navCover: 'اسلاید جلد', navData: 'داده + ویژگی‌ها', navFeature: 'ویژگی + آمار', navCopy: 'تولید کپشن',
+    navCover: 'اسلاید جلد', navData: 'داده + ویژگی‌ها', navFeature: 'ویژگی + آمار', navContact: 'تماس / صفحه پایانی', navCopy: 'تولید کپشن',
     navScenario: 'تحلیل سناریو', navCorridor: 'مقایسه کریدورها', navRedflag: 'شناسایی پرچم قرمز',
-    versionText: 'موتور جنگ v2.0<br>سیستم برند قفل‌شده',
+    versionText: 'موتور جنگ v2.1<br>سیستم برند قفل‌شده',
     btnReset: 'ریست', btnGenerate: 'تولید', btnExport: 'خروجی HTML', btnGenCopy: 'تولید کپشن',
     lblHeadline: 'تیتر اصلی', lblAccent: 'کلمات برجسته (فیروزه‌ای)', lblSub: 'زیرتیتر', lblSubAccent: 'عبارت برجسته در زیرتیتر',
-    lblImage: 'آدرس تصویر', lblPillars: '۴ ستون پایینی (با کاما جدا کنید)',
+    lblImage: 'آدرس تصویر', lblHeadshot: 'آدرس عکس پروفایل (اختیاری)', lblPillars: '۴ ستون پایینی (با کاما جدا کنید)',
     lblPlatform: 'پلتفرم', lblTopic: 'موضوع / پیام اصلی', lblTone: 'لحن', lblData: 'نقاط داده کلیدی (هر خط یکی)',
-    pageCover: 'اسلاید جلد', pageData: 'اسلاید داده + ویژگی‌ها', pageFeature: 'اسلاید ویژگی + آمار',
+    pageCover: 'اسلاید جلد', pageData: 'اسلاید داده + ویژگی‌ها', pageFeature: 'اسلاید ویژگی + آمار', pageContact: 'اسلاید تماس / پایانی',
     pageCopy: 'تولید کپشن', pageScenario: 'تحلیل سناریو', pageCorridor: 'مقایسه کریدورها', pageRedflag: 'شناسایی پرچم قرمز'
   }
 };
@@ -296,7 +337,7 @@ function setLang(l) {
   document.getElementById('btnFa').classList.toggle('active', l === 'fa');
   const t = I18N[l];
   for (const [key, val] of Object.entries(t)) { const el = document.getElementById(key); if (el) el.innerHTML = val; }
-  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
+  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', contact:'pageContact', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
   if (tabTitles[currentTab]) document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[currentTab]];
   generateSlide();
 }
@@ -306,7 +347,7 @@ function showTab(tab) {
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + tab).classList.add('active');
   event.target.classList.add('active');
-  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
+  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', contact:'pageContact', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
   if (tabTitles[tab]) document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[tab]];
   document.getElementById('slideCanvas').style.display = tab === 'copy' ? 'none' : 'block';
   document.getElementById('copyOutput').style.display = tab === 'copy' ? 'block' : 'none';
@@ -327,26 +368,54 @@ const ICONS = {
   building: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M10 9h4"/><path d="M10 13h4"/></svg>',
   default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>'
 };
+const SOCIAL_ICONS = {
+  ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>',
+  tt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.88-2.89 2.89 2.89 0 012.88-2.89c.3 0 .59.05.86.13V8.35a6.24 6.24 0 00-.86-.06A6.26 6.26 0 005.5 14.55a6.26 6.26 0 006.26 6.26 6.26 6.26 0 006.26-6.26V9.91a8.36 8.36 0 004.89 1.57V8.03a4.9 4.9 0 01-3.32-1.34z"/></svg>',
+  li: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+  tg: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>',
+  wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>',
+  web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20"/></svg>'
+};
 const PILLAR_ICONS = ['gov', 'globe', 'bridge', 'chart', 'shield', 'palm', 'dumbbell', 'waves', 'plane', 'people', 'building'];
 function getPlaceholderImage() { return 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%271350%27%3E%3Crect fill=%27%23D9CDB8%27 width=%27800%27 height=%271350%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 font-family=%27sans-serif%27 font-size=%2724%27 fill=%27%235A6662%27%3EUpload Image%3C/text%3E%3C/svg%3E'; }
+function getRibbonSVG() {
+  return '<svg class="slide-ribbon" viewBox="0 0 432 28" preserveAspectRatio="none"><path d="M0,14 Q54,4 108,14 T216,14 T324,14 T432,14" fill="none" stroke="#D9CDB8" stroke-width="2" opacity="0.5"/><path d="M0,18 Q54,8 108,18 T216,18 T324,18 T432,18" fill="none" stroke="#0F6B62" stroke-width="1.5" opacity="0.35"/><path d="M0,22 Q54,12 108,22 T216,22 T324,22 T432,22" fill="none" stroke="#123B37" stroke-width="1" opacity="0.2"/></svg>';
+}
+function getSocialsHTML() {
+  return '<div class="slide-footer-socials"><span class="social-icon">' + SOCIAL_ICONS.ig + '</span><span class="social-handle">@mrlivingcapital</span><span class="social-icon">' + SOCIAL_ICONS.tt + '</span><span class="social-icon">' + SOCIAL_ICONS.li + '</span><span class="social-icon">' + SOCIAL_ICONS.tg + '</span><span class="social-icon">' + SOCIAL_ICONS.wa + '</span><span class="social-handle">mrlivingcapital.com</span></div>';
+}
 function renderCover() {
   const headline = document.getElementById('inHeadline').value || (LANG==='fa' ? 'چرا سرمایه‌گذاران جهانی به این منطقه نگاه می‌کنند' : 'WHY GLOBAL INVESTORS ARE WATCHING');
   const accent = document.getElementById('inAccent').value || (LANG==='fa' ? 'ابوظبی' : 'ABU DHABI');
   const sub = document.getElementById('inSub').value || (LANG==='fa' ? 'موج بعدی رشد یک پروژه نیست. یک استراتژی کاملاً حمایت‌شده از سوی دولت است.' : "The next wave of growth isn't one project. It's an entire government-backed strategy.");
   const subAccent = document.getElementById('inSubAccent').value || (LANG==='fa' ? 'استراتژی حمایت‌شده از سوی دولت' : 'government-backed strategy');
   const img = document.getElementById('inImage').value || getPlaceholderImage();
+  const headshot = document.getElementById('inHeadshot').value;
   const pillarsRaw = document.getElementById('inPillars').value || (LANG==='fa' ? 'چشم‌انداز دولت,ارتباطات جهانی,زیرساخت‌های جهانی,ایجاد ارزش بلندمدت' : 'Government Vision,Global Connectivity,World-Class Infrastructure,Long-Term Value Creation');
   const pillars = pillarsRaw.split(',').map(s => s.trim()).slice(0,4);
+  const showSocials = document.getElementById('inShowSocials').value === 'yes';
   const subHtml = sub.replace(subAccent, '<span class="accent">' + subAccent + '</span>');
   let pillarsHtml = '';
   pillars.forEach((p, i) => { const iconKey = PILLAR_ICONS[i % PILLAR_ICONS.length]; pillarsHtml += '<div class="pillar"><div class="pillar-icon">' + ICONS[iconKey] + '</div><div class="pillar-label">' + p + '</div></div>'; });
-  document.getElementById('slideCanvas').innerHTML = '<div class="cover-slide" style="width:100%;height:100%;position:relative;"><div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div><div class="slide-content"><div class="cover-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="cover-line"></div><div class="cover-sub">' + subHtml + '</div></div><div class="cover-pillars">' + pillarsHtml + '</div><div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div><svg class="slide-ribbon" viewBox="0 0 432 18" preserveAspectRatio="none"><path d="M0,9 Q108,0 216,9 T432,9" fill="none" stroke="#D9CDB8" stroke-width="1.5" opacity="0.4"/><path d="M0,12 Q108,3 216,12 T432,12" fill="none" stroke="#0F6B62" stroke-width="1" opacity="0.25"/></svg><div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+  let headshotHtml = '';
+  if (headshot) headshotHtml = '<div class="headshot-circle" style="right:14px;"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
+  let html = '<div class="cover-slide" style="width:100%;height:100%;position:relative;">';
+  html += headshotHtml;
+  html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
+  html += '<div class="slide-content"><div class="cover-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="cover-line"></div><div class="cover-sub">' + subHtml + '</div></div>';
+  html += '<div class="cover-pillars">' + pillarsHtml + '</div>';
+  html += '<div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div>';
+  html += getRibbonSVG();
+  html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div>' + (showSocials ? getSocialsHTML() : '') + '</div></div>';
+  document.getElementById('slideCanvas').innerHTML = html;
 }
 function renderData() {
   const headline = document.getElementById('inDataHeadline').value || (LANG==='fa' ? 'ابوظبی برای دهه‌ها سرمایه‌گذاری می‌کند، نه سال‌ها.' : 'ABU DHABI IS INVESTING FOR DECADES, NOT YEARS.');
   const accent = document.getElementById('inDataAccent').value || (LANG==='fa' ? 'دهه‌ها،' : 'DECADES,');
   const sub = document.getElementById('inDataSub').value || (LANG==='fa' ? 'چشم‌انداز بلندمدت با حمایت نهادهای قوی، زیرساخت‌های جهانی و ارتباطات جهانی.' : 'A long-term vision backed by strong institutions, world-class infrastructure and global connectivity.');
   const img = document.getElementById('inDataImage').value || getPlaceholderImage();
+  const headshot = document.getElementById('inDataHeadshot').value;
+  const showSocials = document.getElementById('inDataShowSocials').value === 'yes';
   const features = [];
   for (let i = 1; i <= 4; i++) {
     const raw = document.getElementById('inF' + i).value;
@@ -381,13 +450,26 @@ function renderData() {
   features.forEach((f, i) => { const iconKey = PILLAR_ICONS[i % PILLAR_ICONS.length]; featuresHtml += '<div class="feature-item"><div class="feature-icon">' + ICONS[iconKey] + '</div><div class="feature-text"><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div></div>'; });
   let statsHtml = '';
   stats.forEach(s => { statsHtml += '<div class="stat-item"><div class="stat-number">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>'; });
-  document.getElementById('slideCanvas').innerHTML = '<div class="data-slide" style="width:100%;height:100%;position:relative;"><div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div><div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div><div class="stats-col">' + statsHtml + '</div><div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div><div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">' + quoteHtml + '</div></div><div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+  let headshotHtml = '';
+  if (headshot) headshotHtml = '<div class="headshot-circle" style="right:14px;"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
+  let html = '<div class="data-slide" style="width:100%;height:100%;position:relative;">';
+  html += headshotHtml;
+  html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
+  html += '<div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div>';
+  html += '<div class="stats-col">' + statsHtml + '</div>';
+  html += '<div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div>';
+  html += '<div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">' + quoteHtml + '</div></div>';
+  html += getRibbonSVG();
+  html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div>' + (showSocials ? getSocialsHTML() : '') + '</div></div>';
+  document.getElementById('slideCanvas').innerHTML = html;
 }
 function renderFeature() {
   const headline = document.getElementById('inFeatHeadline').value || (LANG==='fa' ? 'چرا جزیره هدایریات توجه جهانی را جلب کرده است' : 'WHY HUDAYRIYAT ISLAND IS GETTING GLOBAL ATTENTION');
   const accent = document.getElementById('inFeatAccent').value || (LANG==='fa' ? 'هدایریات' : 'HUDAYRIYAT');
   const sub = document.getElementById('inFeatSub').value || (LANG==='fa' ? 'یک مقصد منحصربه‌فرد جزیره‌ای که سبک زندگی، سلامتی و پتانسیل سرمایه‌گذاری در یک طرح جامع حمایت‌شده از سوی دولت گرد هم آمده‌اند.' : 'A unique island destination where lifestyle, wellness and investment potential come together in a government-backed masterplan.');
   const img = document.getElementById('inFeatImage').value || getPlaceholderImage();
+  const headshot = document.getElementById('inFeatHeadshot').value;
+  const showSocials = document.getElementById('inFeatShowSocials').value === 'yes';
   const features = [];
   for (let i = 1; i <= 4; i++) {
     const raw = document.getElementById('inFeatF' + i).value;
@@ -416,9 +498,59 @@ function renderFeature() {
   const secParts = secStat.split('|').map(s => s.trim());
   const secTitle = secParts[0] || 'SOLD OUT';
   const secDesc = secParts[1] || secStat;
-  document.getElementById('slideCanvas').innerHTML = '<div class="data-slide" style="width:100%;height:100%;position:relative;"><div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div><div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div><div class="stats-box"><div class="stat-number">' + bigNum + '</div><div class="stat-label">' + bigLabel + '</div><div style="margin-top:10px; padding-top:10px; border-top:1px solid rgba(15,107,98,0.1);"><div class="stat-number" style="font-size:0.85rem;">' + secTitle + '</div><div class="stat-label">' + secDesc + '</div></div></div><div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div><div class="quote-block" style="bottom:64px;"><div class="quote-mark">"</div><div class="quote-text">' + quote + '</div></div><div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+  let headshotHtml = '';
+  if (headshot) headshotHtml = '<div class="headshot-circle" style="right:14px;"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
+  let html = '<div class="data-slide" style="width:100%;height:100%;position:relative;">';
+  html += headshotHtml;
+  html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
+  html += '<div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div>';
+  html += '<div class="stats-box"><div class="stat-number">' + bigNum + '</div><div class="stat-label">' + bigLabel + '</div><div style="margin-top:8px; padding-top:8px; border-top:1px solid rgba(15,107,98,0.1);"><div class="stat-number" style="font-size:0.75rem;">' + secTitle + '</div><div class="stat-label">' + secDesc + '</div></div></div>';
+  html += '<div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div>';
+  html += '<div class="quote-block" style="bottom:58px;"><div class="quote-mark">"</div><div class="quote-text">' + quote + '</div></div>';
+  html += getRibbonSVG();
+  html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div>' + (showSocials ? getSocialsHTML() : '') + '</div></div>';
+  document.getElementById('slideCanvas').innerHTML = html;
 }
-function generateSlide() { if (currentTab === 'cover') renderCover(); else if (currentTab === 'data') renderData(); else if (currentTab === 'feature') renderFeature(); }
+function renderContact() {
+  const headshot = document.getElementById('inContactHeadshot').value;
+  const name = document.getElementById('inContactName').value || 'Masoud Rahemi';
+  const title = document.getElementById('inContactTitle').value || (LANG==='fa'?'مشاور سرمایه‌گذاری | املاک دبی':'Investment Advisor | Dubai Real Estate');
+  const ctaHeadline = document.getElementById('inContactCTA').value || (LANG==='fa'?'آماده طراحی سرمایه خود هستید؟':'Ready to architect your capital?');
+  const ctaBody = document.getElementById('inContactBody').value || (LANG==='fa'?'هر پورتفولیو با یک گفتگو شروع می‌شود. بیایید استراتژی شما را بسازیم.':'Every portfolio starts with one conversation. Let's build your strategy.');
+  const wa = document.getElementById('inContactWA').value || '+971 58 589 9112';
+  const web = document.getElementById('inContactWeb').value || 'mrlivingcapital.com';
+  const email = document.getElementById('inContactEmail').value || 'mrlivingcapital@gmail.com';
+  const ig = document.getElementById('inContactIG').value || '@mrlivingcapital';
+  const tt = document.getElementById('inContactTT').value || '@mrlivingcapital';
+  const li = document.getElementById('inContactLI').value || 'linkedin.com/in/mrlivingcapital';
+  const tg = document.getElementById('inContactTG').value || '@mrlivingcapital';
+  let html = '<div class="contact-slide" style="width:100%;height:100%;position:relative;">';
+  html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
+  html += '<div class="slide-content">';
+  if (headshot) html += '<div class="contact-headshot"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
+  else html += '<div class="contact-headshot" style="background:#D9CDB8;"></div>';
+  html += '<div class="contact-name">' + name + '</div>';
+  html += '<div class="contact-title">' + title + '</div>';
+  html += '<div class="contact-divider"></div>';
+  html += '<div class="contact-cta"><span class="accent">' + ctaHeadline + '</span><br>' + ctaBody + '</div>';
+  html += '<div class="contact-grid">';
+  html += '<div class="contact-item">' + SOCIAL_ICONS.wa + '<div class="contact-item-text"><strong>WhatsApp</strong><br>' + wa + '</div></div>';
+  html += '<div class="contact-item">' + SOCIAL_ICONS.ig + '<div class="contact-item-text"><strong>Instagram</strong><br>' + ig + '</div></div>';
+  html += '<div class="contact-item">' + SOCIAL_ICONS.web + '<div class="contact-item-text"><strong>Website</strong><br>' + web + '</div></div>';
+  html += '<div class="contact-item">' + SOCIAL_ICONS.tt + '<div class="contact-item-text"><strong>TikTok</strong><br>' + tt + '</div></div>';
+  html += '<div class="contact-item">' + SOCIAL_ICONS.li + '<div class="contact-item-text"><strong>LinkedIn</strong><br>' + li + '</div></div>';
+  html += '<div class="contact-item">' + SOCIAL_ICONS.tg + '<div class="contact-item-text"><strong>Telegram</strong><br>' + tg + '</div></div>';
+  html += '</div></div>';
+  html += getRibbonSVG();
+  html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+  document.getElementById('slideCanvas').innerHTML = html;
+}
+function generateSlide() {
+  if (currentTab === 'cover') renderCover();
+  else if (currentTab === 'data') renderData();
+  else if (currentTab === 'feature') renderFeature();
+  else if (currentTab === 'contact') renderContact();
+}
 function resetForm() { document.querySelectorAll('.form-input, .form-textarea').forEach(i => i.value = ''); generateSlide(); }
 const BRAIN = {
   en: {
