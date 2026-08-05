@@ -169,17 +169,17 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
   </div>
   <div class="nav-section">
     <div class="nav-label" id="navBuild">Build Slide</div>
-    <button class="nav-btn active" onclick="showTab('cover')" id="navCover">Cover Slide</button>
-    <button class="nav-btn" onclick="showTab('data')" id="navData">Data + Features</button>
-    <button class="nav-btn" onclick="showTab('feature')" id="navFeature">Feature + Stats</button>
-    <button class="nav-btn" onclick="showTab('contact')" id="navContact">Contact / Final</button>
-    <button class="nav-btn" onclick="showTab('copy')" id="navCopy">Copy Generator</button>
+    <button class="nav-btn active" onclick="showTab('cover',this)" id="navCover">Cover Slide</button>
+    <button class="nav-btn" onclick="showTab('data',this)" id="navData">Data + Features</button>
+    <button class="nav-btn" onclick="showTab('feature',this)" id="navFeature">Feature + Stats</button>
+    <button class="nav-btn" onclick="showTab('contact',this)" id="navContact">Contact / Final</button>
+    <button class="nav-btn" onclick="showTab('copy',this)" id="navCopy">Copy Generator</button>
   </div>
   <div class="nav-section">
     <div class="nav-label" id="navBrain">Brain</div>
-    <button class="nav-btn" onclick="showTab('scenario')" id="navScenario">Scenario Analyzer</button>
-    <button class="nav-btn" onclick="showTab('corridor')" id="navCorridor">Corridor Compare</button>
-    <button class="nav-btn" onclick="showTab('redflag')" id="navRedflag">Red Flag Detector</button>
+    <button class="nav-btn" onclick="showTab('scenario',this)" id="navScenario">Scenario Analyzer</button>
+    <button class="nav-btn" onclick="showTab('corridor',this)" id="navCorridor">Corridor Compare</button>
+    <button class="nav-btn" onclick="showTab('redflag',this)" id="navRedflag">Red Flag Detector</button>
   </div>
   <div style="margin-top:auto; font-family:var(--font-ui); font-size:0.55rem; color:var(--sand); text-align:center; padding-top:16px;" id="versionText">War Room Engine v2.1<br>Locked Brand System</div>
 </aside>
@@ -257,9 +257,9 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
         <button class="btn btn-primary" onclick="generateCopy()" style="width:100%;" id="btnGenCopy">Generate Copy</button>
       </div>
       <div id="tab-scenario" class="section">
-        <div class="form-group"><label class="form-label">Scenario A — The Play</label><input class="form-input" id="scAName" placeholder="e.g. JVC Secondary 2BR"></div>
+        <div class="form-group"><label class="form-label">Scenario A - The Play</label><input class="form-input" id="scAName" placeholder="e.g. JVC Secondary 2BR"></div>
         <div class="form-row"><div class="form-group"><label class="form-label">Price (AED)</label><input class="form-input" id="scAPrice" placeholder="1,200,000"></div><div class="form-group"><label class="form-label">Yield %</label><input class="form-input" id="scAYield" placeholder="7.2"></div></div>
-        <div class="form-group"><label class="form-label">Scenario B — The Trap</label><input class="form-input" id="scBName" placeholder="e.g. Dubai South Off-Plan"></div>
+        <div class="form-group"><label class="form-label">Scenario B - The Trap</label><input class="form-input" id="scBName" placeholder="e.g. Dubai South Off-Plan"></div>
         <div class="form-row"><div class="form-group"><label class="form-label">Price (AED)</label><input class="form-input" id="scBPrice" placeholder="950,000"></div><div class="form-group"><label class="form-label">Yield %</label><input class="form-input" id="scBYield" placeholder="5.1"></div></div>
         <div class="form-group"><label class="form-label">Hidden Cost / Red Flag (B)</label><input class="form-input" id="scFlag" placeholder="5-year delivery, AED 18/sqft service charge"></div>
         <div class="form-group"><label class="form-label">Your Personal Angle</label><textarea class="form-textarea" id="scAngle" placeholder="I walked away from this deal because..."></textarea></div>
@@ -288,9 +288,9 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
         <div class="slide-canvas" id="slideCanvas"></div>
         <div class="copy-output" id="copyOutput" style="display:none;">
           <div class="copy-tabs">
-            <button class="copy-tab active" onclick="showCopy('linkedin')">LinkedIn</button>
-            <button class="copy-tab" onclick="showCopy('instagram')">Instagram</button>
-            <button class="copy-tab" onclick="showCopy('telegram')">Telegram</button>
+            <button class="copy-tab active" onclick="switchCopyTab('linkedin',this)">LinkedIn</button>
+            <button class="copy-tab" onclick="switchCopyTab('instagram',this)">Instagram</button>
+            <button class="copy-tab" onclick="switchCopyTab('telegram',this)">Telegram</button>
           </div>
           <div class="copy-text" id="copyText"></div>
         </div>
@@ -300,7 +300,13 @@ body.fa-mode .copy-text { font-family: var(--font-fa); direction: rtl; text-alig
 </main>
 </div>
 <script>
-const I18N = {
+// ===== STATE =====
+var LANG = 'en';
+var currentTab = 'cover';
+var currentCopyTab = 'linkedin';
+
+// ===== I18N =====
+var I18N = {
   en: {
     sbBrand: 'MR Living Capital', sbTagline: 'Living Proof. Lasting Legacy.',
     navBuild: 'Build Slide', navBrain: 'Brain',
@@ -328,33 +334,65 @@ const I18N = {
     pageCopy: 'تولید کپشن', pageScenario: 'تحلیل سناریو', pageCorridor: 'مقایسه کریدورها', pageRedflag: 'شناسایی پرچم قرمز'
   }
 };
-let LANG = 'en';
-let currentTab = 'cover';
+
+// ===== LANGUAGE =====
 function setLang(l) {
   LANG = l;
-  document.body.classList.toggle('fa-mode', l === 'fa');
+  var body = document.body;
+  if (l === 'fa') body.classList.add('fa-mode');
+  else body.classList.remove('fa-mode');
+
   document.getElementById('btnEn').classList.toggle('active', l === 'en');
   document.getElementById('btnFa').classList.toggle('active', l === 'fa');
-  const t = I18N[l];
-  for (const [key, val] of Object.entries(t)) { const el = document.getElementById(key); if (el) el.innerHTML = val; }
-  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', contact:'pageContact', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
-  if (tabTitles[currentTab]) document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[currentTab]];
+
+  var t = I18N[l];
+  for (var key in t) {
+    var el = document.getElementById(key);
+    if (el) el.innerHTML = t[key];
+  }
+  var tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', contact:'pageContact', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
+  if (tabTitles[currentTab]) {
+    document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[currentTab]];
+  }
   generateSlide();
 }
-function showTab(tab) {
+
+// ===== NAVIGATION =====
+function showTab(tab, btnEl) {
   currentTab = tab;
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  var sections = document.querySelectorAll('.section');
+  for (var i = 0; i < sections.length; i++) {
+    sections[i].classList.remove('active');
+  }
+  var navBtns = document.querySelectorAll('.nav-btn');
+  for (var j = 0; j < navBtns.length; j++) {
+    navBtns[j].classList.remove('active');
+  }
   document.getElementById('tab-' + tab).classList.add('active');
-  event.target.classList.add('active');
-  const tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', contact:'pageContact', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
-  if (tabTitles[tab]) document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[tab]];
-  document.getElementById('slideCanvas').style.display = tab === 'copy' ? 'none' : 'block';
-  document.getElementById('copyOutput').style.display = tab === 'copy' ? 'block' : 'none';
-  document.getElementById('btnExport').style.display = tab === 'copy' ? 'none' : 'inline-block';
-  if (tab !== 'copy') generateSlide();
+  if (btnEl) btnEl.classList.add('active');
+
+  var tabTitles = {cover:'pageCover', data:'pageData', feature:'pageFeature', contact:'pageContact', copy:'pageCopy', scenario:'pageScenario', corridor:'pageCorridor', redflag:'pageRedflag'};
+  if (tabTitles[tab]) {
+    document.getElementById('pageTitle').textContent = I18N[LANG][tabTitles[tab]];
+  }
+  var isCopy = (tab === 'copy');
+  document.getElementById('slideCanvas').style.display = isCopy ? 'none' : 'block';
+  document.getElementById('copyOutput').style.display = isCopy ? 'block' : 'none';
+  document.getElementById('btnExport').style.display = isCopy ? 'none' : 'inline-block';
+  if (!isCopy) generateSlide();
 }
-const ICONS = {
+
+function switchCopyTab(platform, btnEl) {
+  currentCopyTab = platform;
+  var tabs = document.querySelectorAll('.copy-tab');
+  for (var i = 0; i < tabs.length; i++) {
+    tabs[i].classList.remove('active');
+  }
+  if (btnEl) btnEl.classList.add('active');
+}
+
+// ===== ICONS =====
+var ICONS = {
   gov: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3L2 9h20L12 3z"/><path d="M4 9v10h16V9"/><path d="M9 21V13h6v8"/></svg>',
   globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20"/></svg>',
   bridge: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18h16"/><path d="M4 14c4-4 12-4 16 0"/><path d="M8 14v4"/><path d="M16 14v4"/><path d="M12 12v6"/></svg>',
@@ -368,7 +406,8 @@ const ICONS = {
   building: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/><path d="M10 9h4"/><path d="M10 13h4"/></svg>',
   default: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>'
 };
-const SOCIAL_ICONS = {
+
+var SOCIAL_ICONS = {
   ig: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>',
   tt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.88-2.89 2.89 2.89 0 012.88-2.89c.3 0 .59.05.86.13V8.35a6.24 6.24 0 00-.86-.06A6.26 6.26 0 005.5 14.55a6.26 6.26 0 006.26 6.26 6.26 6.26 0 006.26-6.26V9.91a8.36 8.36 0 004.89 1.57V8.03a4.9 4.9 0 01-3.32-1.34z"/></svg>',
   li: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
@@ -376,30 +415,51 @@ const SOCIAL_ICONS = {
   wa: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>',
   web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 010 20 15.3 15.3 0 010-20"/></svg>'
 };
-const PILLAR_ICONS = ['gov', 'globe', 'bridge', 'chart', 'shield', 'palm', 'dumbbell', 'waves', 'plane', 'people', 'building'];
-function getPlaceholderImage() { return 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%271350%27%3E%3Crect fill=%27%23D9CDB8%27 width=%27800%27 height=%271350%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 font-family=%27sans-serif%27 font-size=%2724%27 fill=%27%235A6662%27%3EUpload Image%3C/text%3E%3C/svg%3E'; }
+
+var PILLAR_ICONS = ['gov', 'globe', 'bridge', 'chart', 'shield', 'palm', 'dumbbell', 'waves', 'plane', 'people', 'building'];
+
+// ===== HELPERS =====
+function getPlaceholderImage() {
+  return 'data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27800%27 height=%271350%27%3E%3Crect fill=%27%23D9CDB8%27 width=%27800%27 height=%271350%27/%3E%3Ctext x=%2750%25%27 y=%2750%25%27 dominant-baseline=%27middle%27 text-anchor=%27middle%27 font-family=%27sans-serif%27 font-size=%2724%27 fill=%27%235A6662%27%3EUpload Image%3C/text%3E%3C/svg%3E';
+}
+
 function getRibbonSVG() {
   return '<svg class="slide-ribbon" viewBox="0 0 432 28" preserveAspectRatio="none"><path d="M0,14 Q54,4 108,14 T216,14 T324,14 T432,14" fill="none" stroke="#D9CDB8" stroke-width="2" opacity="0.5"/><path d="M0,18 Q54,8 108,18 T216,18 T324,18 T432,18" fill="none" stroke="#0F6B62" stroke-width="1.5" opacity="0.35"/><path d="M0,22 Q54,12 108,22 T216,22 T324,22 T432,22" fill="none" stroke="#123B37" stroke-width="1" opacity="0.2"/></svg>';
 }
+
 function getSocialsHTML() {
   return '<div class="slide-footer-socials"><span class="social-icon">' + SOCIAL_ICONS.ig + '</span><span class="social-handle">@mrlivingcapital</span><span class="social-icon">' + SOCIAL_ICONS.tt + '</span><span class="social-icon">' + SOCIAL_ICONS.li + '</span><span class="social-icon">' + SOCIAL_ICONS.tg + '</span><span class="social-icon">' + SOCIAL_ICONS.wa + '</span><span class="social-handle">mrlivingcapital.com</span></div>';
 }
+
+function getVal(id, fallback) {
+  var el = document.getElementById(id);
+  return el ? (el.value || fallback) : fallback;
+}
+
+// ===== RENDERERS =====
 function renderCover() {
-  const headline = document.getElementById('inHeadline').value || (LANG==='fa' ? 'چرا سرمایه‌گذاران جهانی به این منطقه نگاه می‌کنند' : 'WHY GLOBAL INVESTORS ARE WATCHING');
-  const accent = document.getElementById('inAccent').value || (LANG==='fa' ? 'ابوظبی' : 'ABU DHABI');
-  const sub = document.getElementById('inSub').value || (LANG==='fa' ? 'موج بعدی رشد یک پروژه نیست. یک استراتژی کاملاً حمایت‌شده از سوی دولت است.' : "The next wave of growth isn't one project. It's an entire government-backed strategy.");
-  const subAccent = document.getElementById('inSubAccent').value || (LANG==='fa' ? 'استراتژی حمایت‌شده از سوی دولت' : 'government-backed strategy');
-  const img = document.getElementById('inImage').value || getPlaceholderImage();
-  const headshot = document.getElementById('inHeadshot').value;
-  const pillarsRaw = document.getElementById('inPillars').value || (LANG==='fa' ? 'چشم‌انداز دولت,ارتباطات جهانی,زیرساخت‌های جهانی,ایجاد ارزش بلندمدت' : 'Government Vision,Global Connectivity,World-Class Infrastructure,Long-Term Value Creation');
-  const pillars = pillarsRaw.split(',').map(s => s.trim()).slice(0,4);
-  const showSocials = document.getElementById('inShowSocials').value === 'yes';
-  const subHtml = sub.replace(subAccent, '<span class="accent">' + subAccent + '</span>');
-  let pillarsHtml = '';
-  pillars.forEach((p, i) => { const iconKey = PILLAR_ICONS[i % PILLAR_ICONS.length]; pillarsHtml += '<div class="pillar"><div class="pillar-icon">' + ICONS[iconKey] + '</div><div class="pillar-label">' + p + '</div></div>'; });
-  let headshotHtml = '';
+  var headline = getVal('inHeadline', LANG === 'fa' ? 'چرا سرمایه‌گذاران جهانی به این منطقه نگاه می‌کنند' : 'WHY GLOBAL INVESTORS ARE WATCHING');
+  var accent = getVal('inAccent', LANG === 'fa' ? 'ابوظبی' : 'ABU DHABI');
+  var sub = getVal('inSub', LANG === 'fa' ? 'موج بعدی رشد یک پروژه نیست. یک استراتژی کاملاً حمایت‌شده از سوی دولت است.' : "The next wave of growth isn't one project. It's an entire government-backed strategy.");
+  var subAccent = getVal('inSubAccent', LANG === 'fa' ? 'استراتژی حمایت‌شده از سوی دولت' : 'government-backed strategy');
+  var img = getVal('inImage', '');
+  if (!img) img = getPlaceholderImage();
+  var headshot = getVal('inHeadshot', '');
+  var pillarsRaw = getVal('inPillars', LANG === 'fa' ? 'چشم‌انداز دولت,ارتباطات جهانی,زیرساخت‌های جهانی,ایجاد ارزش بلندمدت' : 'Government Vision,Global Connectivity,World-Class Infrastructure,Long-Term Value Creation');
+  var pillars = pillarsRaw.split(',').map(function(s) { return s.trim(); }).slice(0, 4);
+  var showSocials = document.getElementById('inShowSocials').value === 'yes';
+
+  var subHtml = sub.replace(subAccent, '<span class="accent">' + subAccent + '</span>');
+  var pillarsHtml = '';
+  pillars.forEach(function(p, i) {
+    var iconKey = PILLAR_ICONS[i % PILLAR_ICONS.length];
+    pillarsHtml += '<div class="pillar"><div class="pillar-icon">' + ICONS[iconKey] + '</div><div class="pillar-label">' + p + '</div></div>';
+  });
+
+  var headshotHtml = '';
   if (headshot) headshotHtml = '<div class="headshot-circle" style="right:14px;"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
-  let html = '<div class="cover-slide" style="width:100%;height:100%;position:relative;">';
+
+  var html = '<div class="cover-slide" style="width:100%;height:100%;position:relative;">';
   html += headshotHtml;
   html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
   html += '<div class="slide-content"><div class="cover-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="cover-line"></div><div class="cover-sub">' + subHtml + '</div></div>';
@@ -407,52 +467,73 @@ function renderCover() {
   html += '<div class="slide-image-wrap"><img src="' + img + '" alt="" onerror="this.src='' + getPlaceholderImage() + ''"><div class="organic-mask"></div></div>';
   html += getRibbonSVG();
   html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div>' + (showSocials ? getSocialsHTML() : '') + '</div></div>';
+
   document.getElementById('slideCanvas').innerHTML = html;
 }
 function renderData() {
-  const headline = document.getElementById('inDataHeadline').value || (LANG==='fa' ? 'ابوظبی برای دهه‌ها سرمایه‌گذاری می‌کند، نه سال‌ها.' : 'ABU DHABI IS INVESTING FOR DECADES, NOT YEARS.');
-  const accent = document.getElementById('inDataAccent').value || (LANG==='fa' ? 'دهه‌ها،' : 'DECADES,');
-  const sub = document.getElementById('inDataSub').value || (LANG==='fa' ? 'چشم‌انداز بلندمدت با حمایت نهادهای قوی، زیرساخت‌های جهانی و ارتباطات جهانی.' : 'A long-term vision backed by strong institutions, world-class infrastructure and global connectivity.');
-  const img = document.getElementById('inDataImage').value || getPlaceholderImage();
-  const headshot = document.getElementById('inDataHeadshot').value;
-  const showSocials = document.getElementById('inDataShowSocials').value === 'yes';
-  const features = [];
-  for (let i = 1; i <= 4; i++) {
-    const raw = document.getElementById('inF' + i).value;
-    if (raw) { const parts = raw.split('|').map(s => s.trim()); features.push({title: parts[0] || '', desc: parts[1] || ''}); }
-    else {
-      const defaults = LANG==='fa' ? [
-        'استراتژی رشد حمایت‌شده از سوی دولت | توسعه‌های بزرگ توسط نهادهای حمایت‌شده از سوی دولت مانند مودون هدایت می‌شود.',
-        'ADGM: یک مرکز مالی جهانی | ADGM به جذب موسسات مالی جهانی ادامه می‌دهد.',
-        'ارتباطی که فرصت ایجاد می‌کند | توسعه فرودگاه بین‌المللی زاید موقعیت ابوظبی را تقویت می‌کند.',
-        'زیرساخت امروز، ارزش فردا | سرمایه‌گذاری عظیم در حمل‌ونقل، گردشگری و بهداشت.'
-      ] : [
-        'SOVEREIGN-BACKED GROWTH STRATEGY | Major developments are led by government-backed entities like Modon.',
-        'ADGM: A GLOBAL FINANCIAL CENTRE | ADGM continues to attract global financial institutions and fintech firms.',
-        'CONNECTIVITY THAT DRIVES OPPORTUNITY | Zayed International Airport expansion strengthens Abu Dhabi's position.',
-        'INFRASTRUCTURE TODAY, VALUE TOMORROW | Massive investment in transport, utilities, tourism, healthcare and education.'
-      ];
-      const parts = defaults[i-1].split('|').map(s => s.trim()); features.push({title: parts[0], desc: parts[1]});
+  var headline = getVal('inDataHeadline', LANG === 'fa' ? 'ابوظبی برای دهه‌ها سرمایه‌گذاری می‌کند، نه سال‌ها.' : 'ABU DHABI IS INVESTING FOR DECADES, NOT YEARS.');
+  var accent = getVal('inDataAccent', LANG === 'fa' ? 'دهه‌ها،' : 'DECADES,');
+  var sub = getVal('inDataSub', LANG === 'fa' ? 'چشم‌انداز بلندمدت با حمایت نهادهای قوی، زیرساخت‌های جهانی و ارتباطات جهانی.' : 'A long-term vision backed by strong institutions, world-class infrastructure and global connectivity.');
+  var img = getVal('inDataImage', '');
+  if (!img) img = getPlaceholderImage();
+  var headshot = getVal('inDataHeadshot', '');
+  var showSocials = document.getElementById('inDataShowSocials').value === 'yes';
+
+  var features = [];
+  var defaults = LANG === 'fa' ? [
+    'استراتژی رشد حمایت‌شده از سوی دولت | توسعه‌های بزرگ توسط نهادهای حمایت‌شده از سوی دولت مانند مودون هدایت می‌شود.',
+    'ADGM: یک مرکز مالی جهانی | ADGM به جذب موسسات مالی جهانی ادامه می‌دهد.',
+    'ارتباطی که فرصت ایجاد می‌کند | توسعه فرودگاه بین‌المللی زاید موقعیت ابوظبی را تقویت می‌کند.',
+    'زیرساخت امروز، ارزش فردا | سرمایه‌گذاری عظیم در حمل‌ونقل، گردشگری و بهداشت.'
+  ] : [
+    'SOVEREIGN-BACKED GROWTH STRATEGY | Major developments are led by government-backed entities like Modon.',
+    'ADGM: A GLOBAL FINANCIAL CENTRE | ADGM continues to attract global financial institutions and fintech firms.',
+    'CONNECTIVITY THAT DRIVES OPPORTUNITY | Zayed International Airport expansion strengthens Abu Dhabi's position.',
+    'INFRASTRUCTURE TODAY, VALUE TOMORROW | Massive investment in transport, utilities, tourism, healthcare and education.'
+  ];
+  for (var i = 1; i <= 4; i++) {
+    var raw = document.getElementById('inF' + i).value;
+    if (raw) {
+      var parts = raw.split('|').map(function(s) { return s.trim(); });
+      features.push({title: parts[0] || '', desc: parts[1] || ''});
+    } else {
+      var dp = defaults[i-1].split('|').map(function(s) { return s.trim(); });
+      features.push({title: dp[0], desc: dp[1]});
     }
   }
-  const stats = [];
-  for (let i = 1; i <= 2; i++) { const num = document.getElementById('inS' + i + 'Num').value; const label = document.getElementById('inS' + i + 'Label').value; if (num && label) stats.push({num, label}); }
+
+  var stats = [];
+  for (var j = 1; j <= 2; j++) {
+    var num = document.getElementById('inS' + j + 'Num').value;
+    var label = document.getElementById('inS' + j + 'Label').value;
+    if (num && label) stats.push({num: num, label: label});
+  }
   if (stats.length === 0) {
     stats.push(
-      {num: LANG==='fa'?'AED 500B+':'AED 500B+', label: LANG==='fa'?'ارزش تخمینی برنامه‌های تنوع اقتصادی تا ۲۰۳۰.':'Estimated value of economic diversification programmes across sectors by 2030.'},
-      {num: LANG==='fa'?'180+':'180+', label: LANG==='fa'?'موسسات مالی ثبت‌شده در ADGM با حضور جهانی رو به رشد.':'Registered financial institutions in ADGM with growing global presence.'}
+      {num: LANG === 'fa' ? 'AED 500B+' : 'AED 500B+', label: LANG === 'fa' ? 'ارزش تخمینی برنامه‌های تنوع اقتصادی تا ۲۰۳۰.' : 'Estimated value of economic diversification programmes across sectors by 2030.'},
+      {num: LANG === 'fa' ? '180+' : '180+', label: LANG === 'fa' ? 'موسسات مالی ثبت‌شده در ADGM با حضور جهانی رو به رشد.' : 'Registered financial institutions in ADGM with growing global presence.'}
     );
   }
-  const quote = document.getElementById('inQuote').value || (LANG==='fa' ? 'این سرمایه‌گذاری‌ها پروژه‌های کوتاه‌مدت نیستند. آنها در حال ساختن بنیان برای دوران بعدی رشد ابوظبی هستند.' : "These investments aren't short-term projects. They are building the foundation for Abu Dhabi's next era of growth.");
-  const quoteAccent = document.getElementById('inQuoteAccent').value || (LANG==='fa' ? 'ساختن بنیان برای دوران بعدی رشد ابوظبی.' : "building the foundation for Abu Dhabi's next era of growth.");
-  const quoteHtml = quote.replace(quoteAccent, '<span class="accent">' + quoteAccent + '</span>');
-  let featuresHtml = '';
-  features.forEach((f, i) => { const iconKey = PILLAR_ICONS[i % PILLAR_ICONS.length]; featuresHtml += '<div class="feature-item"><div class="feature-icon">' + ICONS[iconKey] + '</div><div class="feature-text"><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div></div>'; });
-  let statsHtml = '';
-  stats.forEach(s => { statsHtml += '<div class="stat-item"><div class="stat-number">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>'; });
-  let headshotHtml = '';
+
+  var quote = getVal('inQuote', LANG === 'fa' ? 'این سرمایه‌گذاری‌ها پروژه‌های کوتاه‌مدت نیستند. آنها در حال ساختن بنیان برای دوران بعدی رشد ابوظبی هستند.' : "These investments aren't short-term projects. They are building the foundation for Abu Dhabi's next era of growth.");
+  var quoteAccent = getVal('inQuoteAccent', LANG === 'fa' ? 'ساختن بنیان برای دوران بعدی رشد ابوظبی.' : "building the foundation for Abu Dhabi's next era of growth.");
+  var quoteHtml = quote.replace(quoteAccent, '<span class="accent">' + quoteAccent + '</span>');
+
+  var featuresHtml = '';
+  features.forEach(function(f, idx) {
+    var iconKey = PILLAR_ICONS[idx % PILLAR_ICONS.length];
+    featuresHtml += '<div class="feature-item"><div class="feature-icon">' + ICONS[iconKey] + '</div><div class="feature-text"><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div></div>';
+  });
+
+  var statsHtml = '';
+  stats.forEach(function(s) {
+    statsHtml += '<div class="stat-item"><div class="stat-number">' + s.num + '</div><div class="stat-label">' + s.label + '</div></div>';
+  });
+
+  var headshotHtml = '';
   if (headshot) headshotHtml = '<div class="headshot-circle" style="right:14px;"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
-  let html = '<div class="data-slide" style="width:100%;height:100%;position:relative;">';
+
+  var html = '<div class="data-slide" style="width:100%;height:100%;position:relative;">';
   html += headshotHtml;
   html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
   html += '<div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div>';
@@ -461,46 +542,61 @@ function renderData() {
   html += '<div class="quote-block"><div class="quote-mark">"</div><div class="quote-text">' + quoteHtml + '</div></div>';
   html += getRibbonSVG();
   html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div>' + (showSocials ? getSocialsHTML() : '') + '</div></div>';
+
   document.getElementById('slideCanvas').innerHTML = html;
 }
+
 function renderFeature() {
-  const headline = document.getElementById('inFeatHeadline').value || (LANG==='fa' ? 'چرا جزیره هدایریات توجه جهانی را جلب کرده است' : 'WHY HUDAYRIYAT ISLAND IS GETTING GLOBAL ATTENTION');
-  const accent = document.getElementById('inFeatAccent').value || (LANG==='fa' ? 'هدایریات' : 'HUDAYRIYAT');
-  const sub = document.getElementById('inFeatSub').value || (LANG==='fa' ? 'یک مقصد منحصربه‌فرد جزیره‌ای که سبک زندگی، سلامتی و پتانسیل سرمایه‌گذاری در یک طرح جامع حمایت‌شده از سوی دولت گرد هم آمده‌اند.' : 'A unique island destination where lifestyle, wellness and investment potential come together in a government-backed masterplan.');
-  const img = document.getElementById('inFeatImage').value || getPlaceholderImage();
-  const headshot = document.getElementById('inFeatHeadshot').value;
-  const showSocials = document.getElementById('inFeatShowSocials').value === 'yes';
-  const features = [];
-  for (let i = 1; i <= 4; i++) {
-    const raw = document.getElementById('inFeatF' + i).value;
-    if (raw) { const parts = raw.split('|').map(s => s.trim()); features.push({title: parts[0] || '', desc: parts[1] || ''}); }
-    else {
-      const defaults = LANG==='fa' ? [
-        'طرح جامع حمایت‌شده از سوی دولت | توسعه‌یافته توسط مودون، نهاد کلیدی ADQ، تضمین‌کننده چشم‌انداز بلندمدت.',
-        'جامعه جزیره‌ای کم‌تراکم | ترکیبی نادر از طبیعت، فضاهای باز و حریم خصوصی.',
-        'مقصد ورزش و سلامتی | میزبان امکانات جهانی شامل گلف، دوچرخه‌سواری و ورزش‌های آبی.',
-        'سبک زندگی ساحلی با عرضه فازی | زندگی ساحلی برتر با عرضه برنامه‌ریزی‌شده جامعه‌ها.'
-      ] : [
-        'GOVERNMENT-BACKED MASTERPLAN | Developed by Modon, a key entity of ADQ, ensuring long-term vision, quality and sustainable growth.',
-        'LOW-DENSITY ISLAND COMMUNITY | A rare combination of nature, open spaces and privacy just minutes from the heart of Abu Dhabi.',
-        'SPORTS & WELLNESS DESTINATION | Home to world-class facilities including golf, cycling, water sports and wellness experiences.',
-        'WATERFRONT LIFESTYLE WITH PHASED SUPPLY | Premium beachfront living with a carefully planned release of communities to protect long-term value.'
-      ];
-      const parts = defaults[i-1].split('|').map(s => s.trim()); features.push({title: parts[0], desc: parts[1]});
+  var headline = getVal('inFeatHeadline', LANG === 'fa' ? 'چرا جزیره هدایریات توجه جهانی را جلب کرده است' : 'WHY HUDAYRIYAT ISLAND IS GETTING GLOBAL ATTENTION');
+  var accent = getVal('inFeatAccent', LANG === 'fa' ? 'هدایریات' : 'HUDAYRIYAT');
+  var sub = getVal('inFeatSub', LANG === 'fa' ? 'یک مقصد منحصربه‌فرد جزیره‌ای که سبک زندگی، سلامتی و پتانسیل سرمایه‌گذاری در یک طرح جامع حمایت‌شده از سوی دولت گرد هم آمده‌اند.' : 'A unique island destination where lifestyle, wellness and investment potential come together in a government-backed masterplan.');
+  var img = getVal('inFeatImage', '');
+  if (!img) img = getPlaceholderImage();
+  var headshot = getVal('inFeatHeadshot', '');
+  var showSocials = document.getElementById('inFeatShowSocials').value === 'yes';
+
+  var features = [];
+  var defaults = LANG === 'fa' ? [
+    'طرح جامع حمایت‌شده از سوی دولت | توسعه‌یافته توسط مودون، نهاد کلیدی ADQ، تضمین‌کننده چشم‌انداز بلندمدت.',
+    'جامعه جزیره‌ای کم‌تراکم | ترکیبی نادر از طبیعت، فضاهای باز و حریم خصوصی.',
+    'مقصد ورزش و سلامتی | میزبان امکانات جهانی شامل گلف، دوچرخه‌سواری و ورزش‌های آبی.',
+    'سبک زندگی ساحلی با عرضه فازی | زندگی ساحلی برتر با عرضه برنامه‌ریزی‌شده جامعه‌ها.'
+  ] : [
+    'GOVERNMENT-BACKED MASTERPLAN | Developed by Modon, a key entity of ADQ, ensuring long-term vision, quality and sustainable growth.',
+    'LOW-DENSITY ISLAND COMMUNITY | A rare combination of nature, open spaces and privacy just minutes from the heart of Abu Dhabi.',
+    'SPORTS & WELLNESS DESTINATION | Home to world-class facilities including golf, cycling, water sports and wellness experiences.',
+    'WATERFRONT LIFESTYLE WITH PHASED SUPPLY | Premium beachfront living with a carefully planned release of communities to protect long-term value.'
+  ];
+  for (var i = 1; i <= 4; i++) {
+    var raw = document.getElementById('inFeatF' + i).value;
+    if (raw) {
+      var parts = raw.split('|').map(function(s) { return s.trim(); });
+      features.push({title: parts[0] || '', desc: parts[1] || ''});
+    } else {
+      var dp = defaults[i-1].split('|').map(function(s) { return s.trim(); });
+      features.push({title: dp[0], desc: dp[1]});
     }
   }
-  const bigNum = document.getElementById('inBigNum').value || (LANG==='fa'?'AED 13B+':'AED 13B+');
-  const bigLabel = document.getElementById('inBigLabel').value || (LANG==='fa'?'در فروش ظرف چند روز از عرضه هدایریات گلف استیتس — یک رکورد اماراتی*':'in sales within days of launch for Hudayriyat Golf Estates – a UAE record*');
-  const secStat = document.getElementById('inSecStat').value || (LANG==='fa'?'SOLD OUT | چندین عرضه مودون در جزیره هدایریات به سرعت فروش رفته، نشان‌دهنده تقاضای قوی سرمایه‌گذاران و کاربران نهایی.':'SOLD OUT | Multiple Modon launches on Hudayriyat Island have sold out quickly, reflecting strong end-user and investor demand.');
-  const quote = document.getElementById('inFeatQuote').value || (LANG==='fa'?'جوامع بزرگ در طول زمان ساخته می‌شوند. زیرساخت اول می‌آید. ارزش دنبال می‌کند.':'Great communities are built over time. Infrastructure comes first. Value follows.');
-  let featuresHtml = '';
-  features.forEach((f, i) => { const iconKey = PILLAR_ICONS[(i+4) % PILLAR_ICONS.length]; featuresHtml += '<div class="feature-item"><div class="feature-icon">' + ICONS[iconKey] + '</div><div class="feature-text"><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div></div>'; });
-  const secParts = secStat.split('|').map(s => s.trim());
-  const secTitle = secParts[0] || 'SOLD OUT';
-  const secDesc = secParts[1] || secStat;
-  let headshotHtml = '';
+
+  var bigNum = getVal('inBigNum', LANG === 'fa' ? 'AED 13B+' : 'AED 13B+');
+  var bigLabel = getVal('inBigLabel', LANG === 'fa' ? 'در فروش ظرف چند روز از عرضه هدایریات گلف استیتس — یک رکورد اماراتی*' : 'in sales within days of launch for Hudayriyat Golf Estates – a UAE record*');
+  var secStat = getVal('inSecStat', LANG === 'fa' ? 'SOLD OUT | چندین عرضه مودون در جزیره هدایریات به سرعت فروش رفته، نشان‌دهنده تقاضای قوی سرمایه‌گذاران و کاربران نهایی.' : 'SOLD OUT | Multiple Modon launches on Hudayriyat Island have sold out quickly, reflecting strong end-user and investor demand.');
+  var quote = getVal('inFeatQuote', LANG === 'fa' ? 'جوامع بزرگ در طول زمان ساخته می‌شوند. زیرساخت اول می‌آید. ارزش دنبال می‌کند.' : 'Great communities are built over time. Infrastructure comes first. Value follows.');
+
+  var featuresHtml = '';
+  features.forEach(function(f, idx) {
+    var iconKey = PILLAR_ICONS[(idx + 4) % PILLAR_ICONS.length];
+    featuresHtml += '<div class="feature-item"><div class="feature-icon">' + ICONS[iconKey] + '</div><div class="feature-text"><div class="feature-title">' + f.title + '</div><div class="feature-desc">' + f.desc + '</div></div></div>';
+  });
+
+  var secParts = secStat.split('|').map(function(s) { return s.trim(); });
+  var secTitle = secParts[0] || 'SOLD OUT';
+  var secDesc = secParts[1] || secStat;
+
+  var headshotHtml = '';
   if (headshot) headshotHtml = '<div class="headshot-circle" style="right:14px;"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
-  let html = '<div class="data-slide" style="width:100%;height:100%;position:relative;">';
+
+  var html = '<div class="data-slide" style="width:100%;height:100%;position:relative;">';
   html += headshotHtml;
   html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
   html += '<div class="slide-content"><div class="data-headline">' + headline.replace(accent, '<span class="accent">' + accent + '</span>') + '</div><div class="data-line"></div><div class="data-sub">' + sub + '</div><div class="feature-list">' + featuresHtml + '</div></div>';
@@ -509,22 +605,24 @@ function renderFeature() {
   html += '<div class="quote-block" style="bottom:58px;"><div class="quote-mark">"</div><div class="quote-text">' + quote + '</div></div>';
   html += getRibbonSVG();
   html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div>' + (showSocials ? getSocialsHTML() : '') + '</div></div>';
+
   document.getElementById('slideCanvas').innerHTML = html;
 }
 function renderContact() {
-  const headshot = document.getElementById('inContactHeadshot').value;
-  const name = document.getElementById('inContactName').value || 'Masoud Rahemi';
-  const title = document.getElementById('inContactTitle').value || (LANG==='fa'?'مشاور سرمایه‌گذاری | املاک دبی':'Investment Advisor | Dubai Real Estate');
-  const ctaHeadline = document.getElementById('inContactCTA').value || (LANG==='fa'?'آماده طراحی سرمایه خود هستید؟':'Ready to architect your capital?');
-  const ctaBody = document.getElementById('inContactBody').value || (LANG==='fa'?'هر پورتفولیو با یک گفتگو شروع می‌شود. بیایید استراتژی شما را بسازیم.':'Every portfolio starts with one conversation. Let's build your strategy.');
-  const wa = document.getElementById('inContactWA').value || '+971 58 589 9112';
-  const web = document.getElementById('inContactWeb').value || 'mrlivingcapital.com';
-  const email = document.getElementById('inContactEmail').value || 'mrlivingcapital@gmail.com';
-  const ig = document.getElementById('inContactIG').value || '@mrlivingcapital';
-  const tt = document.getElementById('inContactTT').value || '@mrlivingcapital';
-  const li = document.getElementById('inContactLI').value || 'linkedin.com/in/mrlivingcapital';
-  const tg = document.getElementById('inContactTG').value || '@mrlivingcapital';
-  let html = '<div class="contact-slide" style="width:100%;height:100%;position:relative;">';
+  var headshot = getVal('inContactHeadshot', '');
+  var name = getVal('inContactName', 'Masoud Rahemi');
+  var title = getVal('inContactTitle', LANG === 'fa' ? 'مشاور سرمایه‌گذاری | املاک دبی' : 'Investment Advisor | Dubai Real Estate');
+  var ctaHeadline = getVal('inContactCTA', LANG === 'fa' ? 'آماده طراحی سرمایه خود هستید؟' : 'Ready to architect your capital?');
+  var ctaBody = getVal('inContactBody', LANG === 'fa' ? 'هر پورتفولیو با یک گفتگو شروع می‌شود. بیایید استراتژی شما را بسازیم.' : "Every portfolio starts with one conversation. Let's build your strategy.");
+  var wa = getVal('inContactWA', '+971 58 589 9112');
+  var web = getVal('inContactWeb', 'mrlivingcapital.com');
+  var email = getVal('inContactEmail', 'mrlivingcapital@gmail.com');
+  var ig = getVal('inContactIG', '@mrlivingcapital');
+  var tt = getVal('inContactTT', '@mrlivingcapital');
+  var li = getVal('inContactLI', 'linkedin.com/in/mrlivingcapital');
+  var tg = getVal('inContactTG', '@mrlivingcapital');
+
+  var html = '<div class="contact-slide" style="width:100%;height:100%;position:relative;">';
   html += '<div class="slide-header"><div class="slide-header-logo">MR LIVING CAPITAL</div><div class="slide-header-line"></div><div class="slide-header-tagline">LIVING PROOF. LASTING LEGACY.</div></div>';
   html += '<div class="slide-content">';
   if (headshot) html += '<div class="contact-headshot"><img src="' + headshot + '" alt="" onerror="this.style.display='none'"></div>';
@@ -543,16 +641,27 @@ function renderContact() {
   html += '</div></div>';
   html += getRibbonSVG();
   html += '<div class="slide-footer"><div class="slide-footer-logo">MR LIVING CAPITAL</div><div class="slide-footer-line"></div><div class="slide-footer-tagline">LIVING PROOF. LASTING LEGACY.</div></div></div>';
+
   document.getElementById('slideCanvas').innerHTML = html;
 }
+
 function generateSlide() {
   if (currentTab === 'cover') renderCover();
   else if (currentTab === 'data') renderData();
   else if (currentTab === 'feature') renderFeature();
   else if (currentTab === 'contact') renderContact();
 }
-function resetForm() { document.querySelectorAll('.form-input, .form-textarea').forEach(i => i.value = ''); generateSlide(); }
-const BRAIN = {
+
+function resetForm() {
+  var inputs = document.querySelectorAll('.form-input, .form-textarea');
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].value = '';
+  }
+  generateSlide();
+}
+
+// ===== BRAIN =====
+var BRAIN = {
   en: {
     hooks: {
       contrarian: ['Unpopular opinion:', 'I refuse to believe that', 'Here is what the brochure will not tell you:', 'Most investors are getting this wrong.'],
@@ -568,9 +677,9 @@ const BRAIN = {
       "Would you buy off-plan from a developer with no delivery track record?",
       "Drop a 🎯 if you believe data beats gut feeling in real estate."
     ],
-    bottomLine: (a, b) => `At ${a.yield}% yield, ${a.name} preserves capital better than ${b.name} at ${b.yield}%. The gap is not noise — it is the margin of safety.`,
-    corridorBL: (winner) => `${winner.name} offers the best risk-adjusted return. Price and yield are not the only metrics — but they are the only ones that do not lie.`,
-    redflagBL: (verdict) => verdict === 'WALK AWAY' ? 'No commission is worth a failed handover. I refuse to put my name behind this.' : 'Due diligence is not paranoia. It is the price of admission for serious capital.'
+    bottomLine: function(a, b) { return 'At ' + a.yield + '% yield, ' + a.name + ' preserves capital better than ' + b.name + ' at ' + b.yield + '%. The gap is not noise — it is the margin of safety.'; },
+    corridorBL: function(winner) { return winner.name + ' offers the best risk-adjusted return. Price and yield are not the only metrics — but they are the only ones that do not lie.'; },
+    redflagBL: function(verdict) { return verdict === 'WALK AWAY' ? 'No commission is worth a failed handover. I refuse to put my name behind this.' : 'Due diligence is not paranoia. It is the price of admission for serious capital.'; }
   },
   fa: {
     hooks: {
@@ -587,135 +696,150 @@ const BRAIN = {
       "آیا از یک توسعه‌دهنده بدون سابقه تحویل، پیش‌فروش می‌خرید؟",
       "اگر معتقدید داده‌ها در املاک از احساسات پیشی می‌گیرند، 🎯 بگذارید."
     ],
-    bottomLine: (a, b) => `با بازده ${a.yield}٪، ${a.name} سرمایه را بهتر از ${b.name} با بازده ${b.yield}٪ حفظ می‌کند. این شکاف نویز نیست — حاشیه امنیت است.`,
-    corridorBL: (winner) => `${winner.name} بهترین بازده تنظیم‌شده با ریسک را ارائه می‌دهد. قیمت و بازده تنها معیارها نیستند — اما تنها معیارهایی هستند که دروغ نمی‌گویند.`,
-    redflagBL: (verdict) => verdict === 'WALK AWAY' ? 'هیچ کارمزدی ارزش یک تحویل ناموفق را ندارد. من نامم را پشت این پروژه نمی‌گذارم.' : 'بررسی دقیق پارانویا نیست. قیمت ورود برای سرمایه جدی است.'
+    bottomLine: function(a, b) { return 'با بازده ' + a.yield + '٪، ' + a.name + ' سرمایه را بهتر از ' + b.name + ' با بازده ' + b.yield + '٪ حفظ می‌کند. این شکاف نویز نیست — حاشیه امنیت است.'; },
+    corridorBL: function(winner) { return winner.name + ' بهترین بازده تنظیم‌شده با ریسک را ارائه می‌دهد. قیمت و بازده تنها معیارها نیستند — اما تنها معیارهایی هستند که دروغ نمی‌گویند.'; },
+    redflagBL: function(verdict) { return verdict === 'WALK AWAY' ? 'هیچ کارمزدی ارزش یک تحویل ناموفق را ندارد. من نامم را پشت این پروژه نمی‌گذارم.' : 'بررسی دقیق پارانویا نیست. قیمت ورود برای سرمایه جدی است.'; }
   }
 };
+
 function runScenario() {
-  const aName = document.getElementById('scAName').value || 'JVC Secondary';
-  const aPrice = document.getElementById('scAPrice').value || '1,200,000';
-  const aYield = document.getElementById('scAYield').value || '7.2';
-  const bName = document.getElementById('scBName').value || 'Dubai South Off-Plan';
-  const bPrice = document.getElementById('scBPrice').value || '950,000';
-  const bYield = document.getElementById('scBYield').value || '5.1';
-  const flag = document.getElementById('scFlag').value || (LANG==='fa'?'تحویل ۵ ساله، شارژ سرویس AED ۱۸/فوت مربع':'5-year delivery, AED 18/sqft service charge');
-  const angle = document.getElementById('scAngle').value;
-  const b = BRAIN[LANG];
-  const hook = b.hooks.contrarian[0];
-  const diff = ((parseFloat(aYield) - parseFloat(bYield)) / parseFloat(bYield) * 100).toFixed(0);
-  const body = hook + '
+  var aName = getVal('scAName', 'JVC Secondary');
+  var aPrice = getVal('scAPrice', '1,200,000');
+  var aYield = getVal('scAYield', '7.2');
+  var bName = getVal('scBName', 'Dubai South Off-Plan');
+  var bPrice = getVal('scBPrice', '950,000');
+  var bYield = getVal('scBYield', '5.1');
+  var flag = getVal('scFlag', LANG === 'fa' ? 'تحویل ۵ ساله، شارژ سرویس AED ۱۸/فوت مربع' : '5-year delivery, AED 18/sqft service charge');
+  var angle = getVal('scAngle', '');
+  var b = BRAIN[LANG];
+  var hook = b.hooks.contrarian[0];
+  var diff = ((parseFloat(aYield) - parseFloat(bYield)) / parseFloat(bYield) * 100).toFixed(0);
 
-' + (LANG==='fa'?'اکثر سرمایه‌گذاران در حال تعقیب':'Most investors are chasing') + ' ' + bName + ' ' + (LANG==='fa'?'هستند چون قیمت ورودی جذاب به نظر می‌رسد':'because the entry price looks attractive') + ' ' + (aPrice ? 'AED ' + bPrice : '') + '. ' + (LANG==='fa'?'این چیزی است که بروشور به شما نمی‌گوید:':'Here is what the brochure will not tell you:') + '
+  var body = hook + '
 
-' + (flag ? ((LANG==='fa'?'ساختار هزینه پنهان وحشتناک است: ':'The hidden cost structure is brutal: ') + flag + '.') : '') + '
+' + (LANG === 'fa' ? 'اکثر سرمایه‌گذاران در حال تعقیب' : 'Most investors are chasing') + ' ' + bName + ' ' + (LANG === 'fa' ? 'هستند چون قیمت ورودی جذاب به نظر می‌رسد' : 'because the entry price looks attractive') + ' ' + (aPrice ? 'AED ' + bPrice : '') + '. ' + (LANG === 'fa' ? 'این چیزی است که بروشور به شما نمی‌گوید:' : 'Here is what the brochure will not tell you:') + '
 
-' + (angle || (LANG==='fa'?('من امتناع می‌کنم از مشاوره بر اساس احساسات. داده‌ها می‌گویند ' + aName + ' بازده ' + aYield + '٪ ارائه می‌دهد در مقابل ' + bYield + '٪ — آن هم قبل از اینکه شارژ سرویس و ریسک خالی بودن را محاسبه کنید.'):('I refuse to advise on emotion. The data says ' + aName + ' delivers ' + aYield + '% gross yield versus ' + bYield + '% — that is a ' + diff + '% advantage before service charges and vacancy risk.'))) + '
+' + (flag ? ((LANG === 'fa' ? 'ساختار هزینه پنهان وحشتناک است: ' : 'The hidden cost structure is brutal: ') + flag + '.') : '') + '
 
-' + (LANG==='fa'?'این درباره ترجیح نیست. درباره حفظ سرمایه است.':'This is not about preference. It is about capital preservation.');
-  const bl = b.bottomLine({name:aName, yield:aYield}, {name:bName, yield:bYield});
-  const cta = b.ctas[Math.floor(Math.random() * b.ctas.length)];
-  const fullText = body + '
+' + (angle || (LANG === 'fa' ? ('من امتناع می‌کنم از مشاوره بر اساس احساسات. داده‌ها می‌گویند ' + aName + ' بازده ' + aYield + '٪ ارائه می‌دهد در مقابل ' + bYield + '٪ — آن هم قبل از اینکه شارژ سرویس و ریسک خالی بودن را محاسبه کنید.') : ('I refuse to advise on emotion. The data says ' + aName + ' delivers ' + aYield + '% gross yield versus ' + bYield + '% — that is a ' + diff + '% advantage before service charges and vacancy risk.'))) + '
 
-' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
+' + (LANG === 'fa' ? 'این درباره ترجیح نیست. درباره حفظ سرمایه است.' : 'This is not about preference. It is about capital preservation.');
+
+  var bl = b.bottomLine({name: aName, yield: aYield}, {name: bName, yield: bYield});
+  var cta = b.ctas[Math.floor(Math.random() * b.ctas.length)];
+  var fullText = body + '
+
+' + (LANG === 'fa' ? 'نتیجه‌گیری:' : 'THE BOTTOM LINE:') + '
 ' + bl + '
 
 —
 
 ' + cta + '
 
-' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
-' + (LANG==='fa'?'مشاور سرمایه‌گذاری | املاک دبی':'Investment Advisor | Dubai Real Estate') + '
+' + (LANG === 'fa' ? 'ام آر لیوینگ کپیتال' : 'MR Living Capital') + '
+' + (LANG === 'fa' ? 'مشاور سرمایه‌گذاری | املاک دبی' : 'Investment Advisor | Dubai Real Estate') + '
 WhatsApp: +971 58 589 9112';
+
   showCopyOutput(fullText);
 }
 function runCorridor() {
-  const corridors = [];
-  for (let i = 1; i <= 3; i++) {
-    const name = document.getElementById('cor' + i + 'Name').value;
-    const price = document.getElementById('cor' + i + 'Price').value;
-    const yieldVal = document.getElementById('cor' + i + 'Yield').value;
-    if (name) corridors.push({name, price, yield: yieldVal});
+  var corridors = [];
+  for (var i = 1; i <= 3; i++) {
+    var name = document.getElementById('cor' + i + 'Name').value;
+    var price = document.getElementById('cor' + i + 'Price').value;
+    var yieldVal = document.getElementById('cor' + i + 'Yield').value;
+    if (name) corridors.push({name: name, price: price, yield: yieldVal});
   }
   if (corridors.length < 2) return;
-  const b = BRAIN[LANG];
-  const sorted = [...corridors].sort((a, b) => parseFloat(b.yield) - parseFloat(a.yield));
-  const gap = (parseFloat(sorted[0].yield) - parseFloat(sorted[sorted.length-1].yield)).toFixed(1);
-  const body = (LANG==='fa'?'تحلیل کریدور جایی است که اکثر مشاوران متوقف می‌شوند و من شروع می‌کنم.':'Corridor analysis is where most agents stop and I start.') + '
+  var b = BRAIN[LANG];
+  var sorted = corridors.slice().sort(function(a, b) { return parseFloat(b.yield) - parseFloat(a.yield); });
+  var gap = (parseFloat(sorted[0].yield) - parseFloat(sorted[sorted.length - 1].yield)).toFixed(1);
 
-' + corridors.map(c => '• ' + c.name + ': AED ' + c.price + '/sqft — ' + c.yield + '% ' + (LANG==='fa'?'بازده ناخالص':'gross yield')).join('
+  var body = (LANG === 'fa' ? 'تحلیل کریدور جایی است که اکثر مشاوران متوقف می‌شوند و من شروع می‌کنم.' : 'Corridor analysis is where most agents stop and I start.') + '
+
+' + corridors.map(function(c) { return '• ' + c.name + ': AED ' + c.price + '/sqft — ' + c.yield + '% ' + (LANG === 'fa' ? 'بازده ناخالص' : 'gross yield'); }).join('
 ') + '
 
-' + (LANG==='fa'?('شکاف بین ' + sorted[0].name + ' و ' + sorted[sorted.length-1].name + ' ' + gap + ' درصد است. در تخصیص سرمایه ۳ میلیون درهمی، این شکاف در طول ۵ سال نگهداری به دلتای جدی تبدیل می‌شود.'):('The spread between ' + sorted[0].name + ' and ' + sorted[sorted.length-1].name + ' is ' + gap + ' percentage points. On a AED 3M allocation, that gap compounds to serious delta over a 5-year hold.')) + '
+' + (LANG === 'fa' ? ('شکاف بین ' + sorted[0].name + ' و ' + sorted[sorted.length - 1].name + ' ' + gap + ' درصد است. در تخصیص سرمایه ۳ میلیون درهمی، این شکاف در طول ۵ سال نگهداری به دلتای جدی تبدیل می‌شود.') : ('The spread between ' + sorted[0].name + ' and ' + sorted[sorted.length - 1].name + ' is ' + gap + ' percentage points. On a AED 3M allocation, that gap compounds to serious delta over a 5-year hold.')) + '
 
-' + (LANG==='fa'?'سرمایه هوشمند از جمعیت پیروی نمی‌کند. از شکاف بازدهی پس از تنظیم ریسک پیروی می‌کند.':'Smart money does not follow the crowd. It follows the yield gap after adjusting for risk.');
-  const bl = b.corridorBL(sorted[0]);
-  const cta = b.ctas[2];
-  const fullText = body + '
+' + (LANG === 'fa' ? 'سرمایه هوشمند از جمعیت پیروی نمی‌کند. از شکاف بازدهی پس از تنظیم ریسک پیروی می‌کند.' : 'Smart money does not follow the crowd. It follows the yield gap after adjusting for risk.');
 
-' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
+  var bl = b.corridorBL(sorted[0]);
+  var cta = b.ctas[2];
+  var fullText = body + '
+
+' + (LANG === 'fa' ? 'نتیجه‌گیری:' : 'THE BOTTOM LINE:') + '
 ' + bl + '
 
 —
 
 ' + cta + '
 
-' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
+' + (LANG === 'fa' ? 'ام آر لیوینگ کپیتال' : 'MR Living Capital') + '
 WhatsApp: +971 58 589 9112';
+
   showCopyOutput(fullText);
 }
+
 function runRedFlag() {
-  const dev = document.getElementById('rfDev').value || 'Unknown';
-  const project = document.getElementById('rfProject').value || 'Unnamed';
-  const escrow = document.getElementById('rfEscrow').value;
-  const track = document.getElementById('rfTrack').value;
-  const service = document.getElementById('rfService').value || '0';
-  const flags = document.getElementById('rfFlags').value;
-  let riskScore = 0;
-  let warnings = [];
-  if (escrow === 'no') { riskScore += 3; warnings.push(LANG==='fa'?'بدون اسکروی تأییدشده = سپرده شما غیرقابل ضمانت است':'No verified escrow = your deposit is unsecured'); }
-  if (escrow === 'partial') { riskScore += 2; warnings.push(LANG==='fa'?'ثبت اسکروی جزئی شناسایی شد':'Partial escrow registration detected'); }
-  if (track === 'poor') { riskScore += 3; warnings.push(LANG==='fa'?'توسعه‌دهنده تحویل‌های قبلی را از دست داده است':'Developer has missed previous handovers'); }
-  if (track === 'new') { riskScore += 2; warnings.push(LANG==='fa'?'بدون سابقه تحویل — شما آزمایش هستید':'No delivery track record — you are the experiment'); }
-  if (parseFloat(service) > 18) { riskScore += 2; warnings.push((LANG==='fa'?('شارژ سرویس AED ' + service + '/فوت مربع بازده شما را نابود می‌کند'):('Service charge at AED ' + service + '/sqft will eat your yield alive'))); }
+  var dev = getVal('rfDev', 'Unknown');
+  var project = getVal('rfProject', 'Unnamed');
+  var escrow = document.getElementById('rfEscrow').value;
+  var track = document.getElementById('rfTrack').value;
+  var service = getVal('rfService', '0');
+  var flags = getVal('rfFlags', '');
+
+  var riskScore = 0;
+  var warnings = [];
+  if (escrow === 'no') { riskScore += 3; warnings.push(LANG === 'fa' ? 'بدون اسکروی تأییدشده = سپرده شما غیرقابل ضمانت است' : 'No verified escrow = your deposit is unsecured'); }
+  if (escrow === 'partial') { riskScore += 2; warnings.push(LANG === 'fa' ? 'ثبت اسکروی جزئی شناسایی شد' : 'Partial escrow registration detected'); }
+  if (track === 'poor') { riskScore += 3; warnings.push(LANG === 'fa' ? 'توسعه‌دهنده تحویل‌های قبلی را از دست داده است' : 'Developer has missed previous handovers'); }
+  if (track === 'new') { riskScore += 2; warnings.push(LANG === 'fa' ? 'بدون سابقه تحویل — شما آزمایش هستید' : 'No delivery track record — you are the experiment'); }
+  if (parseFloat(service) > 18) { riskScore += 2; warnings.push((LANG === 'fa' ? ('شارژ سرویس AED ' + service + '/فوت مربع بازده شما را نابود می‌کند') : ('Service charge at AED ' + service + '/sqft will eat your yield alive'))); }
   if (flags) { riskScore += 1; warnings.push(flags); }
-  const verdict = riskScore >= 6 ? 'WALK AWAY' : riskScore >= 3 ? 'PROCEED WITH CAUTION' : 'ACCEPTABLE RISK';
-  const verdictFa = riskScore >= 6 ? 'دور شوید' : riskScore >= 3 ? 'با احتیاط پیش بروید' : 'ریسک قابل قبول';
-  const v = LANG==='fa' ? verdictFa : verdict;
-  const b = BRAIN[LANG];
-  const body = (LANG==='fa'?'بررسی دقیق توسعه‌دهنده':'Developer Due Diligence') + ': ' + dev + ' — ' + project + '
 
-' + (LANG==='fa'?'امتیاز ارزیابی ریسک':'Risk Assessment Score') + ': ' + riskScore + '/10
+  var verdict = riskScore >= 6 ? 'WALK AWAY' : riskScore >= 3 ? 'PROCEED WITH CAUTION' : 'ACCEPTABLE RISK';
+  var verdictFa = riskScore >= 6 ? 'دور شوید' : riskScore >= 3 ? 'با احتیاط پیش بروید' : 'ریسک قابل قبول';
+  var v = LANG === 'fa' ? verdictFa : verdict;
+  var b = BRAIN[LANG];
 
-' + warnings.map(w => '• ' + w).join('
+  var body = (LANG === 'fa' ? 'بررسی دقیق توسعه‌دهنده' : 'Developer Due Diligence') + ': ' + dev + ' — ' + project + '
+
+' + (LANG === 'fa' ? 'امتیاز ارزیابی ریسک' : 'Risk Assessment Score') + ': ' + riskScore + '/10
+
+' + warnings.map(function(w) { return '• ' + w; }).join('
 ') + '
 
-' + (LANG==='fa'?'رأی:':'Verdict:') + ' ' + v + '
+' + (LANG === 'fa' ? 'رأی:' : 'Verdict:') + ' ' + v + '
 
-' + (riskScore >= 6 ? (LANG==='fa'?'برایم مهم نیست رندر چقدر زیبا به نظر برسد. حفظ سرمایه قبل از ترس از دست دادن فرصت است.':'I do not care how good the render looks. Capital preservation comes before FOMO.') : (LANG==='fa'?'اعداد تأیید می‌شوند، اما قبل از تعهد مستقلاً بررسی کنید.':'Numbers check out, but verify independently before committing.'));
-  const bl = b.redflagBL(verdict);
-  const cta = b.ctas[4];
-  const fullText = body + '
+' + (riskScore >= 6 ? (LANG === 'fa' ? 'برایم مهم نیست رندر چقدر زیبا به نظر برسد. حفظ سرمایه قبل از ترس از دست دادن فرصت است.' : 'I do not care how good the render looks. Capital preservation comes before FOMO.') : (LANG === 'fa' ? 'اعداد تأیید می‌شوند، اما قبل از تعهد مستقلاً بررسی کنید.' : 'Numbers check out, but verify independently before committing.'));
 
-' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
+  var bl = b.redflagBL(verdict);
+  var cta = b.ctas[4];
+  var fullText = body + '
+
+' + (LANG === 'fa' ? 'نتیجه‌گیری:' : 'THE BOTTOM LINE:') + '
 ' + bl + '
 
 —
 
 ' + cta + '
 
-' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
+' + (LANG === 'fa' ? 'ام آر لیوینگ کپیتال' : 'MR Living Capital') + '
 WhatsApp: +971 58 589 9112';
+
   showCopyOutput(fullText);
 }
+
 function generateCopy() {
-  const platform = document.getElementById('cpPlatform').value;
-  const topic = document.getElementById('cpTopic').value || (LANG==='fa'?'تحلیل بازار املاک دبی':'Dubai real estate market analysis');
-  const tone = document.getElementById('cpTone').value;
-  const data = document.getElementById('cpData').value;
-  const b = BRAIN[LANG];
-  const hook = b.hooks[tone][Math.floor(Math.random() * b.hooks[tone].length)];
-  let text = hook + '
+  var platform = document.getElementById('cpPlatform').value;
+  var topic = getVal('cpTopic', LANG === 'fa' ? 'تحلیل بازار املاک دبی' : 'Dubai real estate market analysis');
+  var tone = document.getElementById('cpTone').value;
+  var data = getVal('cpData', '');
+  var b = BRAIN[LANG];
+  var hook = b.hooks[tone][Math.floor(Math.random() * b.hooks[tone].length)];
+
+  var text = hook + '
 
 ' + topic;
   if (data) text += '
@@ -723,26 +847,27 @@ function generateCopy() {
 ' + data;
   text += '
 
-' + (LANG==='fa'?'نتیجه‌گیری:':'THE BOTTOM LINE:') + '
-' + (LANG==='fa'?'هر ادعای اینجا با داده‌های تأییدشده پشتیبانی می‌شود. من بر اساس احساسات مشاوره نمی‌دهم. من سرمایه را طراحی می‌کنم.':'Every claim here is backed by verified data. I do not advise on emotion. I architect capital.');
+' + (LANG === 'fa' ? 'نتیجه‌گیری:' : 'THE BOTTOM LINE:') + '
+' + (LANG === 'fa' ? 'هر ادعای اینجا با داده‌های تأییدشده پشتیبانی می‌شود. من بر اساس احساسات مشاوره نمی‌دهم. من سرمایه را طراحی می‌کنم.' : 'Every claim here is backed by verified data. I do not advise on emotion. I architect capital.');
+
   if (platform === 'linkedin') {
     text += '
 
 ——
 
-' + (LANG==='fa'?'ام آر لیوینگ کپیتال':'MR Living Capital') + '
-' + (LANG==='fa'?'مشاور سرمایه‌گذاری | املاک دبی':'Investment Advisor | Dubai Real Estate') + '
+' + (LANG === 'fa' ? 'ام آر لیوینگ کپیتال' : 'MR Living Capital') + '
+' + (LANG === 'fa' ? 'مشاور سرمایه‌گذاری | املاک دبی' : 'Investment Advisor | Dubai Real Estate') + '
 WhatsApp: +971 58 589 9112
 
 #LivingProofLastingLegacy #DubaiRealEstate #PropertyInvestment';
   } else if (platform === 'instagram') {
     text += '
 
-' + (LANG==='fa'?'برای تحلیل کامل اسلاید کنید →':'Swipe for the full breakdown →') + '
+' + (LANG === 'fa' ? 'برای تحلیل کامل اسلاید کنید →' : 'Swipe for the full breakdown →') + '
 
-' + (LANG==='fa'?'نتیجه‌گیری در اسلاید ۵.':'THE BOTTOM LINE in slide 5.') + '
+' + (LANG === 'fa' ? 'نتیجه‌گیری در اسلاید ۵.' : 'THE BOTTOM LINE in slide 5.') + '
 
-' + (LANG==='fa'?'برای تصمیم خرید بعدی خود ذخیره کنید.':'Save this for your next purchase decision.') + '
+' + (LANG === 'fa' ? 'برای تصمیم خرید بعدی خود ذخیره کنید.' : 'Save this for your next purchase decision.') + '
 
 —
 
@@ -750,33 +875,38 @@ WhatsApp: +971 58 589 9112
   } else {
     text += '
 
-💬 ' + (LANG==='fa'?'واتس‌اپ برای گزارش کامل:':'WhatsApp for full brief:') + ' +971 58 589 9112';
+💬 ' + (LANG === 'fa' ? 'واتس‌اپ برای گزارش کامل:' : 'WhatsApp for full brief:') + ' +971 58 589 9112';
   }
+
   showCopyOutput(text);
 }
+
 function showCopyOutput(text) {
   document.getElementById('slideCanvas').style.display = 'none';
   document.getElementById('copyOutput').style.display = 'block';
   document.getElementById('btnExport').style.display = 'none';
-  showTab('copy');
+  showTab('copy', document.getElementById('navCopy'));
   document.getElementById('copyText').textContent = text;
 }
-function showCopy(platform) {
-  document.querySelectorAll('.copy-tab').forEach(t => t.classList.remove('active'));
-  event.target.classList.add('active');
-}
+
 function exportSlide() {
-  const canvas = document.getElementById('slideCanvas');
-  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{margin:0;background:#e8e2d6;display:flex;justify-content:center;padding:40px;}.slide-box{width:1080px;height:1350px;background:#F6F1E7;position:relative;overflow:hidden;}' + document.querySelector('style').textContent.split('/*')[0] + '</style></head><body><div class="slide-box">' + canvas.innerHTML + '</div></body></html>';
-  const blob = new Blob([html], {type:'text/html'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
+  var canvas = document.getElementById('slideCanvas');
+  var styles = document.querySelector('style').textContent;
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><style>body{margin:0;background:#e8e2d6;display:flex;justify-content:center;padding:40px;}.slide-box{width:1080px;height:1350px;background:#F6F1E7;position:relative;overflow:hidden;}' + styles + '</style></head><body><div class="slide-box">' + canvas.innerHTML + '</div></body></html>';
+
+  var blob = new Blob([html], {type: 'text/html'});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
   a.href = url;
   a.download = 'MRLC-Slide-' + currentTab + '-' + LANG + '.html';
   a.click();
   URL.revokeObjectURL(url);
 }
-window.addEventListener('load', () => { generateSlide(); });
+
+// ===== INIT =====
+window.addEventListener('load', function() {
+  generateSlide();
+});
 </script>
 </body>
 </html>
