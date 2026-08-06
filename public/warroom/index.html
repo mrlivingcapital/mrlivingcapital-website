@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
 <title>War Room — MR LIVING CAPITAL</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
@@ -69,9 +70,26 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 .weekMeta .wp{font-size:11px;letter-spacing:2.4px;font-weight:600;color:var(--mute)}
 .weekMeta .wt{font-family:"Cormorant Garamond";font-weight:700;font-size:21px;color:var(--slate-dk);margin-top:3px}
 .weekMeta .wn{font-size:12.5px;color:var(--slate);margin-top:2px}
+
+#gate{position:fixed;inset:0;z-index:9999;background:var(--ivory);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:22px}
+#gate .gwm{font:700 30px 'Space Grotesk';letter-spacing:6px;color:var(--slate-dk)}
+#gate .gsub{font:600 11px 'Space Grotesk';letter-spacing:3px;color:var(--turq)}
+#gate input{font:400 18px Inter;padding:14px 20px;border:2px solid var(--sand);border-radius:14px;background:#fff;color:var(--slate-dk);width:280px;text-align:center;outline:none}
+#gate input:focus{border-color:var(--turq)}
+#gate button{font:700 14px 'Space Grotesk';letter-spacing:2px;background:var(--turq);color:#fff;border:none;border-radius:14px;padding:14px 34px;cursor:pointer}
+#gate .gerr{font:500 13px Inter;color:#b04a4a;display:none}
+#gate .gline{width:56px;height:4px;border-radius:2px;background:var(--turq)}
 </style>
 </head>
 <body>
+<div id="gate">
+  <div class="gwm">MR LIVING CAPITAL</div>
+  <div class="gline"></div>
+  <div class="gsub">PRIVATE — AUTHORISED ACCESS ONLY</div>
+  <input id="gatePw" type="password" placeholder="Access code" autocomplete="off">
+  <button id="gateBtn">ENTER</button>
+  <div class="gerr" id="gateErr">Incorrect code.</div>
+</div>
 <div class="topbar">
   <div>
     <div class="wm">MR LIVING <span>CAPITAL</span></div>
@@ -83,6 +101,25 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 </div>
 <div class="tabs" id="tabs"></div>
 <div id="view"></div>
+<script>
+/* ---- access gate (client-side privacy; SHA-256) ---- */
+(async()=>{
+  const HASH='263c4417e18ce06badaa49eb5b918b98fc546b21b3632bfd4824eb526b520b69';
+  const gate=document.getElementById('gate');
+  if(sessionStorage.getItem('mrlc_auth')==='1'){gate.remove();return;}
+  document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='hidden');
+  async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
+    return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function tryPw(){
+    const v=document.getElementById('gatePw').value.trim();
+    if(await sha(v)===HASH){sessionStorage.setItem('mrlc_auth','1');gate.remove();
+      document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='');}
+    else{document.getElementById('gateErr').style.display='block';document.getElementById('gatePw').value='';}}
+  document.getElementById('gateBtn').onclick=tryPw;
+  document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')tryPw();});
+  document.getElementById('gatePw').focus();
+})();
+</script>
 <script>
 /* ============ LOCKED BRAND — Turquoise Signature ============ */
 const IVORY='#F6F1E7',SLATE='#5A6662',SLATE_DK='#2E3835',TURQ='#0F6B62',TURQ_SOFT='#57A99F',
@@ -424,6 +461,38 @@ const TOPICS=[
  tags:'#DubaiMetro #GoldLine #DubaiRealEstate #JVC #Infrastructure #MRLivingCapital'},
 
 /* ---- BANKED TOPICS (July 2026 verified) ---- */
+{key:'wynn-date',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
+ title:'Wynn just locked its date. September 2027.',accents:['September 2027.'],
+ sub:'The UAE’s first casino resort confirmed its opening on an earnings call this week. The countdown is official.',subAccent:'official',
+ photo:'marina',
+ features:[
+  {icon:'key',title:'September 2027 — “firm”',desc:'Confirmed 4 Aug 2026 on Wynn’s Q2 earnings call. Tower topped out; interior fit-out underway.',stat:'Sep 27',statDesc:'Opening — firm, per CEO',source:'Source: Wynn Q2 call, 4 Aug 2026'},
+  {icon:'chart',title:'$5.7B — the only license in the UAE',desc:'Budget rose $600M on conflict-linked costs — Wynn absorbed it rather than slow down. 1,530 suites, 22 restaurants, gaming floor bigger than Vegas.',stat:'$5.7B',statDesc:'Total project budget',source:'Source: Wynn Resorts / Gulf News'},
+  {icon:'people',title:'RAK is already breaking records',desc:'H1 2026: 670,000+ visitors — strongest first half ever. Al Marjan is 55% of the emirate’s sale listings at AED 2,645/sqft average; 62% of buyers are foreign capital.',stat:'670K+',statDesc:'RAK visitors H1 2026 — record',source:'Source: RAK TDA / Reliant Surveyors'}],
+ chart:null,
+ quote:{line1:'A firm date turns a story into a countdown.',line2:'Islands reprice before the anchor opens — never after.'},
+ source:'Sources: Wynn Q2 2026 earnings call · Gulf News · RAK TDA · Reliant Surveyors Q1 2026',
+ hook:'Wynn just locked its opening date: September 2027. The UAE’s only casino license now has a countdown.',
+ points:['Wynn Al Marjan Island confirmed a September 2027 opening on the 4 Aug earnings call — CEO calls it “firm”.','$5.7B project; Wynn absorbed a $600M cost rise rather than slow construction.','The only land-based gaming license in the UAE — 15 years, issued 2024.','RAK H1 2026: 670,000+ visitors, strongest first half in the emirate’s history.','Al Marjan Island: 55% of RAK sale listings, AED 2,645/sqft average, 62% foreign buyers.'],
+ sowhat:'A firm date converts speculation into a countdown. Anchor resorts reprice their islands before opening day, not after — the repricing window is the 13 months ahead, not the opening week.',
+ cta:'Which Al Marjan units still make sense at today’s prices — that’s the private shortlist.',
+ tags:'#RasAlKhaimah #WynnResort #AlMarjanIsland #RAKProperty #UAEInvestment #MRLivingCapital'},
+{key:'modon-reem',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
+ title:'Modon is stacking Reem Island.',accents:['Reem Island.'],
+ sub:'AED 11.97B in Q1 sales. Sold-out launches in a day. And the capital’s pipeline is just getting started.',subAccent:'AED 11.97B',
+ photo:'louvre',
+ features:[
+  {icon:'chart',title:'AED 11.97B sales in one quarter',desc:'Modon Holding’s Q1 2026 — ADQ-backed, ADX-listed, and accelerating.',stat:'11.97B',statDesc:'AED — Modon Q1 2026 sales',source:'Source: Modon Holding'},
+  {icon:'home',title:'Reem Island: stock available now',desc:'Maysan spans 600,000+ sqm across two districts; Muheira apartments from ~AED 1.2M, handovers from late 2027. Earlier Reem launches sold out.',stat:'600K',statDesc:'sqm — Maysan masterplan, Reem',source:'Source: Modon / Projectory'},
+  {icon:'bank',title:'75% construction finance',desc:'Modon × ADIB (July 2026): eligible buyers can finance up to 75% during construction on selected projects.',stat:'75%',statDesc:'Finance during construction',source:'Source: Modon × ADIB, Jul 2026'}],
+ chart:null,
+ quote:{line1:'Bashayer sold out in a single day — AED 3B.',line2:'When the developer is the state’s platform, launches are events.'},
+ source:'Sources: Modon Holding · ADX · Projectory, Aug 2026',
+ hook:'Modon did AED 11.97 billion in sales in one quarter — and it’s still stacking Reem Island.',
+ points:['Modon Holding Q1 2026: AED 11.97B sales — ADQ-backed and ADX-listed.','Reem Island: Maysan’s 600,000 sqm masterplan; Muheira from ~AED 1.2M, handovers from late 2027.','Bashayer on Hudayriyat sold out in one day — ~AED 3B raised.','Modon × ADIB: up to 75% finance during construction for eligible buyers.','Saadiyat is the next frontier — the capital’s pipeline is just getting started.'],
+ sowhat:'Sovereign-backed launches with financing rails attached clear fast — Bashayer proved it in a day. In Abu Dhabi, access at launch is the edge, not negotiation after.',
+ cta:'Multiple Modon launches land in the coming weeks — Reem stock now, Saadiyat next. My allocation list is private.',
+ tags:'#Modon #AbuDhabi #ReemIsland #Saadiyat #OffPlan #MRLivingCapital'},
 {key:'p26',type:'jab',pillar:'Market Intelligence',asof:'July 2026',
  title:'Developers just stopped launching.',accents:['stopped'],
  sub:'Q2 2026 saw the fewest new launches in years — while handovers hit a record. Read that twice.',subAccent:'fewest',
@@ -698,15 +767,25 @@ const FA={
  sowhat:'کنترل منشأ وجوه استاندارد جدید است — اول ساختار، بعد خرید. برگرداندن یک ساختار بد پول واقعی هزینه دارد.',
  cta:'می‌خواهید خرید را دور ویزا ساختار بدهید؟ mrlivingcapital@gmail.com — بار اول درست انجامش دهید.',
  tags:'#گلدن_ویزا #اقامت_امارات #املاک_دبی #سرمایه_گذاری #MRLivingCapital'}
+,'wynn-date':{hook:'وین بالاخره تاریخ را قفل کرد: سپتامبر ۲۰۲۷. تنها مجوز کازینوی امارات حالا شمارش معکوس دارد.',
+ points:['وین المرجان تأیید کرد: افتتاح سپتامبر ۲۰۲۷ — در تماس درآمدی ۴ اوت؛ مدیرعامل می‌گوید «قطعی».','پروژهٔ ۵٫۷ میلیارد دلاری؛ وین ۶۰۰ میلیون دلار افزایش هزینه را جذب کرد تا ساخت‌وساز کند نشود.','تنها مجوز کازینوی زمینی امارات — ۱۵ ساله، صادرشده در ۲۰۲۴.','راس‌الخیمه در نیمهٔ اول ۲۰۲۶: بیش از ۶۷۰ هزار گردشگر — بهترین نیمهٔ اول تاریخ امارت.','جزیرهٔ المرجان: ۵۵٪ آگهی‌های فروش راس‌الخیمه، میانگین ۲٬۶۴۵ درهم در فوت مربع، ۶۲٪ خریداران سرمایهٔ خارجی.'],
+ sowhat:'تاریخ قطعی یعنی تبدیل حدس به شمارش معکوس. جزایر قبل از افتتاحِ لنگر بازقیمت‌گذاری می‌شوند، نه بعد از آن — پنجرهٔ بازقیمت‌گذاری همین ۱۳ ماه پیش‌روست، نه هفتهٔ افتتاح.',
+ cta:'کدام واحدهای المرجان با قیمت امروز هنوز منطقی‌اند — آن لیست منتخب خصوصی است.',
+ tags:'#راس_الخیمه #وین_المرجان #جزیره_المرجان #سرمایه_گذاری_امارات #MRLivingCapital'},
+'modon-reem':{hook:'مادون در یک سه‌ماهه ۱۱٫۹۷ میلیارد درهم فروخت — و هنوز دارد جزیرهٔ ریم را پر می‌کند.',
+ points:['مادون هولدینگ، سه‌ماههٔ اول ۲۰۲۶: ۱۱٫۹۷ میلیارد درهم فروش — با پشتوانهٔ ADQ و لیست‌شده در ADX.','جزیرهٔ ریم: مسترپلن ۶۰۰ هزار مترمربعی مَیسان؛ موحیرا از حدود ۱٫۲ میلیون درهم، تحویل از اواخر ۲۰۲۷.','بشایر در حدیریات در یک روز تمام شد — حدود ۳ میلیارد درهم.','مادون و ADIB: تا ۷۵٪ تأمین مالی حین ساخت برای خریداران واجد شرایط.','سعدیات مرز بعدی است — خط لولهٔ پایتخت تازه شروع شده.'],
+ sowhat:'لانچ‌های دولت‌محور که ریل تأمین مالی هم دارند، سریع تمام می‌شوند — بشایر در یک روز ثابتش کرد. در ابوظبی، دسترسی روز لانچ مزیت است، نه چانه‌زنی بعد از آن.',
+ cta:'چند لانچ مادون در هفته‌های پیش‌رو می‌آید — موجودی ریم حالا، سعدیات بعدی. لیست تخصیص من خصوصی است.',
+ tags:'#مادون #ابوظبی #جزیره_ریم #سعدیات #آف_پلن #MRLivingCapital'}
 };
 TOPICS.forEach(t=>{if(FA[t.key])t.fa=FA[t.key];});
 
 /* ---- DAILY BRIEF (refreshed by morning scan) ---- */
-const BRIEF={date:'5 August 2026',note:'Morning scan complete — 3 time-sensitive topics ready. Pick one, generate the pack, post.',
+const BRIEF={date:'6 August 2026',note:'Morning scan complete — Abu Dhabi post is ready to go; Wynn locked its date this week and Modon\u2019s pipeline is next.',
  items:[
-  {key:'ad-rush',prio:1,why:'RIGHT HOOK WINDOW: 100+ launches land from mid-August across Abu Dhabi, Dubai, RAK. The gold-rush post — soft CTA to your call list.'},
-  {key:'uk-exodus',prio:2,why:'Global hook: record UK wealth exodus confirmed, UAE is the receiving end. Pure value, high shareability.'},
-  {key:'gold-line',prio:3,why:'Evergreen intel with a fresh map — Gold Line corridors are the next repricing story.'}]};
+  {key:'ad-rush',prio:1,why:'TODAY\u2019S POST: 100+ launches land from mid-August across Abu Dhabi, Dubai, RAK. Gold-rush opener \u2014 pairs with your video.'},
+  {key:'wynn-date',prio:2,why:'FRESH THIS WEEK: Wynn confirmed September 2027 on the 4 Aug earnings call \u2014 the countdown post for RAK.'},
+  {key:'modon-reem',prio:3,why:'PIPELINE PLAY: Modon AED 11.97B quarter, Reem stock live, Saadiyat next \u2014 sets up the launch wave.'}]};
 
 /* ---- CADENCE ---- */
 const CADENCE=[
@@ -790,6 +869,7 @@ async function buildPack(t,container){
   pages.push({cv:renderCloser(t,_portrait),label:'CLOSER · CALL ME (contact band)'});
   pages.push({cv:renderReel(t),label:'REEL COVER (1080×1920)'});
   const texts=[['LINKEDIN',capLinkedIn(t)],['INSTAGRAM',capInstagram(t)],['X (TWITTER)',capX(t)],['THREADS',capThreads(t)],['FACEBOOK PAGE',capFacebook(t)],['TELEGRAM — CORRIDOR BRIEF',capTelegram(t)],['WHATSAPP BROADCAST',capWhatsApp(t)],['WHATSAPP STORY',capWAStory(t)],['REEL SCRIPT (30–60s)',reelScript(t)]];
+  texts.push(['HASHTAGS — COPY/PASTE SET', t.tags+(t.fa?'\n\nFARSI:\n'+t.fa.tags:'')]);
   if(t.fa)texts.push(['FA — لینکدین / فیسبوک',capLinkedInFA(t)],['FA — اینستاگرام / تردز',capInstagramFA(t)],['FA — تلگرام',capTelegramFA(t)],['FA — واتس‌اپ',capWhatsAppFA(t)]);
   /* render UI */
   const safe=t.key;
