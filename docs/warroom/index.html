@@ -131,6 +131,16 @@ const IMG={skyline:'https://mrlivingcapital.com/images/dubai-skyline.jpg',
            jvc:'https://mrlivingcapital.com/images/jvc-community.jpg',
            louvre:'https://mrlivingcapital.com/images/landmark-louvre.jpg',
            marina:'https://mrlivingcapital.com/images/dubai-marina.jpg',
+           map:'https://mrlivingcapital.com/images/uae-map.jpg',
+           meydan:'https://mrlivingcapital.com/images/meydan-racetrack.jpg',
+           jbr:'https://mrlivingcapital.com/images/landmark-jbr.jpg',
+           mosque:'https://mrlivingcapital.com/images/landmark-mosque.jpg',
+           businessbay:'https://mrlivingcapital.com/images/landmark-business-bay.jpg',
+           south:'https://mrlivingcapital.com/images/dubai-south-aerial.jpg',
+           interior:'https://mrlivingcapital.com/images/property-interior.jpg',
+           creek:'https://mrlivingcapital.com/images/landmark-creek.jpg',
+           palm:'https://mrlivingcapital.com/images/palm-jumeirah.jpg',
+           museum:'https://mrlivingcapital.com/images/landmark-museum-future.jpg',
            portrait:PORTRAIT_B64};
 
 let grainPat=null;
@@ -350,6 +360,103 @@ function renderChartSlide(t){
   footerCenter(x,h);grain(x,h);
   return finish(c,h);}
 const ICONS={"instagram": "M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077", "x": "M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z", "whatsapp": "M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z", "telegram": "M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z", "linkedin": "M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z", "facebook": "M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z", "threads": "M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z"};
+
+/* ---- FARSI PACK — RTL, Vazirmatn, identical locked chrome ---- */
+const PILLAR_FA={'Market Intelligence':'هوش بازار','Commercial':'املاک تجاری','Investor Education':'آموزش سرمایه‌گذار','Advisory Warnings':'تحلیل صادقانه','The Strategist':'استراتژیست'};
+function faSet(x,w,s){x.font=w+' '+s+'px Vazirmatn, Tahoma, sans-serif';}
+function faLines(x,t,right,y,mw,lh,color,center){
+  x.save();x.direction='rtl';x.textAlign=center?'center':'right';x.fillStyle=color;
+  for(const ln of wrap(x,t,mw)){x.fillText(ln,center?W/2:right,y);y+=lh;}
+  x.restore();return y;}
+function renderCoverFA(t){
+  const h=1350,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,1);headerCenter(x);
+  const hasPhoto=!!t._photo,right=hasPhoto?M+W*.44:W-M,colW=hasPhoto?W*.44:W-M*2;
+  if(hasPhoto)photoPanel(x,t._photo,190,h-170);
+  let s=t.fa.title.length>40?54:64;faSet(x,'700',s);
+  while(s>34&&wrap(x,t.fa.title,colW).length>4){s-=2;faSet(x,'700',s);}
+  let y=340;
+  y=faLines(x,t.fa.title,right,y,colW,s*1.32,SLATE_DK)+14;
+  x.fillStyle=TURQ;rrect(x,right-72,y,72,7,3.5);x.fill();y+=44;
+  faSet(x,'400',29);
+  y=faLines(x,t.fa.hook,right,y,colW,43,SLATE)+26;
+  faSet(x,'600',24);
+  y=faLines(x,(PILLAR_FA[t.pillar]||t.pillar),right,y,colW,34,TURQ)+16;
+  if(y<h-470&&t.fa.sowhat){faSet(x,'500',28);
+    faLines(x,'«'+t.fa.sowhat+'»',right,y+16,colW,42,'rgba(15,107,98,.85)');}
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+function renderIdeaFA(t,point,i,n){
+  const h=1350,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,.8);headerCenter(x);
+  x.fillStyle='rgba(15,107,98,.08)';x.font='700 230px '+FH;x.textAlign='center';
+  x.fillText(String(i+1),W/2,430);x.textAlign='left';
+  const mw=W-M*2-80;let s=50;faSet(x,'600',s);
+  while(s>30&&wrap(x,point,mw).length>5){s-=2;faSet(x,'600',s);}
+  const lines=wrap(x,point,mw),lh=s*1.5;let y=h/2-lines.length*lh/2+30;
+  x.save();x.direction='rtl';x.textAlign='center';x.fillStyle=SLATE_DK;
+  for(const ln of lines){x.fillText(ln,W/2,y);y+=lh;}
+  x.restore();
+  const dr=7,dg=26,dw=n*dr*2+(n-1)*(dg-dr*2);let dx=W/2-dw/2;
+  for(let k=0;k<n;k++){x.fillStyle=k===i?TURQ:'rgba(15,107,98,.22)';x.beginPath();x.arc(dx+dr,h-240,dr,0,Math.PI*2);x.fill();dx+=dg;}
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+function renderCloserFA(t,portrait){
+  const h=1350,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,1);
+  faSet(x,'600',44);
+  let y=340;
+  x.save();x.direction='rtl';x.textAlign='center';x.fillStyle=SLATE_DK;
+  for(const ln of wrap(x,'«'+t.fa.sowhat+'»',W-220)){x.fillText(ln,W/2,y);y+=60;}
+  x.restore();
+  x.fillStyle=TURQ;x.font='700 150px '+FD;x.textAlign='center';
+  x.fillText('CALL ME.',W/2,y+170);
+  rrect(x,W/2-44,y+202,88,8,4);x.fill();
+  faSet(x,'400',25);
+  faLines(x,'بیست دقیقه. اعداد شما، خوانش من. بدون پیچ.',W/2,y+270,W-200,36,MUTE,true);
+  const bw=W-M*2,bh=250,by=h-bh-190;
+  x.fillStyle=SAND_SOFT;rrect(x,M,by,bw,bh,60);x.fill();
+  const cx=M+135,cy=by+bh/2,pr=84;
+  if(portrait){x.save();x.beginPath();x.arc(cx,cy,pr,0,Math.PI*2);x.clip();
+    const sc=Math.max(pr*2/portrait.width,pr*2/portrait.height);
+    x.drawImage(portrait,cx-portrait.width*sc/2,cy-portrait.height*sc/2,portrait.width*sc,portrait.height*sc);x.restore();}
+  x.strokeStyle=TURQ;x.lineWidth=5;x.beginPath();x.arc(cx,cy,pr+8,0,Math.PI*2);x.stroke();
+  x.textAlign='left';x.fillStyle=TURQ;x.font='700 33px '+FH;
+  x.save();if(x.letterSpacing!==undefined)x.letterSpacing='1px';
+  x.fillText('MR LIVING CAPITAL',cx+pr+38,cy-14);x.restore();
+  faSet(x,'500',23);
+  x.save();x.direction='rtl';x.textAlign='left';x.fillStyle=TURQ;
+  x.fillText('برای گفت‌وگو، هر وقت دایرکت بدهید',cx+pr+38,cy+36);x.restore();
+  const nets=['instagram','x','whatsapp','telegram','linkedin','facebook','threads'];
+  const isz=25,igap=46;
+  const ix0=(M+bw-58)-((nets.length-1)*igap+isz);
+  x.fillStyle=TURQ;
+  nets.forEach((n,k)=>{const gx=ix0+k*igap;
+    x.save();x.translate(gx,cy-56);x.scale(isz/24,isz/24);
+    x.fill(new Path2D(ICONS[n]));x.restore();});
+  x.textAlign='right';x.fillStyle=TURQ;x.font='600 25px '+FB;
+  x.fillText('@mrlivingcapital',M+bw-64,cy+16);
+  x.font='500 23px '+FB;x.fillText('mrlivingcapital.com',M+bw-64,cy+54);
+  x.textAlign='left';
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+function renderReelFA(t){
+  const h=1920,[c,x]=mkCanvas(h);
+  bgBase(x,h);softWaves(x,h);ringMark(x,1.15);headerCenter(x);
+  const hasPhoto=!!t._photo,right=hasPhoto?M+W*.46:W-M,colW=hasPhoto?W*.46:W-M*2;
+  if(hasPhoto)photoPanel(x,t._photo,260,h-260);
+  let s=t.fa.title.length>40?60:72;faSet(x,'700',s);
+  while(s>36&&wrap(x,t.fa.title,colW).length>5){s-=2;faSet(x,'700',s);}
+  let y=560;
+  y=faLines(x,t.fa.title,right,y,colW,s*1.3,SLATE_DK)+22;
+  x.fillStyle=TURQ;rrect(x,right-80,y,80,8,4);x.fill();y+=50;
+  faSet(x,'400',31);
+  y=faLines(x,t.fa.hook,right,y,colW,47,SLATE)+30;
+  faSet(x,'600',26);
+  faLines(x,PILLAR_FA[t.pillar]||t.pillar,right,y,colW,36,TURQ);
+  footerCenter(x,h);grain(x,h);
+  return finish(c,h);}
+
 function renderCloser(t,portrait){
   const h=1350,[c,x]=mkCanvas(h);
   bgBase(x,h);softWaves(x,h);ringMark(x,1);
@@ -429,7 +536,7 @@ const TOPICS=[
 {key:'uk-exodus',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
  title:'16,500 millionaires left the UK this year.',accents:['16,500','millionaires'],
  sub:'The largest wealth exodus ever recorded — and 12,000 of them chose one destination.',subAccent:'12,000',
- photo:'skyline',
+ photo:'map',
  features:[
   {icon:'chart',title:'The UK just lost 16,500 millionaires',desc:'Net outflow in 2026 — the largest single-year exodus recorded for any country. Taxes did what no crash could.',stat:'-16.5K',statDesc:'UK net millionaire outflow, 2026',source:'Source: Henley PWM 2025'},
   {icon:'globe',title:'165,000 are relocating globally',desc:'A record year for wealth migration — $63B in investable assets moving with them.',stat:'$63B',statDesc:'Wealth relocating in 2026',source:'Source: New World Wealth'},
@@ -446,7 +553,7 @@ const TOPICS=[
 {key:'gold-line',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
  title:'Dubai just drew a Gold Line through 55 mega projects.',accents:['Gold Line'],
  sub:'AED 34 billion. 42km underground. 18 stations. The biggest transport project in Dubai’s history — approved.',subAccent:'AED 34 billion.',
- photo:'jvc',
+ photo:'meydan',
  features:[
   {icon:'metro',title:'AED 34B · 42km · fully underground',desc:'Approved 22 April 2026 by Sheikh Mohammed. Dubai’s first fully underground metro — 40 metres deep, opening 9 September 2032.',stat:'2032',statDesc:'Opening 9 Sep — 30% faster than Blue Line',source:'Source: Dubai Media Office'},
   {icon:'building',title:'55 mega developments connected',desc:'Al Ghubaiba to Jumeirah Golf Estates — City Walk, Business Bay, Meydan, JVC. 1.5 million residents served.',stat:'1.5M',statDesc:'Residents served by the line',source:'Source: Dubai Media Office'},
@@ -464,7 +571,7 @@ const TOPICS=[
 {key:'wynn-date',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
  title:'Wynn just locked its date. September 2027.',accents:['September 2027.'],
  sub:'The UAE’s first casino resort confirmed its opening on an earnings call this week. The countdown is official.',subAccent:'official',
- photo:'marina',
+ photo:'jbr',
  features:[
   {icon:'key',title:'September 2027 — “firm”',desc:'Confirmed 4 Aug 2026 on Wynn’s Q2 earnings call. Tower topped out; interior fit-out underway.',stat:'Sep 27',statDesc:'Opening — firm, per CEO',source:'Source: Wynn Q2 call, 4 Aug 2026'},
   {icon:'chart',title:'$5.7B — the only license in the UAE',desc:'Budget rose $600M on conflict-linked costs — Wynn absorbed it rather than slow down. 1,530 suites, 22 restaurants, gaming floor bigger than Vegas.',stat:'$5.7B',statDesc:'Total project budget',source:'Source: Wynn Resorts / Gulf News'},
@@ -480,7 +587,7 @@ const TOPICS=[
 {key:'modon-reem',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
  title:'Modon is stacking Reem Island.',accents:['Reem Island.'],
  sub:'AED 11.97B in Q1 sales. Sold-out launches in a day. And the capital’s pipeline is just getting started.',subAccent:'AED 11.97B',
- photo:'louvre',
+ photo:'mosque',
  features:[
   {icon:'chart',title:'AED 11.97B sales in one quarter',desc:'Modon Holding’s Q1 2026 — ADQ-backed, ADX-listed, and accelerating.',stat:'11.97B',statDesc:'AED — Modon Q1 2026 sales',source:'Source: Modon Holding'},
   {icon:'home',title:'Reem Island: stock available now',desc:'Maysan spans 600,000+ sqm across two districts; Muheira apartments from ~AED 1.2M, handovers from late 2027. Earlier Reem launches sold out.',stat:'600K',statDesc:'sqm — Maysan masterplan, Reem',source:'Source: Modon / Projectory'},
@@ -512,7 +619,7 @@ const TOPICS=[
 {key:'p27',type:'jab',pillar:'Commercial',asof:'July 2026',
  title:'Offices tripled. Nobody posted about it.',accents:['tripled.'],
  sub:'While feeds argue about villas, Dubai’s office market quietly did AED 7.5B in one quarter.',subAccent:'AED 7.5B',
- photo:'marina',
+ photo:'businessbay',
  features:[
   {icon:'chart',title:'Office sales +190% year-on-year',desc:'Q2 2026 office sales hit AED 7.5 billion — effectively tripled in twelve months.',stat:'+190%',statDesc:'Q2 office sales growth YoY',source:'Source: CBRE / DLD'},
   {icon:'building',title:'Grade A vacancy under 5%',desc:'DIFC, Business Bay, Downtown — effectively full. Prime DIFC rents at AED 537 per sqft and climbing.',stat:'<5%',statDesc:'Grade A vacancy, prime districts',source:'Source: CBRE, July 2026'}],
@@ -545,7 +652,7 @@ const TOPICS=[
 {key:'p29',type:'jab',pillar:'Market Intelligence',asof:'Week of July 20, 2026',
  title:'Dubai South just led the city.',accents:['South'],
  sub:'The area agents laughed at two years ago posted the most transactions in Dubai last week.',subAccent:'',
- photo:'jvc',
+ photo:'south',
  features:[
   {icon:'chart',title:'668 transactions in one week',desc:'#1 area citywide. That week: 3,202 sales, AED 6.58B, median AED 1,710 psf.',stat:'668',statDesc:'Dubai South deals, week of Jul 20',source:'Source: DLD weekly'},
   {icon:'plane',title:'Infrastructure-led demand',desc:'Al Maktoum airport expansion underway, Expo City live — entry prices still far below the city median.',stat:'#1',statDesc:'Weekly rank, citywide',source:'Source: DLD weekly'}],
@@ -593,7 +700,7 @@ const TOPICS=[
 {key:'p32',type:'jab',pillar:'Commercial',asof:'July 2026',
  title:'Where the yield actually is in 2026.',accents:['actually'],
  sub:'Same capital, three asset classes, three very different incomes.',subAccent:'',
- photo:'skyline',
+ photo:'interior',
  features:[
   {icon:'home',title:'Residential: 6–7%',desc:'Liquid, familiar, competitive. The default — priced accordingly.',stat:'6–7%',statDesc:'Gross residential yield',source:'Source: CBRE / Bayut'},
   {icon:'building',title:'Small offices: 7–8%',desc:'<1,500 sqft units, prime districts at <5% vacancy. Rents at records.',stat:'7–8%',statDesc:'Prime small-office yield',source:'Source: CBRE, July 2026'}],
@@ -625,7 +732,7 @@ const TOPICS=[
 {key:'p34',type:'jab',pillar:'Commercial',asof:'July 2026',
  title:'The office shortage runs to 2028.',accents:['2028.'],
  sub:'Three forces converged on Dubai offices. The math only works one way for owners.',subAccent:'',
- photo:'marina',
+ photo:'creek',
  features:[
   {icon:'people',title:'Demand: companies are actually moving',desc:'Family offices, hedge funds and regional HQs keep relocating. Q2 office sales tripled year-on-year to AED 7.5B.',stat:'7.5B',statDesc:'AED — Q2 office sales',source:'Source: DLD / CBRE'},
   {icon:'building',title:'Supply: the pipeline is empty',desc:'No meaningful new Grade A completions until 2027–28. DIFC prime rents at AED 537/sqft — records.',stat:'<5%',statDesc:'Grade A vacancy, prime districts',source:'Source: CBRE, July 2026'}],
@@ -641,7 +748,7 @@ const TOPICS=[
 {key:'p35',type:'jab',pillar:'Market Intelligence',asof:'July 2026',
  title:'Sell-outs still happen. Here’s the pattern.',accents:['pattern.'],
  sub:'Five towers gone. Final tower just released. What sold-out projects have in common.',subAccent:'',
- photo:'skyline',
+ photo:'palm',
  features:[
   {icon:'home',title:'Chelsea Residences: 5 of 6 sold out',desc:'DAMAC released the final tower after the first five sold out — in a slow-launch quarter.',stat:'5/6',statDesc:'Towers sold out',source:'Source: DAMAC, July 2026'},
   {icon:'shield',title:'The sell-out checklist',desc:'Global brand tie-in, lifestyle district, developer delivery record, accessible ticket. Four of four = speed matters.',stat:'4',statDesc:'Factors every sell-out shares',source:''}],
@@ -692,87 +799,87 @@ const TOPICS=[
 
 /* ---- FARSI COPY (native-quality, advisory register — for the Iranian investor audience) ---- */
 const FA={
-'ad-rush':{hook:'ابوظبی برای چند سال سرمایه‌گذاری نمی‌کند؛ برای چند دهه برنامه ریخته — و موج لانچ‌ها از نیمهٔ اوت شروع می‌شود.',
+'ad-rush':{title:'ابوظبی برای دهه‌ها سرمایه‌گذاری می‌کند، نه سال‌ها.',hook:'ابوظبی برای چند سال سرمایه‌گذاری نمی‌کند؛ برای چند دهه برنامه ریخته — و موج لانچ‌ها از نیمهٔ اوت شروع می‌شود.',
  points:['بیش از ۵۰۰ میلیارد درهم برنامهٔ تنوع اقتصادی تا ۲۰۳۰ در همهٔ بخش‌ها.','بیش از ۱۸۰ موسسهٔ مالی در ADGM ثبت شده‌اند.','فرودگاه زاید: ظرفیت بیش از ۴۵ میلیون مسافر تا ۲۰۳۰.','بیش از ۱۲۰ میلیارد درهم زیرساخت در راه است — حمل‌ونقل، گردشگری، درمان.','الحدیریات گلف استیتس: بیش از ۱۳ میلیارد درهم فروش در چند روز — رکورد امارات.'],
  sowhat:'حمایت دولت از پروژه‌ها ریسک ورود را پایین می‌آورد. وقتی دولت بزرگ‌ترین سهام‌دار توسعه‌دهنده است، زمان‌بندی و کیفیت دیگر وعده نیست — سیاست است.',
  cta:'بیش از ۱۰۰ لانچ از نیمهٔ اوت در ابوظبی، دبی و راس‌الخیمه می‌آید. لیست منتخب من اول به لیست تماسم می‌رسد — اگر می‌خواهید جزو آن باشید، دایرکت بدهید.',
  tags:'#ابوظبی #سرمایه_گذاری_امارات #املاک_ابوظبی #آف_پلن #MRLivingCapital'},
-'uk-exodus':{hook:'۱۶٬۵۰۰ میلیونر در ۲۰۲۶ بریتانیا را ترک می‌کنند. بزرگ‌ترین خروج ثبت‌شده در تاریخ — و همه یک مقصد را انتخاب کرده‌اند.',
+'uk-exodus':{title:'۱۶٬۵۰۰ میلیونر امسال بریتانیا را ترک کردند.',hook:'۱۶٬۵۰۰ میلیونر در ۲۰۲۶ بریتانیا را ترک می‌کنند. بزرگ‌ترین خروج ثبت‌شده در تاریخ — و همه یک مقصد را انتخاب کرده‌اند.',
  points:['خروج خالص میلیونرها از بریتانیا در ۲۰۲۶: منفی ۱۶٬۵۰۰ نفر — رکورد برای هر کشور.','۱۶۵٬۰۰۰ ثروتمند در سراسر جهان امسال جابه‌جا می‌شوند؛ ۶۳ میلیارد دلار دارایی همراهشان است.','پیش‌بینی ورود خالص بیش از ۱۲٬۰۰۰ نفر به امارات — ششمین سال پیاپی در صدر.','جمعیت امارات ۱۱٫۵۷ میلیون نفر است؛ هر دقیقه یک مقیم جدید.'],
  sowhat:'جابه‌جایی سرمایه بلندترین سیگنال بازار املاک است. هر جا میلیونرها بروند، املاک پرایم بازقیمت‌گذاری می‌شود — و دبی و ابوظبی مقصد این معامله‌اند.',
  cta:'این که دقیقاً کجای امارات خرید می‌کنند — آن گفت‌وگو را خصوصی داریم.',
  tags:'#مهاجرت_ثروتمندان #دبی #ابوظبی #سرمایه_گذاری #املاک_دبی #MRLivingCapital'},
-'gold-line':{hook:'۳۴ میلیارد درهم. ۴۲ کیلومتر. ۴۰ متر زیر زمین. دبی گلد لاین را تصویب کرد — خطی که از میان ۵۵ پروژهٔ غول‌پیکر عبور می‌کند.',
+'gold-line':{title:'گلد لاین از میان ۵۵ پروژهٔ بزرگ دبی می‌گذرد.',hook:'۳۴ میلیارد درهم. ۴۲ کیلومتر. ۴۰ متر زیر زمین. دبی گلد لاین را تصویب کرد — خطی که از میان ۵۵ پروژهٔ غول‌پیکر عبور می‌کند.',
  points:['گلد لاین تصویب شد: ۳۴ میلیارد درهم، ۴۲ کیلومتر، ۱۸ ایستگاه، افتتاح ۹ سپتامبر ۲۰۳۲.','اولین متروی کاملاً زیرزمینی دبی — در عمق ۴۰ متری.','۵۵ پروژهٔ بزرگ را به هم وصل می‌کند؛ ۱٫۵ میلیون نفر را پوشش می‌دهد.','JVC، بیزینس بی، میدان و سیتی واک روی مسیر هستند.'],
  sowhat:'هر کریدور متروی دبی سال‌ها قبل از افتتاح بازقیمت‌گذاری شده است. نقشه عمومی است — اما قیمت‌های ورود در مسیر، همین‌جا نمی‌مانند.',
  cta:'کدام کریدور با بودجهٔ شما جور درمی‌آید — آن گفت‌وگوی خصوصی ماست.',
  tags:'#متروی_دبی #گلد_لاین #املاک_دبی #زیرساخت #سرمایه_گذاری #MRLivingCapital'},
-'p26':{hook:'همه منتظر ریزش قیمت بودند؛ توسعه‌دهنده‌ها بی‌سروصدا لانچ کردن را متوقف کردند.',
+'p26':{title:'توسعه‌دهنده‌ها لانچ کردن را متوقف کردند.',hook:'همه منتظر ریزش قیمت بودند؛ توسعه‌دهنده‌ها بی‌سروصدا لانچ کردن را متوقف کردند.',
  points:['لانچ‌های سه‌ماههٔ دوم به ۵٬۳۳۵ واحد رسید — توسعه‌دهنده‌ها مدیریت می‌کنند، نه وحشت.','تحویل‌ها در همان سه‌ماهه به اوج چندساله رسید.','آف‌پلن هنوز حدود ۷۲٪ فروش است: تقاضا ماند، عرضه مکث کرد.','لانچ کمتر یعنی برای اولین بار بعد از سال‌ها فضای واقعی برای مذاکره.','این پنجره‌ها به هفته سنجیده می‌شوند، نه به فصل.'],
  sowhat:'عرضهٔ کمتر به‌علاوهٔ تحویل رکورددار یعنی آرام‌ترین پنجرهٔ خرید در سال‌های اخیر — و این پنجره‌ها به هفته سنجیده می‌شوند، نه به فصل.',
  cta:'این را برای آن دوستتان بفرستید که هنوز «منتظر زمان مناسب» است.',
  tags:'#بازار_املاک_دبی #آف_پلن #سرمایه_گذاری_دبی #داده_بازار #MRLivingCapital'},
-'p27':{hook:'دفاتر دبی کاری کردند که مسکونی سال‌هاست نتوانسته.',
+'p27':{title:'دفاتر سه برابر شدند. کسی خبرش نکرد.',hook:'دفاتر دبی کاری کردند که مسکونی سال‌هاست نتوانسته.',
  points:['فروش دفاتر در سه‌ماههٔ دوم: ۷٫۵ میلیارد درهم، رشد ۱۹۰٪ سالانه — تقریباً سه برابر.','خلأ دفاتر گرید A زیر ۵٪ در مناطق پرایم.','اجارهٔ پرایم در DIFC به ۵۳۷ درهم در فوت مربع رسیده است.','تا ۲۰۲۷–۲۰۲۸ عرضهٔ جدید معناداری در راه نیست.','انبارهای لجستیک بی‌سروصدا ۸ تا ۱۰٪ بازده خالص می‌دهند.'],
  sowhat:'کمبود ساختاری است، نه چرخه‌ای. صاحبان دفاتر کوچک strata در سکوت پول را جمع می‌کنند، درحالی‌که همه سر و صدا دارند آپارتمان بحث می‌کنند.',
  cta:'کامنت بگذارید OFFICE تا بریف تجاری را برایتان بفرستم.',
  tags:'#دفاتر_دبی #املاک_تجاری #DIFC #سرمایه_گذاری #MRLivingCapital'},
-'p28':{hook:'قیمت‌های دبی دو ماه پیاپی پایین آمد. این چیزی است که به پول خودم می‌گویم.',
+'p28':{title:'قیمت‌ها دو ماه پایین آمد. خوانش صادقانه این است.',hook:'قیمت‌های دبی دو ماه پیاپی پایین آمد. این چیزی است که به پول خودم می‌گویم.',
  points:['شاخص قیمت در ژوئن ۱٫۲۴٪ ماهانه افت کرد — دومین افت پیاپی.','هنوز ۱٫۸۶٪ بالاتر از پارسال است: بازاری بالغ، نه بازاری در حال سقوط.','واگرایی ماجراست: انتخاب لوکیشن حالا بازده را تعیین می‌کند.','حجم هفتگی (۳٬۲۰۲ معامله) نشان می‌دهد تقاضا نرفته است.'],
  sowhat:'واگرایی ماجراست: کریدورهای پرایم نگه داشته‌اند، خوشه‌های بیش‌ازحد هایپ‌شده اصلاح می‌شوند. کریدور بخرید، نه تیتر را.',
  cta:'اسم محله‌تان را کامنت کنید — می‌گویم کدام سمت واگرایی است. بدون پیچ، فقط داده.',
  tags:'#بازار_دبی #املاک_دبی #سرمایه_گذاری #تحلیل_بازار #MRLivingCapital'},
-'p29':{hook:'منطقه‌ای که دو سال پیش مشاوران به آن می‌خندیدند، هفتهٔ پیش بیشترین معاملهٔ دبی را ثبت کرد.',
+'p29':{title:'دبی ساوث پیشتاز شهر شد.',hook:'منطقه‌ای که دو سال پیش مشاوران به آن می‌خندیدند، هفتهٔ پیش بیشترین معاملهٔ دبی را ثبت کرد.',
  points:['دبی ساوث: ۶۶۸ معامله در یک هفته — رتبهٔ اول کل شهر.','هفتهٔ شهر: ۳٬۲۰۲ فروش، ۶٫۵۸ میلیارد درهم، ۷۳٪ آف‌پلن.','فرودگاه + اکسپو سیتی = تقاضای زیرساخت‌محور، نه سفته‌بازی.','قیمت ورود هنوز به‌مراتب زیر میانهٔ ۱٬۷۱۰ درهم در فوت مربع شهر است.'],
  sowhat:'الگو تکرار می‌شود: زود رفتن ناراحت‌کننده است، دیر رفتن گران. هر کریدوری که کاش می‌خریدید، روزی «خیلی دور» بود.',
  cta:'در اینستاگرام یا واتس‌اپ کلمهٔ SOUTH را دایرکت کنید تا لیست منتخب را بفرستم.',
  tags:'#دبی_ساوث #آف_پلن_دبی #سرمایه_گذاری_دبی #فرودگاه_آل_مکتوم #MRLivingCapital'},
-'p30':{hook:'جولای قرار است ماه مردهٔ دبی باشد. یک هفته از جولای ۱۵٫۶ میلیارد درهم معامله شد.',
+'p30':{title:'۱۵٫۶ میلیارد درهم در جولای «مرده».',hook:'جولای قرار است ماه مردهٔ دبی باشد. یک هفته از جولای ۱۵٫۶ میلیارد درهم معامله شد.',
  points:['۱۵٫۶ میلیارد درهم در هفتهٔ ۶ تا ۱۰ جولای — وسط تابستان.','نیمهٔ اول ۲۰۲۶ با ۴۱۹٫۹ میلیارد درهم و ۱۱۲٬۸۵۰ معامله بسته شد.','دادهٔ هفتگی نشان می‌دهد جولای دارد شتاب می‌گیرد، نه سرد می‌شود.','ماه‌های کم‌رقابت خریداران فعال را پاداش می‌دهند.'],
  sowhat:'فصلی‌بودن یک حال‌وهواست، نه یک معیار. ماه‌های کم‌رقابت به خریدارانی جایزه می‌دهند که فعال می‌مانند وقتی بقیه منتظر سپتامبرند.',
  cta:'اعداد هفتگی، هر دوشنبه در Corridor Brief تلگرام — لینک در بایو.',
  tags:'#بازار_دبی #DLD #املاک_دبی #سرمایه_گذاری #MRLivingCapital'},
-'p31':{hook:'برای اولین بار بعد از سال‌ها، آمادهٔ تحویل از آف‌پلن پیشی گرفت. بیشتر آدم‌ها این را اشتباه می‌خوانند.',
+'p31':{title:'آماده از آف‌پلن پیشی گرفت. بیشتر آدم‌ها اشتباه می‌خوانند.',hook:'برای اولین بار بعد از سال‌ها، آمادهٔ تحویل از آف‌پلن پیشی گرفت. بیشتر آدم‌ها این را اشتباه می‌خوانند.',
  points:['نیمهٔ اول ۲۰۲۶: آماده ۱۴۶٫۷ میلیارد درهم در برابر آف‌پلن ۱۳۹٫۸ میلیارد — همان برگشت معروف.','تحویل‌های رکورددار عرضه ساختند؛ بازده حدود ۶٫۶٪ تقاضا را.','دادهٔ هفتگی: آف‌پلن هنوز ۷۳٪ حجم است — بازار بر اساس اندازهٔ بلیت شکافته، نه ترند.','انتخاب کریدور حالا مهم‌تر از برچسب آماده یا آف‌پلن است.'],
  sowhat:'بازار بر اساس نوع خریدار شکافته، نه ترند: سرمایه‌گذار بازدهی آماده می‌خرد، سرمایه‌گذار رشد کریدور آف‌پلن را.',
  cta:'BRIEF را دایرکت کنید تا تفکیک کریدورها را بفرستم.',
  tags:'#آف_پلن #آماده_تحویل #سرمایه_گذاری_دبی #املاک #MRLivingCapital'},
-'p32':{hook:'آپارتمان شما ۶٪ می‌دهد. یک انبار ۹٪ می‌دهد. هیچ‌کس در فیدتان از انبار حرف نزد.',
+'p32':{title:'بازده واقعی ۲۰۲۶ کجاست.',hook:'آپارتمان شما ۶٪ می‌دهد. یک انبار ۹٪ می‌دهد. هیچ‌کس در فیدتان از انبار حرف نزد.',
  points:['مسکونی: ۶ تا ۷٪ ناخالص — معاملهٔ شلوغ.','دفاتر کوچک در مناطق پرایم: ۷ تا ۸٪ با خلأ زیر ۵٪.','لجستیک: ۸ تا ۱۰٪ خالص — کم‌جلوه‌ترین، بهترین درآمد.','تنوع داخل دبی، نه بیرون از آن.'],
  sowhat:'تخصیص است، نه رها کردن: یک واحد تجاری کنار آپارتمان‌هایتان کل خط درآمد را عوض می‌کند — تنوع داخل دبی، نه بیرون از آن.',
  cta:'کامنت بگذارید YIELD تا بریف درآمد تجاری را بفرستم.',
  tags:'#بازده_اجاره #املاک_تجاری #درآمد_غیرفعال #سرمایه_گذاری_دبی #MRLivingCapital'},
-'p33':{hook:'بیست سال بانکداری یک چیز دربارهٔ املاک به من یاد داد: علم موشک نیست — شبکه است.',
+'p33':{title:'چرا به Strada پیوستم.',hook:'بیست سال بانکداری یک چیز دربارهٔ املاک به من یاد داد: علم موشک نیست — شبکه است.',
  points:['۲۰ سال بانکداری — اول ریسک، بعد بازده.','سرمایه‌گذار با پول خودم در ۳ کشور.','پلتفرم Strada، مشاورهٔ مستقل.','شبکه همیشه شانس را می‌برد.'],
  sowhat:'املاک علم موشک نیست — دسترسی، زمان‌بندی و اعتماد معامله را می‌بندند. استاندارد نهادی، مشاورهٔ شخصی: پلتفرم از Strada است، مشاوره از آنِ من.',
  cta:'اگر مشاوری می‌خواهید که اول پول خودش را می‌گذارد — کجا پیدایم کنید را می‌دانید.',
  tags:'#مشاور_سرمایه_گذاری #StradaUAE #املاک_دبی #MRLivingCapital #LivingProofLastingLegacy'},
-'p34':{hook:'دبی دفتر خوب تمام کرده است. کمبود قرار است تا ۲۰۲۸ ادامه داشته باشد.',
+'p34':{title:'کمبود دفتر تا ۲۰۲۸ ادامه دارد.',hook:'دبی دفتر خوب تمام کرده است. کمبود قرار است تا ۲۰۲۸ ادامه داشته باشد.',
  points:['خلأ گرید A زیر ۵٪ در مناطق پرایم.','تا ۲۰۲۷–۲۰۲۸ عرضهٔ جدید معناداری نیست.','اجارهٔ پرایم در DIFC در رکورد ۵۳۷ درهم در فوت مربع.','دفاتر strata زیر ۱٬۵۰۰ فوت مربع بلیت ورود هستند.'],
  sowhat:'تقاضا بالا، خط لوله خالی، اجاره در رکورد — معادله فقط یک جواب دارد برای صاحبان دفاتر کوچک strata، حداقل تا ۲۰۲۸.',
  cta:'جدی هستید روی تجاری؟ OFFICE را دایرکت کنید — واحدهای واقعی نشانتان می‌دهم، نه بروشور.',
  tags:'#دفاتر_دبی #املاک_تجاری #DIFC #سرمایه_گذاری #MRLivingCapital'},
-'p35':{hook:'پنج تاور فروش رفت. ششمی تازه لانچ شد. این چیزی است که همهٔ سل‌اوت‌ها مشترک دارند.',
+'p35':{title:'سل‌اوت‌ها هنوز اتفاق می‌افتند. الگو این است.',hook:'پنج تاور فروش رفت. ششمی تازه لانچ شد. این چیزی است که همهٔ سل‌اوت‌ها مشترک دارند.',
  points:['چلسی رزیدنسز: ۵ تاور فروش رفت، تاور آخر تازه آزاد شد.','سل‌اوت‌ها چهار عامل مشترک دارند: برند، منطقه، توسعه‌دهنده، اندازهٔ بلیت.','در سه‌ماههٔ کم‌لانچ، پروژه‌های معتبر هنوز سریع تمام می‌شوند.','چک‌لیست را قبل از روز لانچ بدانید، نه بعد.'],
  sowhat:'سل‌اوت مهندسی می‌شود، شانسی نیست: برند، منطقه، توسعه‌دهنده، بلیت. وقتی چهار از چهار جور باشد، سرعت از چانه‌زنی مهم‌تر است.',
  cta:'تقویم لانچ‌ها را می‌خواهید؟ Corridor Brief تلگرام را دنبال کنید.',
  tags:'#لانچ_جدید #داماک #آف_پلن_دبی #املاک_دبی #MRLivingCapital'},
-'p36':{hook:'در بازار کم‌لانچ، پروژه‌های خوب هنوز سل‌اوت می‌شوند. این همان چک ۵ دقیقه‌ای است که جدایشان می‌کند.',
+'p36':{title:'چطور یک لانچ را در ۲۰۲۶ بخوانیم.',hook:'در بازار کم‌لانچ، پروژه‌های خوب هنوز سل‌اوت می‌شوند. این همان چک ۵ دقیقه‌ای است که جدایشان می‌کند.',
  points:['اسکروی تأییدشدهٔ RERA یا رد شدن.','هر پلن پرداخت را به APR مؤثر تبدیل کنید.','سه تحویل آخر توسعه‌دهنده را چک کنید، نه رندرهایش را.','شارژ سرویس بازده واقعی‌تان را تعیین می‌کند — عدد را کتبی بگیرید.','همیشه خروج را قبل از ورود آندررایت کنید.'],
  sowhat:'پنجره آرام است، نه بسته: پنج چک — اسکرو، APR، سوابق تحویل، شارژ سرویس، نقدشوندگی خروج — قبل از این که یک درهم واریز کنید.',
  cta:'ذخیره‌اش کنید — روز لانچ بعدی لازمتان می‌شود.',
  tags:'#آف_پلن #آموزش_سرمایه_گذار #RERA #املاک_دبی #MRLivingCapital'},
-'p37':{hook:'برای گلدن ویزا دیگر لازم نیست ملک آماده داشته باشید. اما قاعدهٔ ۲ میلیون درهم تکان نخورده است.',
+'p37':{title:'گلدن ویزا ۲۰۲۶: قواعد واقعی.',hook:'برای گلدن ویزا دیگر لازم نیست ملک آماده داشته باشید. اما قاعدهٔ ۲ میلیون درهم تکان نخورده است.',
  points:['آستانهٔ ۲ میلیون درهم بدون تغییر — آف‌پلن حالا قبول است (ثبت Oqood، فوریهٔ ۲۰۲۶).','ملک وام‌دار هم قبول است.','ممنوعیت فروش با وکالت‌نامه از ژوئن ۲۰۲۵ — سند، کارت و حساب باید یکی باشند.','مدارک منشأ وجوه بیشتر از همیشه بررسی می‌شود.'],
  sowhat:'کنترل منشأ وجوه استاندارد جدید است — اول ساختار، بعد خرید. برگرداندن یک ساختار بد پول واقعی هزینه دارد.',
  cta:'می‌خواهید خرید را دور ویزا ساختار بدهید؟ mrlivingcapital@gmail.com — بار اول درست انجامش دهید.',
  tags:'#گلدن_ویزا #اقامت_امارات #املاک_دبی #سرمایه_گذاری #MRLivingCapital'}
-,'wynn-date':{hook:'وین بالاخره تاریخ را قفل کرد: سپتامبر ۲۰۲۷. تنها مجوز کازینوی امارات حالا شمارش معکوس دارد.',
+,'wynn-date':{title:'وین تاریخ را قفل کرد: سپتامبر ۲۰۲۷.',hook:'وین بالاخره تاریخ را قفل کرد: سپتامبر ۲۰۲۷. تنها مجوز کازینوی امارات حالا شمارش معکوس دارد.',
  points:['وین المرجان تأیید کرد: افتتاح سپتامبر ۲۰۲۷ — در تماس درآمدی ۴ اوت؛ مدیرعامل می‌گوید «قطعی».','پروژهٔ ۵٫۷ میلیارد دلاری؛ وین ۶۰۰ میلیون دلار افزایش هزینه را جذب کرد تا ساخت‌وساز کند نشود.','تنها مجوز کازینوی زمینی امارات — ۱۵ ساله، صادرشده در ۲۰۲۴.','راس‌الخیمه در نیمهٔ اول ۲۰۲۶: بیش از ۶۷۰ هزار گردشگر — بهترین نیمهٔ اول تاریخ امارت.','جزیرهٔ المرجان: ۵۵٪ آگهی‌های فروش راس‌الخیمه، میانگین ۲٬۶۴۵ درهم در فوت مربع، ۶۲٪ خریداران سرمایهٔ خارجی.'],
  sowhat:'تاریخ قطعی یعنی تبدیل حدس به شمارش معکوس. جزایر قبل از افتتاحِ لنگر بازقیمت‌گذاری می‌شوند، نه بعد از آن — پنجرهٔ بازقیمت‌گذاری همین ۱۳ ماه پیش‌روست، نه هفتهٔ افتتاح.',
  cta:'کدام واحدهای المرجان با قیمت امروز هنوز منطقی‌اند — آن لیست منتخب خصوصی است.',
  tags:'#راس_الخیمه #وین_المرجان #جزیره_المرجان #سرمایه_گذاری_امارات #MRLivingCapital'},
-'modon-reem':{hook:'مادون در یک سه‌ماهه ۱۱٫۹۷ میلیارد درهم فروخت — و هنوز دارد جزیرهٔ ریم را پر می‌کند.',
+'modon-reem':{title:'مادون جزیرهٔ ریم را پر می‌کند.',hook:'مادون در یک سه‌ماهه ۱۱٫۹۷ میلیارد درهم فروخت — و هنوز دارد جزیرهٔ ریم را پر می‌کند.',
  points:['مادون هولدینگ، سه‌ماههٔ اول ۲۰۲۶: ۱۱٫۹۷ میلیارد درهم فروش — با پشتوانهٔ ADQ و لیست‌شده در ADX.','جزیرهٔ ریم: مسترپلن ۶۰۰ هزار مترمربعی مَیسان؛ موحیرا از حدود ۱٫۲ میلیون درهم، تحویل از اواخر ۲۰۲۷.','بشایر در حدیریات در یک روز تمام شد — حدود ۳ میلیارد درهم.','مادون و ADIB: تا ۷۵٪ تأمین مالی حین ساخت برای خریداران واجد شرایط.','سعدیات مرز بعدی است — خط لولهٔ پایتخت تازه شروع شده.'],
  sowhat:'لانچ‌های دولت‌محور که ریل تأمین مالی هم دارند، سریع تمام می‌شوند — بشایر در یک روز ثابتش کرد. در ابوظبی، دسترسی روز لانچ مزیت است، نه چانه‌زنی بعد از آن.',
  cta:'چند لانچ مادون در هفته‌های پیش‌رو می‌آید — موجودی ریم حالا، سعدیات بعدی. لیست تخصیص من خصوصی است.',
@@ -881,6 +988,7 @@ async function buildPack(t,container){
     <button class="btn ghost" id="markPub">✓ MARK AS PUBLISHED</button>
   </div>
   <div class="figGrid" id="figs"></div>
+  <div id="faSection"></div>
   <div class="sectionTitle">Captions & script</div><div id="txts"></div>`;
   container.innerHTML=html;
   const figs=container.querySelector('#figs');
@@ -890,6 +998,29 @@ async function buildPack(t,container){
     const url=p.cv.toDataURL('image/png');
     cap.innerHTML=`${p.label}<br><a href="${url}" download="MRLC_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
     f.appendChild(cap);figs.appendChild(f);});
+  /* ---- FARSI PACK (auto — every pack posts twice) ---- */
+  if(t.fa){
+    await document.fonts.load('700 64px Vazirmatn');await document.fonts.load('600 50px Vazirmatn');
+    await document.fonts.load('400 30px Vazirmatn');await document.fonts.load('500 28px Vazirmatn');
+    const faPages=[{cv:renderCoverFA(t),label:'FA · 01 · کاور (1080×1350)'}];
+    t.fa.points.forEach((pt,i)=>faPages.push({cv:renderIdeaFA(t,pt,i,t.fa.points.length),label:`FA · ${String(i+2).padStart(2,'0')} · اسلاید ${i+1}/${t.fa.points.length}`}));
+    if(t.chart)faPages.push({cv:renderChartSlide(t),label:'FA · چارت (اعداد جهانی‌اند)'});
+    faPages.push({cv:renderCloserFA(t,_portrait),label:'FA · پایانی · CALL ME'});
+    faPages.push({cv:renderReelFA(t),label:'FA · کاور ریل (1080×1920)'});
+    const sec=container.querySelector('#faSection');
+    sec.innerHTML=`<div class="sectionTitle" style="direction:rtl;text-align:right">نسخهٔ فارسی — همین پست، آمادهٔ انتشار دوم</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" id="dlAllFA">⬇ DOWNLOAD ALL ${faPages.length} FA PNGs</button></div>
+    <div class="figGrid" id="figsFA"></div>`;
+    const figsFA=sec.querySelector('#figsFA');
+    faPages.forEach((pp,i)=>{
+      const f=document.createElement('figure');f.appendChild(pp.cv);
+      const cap=document.createElement('figcaption');
+      const url=pp.cv.toDataURL('image/png');
+      cap.innerHTML=`${pp.label}<br><a href="${url}" download="MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
+      f.appendChild(cap);figsFA.appendChild(f);});
+    sec.querySelector('#dlAllFA').onclick=()=>{
+      faPages.forEach((pp,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=pp.cv.toDataURL('image/png');a.download=`MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
+  }
   const txts=container.querySelector('#txts');
   texts.forEach(([name,body])=>{
     const d=document.createElement('div');d.className='txtBlock';
