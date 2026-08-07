@@ -409,9 +409,11 @@ function renderCloserFA(t,portrait){
   x.save();x.direction='rtl';x.textAlign='center';x.fillStyle=SLATE_DK;
   for(const ln of wrap(x,'«'+t.fa.sowhat+'»',W-220)){x.fillText(ln,W/2,y);y+=60;}
   x.restore();
-  x.fillStyle=TURQ;faSet(x,'700',116);
+  let cs=116;faSet(x,'700',cs);
+  while(x.measureText('تماس بگیرید.').width>W-260&&cs>80){cs-=4;faSet(x,'700',cs);}
+  x.fillStyle=TURQ;
   x.save();x.direction='rtl';x.textAlign='center';
-  x.fillText('تماس بگیر.',W/2,y+158);x.restore();
+  x.fillText('تماس بگیرید.',W/2,y+158);x.restore();
   x.fillStyle=TURQ;rrect(x,W/2-44,y+194,88,8,4);x.fill();
   faSet(x,'400',25);
   faLines(x,'بیست دقیقه. اعداد شما، خوانش من. بدون فروش.',W/2,y+262,W-200,36,MUTE,true);
