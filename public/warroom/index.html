@@ -93,7 +93,7 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 <div class="topbar">
   <div>
     <div class="wm">MR LIVING <span>CAPITAL</span></div>
-    <div class="sub">WAR ROOM · CONTENT ENGINE v4</div>
+    <div class="sub">WAR ROOM · CONTENT ENGINE v4.6</div>
   </div>
   <div class="spacer"></div>
   <div class="jabBadge" id="jabBadge">—</div>
@@ -984,7 +984,7 @@ async function buildPack(t,container){
   /* render UI */
   const safe=t.key;
   let html=`<h2 class="viewTitle">${t.title.toUpperCase()}</h2>
-  <div class="viewSub">${t.type==='hook'?'RIGHT HOOK — soft CTA post':'JAB — pure value post'} · ${t.pillar} · data verified ${t.asof}</div>
+  <div class="viewSub">${t.type==='hook'?'RIGHT HOOK — soft CTA post':t.type==='mistake'?'MISTAKE — highest-save format':'JAB — pure value post'} · ${t.pillar} · data verified ${t.asof} · emotion: ${t.emotion||'n/a'} · hook: ${t.hookFormula||'n/a'}</div>
   <div style="display:flex;gap:12px;flex-wrap:wrap">
     <button class="btn" id="dlAll">⬇ DOWNLOAD ALL ${pages.length} PNGs</button>
     <button class="btn ghost" id="dlTxt">⬇ ALL CAPTIONS (.txt)</button>
@@ -992,7 +992,19 @@ async function buildPack(t,container){
   </div>
   <div class="figGrid" id="figs"></div>
   <div id="faSection"></div>
-  <div class="sectionTitle">Captions & script</div><div id="txts"></div>`;
+  <div class="sectionTitle">Captions & script</div><div id="txts"></div>
+<div class="sectionTitle">Recommended posting schedule (Dubai GST)</div>
+<div class="postTimes" style="font-family:Inter,sans-serif;font-size:13px;color:#5A6662;background:#EFE8DA;padding:16px 20px;border-radius:16px;margin-top:12px;line-height:1.7;">
+<strong>Instagram Feed/Carousel:</strong> Tue/Thu 12:00–14:00 | Sun 19:00–21:00<br>
+<strong>Instagram Reels:</strong> Fri 19:00–21:00 | Sun 11:00–13:00<br>
+<strong>LinkedIn:</strong> Tue/Thu 08:00–10:00 | Wed 12:00–14:00<br>
+<strong>X / Threads:</strong> Daily 08:00–10:00 | Daily 18:00–20:00<br>
+<strong>Facebook:</strong> Thu/Fri 13:00–15:00 | Sat 10:00–12:00<br>
+<strong>Telegram:</strong> Mon/Thu 08:00<br>
+<strong>WhatsApp:</strong> Tue 10:00 | Thu 18:00<br>
+<strong>TikTok:</strong> Fri 19:00–21:00 | Sat 11:00–13:00<br>
+<em style="color:#0F6B62;">Post EN first, then FA. Same day, 2-hour gap minimum.</em>
+</div>`;
   container.innerHTML=html;
   const figs=container.querySelector('#figs');
   pages.forEach((p,i)=>{
