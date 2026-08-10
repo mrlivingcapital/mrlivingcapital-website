@@ -141,6 +141,8 @@ const IMG={skyline:'https://mrlivingcapital.com/images/dubai-skyline.jpg',
            creek:'https://mrlivingcapital.com/images/landmark-creek.jpg',
            palm:'https://mrlivingcapital.com/images/palm-jumeirah.jpg',
            museum:'https://mrlivingcapital.com/images/landmark-museum-future.jpg',
+           wynn:'https://kimi-web-img.kimi.ai/img/preview.thenewsmarket.com/66e2cb84c3d18531b013a462df6b659ee1911107.jpg',
+           reem:'https://kimi-web-img.kimi.ai/img/fnst.axflare.com/c7e921e2f5843931756b3e1287c7ea687d4b2e9d.jpeg',
            portrait:PORTRAIT_B64};
 
 let grainPat=null;
@@ -416,7 +418,7 @@ function renderCloserFA(t,portrait){
   x.fillText('تماس بگیرید.',W/2,y+158);x.restore();
   x.fillStyle=TURQ;rrect(x,W/2-44,y+194,88,8,4);x.fill();
   faSet(x,'400',25);
-  faLines(x,'بیست دقیقه. اعداد شما، خوانش من. بدون فروش.',W/2,y+262,W-200,36,MUTE,true);
+  // Farsi 20-min CTA removed per Masoud directive
   const bw=W-M*2,bh=250,by=h-bh-190;
   x.fillStyle=SAND_SOFT;rrect(x,M,by,bw,bh,60);x.fill();
   const cx=M+135,cy=by+bh/2,pr=84;
@@ -470,7 +472,7 @@ function renderCloser(t,portrait){
   x.fillText('CALL ME.',W/2,y+190);
   x.fillStyle=TURQ;rrect(x,W/2-44,y+222,88,8,4);x.fill();
   x.fillStyle=MUTE;x.font='400 26px '+FB;
-  x.fillText('20 minutes. Your numbers, my read. No pitch.',W/2,y+290);
+  // 20-min CTA removed per Masoud directive
   const bw=W-M*2,bh=250,by=h-bh-190;
   x.fillStyle=SAND_SOFT;rrect(x,M,by,bw,bh,60);x.fill();
   const cx=M+135,cy=by+bh/2,pr=84;
@@ -574,7 +576,7 @@ const TOPICS=[
 {key:'wynn-date',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
  title:'Wynn just locked its date. September 2027.',accents:['September 2027.'],
  sub:'The UAE’s first casino resort confirmed its opening on an earnings call this week. The countdown is official.',subAccent:'official',
- photo:'jbr',
+ photo:'wynn',
  features:[
   {icon:'key',title:'September 2027 — “firm”',desc:'Confirmed 4 Aug 2026 on Wynn’s Q2 earnings call. Tower topped out; interior fit-out underway.',stat:'Sep 27',statDesc:'Opening — firm, per CEO',source:'Source: Wynn Q2 call, 4 Aug 2026'},
   {icon:'chart',title:'$5.7B — the only license in the UAE',desc:'Budget rose $600M on conflict-linked costs — Wynn absorbed it rather than slow down. 1,530 suites, 22 restaurants, gaming floor bigger than Vegas.',stat:'$5.7B',statDesc:'Total project budget',source:'Source: Wynn Resorts / Gulf News'},
@@ -590,7 +592,7 @@ const TOPICS=[
 {key:'modon-reem',type:'jab',pillar:'Market Intelligence',asof:'August 2026',
  title:'Modon is stacking Reem Island.',accents:['Reem Island.'],
  sub:'AED 11.97B in Q1 sales. Sold-out launches in a day. And the capital’s pipeline is just getting started.',subAccent:'AED 11.97B',
- photo:'mosque',
+ photo:'reem',
  features:[
   {icon:'chart',title:'AED 11.97B sales in one quarter',desc:'Modon Holding’s Q1 2026 — ADQ-backed, ADX-listed, and accelerating.',stat:'11.97B',statDesc:'AED — Modon Q1 2026 sales',source:'Source: Modon Holding'},
   {icon:'home',title:'Reem Island: stock available now',desc:'Maysan spans 600,000+ sqm across two districts; Muheira apartments from ~AED 1.2M, handovers from late 2027. Earlier Reem launches sold out.',stat:'600K',statDesc:'sqm — Maysan masterplan, Reem',source:'Source: Modon / Projectory'},
@@ -882,11 +884,11 @@ const FA={
  sowhat:'تاریخ قطعی یعنی تبدیل حدس به شمارش معکوس. جزایر قبل از افتتاحِ لنگر بازقیمت‌گذاری می‌شوند، نه بعد از آن — پنجرهٔ بازقیمت‌گذاری همین ۱۳ ماه پیش‌روست، نه هفتهٔ افتتاح.',
  cta:'کدام واحدهای المرجان با قیمت امروز هنوز منطقی‌اند — آن لیست منتخب خصوصی است.',
  tags:'#راس_الخیمه #وین_المرجان #جزیره_المرجان #سرمایه_گذاری_امارات #MRLivingCapital'},
-'modon-reem':{title:'مادون جزیرهٔ ریم را پر می‌کند.',hook:'مادون در یک سه‌ماهه ۱۱٫۹۷ میلیارد درهم فروخت — و هنوز دارد جزیرهٔ ریم را پر می‌کند.',
- points:['مادون هولدینگ، سه‌ماههٔ اول ۲۰۲۶: ۱۱٫۹۷ میلیارد درهم فروش — با پشتوانهٔ ADQ و لیست‌شده در ADX.','جزیرهٔ ریم: مسترپلن ۶۰۰ هزار مترمربعی مَیسان؛ موحیرا از حدود ۱٫۲ میلیون درهم، تحویل از اواخر ۲۰۲۷.','بشایر در حدیریات در یک روز تمام شد — حدود ۳ میلیارد درهم.','مادون و ADIB: تا ۷۵٪ تأمین مالی حین ساخت برای خریداران واجد شرایط.','سعدیات مرز بعدی است — خط لولهٔ پایتخت تازه شروع شده.'],
+'modon-reem':{title:'مُدُن جزیرهٔ ریم را پر می‌کند.',hook:'مُدُن در یک سه‌ماهه ۱۱٫۹۷ میلیارد درهم فروخت — و هنوز دارد جزیرهٔ ریم را پر می‌کند.',
+ points:['مُدُن هولدینگ، سه‌ماههٔ اول ۲۰۲۶: ۱۱٫۹۷ میلیارد درهم فروش — با پشتوانهٔ ADQ و لیست‌شده در ADX.','جزیرهٔ ریم: مسترپلن ۶۰۰ هزار مترمربعی مَیسان؛ موحیرا از حدود ۱٫۲ میلیون درهم، تحویل از اواخر ۲۰۲۷.','بشایر در حدیریات در یک روز تمام شد — حدود ۳ میلیارد درهم.','مُدُن و ADIB: تا ۷۵٪ تأمین مالی حین ساخت برای خریداران واجد شرایط.','سعدیات مرز بعدی است — خط لولهٔ پایتخت تازه شروع شده.'],
  sowhat:'لانچ‌های دولت‌محور که ریل تأمین مالی هم دارند، سریع تمام می‌شوند — بشایر در یک روز ثابتش کرد. در ابوظبی، دسترسی روز لانچ مزیت است، نه چانه‌زنی بعد از آن.',
- cta:'چند لانچ مادون در هفته‌های پیش‌رو می‌آید — موجودی ریم حالا، سعدیات بعدی. لیست منتخب من خصوصی است.',
- tags:'#مادون #ابوظبی #جزیره_ریم #سعدیات #آف_پلن #MRLivingCapital'}
+ cta:'چند لانچ مُدُن در هفته‌های پیش‌رو می‌آید — موجودی ریم حالا، سعدیات بعدی. لیست منتخب من خصوصی است.',
+ tags:'#مُدُن #ابوظبی #جزیره_ریم #سعدیات #آف_پلن #MRLivingCapital'}
 };
 TOPICS.forEach(t=>{if(FA[t.key])t.fa=FA[t.key];});
 
@@ -977,10 +979,47 @@ function suggestType(){return jabStatus().due?'hook':'jab';}
 
 /* ============ PACK BUILDER ============ */
 let _portrait=null;
-async function buildPack(t,container){
+async 
+/* ---- PHOTO INTELLIGENCE: auto-select most relevant image per topic ---- */
+function suggestPhoto(t){
+  const txt=(t.title+' '+t.sub+' '+(t.tags||'')+' '+(t.pillar||'')).toLowerCase();
+  const map={
+    'wynn':'wynn al marjan casino resort construction ras al khaimah',
+    'reem':'reem island abu dhabi skyline gate towers waterfront',
+    'mosque':'sheikh zayed grand mosque abu dhabi landmark worship',
+    'marina':'dubai marina skyline waterfront yacht',
+    'jbr':'jumeirah beach residence walk dubai beachfront',
+    'palm':'palm jumeirah island dubai luxury',
+    'creek':'dubai creek harbour tower skyline',
+    'businessbay':'business bay dubai canal skyline towers',
+    'south':'dubai south aerial expo city logistics',
+    'meydan':'meydan racetrack horse dubai',
+    'louvre':'louvre abu dhabi museum saadiyat',
+    'museum':'museum of the future dubai frame',
+    'skyline':'downtown dubai burj khalifa skyline',
+    'jvc':'jumeirah village circle community residential',
+    'map':'uae map corridor location geography',
+    'interior':'apartment interior design luxury fitout'
+  };
+  let best=null,bestScore=-1;
+  for(const [key,desc] of Object.entries(map)){
+    const words=desc.split(' ');
+    let score=0;
+    for(const w of words)if(txt.includes(w))score++;
+    if(score>bestScore){bestScore=score;best=key;}
+  }
+  if(bestScore>=2)return best;
+  if(t.pillar==='Market Intelligence')return 'skyline';
+  if(t.pillar==='Investment Wisdom')return 'interior';
+  if(t.pillar==='Dubai Lifestyle')return 'marina';
+  if(t.pillar==='Behind the Deal')return 'businessbay';
+  return 'skyline';
+}
+
+function buildPack(t,container){
   container.innerHTML='<div class="statusLine">Rendering pack — one moment…</div>';
   if(!_portrait)_portrait=await loadImg(IMG.portrait);
-  if(t.photo)t._photo=await loadImg(IMG[t.photo]||t.photo);else t._photo=null;
+  const photoKey=t.photo||suggestPhoto(t);t._photo=await loadImg(IMG[photoKey]||photoKey);
   const pages=[];
   pages.push({cv:renderCover(t),label:'01 · COVER (1080×1350)'});
   t.points.forEach((p,i)=>pages.push({cv:renderIdea(t,p,i,t.points.length),label:`${String(i+2).padStart(2,'0')} · SLIDE ${i+1}/${t.points.length}`}));
