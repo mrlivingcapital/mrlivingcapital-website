@@ -1118,10 +1118,7 @@ function buildPack(t,container){
     container.querySelector('#dlTxt').onclick=()=>{
       const body=texts.map(([n,b])=>`${n}
 ${'='.repeat(40)}
-${b}`).join('
-
-
-');
+${b}`).join('\n\n\n');
       const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/plain'}));a.download=`MRLC_${safe}_captions.txt`;a.click();};
     container.querySelector('#markPub').onclick=e=>{markPublished(t);e.target.textContent='PUBLISHED ✓';e.target.disabled=true;};
   });
