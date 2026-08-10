@@ -906,22 +906,31 @@ const CADENCE=[
 
 /* ---- CONVERSATION ENGINE (ACA + Core Four) ---- */
 const KEYWORD_DM=[
- ['OFFICE','Thanks for commenting OFFICE. Are you still looking at commercial units, or just watching the space for now?'],
- ['SOUTH','Thanks for commenting SOUTH. Are you still looking at Dubai South, or comparing corridors?'],
- ['BRIEF','Here’s the corridor brief. Are you still deciding between ready and off-plan, or already shortlisted?'],
- ['YIELD','Here’s the commercial income brief. Is your portfolio 100% residential right now?'],
- ['CALL','Happy to talk. What does your calendar look like Thursday — morning or afternoon?']];
-const ACA=['ACKNOWLEDGE: reference something specific (their comment, their city, their portfolio question). Never “thanks for reaching out”.',
- 'COMPLIMENT: connect it sincerely — “comparing corridors before committing tells me you underwrite like an investor”.',
- 'ASK: one question toward the goal — “are you still looking to deploy before Q4, or is this a 2027 plan?”'];
+ ['OFFICE','It seems like you are looking at commercial units. Are you comparing corridors, or already evaluating specific buildings?'],
+ ['SOUTH','It seems like Dubai South caught your eye. Are you looking at the headline corridor, or the adjacencies most people miss?'],
+ ['BRIEF','Here is the corridor brief. What is your timeline — are you looking to deploy this quarter, or is this a 2027 plan?'],
+ ['YIELD','Here is the commercial income brief. Is your portfolio 100% residential right now, or do you already have commercial exposure?'],
+ ['CALL','Happy to talk. What does your calendar look like — Thursday morning or afternoon?'],
+ ['CHECKLIST','Sending the off-plan checklist now. What is the one thing you check before every purchase?'],
+ ['MAP','Sending the migration map. Which corridor are you currently comparing?'],
+ ['SPREAD','Sending the Q3 spread brief. Are you cash or mortgage for your next purchase?']];
+
+const ACA=['ACKNOWLEDGE: reference something specific (their comment, their city, their portfolio question). Never "thanks for reaching out".',
+ 'COMPLIMENT: connect it sincerely — "comparing corridors before committing tells me you underwrite like an investor".',
+ 'ASK: one calibrated question toward the goal — "what would need to be true for you to move in the next 30 days?"'];
+
 const QUALIFYING=['Budget band (under 2M / 2–5M / 5M+)?','Timeline (this quarter / this year / exploring)?','Cash or mortgage?','Yield-first or growth-first?','Which corridor caught your eye?'];
-const FOLLOWUP=['D0: reply to comment publicly (question back) + DM the keyword asset within 1 hour','D+1: send one extra data point relevant to THEIR situation','D+3: check-in with a new angle (new weekly number)','D+7: invite to Corridor Brief / send H1 PDF','D+14: close the loop — “should I keep you on the brief list or park this?”'];
+
+const FOLLOWUP=['D0: reply to comment publicly (question back) + DM the keyword asset within 1 hour','D+1: send one extra data point relevant to THEIR situation (Voss tactical empathy)','D+3: check-in with a new angle (new weekly number) + Hormozi give-first value','D+7: invite to Corridor Brief / send H1 PDF — "should I keep you on the brief list?"','D+14: close the loop — "should I keep you on the brief list or park this for now?"'];
+
 const BOOK_CALL='No pitch on the first call. 20 minutes: your numbers, my read, next step only if it makes sense. Thursday 10:00 or 16:30 GST?';
-const HOOK_RULES=['Hard number in the first 8 words (numbered specificity)','Verdict, not question — tell them, don’t ask them','Contrarian reframe: “X isn’t A. It’s B.”','Identity statement: agreeing makes the reader the smart one','One post = one idea. Two ideas = two posts','Claim + 3 bullets + takeaway (punchline close, 6–10 words)','Bullets in 3s. Line breaks every 1–2 sentences'];
-const GIVE_WITHHOLD=[['GIVE (free, every post)','Market data · corridor analysis · contrarian takes · ready-vs-off-plan comparisons · the “so-what” behind every number'],
- ['WITHHOLD (paid conversation)','Specific property picks · personalized allocation · which corridor for YOUR profile and ticket size · the shortlist']];
-const BANNED=['No “Dubai is booming” hype openers','No Lambo/marina B-roll flex intros','No “DM me for the list” bait','No fake urgency “last units”','No walking-and-talking with no point','No green-screen news reading without a take','No “5 reasons to invest in Dubai” generic lists','No recycled 2021 stats','No “what do you think?” engagement begging'];
-</script>
+
+const HOOK_RULES=['Hard number in the first 8 words (numbered specificity)','Verdict, not question — tell them, do not ask them','Contrarian reframe: "X is not A. It is B."','Identity statement: agreeing makes the reader the smart one','One post = one idea. Two ideas = two posts','Claim + 3 bullets + takeaway (punchline close, 6–10 words)','Bullets in 3s. Line breaks every 1–2 sentences','SEO-first 128 characters: "Dubai real estate advisor" + pillar + date'];
+
+const GIVE_WITHHOLD=[['GIVE (free, every post)','Market data · corridor analysis · contrarian takes · ready-vs-off-plan comparisons · the "so-what" behind every number · mistake frameworks · checklists'],
+ ['WITHHOLD (paid conversation)','Specific property picks · personalized allocation · which corridor for YOUR profile and ticket size · the shortlist · escrow review · mortgage optimization']];
+
+const BANNED=['No "Dubai is booming" hype openers','No Lambo/marina B-roll flex intros','No "DM me for the list" bait','No fake urgency "last units"','No walking-and-talking with no point','No green-screen news reading without a take','No "5 reasons to invest in Dubai" generic lists','No recycled 2021 stats','No "what do you think?" engagement begging','No tu-form in Farsi — شما-form only','No BRN 94316 on any material ever'];</script>
 <script>
 /* ============ TEXT GENERATORS (Hook → Story → So-What → Withheld CTA) ============ */
 function capLinkedIn(t){
