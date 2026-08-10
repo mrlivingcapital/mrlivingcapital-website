@@ -1030,87 +1030,101 @@ function suggestPhoto(t){
   return 'skyline';
 }
 
-async function buildPack(t,container){
+function buildPack(t,container){
   container.innerHTML='<div class="statusLine">Rendering pack — one moment…</div>';
-  if(!_portrait)_portrait=await loadImg(IMG.portrait);
-  const photoKey=t.photo||suggestPhoto(t);t._photo=await loadImg(IMG[photoKey]||photoKey);
-  const pages=[];
-  pages.push({cv:renderCover(t),label:'01 · COVER (1080×1350)'});
-  t.points.forEach((p,i)=>pages.push({cv:renderIdea(t,p,i,t.points.length),label:`${String(i+2).padStart(2,'0')} · SLIDE ${i+1}/${t.points.length}`}));
-  if(t.chart)pages.push({cv:renderChartSlide(t),label:`${String(t.points.length+2).padStart(2,'0')} · CHART SLIDE`});
-  pages.push({cv:renderCloser(t,_portrait),label:'CLOSER · CALL ME (contact band)'});
-  pages.push({cv:renderReel(t),label:'REEL COVER (1080×1920)'});
-  const texts=[['LINKEDIN',capLinkedIn(t)],['INSTAGRAM',capInstagram(t)],['X (TWITTER)',capX(t)],['THREADS',capThreads(t)],['FACEBOOK PAGE',capFacebook(t)],['TELEGRAM — CORRIDOR BRIEF',capTelegram(t)],['WHATSAPP BROADCAST',capWhatsApp(t)],['WHATSAPP STORY',capWAStory(t)],['REEL SCRIPT (30–60s)',reelScript(t)]];
-  texts.push(['HASHTAGS — COPY/PASTE SET', t.tags+(t.fa?'\n\nFARSI:\n'+t.fa.tags:'')]);
-  if(t.fa)texts.push(['FA — لینکدین / فیسبوک',capLinkedInFA(t)],['FA — اینستاگرام / تردز',capInstagramFA(t)],['FA — تلگرام',capTelegramFA(t)],['FA — واتس‌اپ',capWhatsAppFA(t)]);
-  /* render UI */
-  const safe=t.key;
-  let html=`<h2 class="viewTitle">${t.title.toUpperCase()}</h2>
-  <div class="viewSub">${t.type==='hook'?'RIGHT HOOK — soft CTA post':t.type==='mistake'?'MISTAKE — highest-save format':'JAB — pure value post'} · ${t.pillar} · data verified ${t.asof} · emotion: ${t.emotion||'n/a'} · hook: ${t.hookFormula||'n/a'}</div>
-  <div style="display:flex;gap:12px;flex-wrap:wrap">
-    <button class="btn" id="dlAll">⬇ DOWNLOAD ALL ${pages.length} PNGs</button>
-    <button class="btn ghost" id="dlTxt">⬇ ALL CAPTIONS (.txt)</button>
-    <button class="btn ghost" id="markPub">✓ MARK AS PUBLISHED</button>
-  </div>
-  <div class="figGrid" id="figs"></div>
-  <div id="faSection"></div>
-  <div class="sectionTitle">Captions & script</div><div id="txts"></div>
-<div class="sectionTitle">Recommended posting schedule (Dubai GST)</div>
-<div class="postTimes" style="font-family:Inter,sans-serif;font-size:13px;color:#5A6662;background:#EFE8DA;padding:16px 20px;border-radius:16px;margin-top:12px;line-height:1.7;">
-<strong>Instagram Feed/Carousel:</strong> Tue/Thu 12:00–14:00 | Sun 19:00–21:00<br>
-<strong>Instagram Reels:</strong> Fri 19:00–21:00 | Sun 11:00–13:00<br>
-<strong>LinkedIn:</strong> Tue/Thu 08:00–10:00 | Wed 12:00–14:00<br>
-<strong>X / Threads:</strong> Daily 08:00–10:00 | Daily 18:00–20:00<br>
-<strong>Facebook:</strong> Thu/Fri 13:00–15:00 | Sat 10:00–12:00<br>
-<strong>Telegram:</strong> Mon/Thu 08:00<br>
-<strong>WhatsApp:</strong> Tue 10:00 | Thu 18:00<br>
-<strong>TikTok:</strong> Fri 19:00–21:00 | Sat 11:00–13:00<br>
-<em style="color:#0F6B62;">Post EN first, then FA. Same day, 2-hour gap minimum.</em>
-</div>`;
-  container.innerHTML=html;
-  const figs=container.querySelector('#figs');
-  pages.forEach((p,i)=>{
-    const f=document.createElement('figure');f.appendChild(p.cv);
-    const cap=document.createElement('figcaption');
-    const url=p.cv.toDataURL('image/png');
-    cap.innerHTML=`${p.label}<br><a href="${url}" download="MRLC_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
-    f.appendChild(cap);figs.appendChild(f);});
-  /* ---- FARSI PACK (auto — every pack posts twice) ---- */
-  if(t.fa){
-    await document.fonts.load('700 64px Vazirmatn');await document.fonts.load('600 50px Vazirmatn');
-    await document.fonts.load('400 30px Vazirmatn');await document.fonts.load('500 28px Vazirmatn');
-    const faPages=[{cv:renderCoverFA(t),label:'FA · 01 · کاور (1080×1350)'}];
-    t.fa.points.forEach((pt,i)=>faPages.push({cv:renderIdeaFA(t,pt,i,t.fa.points.length),label:`FA · ${String(i+2).padStart(2,'0')} · اسلاید ${i+1}/${t.fa.points.length}`}));
-    if(t.chart)faPages.push({cv:renderChartSlide(t),label:'FA · چارت (اعداد جهانی‌اند)'});
-    faPages.push({cv:renderCloserFA(t,_portrait),label:'FA · پایانی · CALL ME'});
-    faPages.push({cv:renderReelFA(t),label:'FA · کاور ریل (1080×1920)'});
-    const sec=container.querySelector('#faSection');
-    sec.innerHTML=`<div class="sectionTitle" style="direction:rtl;text-align:right">نسخهٔ فارسی — همین پست، آمادهٔ انتشار دوم</div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" id="dlAllFA">⬇ DOWNLOAD ALL ${faPages.length} FA PNGs</button></div>
-    <div class="figGrid" id="figsFA"></div>`;
-    const figsFA=sec.querySelector('#figsFA');
-    faPages.forEach((pp,i)=>{
-      const f=document.createElement('figure');f.appendChild(pp.cv);
+  const photoKey=t.photo||suggestPhoto(t);
+  const p1=_portrait?Promise.resolve(_portrait):loadImg(IMG.portrait);
+  p1.then(portrait=>{
+    _portrait=portrait;
+    return loadImg(IMG[photoKey]||photoKey);
+  }).then(photo=>{
+    t._photo=photo;
+    const pages=[];
+    pages.push({cv:renderCover(t),label:'01 · COVER (1080×1350)'});
+    t.points.forEach((p,i)=>pages.push({cv:renderIdea(t,p,i,t.points.length),label:`${String(i+2).padStart(2,'0')} · SLIDE ${i+1}/${t.points.length}`}));
+    if(t.chart)pages.push({cv:renderChartSlide(t),label:`${String(t.points.length+2).padStart(2,'0')} · CHART SLIDE`});
+    pages.push({cv:renderCloser(t,_portrait),label:'CLOSER · CALL ME (contact band)'});
+    pages.push({cv:renderReel(t),label:'REEL COVER (1080×1920)'});
+    const texts=[['LINKEDIN',capLinkedIn(t)],['INSTAGRAM',capInstagram(t)],['X (TWITTER)',capX(t)],['THREADS',capThreads(t)],['FACEBOOK PAGE',capFacebook(t)],['TELEGRAM — CORRIDOR BRIEF',capTelegram(t)],['WHATSAPP BROADCAST',capWhatsApp(t)],['WHATSAPP STORY',capWAStory(t)],['REEL SCRIPT (30–60s)',reelScript(t)]];
+    texts.push(['HASHTAGS — COPY/PASTE SET', t.tags+(t.fa?'\n\nFARSI:\n'+t.fa.tags:'')]);
+    if(t.fa)texts.push(['FA — لینکدین / فیسبوک',capLinkedInFA(t)],['FA — اینستاگرام / تردز',capInstagramFA(t)],['FA — تلگرام',capTelegramFA(t)],['FA — واتس‌اپ',capWhatsAppFA(t)]);
+    const safe=t.key;
+    let html=`<h2 class="viewTitle">${t.title.toUpperCase()}</h2>
+    <div class="viewSub">${t.type==='hook'?'RIGHT HOOK — soft CTA post':t.type==='mistake'?'MISTAKE — highest-save format':'JAB — pure value post'} · ${t.pillar} · data verified ${t.asof} · emotion: ${t.emotion||'n/a'} · hook: ${t.hookFormula||'n/a'}</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap">
+      <button class="btn" id="dlAll">⬇ DOWNLOAD ALL ${pages.length} PNGs</button>
+      <button class="btn ghost" id="dlTxt">⬇ ALL CAPTIONS (.txt)</button>
+      <button class="btn ghost" id="markPub">✓ MARK AS PUBLISHED</button>
+    </div>
+    <div class="figGrid" id="figs"></div>
+    <div id="faSection"></div>
+    <div class="sectionTitle">Captions & script</div><div id="txts"></div>
+    <div class="sectionTitle">Recommended posting schedule (Dubai GST)</div>
+    <div class="postTimes" style="font-family:Inter,sans-serif;font-size:13px;color:#5A6662;background:#EFE8DA;padding:16px 20px;border-radius:16px;margin-top:12px;line-height:1.7;">
+    <strong>Instagram Feed/Carousel:</strong> Tue/Thu 12:00–14:00 | Sun 19:00–21:00<br>
+    <strong>Instagram Reels:</strong> Fri 19:00–21:00 | Sun 11:00–13:00<br>
+    <strong>LinkedIn:</strong> Tue/Thu 08:00–10:00 | Wed 12:00–14:00<br>
+    <strong>X / Threads:</strong> Daily 08:00–10:00 | Daily 18:00–20:00<br>
+    <strong>Facebook:</strong> Thu/Fri 13:00–15:00 | Sat 10:00–12:00<br>
+    <strong>Telegram:</strong> Mon/Thu 08:00<br>
+    <strong>WhatsApp:</strong> Tue 10:00 | Thu 18:00<br>
+    <strong>TikTok:</strong> Fri 19:00–21:00 | Sat 11:00–13:00<br>
+    <em style="color:#0F6B62;">Post EN first, then FA. Same day, 2-hour gap minimum.</em>
+    </div>`;
+    container.innerHTML=html;
+    const figs=container.querySelector('#figs');
+    pages.forEach((p,i)=>{
+      const f=document.createElement('figure');f.appendChild(p.cv);
       const cap=document.createElement('figcaption');
-      const url=pp.cv.toDataURL('image/png');
-      cap.innerHTML=`${pp.label}<br><a href="${url}" download="MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
-      f.appendChild(cap);figsFA.appendChild(f);});
-    sec.querySelector('#dlAllFA').onclick=()=>{
-      faPages.forEach((pp,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=pp.cv.toDataURL('image/png');a.download=`MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
-  }
-  const txts=container.querySelector('#txts');
-  texts.forEach(([name,body])=>{
-    const d=document.createElement('div');d.className='txtBlock';
-    d.innerHTML=`<h4>${name}</h4><pre></pre><div class="rowBtns"><button class="copyBtn">COPY</button></div>`;
-    const pre=d.querySelector('pre');pre.textContent=body;if(name.startsWith('FA —'))pre.classList.add('rtl');
-    d.querySelector('.copyBtn').onclick=e=>{navigator.clipboard.writeText(body);e.target.textContent='COPIED ✓';setTimeout(()=>e.target.textContent='COPY',1500);};
-    txts.appendChild(d);});
-  container.querySelector('#dlAll').onclick=()=>{
-    pages.forEach((p,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=p.cv.toDataURL('image/png');a.download=`MRLC_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
-  container.querySelector('#dlTxt').onclick=()=>{
-    const body=texts.map(([n,b])=>`${n}\n${'='.repeat(40)}\n${b}`).join('\n\n\n');
-    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/plain'}));a.download=`MRLC_${safe}_captions.txt`;a.click();};
-  container.querySelector('#markPub').onclick=e=>{markPublished(t);e.target.textContent='PUBLISHED ✓';e.target.disabled=true;};
+      const url=p.cv.toDataURL('image/png');
+      cap.innerHTML=`${p.label}<br><a href="${url}" download="MRLC_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
+      f.appendChild(cap);figs.appendChild(f);});
+    if(t.fa){
+      Promise.all([
+        document.fonts.load('700 64px Vazirmatn'),
+        document.fonts.load('600 50px Vazirmatn'),
+        document.fonts.load('400 30px Vazirmatn'),
+        document.fonts.load('500 28px Vazirmatn')
+      ]).then(()=>{
+        const faPages=[{cv:renderCoverFA(t),label:'FA · 01 · کاور (1080×1350)'}];
+        t.fa.points.forEach((pt,i)=>faPages.push({cv:renderIdeaFA(t,pt,i,t.fa.points.length),label:`FA · ${String(i+2).padStart(2,'0')} · اسلاید ${i+1}/${t.fa.points.length}`}));
+        if(t.chart)faPages.push({cv:renderChartSlide(t),label:'FA · چارت (اعداد جهانی‌اند)'});
+        faPages.push({cv:renderCloserFA(t,_portrait),label:'FA · پایانی · CALL ME'});
+        faPages.push({cv:renderReelFA(t),label:'FA · کاور ریل (1080×1920)'});
+        const sec=container.querySelector('#faSection');
+        sec.innerHTML=`<div class="sectionTitle" style="direction:rtl;text-align:right">نسخهٔ فارسی — همین پست، آمادهٔ انتشار دوم</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" id="dlAllFA">⬇ DOWNLOAD ALL ${faPages.length} FA PNGs</button></div>
+        <div class="figGrid" id="figsFA"></div>`;
+        const figsFA=sec.querySelector('#figsFA');
+        faPages.forEach((pp,i)=>{
+          const f=document.createElement('figure');f.appendChild(pp.cv);
+          const cap=document.createElement('figcaption');
+          const url=pp.cv.toDataURL('image/png');
+          cap.innerHTML=`${pp.label}<br><a href="${url}" download="MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
+          f.appendChild(cap);figsFA.appendChild(f);});
+        sec.querySelector('#dlAllFA').onclick=()=>{
+          faPages.forEach((pp,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=pp.cv.toDataURL('image/png');a.download=`MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
+      });
+    }
+    const txts=container.querySelector('#txts');
+    texts.forEach(([name,body])=>{
+      const d=document.createElement('div');d.className='txtBlock';
+      d.innerHTML=`<h4>${name}</h4><pre></pre><div class="rowBtns"><button class="copyBtn">COPY</button></div>`;
+      const pre=d.querySelector('pre');pre.textContent=body;if(name.startsWith('FA —'))pre.classList.add('rtl');
+      d.querySelector('.copyBtn').onclick=e=>{navigator.clipboard.writeText(body);e.target.textContent='COPIED ✓';setTimeout(()=>e.target.textContent='COPY',1500);};
+      txts.appendChild(d);});
+    container.querySelector('#dlAll').onclick=()=>{
+      pages.forEach((p,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=p.cv.toDataURL('image/png');a.download=`MRLC_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
+    container.querySelector('#dlTxt').onclick=()=>{
+      const body=texts.map(([n,b])=>`${n}
+${'='.repeat(40)}
+${b}`).join('
+
+
+');
+      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/plain'}));a.download=`MRLC_${safe}_captions.txt`;a.click();};
+    container.querySelector('#markPub').onclick=e=>{markPublished(t);e.target.textContent='PUBLISHED ✓';e.target.disabled=true;};
+  });
 }
 
 /* ============ VIEWS ============ */
