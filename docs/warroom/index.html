@@ -320,6 +320,16 @@ function renderCover(t){
   for(const f of feats){ if(y>h-330)break; y=featureRow(x,f,left,y,colW,hasPhoto?0:300,hasPhoto?2:3); }
   if(t.quote&&!hasPhoto&&y<h-400) y=quoteBar(x,t.quote,left,y+6,W-M*2);
   if(t.source&&y<h-230) sourceLine(x,t.source,y+2);
+  if(t.fa&&y<h-340){
+    x.fillStyle='rgba(15,107,98,.18)';x.fillRect(left,y+10,colW,1);y+=22;
+    let fs=t.fa.title.length>50?26:30;faSet(x,'700',fs);
+    while(fs>18&&wrap(x,t.fa.title,colW).length>3){fs-=2;faSet(x,'700',fs);}
+    y=faLines(x,t.fa.title,left+colW,y+4,colW,fs*1.32,SLATE_DK)+10;
+    faSet(x,'400',20);
+    y=faLines(x,t.fa.hook,left+colW,y,colW,28,'rgba(90,102,98,.82)')+6;
+    faSet(x,'600',16);
+    faLines(x,PILLAR_FA[t.pillar]||t.pillar,left+colW,y,colW,22,TURQ);
+  }
   footerCenter(x,h);grain(x,h);
   return finish(c,h);}
 function renderIdea(t,point,i,n){
@@ -332,6 +342,13 @@ function renderIdea(t,point,i,n){
   const lines=wrap(x,point,mw),lh=s*1.3;let y=h/2-lines.length*lh/2+30;
   x.fillStyle=SLATE_DK;x.textAlign='center';
   for(const ln of lines){x.fillText(ln,W/2,y);y+=lh;}
+  if(t.fa&&t.fa.points&&t.fa.points[i]){
+    x.fillStyle='rgba(15,107,98,.15)';x.fillRect(M+60,y+10,W-M*2-120,1);y+=18;
+    let fps=34;faSet(x,'600',fps);const fp=t.fa.points[i];const fmw=W-M*2-120;
+    while(fps>20&&wrap(x,fp,fmw).length>4){fps-=2;faSet(x,'600',fps);}
+    const flh=fps*1.45;x.save();x.direction='rtl';x.textAlign='center';x.fillStyle='rgba(90,102,98,.82)';
+    for(const fln of wrap(x,fp,fmw)){x.fillText(fln,W/2,y);y+=flh;}x.restore();
+  }
   x.textAlign='left';
   const dr=7,dg=26,dw=n*dr*2+(n-1)*(dg-dr*2);let dx=W/2-dw/2;
   for(let k=0;k<n;k++){x.fillStyle=k===i?TURQ:'rgba(15,107,98,.22)';x.beginPath();x.arc(dx+dr,h-240,dr,0,Math.PI*2);x.fill();dx+=dg;}
@@ -473,6 +490,7 @@ function renderCloser(t,portrait){
   x.fillStyle=TURQ;rrect(x,W/2-44,y+222,88,8,4);x.fill();
   x.fillStyle=MUTE;x.font='400 26px '+FB;
   // 20-min CTA removed per Masoud directive
+  if(t.fa){x.fillStyle=TURQ;x.save();x.direction='rtl';x.textAlign='center';x.fillText('تماس بگیرید.',W/2,y+56);x.restore();x.fillStyle=TURQ;rrect(x,W/2-44,y+86,88,8,4);x.fill();y+=96;}
   const bw=W-M*2,bh=250,by=h-bh-190;
   x.fillStyle=SAND_SOFT;rrect(x,M,by,bw,bh,60);x.fill();
   const cx=M+135,cy=by+bh/2,pr=84;
