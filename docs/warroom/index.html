@@ -1215,6 +1215,8 @@ VIEWS.forEach(([name,fn],i)=>{
 document.getElementById('dateChip').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 updateJabBadge();
 showBrief();
-</script>
+<script>
+window.onerror=function(msg,url,line,col,error){console.error('WAR ROOM ERROR:',msg,'at line',line);document.body.innerHTML+='<div style="position:fixed;top:0;left:0;width:100%;background:#b04a4a;color:#fff;padding:20px;z-index:99999;font-family:Inter,sans-serif;"><strong>ERROR:</strong> '+msg+' (line '+line+')<br>Please screenshot this and send to support.</div>';};
+</script></script>
 </body>
 </html>
