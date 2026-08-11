@@ -945,14 +945,10 @@ const BANNED=['No “Dubai is booming” hype openers','No Lambo/marina B-roll f
 </script>
 <script>
 /* ============ TEXT GENERATORS (Hook → Story → So-What → Withheld CTA) ============ */
-function capLinkedIn(t){
-  return `${t.hook}\n\n${t.points.map(p=>'→  '+p).join('\n')}\n\nTHE SO-WHAT:\n${t.sowhat}\n\n${t.cta}\n\n—\nData verified: ${t.asof}. Advised like an investor, not a broker.\n${t.tags}`;}
-function capInstagram(t){
-  return `${t.hook}\n\n${t.points.slice(0,3).map(p=>'→  '+p).join('\n')}\n\n${t.sowhat}\n\n${t.cta}\n\n${t.tags}`;}
-function capTelegram(t){
-  return `CORRIDOR BRIEF — ${t.asof.toUpperCase()}\n\n${t.title.toUpperCase()}\n\n${t.points.map(p=>'• '+p).join('\n')}\n\nThe so-what: ${t.sowhat}\n\n${t.cta}\n\n— MR LIVING CAPITAL · mrlivingcapital.com`;}
-function capWhatsApp(t){
-  return `*${t.title.toUpperCase()}*\n\n${t.hook}\n\n${t.points.slice(0,3).map(p=>'• '+p).join('\n')}\n\n${t.sowhat}\n\n${t.cta}`;}
+function capLinkedIn(t){let body=`${t.hook}\n\n${t.points.map(p=>'→  '+p).join('\n')}\n\n${t.cta}\n\n${t.tags}`;if(t.fa)body+=`\n\n— فارسی —\n\n${t.fa.hook}\n\n${t.fa.points.map(p=>'→  '+p).join('\n')}\n\n${t.fa.cta}\n\n${t.fa.tags}`;return body;}
+function capInstagram(t){let body=`${t.hook}\n\n${t.points.slice(0,3).map(p=>'→  '+p).join('\n')}\n\n${t.cta}\n\n${t.tags}`;if(t.fa)body+=`\n\n—\n${t.fa.hook}\n\n${t.fa.points.slice(0,3).map(p=>'→  '+p).join('\n')}\n\n${t.fa.cta}\n\n${t.fa.tags}`;return body;}
+function capTelegram(t){let body=`CORRIDOR BRIEF — ${t.asof.toUpperCase()}\n\n${t.title.toUpperCase()}\n\n${t.points.map(p=>'• '+p).join('\n')}\n\n${t.cta}\n\n— MR LIVING CAPITAL · mrlivingcapital.com`;if(t.fa)body+=`\n\n— فارسی —\n\n${t.fa.title.toUpperCase()}\n\n${t.fa.points.map(p=>'• '+p).join('\n')}\n\n${t.fa.cta}`;return body;}
+function capWhatsApp(t){let body=`*${t.title.toUpperCase()}*\n\n${t.hook}\n\n${t.points.slice(0,3).map(p=>'• '+p).join('\n')}\n\n${t.cta}`;if(t.fa)body+=`\n\n— فارسی —\n\n*${t.fa.title.toUpperCase()}*\n\n${t.fa.hook}\n\n${t.fa.points.slice(0,3).map(p=>'• '+p).join('\n')}\n\n${t.fa.cta}`;return body;}
 function capX(t){
   const tags='#DubaiRealEstate #UAE #MRLivingCapital';
   let body=`${t.hook}\n\n${t.points[0]}\n\n${tags}`;
@@ -992,6 +988,14 @@ let _portrait=null;
 /* ---- PHOTO INTELLIGENCE: auto-select most relevant image per topic ---- */
 function suggestPhoto(t){
   const txt=(t.title+' '+t.sub+' '+(t.tags||'')+' '+(t.pillar||'')).toLowerCase();
+  // Explicit topic overrides (highest priority)
+  if(t.key==='modon-reem'||txt.includes('reem island')||txt.includes('abu dhabi')&&txt.includes('modon'))return'reem';
+  if(t.key==='wynn-date'||txt.includes('wynn')||txt.includes('al marjan')||txt.includes('ras al khaimah')||txt.includes('casino'))return'wynn';
+  if(t.key==='ad-rush'||txt.includes('abu dhabi')&&txt.includes('invest'))return'louvre';
+  if(t.key==='dubai-south'||txt.includes('dubai south')||txt.includes('expo city'))return'south';
+  if(t.key==='p27'||txt.includes('office')||txt.includes('commercial')&&txt.includes('yield'))return'businessbay';
+  if(t.key==='p33'||txt.includes('strada'))return'portrait';
+  // Keyword scoring map
   const map={
     'wynn':'wynn al marjan casino resort construction ras al khaimah',
     'reem':'reem island abu dhabi skyline gate towers waterfront',
@@ -1018,11 +1022,12 @@ function suggestPhoto(t){
     if(score>bestScore){bestScore=score;best=key;}
   }
   if(bestScore>=2)return best;
-  if(t.pillar==='Market Intelligence')return 'skyline';
-  if(t.pillar==='Investment Wisdom')return 'interior';
-  if(t.pillar==='Dubai Lifestyle')return 'marina';
-  if(t.pillar==='Behind the Deal')return 'businessbay';
-  return 'skyline';
+  if(t.pillar==='Market Intelligence')return'skyline';
+  if(t.pillar==='Investment Wisdom')return'interior';
+  if(t.pillar==='Dubai Lifestyle')return'marina';
+  if(t.pillar==='Behind the Deal')return'businessbay';
+  if(t.pillar==='Commercial')return'businessbay';
+  return'skyline';
 }
 
 async function buildPack(t,container){
@@ -1037,7 +1042,7 @@ async function buildPack(t,container){
   pages.push({cv:renderReel(t),label:'REEL COVER (1080×1920)'});
   const texts=[['LINKEDIN',capLinkedIn(t)],['INSTAGRAM',capInstagram(t)],['X (TWITTER)',capX(t)],['THREADS',capThreads(t)],['FACEBOOK PAGE',capFacebook(t)],['TELEGRAM — CORRIDOR BRIEF',capTelegram(t)],['WHATSAPP BROADCAST',capWhatsApp(t)],['WHATSAPP STORY',capWAStory(t)],['REEL SCRIPT (30–60s)',reelScript(t)]];
   texts.push(['HASHTAGS — COPY/PASTE SET', t.tags+(t.fa?'\n\nFARSI:\n'+t.fa.tags:'')]);
-  if(t.fa)texts.push(['FA — لینکدین / فیسبوک',capLinkedInFA(t)],['FA — اینستاگرام / تردز',capInstagramFA(t)],['FA — تلگرام',capTelegramFA(t)],['FA — واتس‌اپ',capWhatsAppFA(t)]);
+  
   /* render UI */
   const safe=t.key;
   let html=`<h2 class="viewTitle">${t.title.toUpperCase()}</h2>
@@ -1048,7 +1053,7 @@ async function buildPack(t,container){
     <button class="btn ghost" id="markPub">✓ MARK AS PUBLISHED</button>
   </div>
   <div class="figGrid" id="figs"></div>
-  <div id="faSection"></div>
+  
   <div class="sectionTitle">Captions & script</div><div id="txts"></div>
 <div class="sectionTitle">Recommended posting schedule (Dubai GST)</div>
 <div class="postTimes" style="font-family:Inter,sans-serif;font-size:13px;color:#5A6662;background:#EFE8DA;padding:16px 20px;border-radius:16px;margin-top:12px;line-height:1.7;">
@@ -1071,28 +1076,7 @@ async function buildPack(t,container){
     cap.innerHTML=`${p.label}<br><a href="${url}" download="MRLC_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
     f.appendChild(cap);figs.appendChild(f);});
   /* ---- FARSI PACK (auto — every pack posts twice) ---- */
-  if(t.fa){
-    await document.fonts.load('700 64px Vazirmatn');await document.fonts.load('600 50px Vazirmatn');
-    await document.fonts.load('400 30px Vazirmatn');await document.fonts.load('500 28px Vazirmatn');
-    const faPages=[{cv:renderCoverFA(t),label:'FA · 01 · کاور (1080×1350)'}];
-    t.fa.points.forEach((pt,i)=>faPages.push({cv:renderIdeaFA(t,pt,i,t.fa.points.length),label:`FA · ${String(i+2).padStart(2,'0')} · اسلاید ${i+1}/${t.fa.points.length}`}));
-    if(t.chart)faPages.push({cv:renderChartSlide(t),label:'FA · چارت (اعداد جهانی‌اند)'});
-    faPages.push({cv:renderCloserFA(t,_portrait),label:'FA · پایانی · CALL ME'});
-    faPages.push({cv:renderReelFA(t),label:'FA · کاور ریل (1080×1920)'});
-    const sec=container.querySelector('#faSection');
-    sec.innerHTML=`<div class="sectionTitle" style="direction:rtl;text-align:right">نسخهٔ فارسی — همین پست، آمادهٔ انتشار دوم</div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" id="dlAllFA">⬇ DOWNLOAD ALL ${faPages.length} FA PNGs</button></div>
-    <div class="figGrid" id="figsFA"></div>`;
-    const figsFA=sec.querySelector('#figsFA');
-    faPages.forEach((pp,i)=>{
-      const f=document.createElement('figure');f.appendChild(pp.cv);
-      const cap=document.createElement('figcaption');
-      const url=pp.cv.toDataURL('image/png');
-      cap.innerHTML=`${pp.label}<br><a href="${url}" download="MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
-      f.appendChild(cap);figsFA.appendChild(f);});
-    sec.querySelector('#dlAllFA').onclick=()=>{
-      faPages.forEach((pp,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=pp.cv.toDataURL('image/png');a.download=`MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
-  }
+  
   const txts=container.querySelector('#txts');
   texts.forEach(([name,body])=>{
     const d=document.createElement('div');d.className='txtBlock';
