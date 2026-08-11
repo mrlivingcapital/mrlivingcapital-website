@@ -80,6 +80,7 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 #gate .gerr{font:500 13px Inter;color:#b04a4a;display:none}
 #gate .gline{width:56px;height:4px;border-radius:2px;background:var(--turq)}
 </style>
+<base target="_blank">
 </head>
 <body>
 <div id="gate">
@@ -103,19 +104,21 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 <div id="view"></div>
 <script>
 /* ---- access gate (client-side privacy; SHA-256) ---- */
-(function(){
+(async()=>{
   const HASH='263c4417e18ce06badaa49eb5b918b98fc546b21b3632bfd4824eb526b520b69';
   const gate=document.getElementById('gate');
-  const gatePw=document.getElementById('gatePw');
-  const gateBtn=document.getElementById('gateBtn');
-  const gateErr=document.getElementById('gateErr');
   if(sessionStorage.getItem('mrlc_auth')==='1'){gate.remove();return;}
   document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='hidden');
-  function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join(''));}
-  function tryPw(){sha(gatePw.value.trim()).then(function(h){if(h===HASH){sessionStorage.setItem('mrlc_auth','1');gate.remove();document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='');}else{gateErr.style.display='block';gatePw.value='';}});}
-  gateBtn.onclick=tryPw;
-  gatePw.addEventListener('keydown',function(e){if(e.key==='Enter')tryPw();});
-  gatePw.focus();
+  async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
+    return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function tryPw(){
+    const v=document.getElementById('gatePw').value.trim();
+    if(await sha(v)===HASH){sessionStorage.setItem('mrlc_auth','1');gate.remove();
+      document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='');}
+    else{document.getElementById('gateErr').style.display='block';document.getElementById('gatePw').value='';}}
+  document.getElementById('gateBtn').onclick=tryPw;
+  document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')tryPw();});
+  document.getElementById('gatePw').focus();
 })();
 </script>
 <script>
@@ -426,7 +429,11 @@ function renderCloserFA(t,portrait){
   x.save();x.direction='rtl';x.textAlign='center';x.fillStyle=SLATE_DK;
   for(const ln of wrap(x,'«'+t.fa.sowhat+'»',W-220)){x.fillText(ln,W/2,y);y+=60;}
   x.restore();
-  // Farsi CTA consolidated at y+56 per Masoud directive
+  let cs=116;faSet(x,'700',cs);
+  while(x.measureText('تماس بگیرید.').width>W-260&&cs>80){cs-=4;faSet(x,'700',cs);}
+  x.fillStyle=TURQ;
+  x.save();x.direction='rtl';x.textAlign='center';
+  x.fillText('تماس بگیرید.',W/2,y+158);x.restore();
   x.fillStyle=TURQ;rrect(x,W/2-44,y+194,88,8,4);x.fill();
   faSet(x,'400',25);
   // Farsi 20-min CTA removed per Masoud directive
@@ -920,31 +927,22 @@ const CADENCE=[
 
 /* ---- CONVERSATION ENGINE (ACA + Core Four) ---- */
 const KEYWORD_DM=[
- ['OFFICE','It seems like you are looking at commercial units. Are you comparing corridors, or already evaluating specific buildings?'],
- ['SOUTH','It seems like Dubai South caught your eye. Are you looking at the headline corridor, or the adjacencies most people miss?'],
- ['BRIEF','Here is the corridor brief. What is your timeline — are you looking to deploy this quarter, or is this a 2027 plan?'],
- ['YIELD','Here is the commercial income brief. Is your portfolio 100% residential right now, or do you already have commercial exposure?'],
- ['CALL','Happy to talk. What does your calendar look like — Thursday morning or afternoon?'],
- ['CHECKLIST','Sending the off-plan checklist now. What is the one thing you check before every purchase?'],
- ['MAP','Sending the migration map. Which corridor are you currently comparing?'],
- ['SPREAD','Sending the Q3 spread brief. Are you cash or mortgage for your next purchase?']];
-
-const ACA=['ACKNOWLEDGE: reference something specific (their comment, their city, their portfolio question). Never "thanks for reaching out".',
- 'COMPLIMENT: connect it sincerely — "comparing corridors before committing tells me you underwrite like an investor".',
- 'ASK: one calibrated question toward the goal — "what would need to be true for you to move in the next 30 days?"'];
-
+ ['OFFICE','Thanks for commenting OFFICE. Are you still looking at commercial units, or just watching the space for now?'],
+ ['SOUTH','Thanks for commenting SOUTH. Are you still looking at Dubai South, or comparing corridors?'],
+ ['BRIEF','Here’s the corridor brief. Are you still deciding between ready and off-plan, or already shortlisted?'],
+ ['YIELD','Here’s the commercial income brief. Is your portfolio 100% residential right now?'],
+ ['CALL','Happy to talk. What does your calendar look like Thursday — morning or afternoon?']];
+const ACA=['ACKNOWLEDGE: reference something specific (their comment, their city, their portfolio question). Never “thanks for reaching out”.',
+ 'COMPLIMENT: connect it sincerely — “comparing corridors before committing tells me you underwrite like an investor”.',
+ 'ASK: one question toward the goal — “are you still looking to deploy before Q4, or is this a 2027 plan?”'];
 const QUALIFYING=['Budget band (under 2M / 2–5M / 5M+)?','Timeline (this quarter / this year / exploring)?','Cash or mortgage?','Yield-first or growth-first?','Which corridor caught your eye?'];
-
-const FOLLOWUP=['D0: reply to comment publicly (question back) + DM the keyword asset within 1 hour','D+1: send one extra data point relevant to THEIR situation (Voss tactical empathy)','D+3: check-in with a new angle (new weekly number) + Hormozi give-first value','D+7: invite to Corridor Brief / send H1 PDF — "should I keep you on the brief list?"','D+14: close the loop — "should I keep you on the brief list or park this for now?"'];
-
+const FOLLOWUP=['D0: reply to comment publicly (question back) + DM the keyword asset within 1 hour','D+1: send one extra data point relevant to THEIR situation','D+3: check-in with a new angle (new weekly number)','D+7: invite to Corridor Brief / send H1 PDF','D+14: close the loop — “should I keep you on the brief list or park this?”'];
 const BOOK_CALL='No pitch on the first call. 20 minutes: your numbers, my read, next step only if it makes sense. Thursday 10:00 or 16:30 GST?';
-
-const HOOK_RULES=['Hard number in the first 8 words (numbered specificity)','Verdict, not question — tell them, do not ask them','Contrarian reframe: "X is not A. It is B."','Identity statement: agreeing makes the reader the smart one','One post = one idea. Two ideas = two posts','Claim + 3 bullets + takeaway (punchline close, 6–10 words)','Bullets in 3s. Line breaks every 1–2 sentences','SEO-first 128 characters: "Dubai real estate advisor" + pillar + date'];
-
-const GIVE_WITHHOLD=[['GIVE (free, every post)','Market data · corridor analysis · contrarian takes · ready-vs-off-plan comparisons · the "so-what" behind every number · mistake frameworks · checklists'],
- ['WITHHOLD (paid conversation)','Specific property picks · personalized allocation · which corridor for YOUR profile and ticket size · the shortlist · escrow review · mortgage optimization']];
-
-const BANNED=['No "Dubai is booming" hype openers','No Lambo/marina B-roll flex intros','No "DM me for the list" bait','No fake urgency "last units"','No walking-and-talking with no point','No green-screen news reading without a take','No "5 reasons to invest in Dubai" generic lists','No recycled 2021 stats','No "what do you think?" engagement begging','No tu-form in Farsi — شما-form only','No BRN 94316 on any material ever'];</script>
+const HOOK_RULES=['Hard number in the first 8 words (numbered specificity)','Verdict, not question — tell them, don’t ask them','Contrarian reframe: “X isn’t A. It’s B.”','Identity statement: agreeing makes the reader the smart one','One post = one idea. Two ideas = two posts','Claim + 3 bullets + takeaway (punchline close, 6–10 words)','Bullets in 3s. Line breaks every 1–2 sentences'];
+const GIVE_WITHHOLD=[['GIVE (free, every post)','Market data · corridor analysis · contrarian takes · ready-vs-off-plan comparisons · the “so-what” behind every number'],
+ ['WITHHOLD (paid conversation)','Specific property picks · personalized allocation · which corridor for YOUR profile and ticket size · the shortlist']];
+const BANNED=['No “Dubai is booming” hype openers','No Lambo/marina B-roll flex intros','No “DM me for the list” bait','No fake urgency “last units”','No walking-and-talking with no point','No green-screen news reading without a take','No “5 reasons to invest in Dubai” generic lists','No recycled 2021 stats','No “what do you think?” engagement begging'];
+</script>
 <script>
 /* ============ TEXT GENERATORS (Hook → Story → So-What → Withheld CTA) ============ */
 function capLinkedIn(t){
@@ -1027,98 +1025,87 @@ function suggestPhoto(t){
   return 'skyline';
 }
 
-function buildPack(t,container){
+async function buildPack(t,container){
   container.innerHTML='<div class="statusLine">Rendering pack — one moment…</div>';
-  const photoKey=t.photo||suggestPhoto(t);
-  const p1=_portrait?Promise.resolve(_portrait):loadImg(IMG.portrait);
-  p1.then(portrait=>{
-    _portrait=portrait;
-    return loadImg(IMG[photoKey]||photoKey);
-  }).then(photo=>{
-    t._photo=photo;
-    const pages=[];
-    pages.push({cv:renderCover(t),label:'01 · COVER (1080×1350)'});
-    t.points.forEach((p,i)=>pages.push({cv:renderIdea(t,p,i,t.points.length),label:`${String(i+2).padStart(2,'0')} · SLIDE ${i+1}/${t.points.length}`}));
-    if(t.chart)pages.push({cv:renderChartSlide(t),label:`${String(t.points.length+2).padStart(2,'0')} · CHART SLIDE`});
-    pages.push({cv:renderCloser(t,_portrait),label:'CLOSER · CALL ME (contact band)'});
-    pages.push({cv:renderReel(t),label:'REEL COVER (1080×1920)'});
-    const texts=[['LINKEDIN',capLinkedIn(t)],['INSTAGRAM',capInstagram(t)],['X (TWITTER)',capX(t)],['THREADS',capThreads(t)],['FACEBOOK PAGE',capFacebook(t)],['TELEGRAM — CORRIDOR BRIEF',capTelegram(t)],['WHATSAPP BROADCAST',capWhatsApp(t)],['WHATSAPP STORY',capWAStory(t)],['REEL SCRIPT (30–60s)',reelScript(t)]];
-    texts.push(['HASHTAGS — COPY/PASTE SET', t.tags+(t.fa?'\n\nFARSI:\n'+t.fa.tags:'')]);
-    if(t.fa)texts.push(['FA — لینکدین / فیسبوک',capLinkedInFA(t)],['FA — اینستاگرام / تردز',capInstagramFA(t)],['FA — تلگرام',capTelegramFA(t)],['FA — واتس‌اپ',capWhatsAppFA(t)]);
-    const safe=t.key;
-    let html=`<h2 class="viewTitle">${t.title.toUpperCase()}</h2>
-    <div class="viewSub">${t.type==='hook'?'RIGHT HOOK — soft CTA post':t.type==='mistake'?'MISTAKE — highest-save format':'JAB — pure value post'} · ${t.pillar} · data verified ${t.asof} · emotion: ${t.emotion||'n/a'} · hook: ${t.hookFormula||'n/a'}</div>
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <button class="btn" id="dlAll">⬇ DOWNLOAD ALL ${pages.length} PNGs</button>
-      <button class="btn ghost" id="dlTxt">⬇ ALL CAPTIONS (.txt)</button>
-      <button class="btn ghost" id="markPub">✓ MARK AS PUBLISHED</button>
-    </div>
-    <div class="figGrid" id="figs"></div>
-    <div id="faSection"></div>
-    <div class="sectionTitle">Captions & script</div><div id="txts"></div>
-    <div class="sectionTitle">Recommended posting schedule (Dubai GST)</div>
-    <div class="postTimes" style="font-family:Inter,sans-serif;font-size:13px;color:#5A6662;background:#EFE8DA;padding:16px 20px;border-radius:16px;margin-top:12px;line-height:1.7;">
-    <strong>Instagram Feed/Carousel:</strong> Tue/Thu 12:00–14:00 | Sun 19:00–21:00<br>
-    <strong>Instagram Reels:</strong> Fri 19:00–21:00 | Sun 11:00–13:00<br>
-    <strong>LinkedIn:</strong> Tue/Thu 08:00–10:00 | Wed 12:00–14:00<br>
-    <strong>X / Threads:</strong> Daily 08:00–10:00 | Daily 18:00–20:00<br>
-    <strong>Facebook:</strong> Thu/Fri 13:00–15:00 | Sat 10:00–12:00<br>
-    <strong>Telegram:</strong> Mon/Thu 08:00<br>
-    <strong>WhatsApp:</strong> Tue 10:00 | Thu 18:00<br>
-    <strong>TikTok:</strong> Fri 19:00–21:00 | Sat 11:00–13:00<br>
-    <em style="color:#0F6B62;">Post EN first, then FA. Same day, 2-hour gap minimum.</em>
-    </div>`;
-    container.innerHTML=html;
-    const figs=container.querySelector('#figs');
-    pages.forEach((p,i)=>{
-      const f=document.createElement('figure');f.appendChild(p.cv);
+  if(!_portrait)_portrait=await loadImg(IMG.portrait);
+  const photoKey=t.photo||suggestPhoto(t);t._photo=await loadImg(IMG[photoKey]||photoKey);
+  const pages=[];
+  pages.push({cv:renderCover(t),label:'01 · COVER (1080×1350)'});
+  t.points.forEach((p,i)=>pages.push({cv:renderIdea(t,p,i,t.points.length),label:`${String(i+2).padStart(2,'0')} · SLIDE ${i+1}/${t.points.length}`}));
+  if(t.chart)pages.push({cv:renderChartSlide(t),label:`${String(t.points.length+2).padStart(2,'0')} · CHART SLIDE`});
+  pages.push({cv:renderCloser(t,_portrait),label:'CLOSER · CALL ME (contact band)'});
+  pages.push({cv:renderReel(t),label:'REEL COVER (1080×1920)'});
+  const texts=[['LINKEDIN',capLinkedIn(t)],['INSTAGRAM',capInstagram(t)],['X (TWITTER)',capX(t)],['THREADS',capThreads(t)],['FACEBOOK PAGE',capFacebook(t)],['TELEGRAM — CORRIDOR BRIEF',capTelegram(t)],['WHATSAPP BROADCAST',capWhatsApp(t)],['WHATSAPP STORY',capWAStory(t)],['REEL SCRIPT (30–60s)',reelScript(t)]];
+  texts.push(['HASHTAGS — COPY/PASTE SET', t.tags+(t.fa?'\n\nFARSI:\n'+t.fa.tags:'')]);
+  if(t.fa)texts.push(['FA — لینکدین / فیسبوک',capLinkedInFA(t)],['FA — اینستاگرام / تردز',capInstagramFA(t)],['FA — تلگرام',capTelegramFA(t)],['FA — واتس‌اپ',capWhatsAppFA(t)]);
+  /* render UI */
+  const safe=t.key;
+  let html=`<h2 class="viewTitle">${t.title.toUpperCase()}</h2>
+  <div class="viewSub">${t.type==='hook'?'RIGHT HOOK — soft CTA post':t.type==='mistake'?'MISTAKE — highest-save format':'JAB — pure value post'} · ${t.pillar} · data verified ${t.asof} · emotion: ${t.emotion||'n/a'} · hook: ${t.hookFormula||'n/a'}</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <button class="btn" id="dlAll">⬇ DOWNLOAD ALL ${pages.length} PNGs</button>
+    <button class="btn ghost" id="dlTxt">⬇ ALL CAPTIONS (.txt)</button>
+    <button class="btn ghost" id="markPub">✓ MARK AS PUBLISHED</button>
+  </div>
+  <div class="figGrid" id="figs"></div>
+  <div id="faSection"></div>
+  <div class="sectionTitle">Captions & script</div><div id="txts"></div>
+<div class="sectionTitle">Recommended posting schedule (Dubai GST)</div>
+<div class="postTimes" style="font-family:Inter,sans-serif;font-size:13px;color:#5A6662;background:#EFE8DA;padding:16px 20px;border-radius:16px;margin-top:12px;line-height:1.7;">
+<strong>Instagram Feed/Carousel:</strong> Tue/Thu 12:00–14:00 | Sun 19:00–21:00<br>
+<strong>Instagram Reels:</strong> Fri 19:00–21:00 | Sun 11:00–13:00<br>
+<strong>LinkedIn:</strong> Tue/Thu 08:00–10:00 | Wed 12:00–14:00<br>
+<strong>X / Threads:</strong> Daily 08:00–10:00 | Daily 18:00–20:00<br>
+<strong>Facebook:</strong> Thu/Fri 13:00–15:00 | Sat 10:00–12:00<br>
+<strong>Telegram:</strong> Mon/Thu 08:00<br>
+<strong>WhatsApp:</strong> Tue 10:00 | Thu 18:00<br>
+<strong>TikTok:</strong> Fri 19:00–21:00 | Sat 11:00–13:00<br>
+<em style="color:#0F6B62;">Post EN first, then FA. Same day, 2-hour gap minimum.</em>
+</div>`;
+  container.innerHTML=html;
+  const figs=container.querySelector('#figs');
+  pages.forEach((p,i)=>{
+    const f=document.createElement('figure');f.appendChild(p.cv);
+    const cap=document.createElement('figcaption');
+    const url=p.cv.toDataURL('image/png');
+    cap.innerHTML=`${p.label}<br><a href="${url}" download="MRLC_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
+    f.appendChild(cap);figs.appendChild(f);});
+  /* ---- FARSI PACK (auto — every pack posts twice) ---- */
+  if(t.fa){
+    await document.fonts.load('700 64px Vazirmatn');await document.fonts.load('600 50px Vazirmatn');
+    await document.fonts.load('400 30px Vazirmatn');await document.fonts.load('500 28px Vazirmatn');
+    const faPages=[{cv:renderCoverFA(t),label:'FA · 01 · کاور (1080×1350)'}];
+    t.fa.points.forEach((pt,i)=>faPages.push({cv:renderIdeaFA(t,pt,i,t.fa.points.length),label:`FA · ${String(i+2).padStart(2,'0')} · اسلاید ${i+1}/${t.fa.points.length}`}));
+    if(t.chart)faPages.push({cv:renderChartSlide(t),label:'FA · چارت (اعداد جهانی‌اند)'});
+    faPages.push({cv:renderCloserFA(t,_portrait),label:'FA · پایانی · CALL ME'});
+    faPages.push({cv:renderReelFA(t),label:'FA · کاور ریل (1080×1920)'});
+    const sec=container.querySelector('#faSection');
+    sec.innerHTML=`<div class="sectionTitle" style="direction:rtl;text-align:right">نسخهٔ فارسی — همین پست، آمادهٔ انتشار دوم</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" id="dlAllFA">⬇ DOWNLOAD ALL ${faPages.length} FA PNGs</button></div>
+    <div class="figGrid" id="figsFA"></div>`;
+    const figsFA=sec.querySelector('#figsFA');
+    faPages.forEach((pp,i)=>{
+      const f=document.createElement('figure');f.appendChild(pp.cv);
       const cap=document.createElement('figcaption');
-      const url=p.cv.toDataURL('image/png');
-      cap.innerHTML=`${p.label}<br><a href="${url}" download="MRLC_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
-      f.appendChild(cap);figs.appendChild(f);});
-    if(t.fa){
-      Promise.all([
-        document.fonts.load('700 64px Vazirmatn'),
-        document.fonts.load('600 50px Vazirmatn'),
-        document.fonts.load('400 30px Vazirmatn'),
-        document.fonts.load('500 28px Vazirmatn')
-      ]).then(()=>{
-        const faPages=[{cv:renderCoverFA(t),label:'FA · 01 · کاور (1080×1350)'}];
-        t.fa.points.forEach((pt,i)=>faPages.push({cv:renderIdeaFA(t,pt,i,t.fa.points.length),label:`FA · ${String(i+2).padStart(2,'0')} · اسلاید ${i+1}/${t.fa.points.length}`}));
-        if(t.chart)faPages.push({cv:renderChartSlide(t),label:'FA · چارت (اعداد جهانی‌اند)'});
-        faPages.push({cv:renderCloserFA(t,_portrait),label:'FA · پایانی · CALL ME'});
-        faPages.push({cv:renderReelFA(t),label:'FA · کاور ریل (1080×1920)'});
-        const sec=container.querySelector('#faSection');
-        sec.innerHTML=`<div class="sectionTitle" style="direction:rtl;text-align:right">نسخهٔ فارسی — همین پست، آمادهٔ انتشار دوم</div>
-        <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn" id="dlAllFA">⬇ DOWNLOAD ALL ${faPages.length} FA PNGs</button></div>
-        <div class="figGrid" id="figsFA"></div>`;
-        const figsFA=sec.querySelector('#figsFA');
-        faPages.forEach((pp,i)=>{
-          const f=document.createElement('figure');f.appendChild(pp.cv);
-          const cap=document.createElement('figcaption');
-          const url=pp.cv.toDataURL('image/png');
-          cap.innerHTML=`${pp.label}<br><a href="${url}" download="MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
-          f.appendChild(cap);figsFA.appendChild(f);});
-        sec.querySelector('#dlAllFA').onclick=()=>{
-          faPages.forEach((pp,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=pp.cv.toDataURL('image/png');a.download=`MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
-      });
-    }
-    const txts=container.querySelector('#txts');
-    texts.forEach(([name,body])=>{
-      const d=document.createElement('div');d.className='txtBlock';
-      d.innerHTML=`<h4>${name}</h4><pre></pre><div class="rowBtns"><button class="copyBtn">COPY</button></div>`;
-      const pre=d.querySelector('pre');pre.textContent=body;if(name.startsWith('FA —'))pre.classList.add('rtl');
-      d.querySelector('.copyBtn').onclick=e=>{navigator.clipboard.writeText(body);e.target.textContent='COPIED ✓';setTimeout(()=>e.target.textContent='COPY',1500);};
-      txts.appendChild(d);});
-    container.querySelector('#dlAll').onclick=()=>{
-      pages.forEach((p,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=p.cv.toDataURL('image/png');a.download=`MRLC_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
-    container.querySelector('#dlTxt').onclick=()=>{
-      const body=texts.map(([n,b])=>`${n}
-${'='.repeat(40)}
-${b}`).join('\n\n\n');
-      const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/plain'}));a.download=`MRLC_${safe}_captions.txt`;a.click();};
-    container.querySelector('#markPub').onclick=e=>{markPublished(t);e.target.textContent='PUBLISHED ✓';e.target.disabled=true;};
-  });
+      const url=pp.cv.toDataURL('image/png');
+      cap.innerHTML=`${pp.label}<br><a href="${url}" download="MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png">Download PNG</a>`;
+      f.appendChild(cap);figsFA.appendChild(f);});
+    sec.querySelector('#dlAllFA').onclick=()=>{
+      faPages.forEach((pp,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=pp.cv.toDataURL('image/png');a.download=`MRLC_FA_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
+  }
+  const txts=container.querySelector('#txts');
+  texts.forEach(([name,body])=>{
+    const d=document.createElement('div');d.className='txtBlock';
+    d.innerHTML=`<h4>${name}</h4><pre></pre><div class="rowBtns"><button class="copyBtn">COPY</button></div>`;
+    const pre=d.querySelector('pre');pre.textContent=body;if(name.startsWith('FA —'))pre.classList.add('rtl');
+    d.querySelector('.copyBtn').onclick=e=>{navigator.clipboard.writeText(body);e.target.textContent='COPIED ✓';setTimeout(()=>e.target.textContent='COPY',1500);};
+    txts.appendChild(d);});
+  container.querySelector('#dlAll').onclick=()=>{
+    pages.forEach((p,i)=>setTimeout(()=>{const a=document.createElement('a');a.href=p.cv.toDataURL('image/png');a.download=`MRLC_${safe}_${String(i+1).padStart(2,'0')}.png`;a.click();},i*450));};
+  container.querySelector('#dlTxt').onclick=()=>{
+    const body=texts.map(([n,b])=>`${n}\n${'='.repeat(40)}\n${b}`).join('\n\n\n');
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([body],{type:'text/plain'}));a.download=`MRLC_${safe}_captions.txt`;a.click();};
+  container.querySelector('#markPub').onclick=e=>{markPublished(t);e.target.textContent='PUBLISHED ✓';e.target.disabled=true;};
 }
 
 /* ============ VIEWS ============ */
@@ -1212,6 +1199,6 @@ VIEWS.forEach(([name,fn],i)=>{
 document.getElementById('dateChip').textContent=new Date().toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
 updateJabBadge();
 showBrief();
-<script>window.onerror=function(msg,url,line){console.error('ERROR:',msg,'line',line);alert('WAR ROOM ERROR at line '+line+': '+msg);};</script>window.onerror=function(msg,url,line){console.error('ERROR:',msg,'line',line);alert('WAR ROOM ERROR at line '+line+': '+msg);};</script>
+</script>
 </body>
 </html>
