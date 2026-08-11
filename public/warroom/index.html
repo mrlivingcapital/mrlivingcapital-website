@@ -110,15 +110,15 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
   document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='hidden');
   async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
     return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
-  async function tryPw(){
+  async function tryPw(){try{
     const v=document.getElementById('gatePw').value.trim();
     if(await sha(v)===HASH){sessionStorage.setItem('mrlc_auth','1');gate.remove();
       document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='');}
-    else{document.getElementById('gateErr').style.display='block';document.getElementById('gatePw').value='';}catch(e){console.error('tryPw ERROR:',e);gateErr.textContent='System error: '+e.message;gateBtn.disabled=false;}
+    else{document.getElementById('gateErr').style.display='block';document.getElementById('gatePw').value='';}
   document.getElementById('gateBtn').onclick=tryPw;
   document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')tryPw();});
   document.getElementById('gatePw').focus();
-})();
+}})();
 </script>
 <script>
 /* ============ LOCKED BRAND — Turquoise Signature ============ */
@@ -1154,7 +1154,7 @@ function showBrief(){
     <li><b>Jab-jab-jab-right-hook (3:1).</b> Three pure-value posts for every one soft CTA. The badge top-right tracks the rhythm as you mark posts published.</li>
     <li><b>Give vs withhold.</b> We give market data, corridors and the so-what. We withhold specific picks, personal allocation and the shortlist — that's the paid conversation.</li>
   </ul>`;
-  bindCards();catch(e){console.error('showBrief ERROR:',e);document.body.innerHTML+='<div style="position:fixed;top:0;left:0;width:100%;background:#b04a4a;color:#fff;padding:20px;z-index:99999;"><strong>showBrief ERROR:</strong> '+e.message+'</div>';}
+  bindCards();}
 function showBank(){
   const pillars=['ALL',...new Set(TOPICS.map(t=>t.pillar))];
   view.innerHTML=`<h2 class="viewTitle">Topic Bank</h2>
@@ -1165,7 +1165,7 @@ function showBank(){
     TOPICS.filter(t=>f==='ALL'||t.pillar===f).map(t=>topicCard(t)).join('');bindCards();};
   render('ALL');
   view.querySelectorAll('.pill').forEach(p=>p.onclick=()=>{
-    view.querySelectorAll('.pill').forEach(z=>z.classList.remove('on'));p.classList.add('on');render(p.dataset.p);});catch(e){console.error('showBank ERROR:',e);document.body.innerHTML+='<div style="position:fixed;top:0;left:0;width:100%;background:#b04a4a;color:#fff;padding:20px;z-index:99999;"><strong>showBank ERROR:</strong> '+e.message+'<br>Please check Console for details.</div>';}
+    view.querySelectorAll('.pill').forEach(z=>z.classList.remove('on'));p.classList.add('on');render(p.dataset.p);});}
 function showWeek(){
   const sug=suggestType();
   view.innerHTML=`<h2 class="viewTitle">This Week's Plan</h2>
@@ -1216,6 +1216,6 @@ updateJabBadge();
 showBrief();
 <script>
 window.onerror=function(msg,url,line,col,error){console.error('WAR ROOM ERROR:',msg,'at line',line);document.body.innerHTML+='<div style="position:fixed;top:0;left:0;width:100%;background:#b04a4a;color:#fff;padding:20px;z-index:99999;font-family:Inter,sans-serif;"><strong>ERROR:</strong> '+msg+' (line '+line+')<br>Please screenshot this and send to support.</div>';};
-</script></script>
+</script><script>window.onerror=function(msg,url,line){console.error('ERROR:',msg,'line',line);alert('WAR ROOM ERROR at line '+line+': '+msg);};</script></script>
 </body>
 </html>
