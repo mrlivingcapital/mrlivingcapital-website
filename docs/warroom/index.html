@@ -103,22 +103,20 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 <div id="view"></div>
 <script>
 /* ---- access gate (client-side privacy; SHA-256) ---- */
-(async()=>{
+(function(){
   const HASH='263c4417e18ce06badaa49eb5b918b98fc546b21b3632bfd4824eb526b520b69';
   const gate=document.getElementById('gate');
+  const gatePw=document.getElementById('gatePw');
+  const gateBtn=document.getElementById('gateBtn');
+  const gateErr=document.getElementById('gateErr');
   if(sessionStorage.getItem('mrlc_auth')==='1'){gate.remove();return;}
   document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='hidden');
-  async function sha(t){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));
-    return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
-  async function tryPw(){try{
-    const v=document.getElementById('gatePw').value.trim();
-    if(await sha(v)===HASH){sessionStorage.setItem('mrlc_auth','1');gate.remove();
-      document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='');}
-    else{document.getElementById('gateErr').style.display='block';document.getElementById('gatePw').value='';}
-  document.getElementById('gateBtn').onclick=tryPw;
-  document.getElementById('gatePw').addEventListener('keydown',e=>{if(e.key==='Enter')tryPw();});
-  document.getElementById('gatePw').focus();
-}})();
+  function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join(''));}
+  function tryPw(){sha(gatePw.value.trim()).then(function(h){if(h===HASH){sessionStorage.setItem('mrlc_auth','1');gate.remove();document.querySelectorAll('.topbar,.tabs,#view').forEach(e=>e.style.visibility='');}else{gateErr.style.display='block';gatePw.value='';}});}
+  gateBtn.onclick=tryPw;
+  gatePw.addEventListener('keydown',function(e){if(e.key==='Enter')tryPw();});
+  gatePw.focus();
+})();
 </script>
 <script>
 /* ============ LOCKED BRAND — Turquoise Signature ============ */
