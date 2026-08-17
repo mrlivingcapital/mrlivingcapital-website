@@ -299,7 +299,7 @@ const GIVE_WITHHOLD=[
 /* ============ CANVAS HELPERS ============ */
 function mkCanvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
 function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>res(i);i.onerror=rej;i.src=src;});}
-function grain(c,h){const x=c.getContext('2d'),d=x.createImageData(c.width,h||c.height);for(let i=0;i<d.data.length;i+=4){const v=Math.random()*30+225;d.data[i]=v;d.data[i+1]=v-3;d.data[i+2]=v-6;d.data[i+3]=18;}x.putImageData(d,0,0);}
+function grain(c,h){const tc=document.createElement('canvas');tc.width=c.width;tc.height=h||c.height;const tx=tc.getContext('2d');const d=tx.createImageData(tc.width,tc.height);for(let i=0;i<d.data.length;i+=4){const v=Math.random()*30+225;d.data[i]=v;d.data[i+1]=v-3;d.data[i+2]=v-6;d.data[i+3]=18;}tx.putImageData(d,0,0);const x=c.getContext('2d');x.save();x.globalAlpha=0.07;x.drawImage(tc,0,0);x.restore();}
 function finish(c,h){const x=c.getContext('2d');grain(c,h||c.height);x.globalCompositeOperation='source-over';return c;}
 function footerCenter(c,h){const x=c.getContext('2d'),y=h||c.height;x.fillStyle='#F6F1E7';x.font='600 11px "Inter"';x.textAlign='center';x.fillText('MR LIVING CAPITAL  ·  LIVING PROOF. LASTING LEGACY.',c.width/2,y-22);x.fillStyle='#57A99F';x.font='500 10px "Inter"';x.fillText('mrlivingcapital.com  ·  WhatsApp +971 58 589 9112',c.width/2,y-8);}
 function sourceLine(c,source,y){const x=c.getContext('2d');x.fillStyle='#8C9592';x.font='italic 500 11px "Inter"';x.textAlign='center';x.fillText('Source: '+source,c.width/2,y);}
@@ -311,7 +311,10 @@ function wrap(c,text,maxW){const x=c.getContext('2d');const words=text.split(' '
 /* ============ PAGE RENDERERS ============ */
 async function renderCover(t){
 const c=mkCanvas(1080,1350),x=c.getContext('2d');
-x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1350);
+const photoKey=suggestPhoto(t);
+const imgUrl=IMG[photoKey]||IMG.skyline;
+try{const img=await loadImg(imgUrl);x.drawImage(img,0,0,1080,1350);}catch(e){x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1350);}
+x.fillStyle='rgba(246,241,231,0.82)';x.fillRect(0,0,1080,1350);
 // Sand glow top-left
 const g1=x.createRadialGradient(0,0,0,0,0,900);g1.addColorStop(0,'rgba(217,205,184,0.35)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
 // Pale teal mist bottom-right
@@ -347,7 +350,10 @@ return finish(c,1350);
 
 async function renderIdea(t,point,i,n){
 const c=mkCanvas(1080,1350),x=c.getContext('2d');
-x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1350);
+const photoKey=suggestPhoto(t);
+const imgUrl=IMG[photoKey]||IMG.skyline;
+try{const img=await loadImg(imgUrl);x.drawImage(img,0,0,1080,1350);}catch(e){x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1350);}
+x.fillStyle='rgba(246,241,231,0.88)';x.fillRect(0,0,1080,1350);
 const g1=x.createRadialGradient(0,0,0,0,0,900);g1.addColorStop(0,'rgba(217,205,184,0.35)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
 const g2=x.createRadialGradient(1080,1350,0,1080,1350,900);g2.addColorStop(0,'rgba(15,107,98,0.06)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
 x.beginPath();x.arc(1080,0,280,0,Math.PI*2);x.strokeStyle='rgba(15,107,98,0.12)';x.lineWidth=1.5;x.stroke();
@@ -370,7 +376,10 @@ return finish(c,1350);
 
 async function renderCloser(t){
 const c=mkCanvas(1080,1350),x=c.getContext('2d');
-x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1350);
+const photoKey=suggestPhoto(t);
+const imgUrl=IMG[photoKey]||IMG.skyline;
+try{const img=await loadImg(imgUrl);x.drawImage(img,0,0,1080,1350);}catch(e){x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1350);}
+x.fillStyle='rgba(246,241,231,0.88)';x.fillRect(0,0,1080,1350);
 const g1=x.createRadialGradient(0,0,0,0,0,900);g1.addColorStop(0,'rgba(217,205,184,0.35)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
 const g2=x.createRadialGradient(1080,1350,0,1080,1350,900);g2.addColorStop(0,'rgba(15,107,98,0.06)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
 // CTA headline
@@ -395,7 +404,10 @@ return finish(c,1350);
 
 async function renderReel(t){
 const c=mkCanvas(1080,1920),x=c.getContext('2d');
-x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1920);
+const photoKey=suggestPhoto(t);
+const imgUrl=IMG[photoKey]||IMG.skyline;
+try{const img=await loadImg(imgUrl);x.drawImage(img,0,0,1080,1920);}catch(e){x.fillStyle='#F6F1E7';x.fillRect(0,0,1080,1920);}
+x.fillStyle='rgba(246,241,231,0.85)';x.fillRect(0,0,1080,1920);
 const g1=x.createRadialGradient(0,0,0,0,0,1200);g1.addColorStop(0,'rgba(217,205,184,0.35)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1920);
 const g2=x.createRadialGradient(1080,1920,0,1080,1920,1200);g2.addColorStop(0,'rgba(15,107,98,0.06)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1920);
 x.beginPath();x.arc(1080,0,320,0,Math.PI*2);x.strokeStyle='rgba(15,107,98,0.12)';x.lineWidth=1.5;x.stroke();
