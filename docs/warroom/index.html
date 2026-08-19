@@ -258,6 +258,9 @@ function sourceLine(x,src,y){x.fillStyle=MUTE;x.font='italic 400 18px '+FB;x.fil
 
 /* ============ LOCKED TEMPLATE RENDERERS ============ */
 function renderCover(t){
+  t._photo = IMG[t.photo];
+  t.features = t.points.map(p => ({icon:'', title:'', desc:p}));
+  t.quote = {line1: t.sowhat};
   const h=1350,[c,x]=mkCanvas(h);
   bgBase(x,h);softWaves(x,h);ringMark(x,1);headerCenter(x);
   const hasPhoto=!!t._photo,left=M,colW=hasPhoto?W*.44:W-M*2;
@@ -671,141 +674,6 @@ function rrect(c,px,py,w,h,r){const x=c.getContext('2d');x.beginPath();x.moveTo(
 function faSet(c,weight,size){const x=c.getContext('2d');x.font=weight+' '+size+'px "Vazirmatn", sans-serif';x.textAlign='right';x.direction='rtl';}
 function faLines(c,text,px,py,maxW,lineH,color){const x=c.getContext('2d');x.fillStyle=color;x.textAlign='right';x.direction='rtl';const words=text.split(' ');let line='';let y=py;for(let n=0;n<words.length;n++){const testLine=line+words[n]+' ';const metrics=x.measureText(testLine);if(metrics.width>maxW&&n>0){x.fillText(line,px,y);line=words[n]+' ';y+=lineH;}else{line=testLine;}}x.fillText(line,px,y);return y+lineH;}
 function wrap(c,text,maxW){const x=c.getContext('2d');const words=text.split(' ');let lines=[''];for(let w of words){const test=lines[lines.length-1]+w+' ';if(x.measureText(test).width>maxW&&lines[lines.length-1].length>0){lines.push(w+' ');}else{lines[lines.length-1]=test;}}return lines;}
-
-/* ============ PAGE RENDERERS ============ */
-async function renderCover(t){
-const c=mkCanvas(1080,1350),x=c.getContext('2d');
-// Brand gradient background
-const bg=x.createLinearGradient(0,0,1080,1350);
-bg.addColorStop(0,'#F6F1E7');bg.addColorStop(0.4,'#EFE8DA');bg.addColorStop(0.7,'#E7DFCF');bg.addColorStop(1,'#D9CDB8');
-x.fillStyle=bg;x.fillRect(0,0,1080,1350);
-// Sand glow top-left
-var g1=x.createRadialGradient(0,0,0,0,0,900);g1.addColorStop(0,'rgba(217,205,184,0.55)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
-// Pale teal mist bottom-right
-var g2=x.createRadialGradient(1080,1350,0,1080,1350,900);g2.addColorStop(0,'rgba(15,107,98,0.10)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
-// Sand glow top-left
-var g1=x.createRadialGradient(0,0,0,0,0,900);g1.addColorStop(0,'rgba(217,205,184,0.35)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
-// Pale teal mist bottom-right
-var g2=x.createRadialGradient(1080,1350,0,1080,1350,900);g2.addColorStop(0,'rgba(15,107,98,0.06)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
-// Turquoise ring top-right
-x.beginPath();x.arc(1080,0,280,0,Math.PI*2);x.strokeStyle='rgba(15,107,98,0.12)';x.lineWidth=1.5;x.stroke();
-x.beginPath();x.arc(1080,0,265,0,Math.PI*2);x.strokeStyle='rgba(217,205,184,0.25)';x.lineWidth=1;x.stroke();
-// Sand dot accents
-const dots=[[80,200],[180,1100],[950,1200],[1000,150]];
-for(let d of dots){x.beginPath();x.arc(d[0],d[1],3,0,Math.PI*2);x.fillStyle='rgba(217,205,184,0.5)';x.fill();}
-// Pillar label
-x.fillStyle='#57A99F';x.font='600 12px "Space Grotesk"';x.letterSpacing='3px';x.textAlign='left';x.fillText((t.pillar||'').toUpperCase(),64,100);
-// Thin turquoise line
-x.fillStyle='#0F6B62';x.fillRect(64,118,56,2);
-// Title
-x.fillStyle='#2E3835';x.font='700 52px "Space Grotesk"';x.textAlign='left';let ty=180;
-const titleLines=wrap(c,t.title,920);
-for(let line of titleLines){x.fillText(line,64,ty);ty+=64;}
-// Subheadline
-x.fillStyle='#5A6662';x.font='400 22px "Inter"';x.textAlign='left';const subLines=wrap(c,t.sub,920);ty+=20;
-for(let line of subLines){x.fillText(line,64,ty);ty+=34;}
-// Source line
-sourceLine(c,t.source||'DLD / Verified data',ty+20);
-// Farsi title
-const faData=FA[t.key]||{};
-if(faData.title){faSet(c,'700',38);ty+=60;faLines(c,faData.title,1016,ty,920,50,'#123B37');}
-// Farsi hook
-if(faData.hook){faSet(c,'500',20);ty+=70;faLines(c,faData.hook,1016,ty,920,34,'#5A6662');}
-// Footer
-footerCenter(c,1350);
-return finish(c,1350);
-}
-
-async function renderIdea(t,point,i,n){
-const c=mkCanvas(1080,1350),x=c.getContext('2d');
-const bg=x.createLinearGradient(0,0,1080,1350);
-bg.addColorStop(0,'#F6F1E7');bg.addColorStop(0.5,'#EFE8DA');bg.addColorStop(1,'#E7DFCF');
-x.fillStyle=bg;x.fillRect(0,0,1080,1350);
-var g1=x.createRadialGradient(0,0,0,0,0,800);g1.addColorStop(0,'rgba(217,205,184,0.45)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
-var g2=x.createRadialGradient(1080,1350,0,1080,1350,800);g2.addColorStop(0,'rgba(15,107,98,0.08)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
-var g1=x.createRadialGradient(0,0,0,0,0,900);g1.addColorStop(0,'rgba(217,205,184,0.35)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
-var g2=x.createRadialGradient(1080,1350,0,1080,1350,900);g2.addColorStop(0,'rgba(15,107,98,0.06)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
-x.beginPath();x.arc(1080,0,280,0,Math.PI*2);x.strokeStyle='rgba(15,107,98,0.12)';x.lineWidth=1.5;x.stroke();
-x.beginPath();x.arc(1080,0,265,0,Math.PI*2);x.strokeStyle='rgba(217,205,184,0.25)';x.lineWidth=1;x.stroke();
-// Point number
-x.fillStyle='#0F6B62';x.font='700 120px "Space Grotesk"';x.textAlign='left';x.fillText('0'+(i+1),64,220);
-// Point text
-x.fillStyle='#2E3835';x.font='600 32px "Inter"';x.textAlign='left';let ty=300;
-const ptLines=wrap(c,point,920);
-for(let line of ptLines){x.fillText(line,64,ty);ty+=46;}
-// Farsi point
-const faData=FA[t.key]||{};
-if(faData.points&&faData.points[i]){faSet(c,'500',22);ty+=30;faLines(c,faData.points[i],1016,ty,920,38,'#5A6662');}
-// Progress dots
-const dotY=1280;const total=n;const spacing=14;const startX=540-((total-1)*spacing)/2;
-for(let j=0;j<total;j++){x.beginPath();x.arc(startX+j*spacing,dotY,5,0,Math.PI*2);x.fillStyle=j===i?'#0F6B62':'rgba(15,107,98,0.2)';x.fill();}
-footerCenter(c,1350);
-return finish(c,1350);
-}
-
-async function renderCloser(t){
-const c=mkCanvas(1080,1350),x=c.getContext('2d');
-const bg=x.createLinearGradient(0,0,1080,1350);
-bg.addColorStop(0,'#EFE8DA');bg.addColorStop(0.5,'#F6F1E7');bg.addColorStop(1,'#D9CDB8');
-x.fillStyle=bg;x.fillRect(0,0,1080,1350);
-var g1=x.createRadialGradient(540,0,0,540,0,700);g1.addColorStop(0,'rgba(15,107,98,0.08)');g1.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
-var g2=x.createRadialGradient(540,1350,0,540,1350,700);g2.addColorStop(0,'rgba(217,205,184,0.35)');g2.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
-var g1=x.createRadialGradient(0,0,0,0,0,900);g1.addColorStop(0,'rgba(217,205,184,0.35)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1350);
-var g2=x.createRadialGradient(1080,1350,0,1080,1350,900);g2.addColorStop(0,'rgba(15,107,98,0.06)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1350);
-// CTA headline
-x.fillStyle='#2E3835';x.font='700 48px "Space Grotesk"';x.textAlign='center';x.fillText('THE BOTTOM LINE:',540,280);
-x.fillStyle='#0F6B62';x.fillRect(440,300,200,2);
-// So-what
-x.fillStyle='#2E3835';x.font='600 28px "Inter"';x.textAlign='center';let ty=380;
-const sowhatLines=wrap(c,t.sowhat||'',920);
-for(let line of sowhatLines){x.fillText(line,540,ty);ty+=42;}
-// CTA question
-x.fillStyle='#5A6662';x.font='italic 400 24px "Inter"';x.textAlign='center';ty+=40;
-const ctaLines=wrap(c,t.cta||'',920);
-for(let line of ctaLines){x.fillText(line,540,ty);ty+=38;}
-// Farsi CTA
-const faData=FA[t.key]||{};
-if(faData.cta){faSet(c,'500',24);ty+=30;faLines(c,faData.cta,1016,ty,920,40,'#123B37');}
-// WhatsApp CTA
-x.fillStyle='#0F6B62';x.font='600 20px "Space Grotesk"';x.textAlign='center';x.fillText('WhatsApp: +971 58 589 9112',540,1180);
-footerCenter(c,1350);
-return finish(c,1350);
-}
-
-async function renderReel(t){
-const c=mkCanvas(1080,1920),x=c.getContext('2d');
-// Deep teal gradient base
-const bg=x.createLinearGradient(0,0,0,1920);
-bg.addColorStop(0,'#123B37');bg.addColorStop(0.5,'#1a4d47');bg.addColorStop(1,'#0d2e2a');
-x.fillStyle=bg;x.fillRect(0,0,1080,1920);
-// Subtle sand glow top
-var g1=x.createRadialGradient(540,0,0,540,0,600);g1.addColorStop(0,'rgba(217,205,184,0.15)');g1.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g1;x.fillRect(0,0,1080,1920);
-// Turquoise accent bottom
-var g2=x.createRadialGradient(540,1920,0,540,1920,500);g2.addColorStop(0,'rgba(15,107,98,0.25)');g2.addColorStop(1,'rgba(15,107,98,0)');x.fillStyle=g2;x.fillRect(0,0,1080,1920);
-// Hook text - large, centered, dramatic
-x.fillStyle='#F6F1E7';x.font='700 72px "Space Grotesk"';x.textAlign='center';let ty=420;
-const titleLines=wrap(c,t.title,900);
-for(let line of titleLines){x.fillText(line,540,ty);ty+=90;}
-// Sub
-x.fillStyle='#D9CDB8';x.font='400 30px "Inter"';x.textAlign='center';ty+=40;
-const subLines=wrap(c,t.sub,900);
-for(let line of subLines){x.fillText(line,540,ty);ty+=46;}
-// Farsi title
-const faData=FA[t.key]||{};
-if(faData.title){faSet(c,'700',48);ty+=50;faLines(c,faData.title,1016,ty,920,64,'#F6F1E7');ty+=70;}
-// Key point - just ONE for reel
-x.fillStyle='#57A99F';x.font='600 18px "Space Grotesk"';x.textAlign='center';x.fillText('THE POINT:',540,ty+60);
-x.fillStyle='#F6F1E7';x.font='500 26px "Inter"';x.textAlign='center';ty+=90;
-const ptLines=wrap(c,t.points[0],900);
-for(let line of ptLines){x.fillText(line,540,ty);ty+=40;}
-// CTA
-x.fillStyle='#D9CDB8';x.font='italic 400 24px "Inter"';x.textAlign='center';ty+=60;
-const ctaLines=wrap(c,t.cta||'',900);
-for(let line of ctaLines){x.fillText(line,540,ty);ty+=40;}
-// Brand footer
-x.fillStyle='rgba(246,241,231,0.5)';x.font='600 14px "Space Grotesk"';x.textAlign='center';x.fillText('MR LIVING CAPITAL  ·  LIVING PROOF. LASTING LEGACY.',540,1840);
-return finish(c,1920);
-}
 
 /* ============ CAPTION GENERATORS ============ */
 function capLinkedIn(t){const f=FA[t.key]||{};let s=t.title+'\n\n'+t.sub+'\n\n';for(let i=0;i<t.points.length;i++)s+=(i+1)+'. '+t.points[i]+'\n';s+='\nTHE BOTTOM LINE: '+(t.sowhat||'')+'\n\n'+t.cta+'\n\n'+t.tags+'\n\nSource: '+(t.source||'');if(f.title){s+='\n\n---\n\n'+f.title+'\n\n';if(f.hook)s+=f.hook+'\n\n';if(f.points){for(let i=0;i<f.points.length;i++)s+=(i+1)+'. '+f.points[i]+'\n';}s+='\n'+f.cta+'\n\n'+f.tags;}return s;}
