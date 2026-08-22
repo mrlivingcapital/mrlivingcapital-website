@@ -94,7 +94,7 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 <div class="topbar">
   <div>
     <div class="wm">MR LIVING <span>CAPITAL</span></div>
-    <div class="sub">WAR ROOM · CONTENT ENGINE v4.6</div>
+    <div class="sub">WAR ROOM · CONTENT ENGINE v4.7.3</div>
   </div>
   <div class="spacer"></div>
   <div class="jabBadge" id="jabBadge">—</div>
@@ -664,7 +664,16 @@ const GIVE_WITHHOLD=[
 
 /* ============ CANVAS HELPERS ============ */
 function mkCanvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
-function loadImg(src){return new Promise((res,rej)=>{const i=new Image();i.crossOrigin='anonymous';i.onload=()=>res(i);i.onerror=rej;i.src=src;});}
+function loadImg(src){
+  return new Promise((res,rej)=>{
+    const i=new Image();
+    i.crossOrigin='anonymous';
+    i.onload=()=>res(i);
+    i.onerror=()=>res(null);
+    i.src=src;
+    setTimeout(()=>res(null),5000);
+  });
+}
 function grain(c,h){const tc=document.createElement('canvas');tc.width=c.width;tc.height=h||c.height;const tx=tc.getContext('2d');const d=tx.createImageData(tc.width,tc.height);for(let i=0;i<d.data.length;i+=4){const v=Math.random()*30+225;d.data[i]=v;d.data[i+1]=v-3;d.data[i+2]=v-6;d.data[i+3]=18;}tx.putImageData(d,0,0);const x=c.getContext('2d');x.save();x.globalAlpha=0.07;x.drawImage(tc,0,0);x.restore();}
 function finish(c,h){const x=c.getContext('2d');grain(c,h||c.height);x.globalCompositeOperation='source-over';return c;}
 function footerCenter(c,h){const x=c.getContext('2d'),y=h||c.height;x.fillStyle='#F6F1E7';x.font='600 11px "Inter"';x.textAlign='center';x.fillText('MR LIVING CAPITAL  ·  LIVING PROOF. LASTING LEGACY.',c.width/2,y-22);x.fillStyle='#57A99F';x.font='500 10px "Inter"';x.fillText('mrlivingcapital.com  ·  WhatsApp +971 58 589 9112',c.width/2,y-8);}
