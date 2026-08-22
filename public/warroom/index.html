@@ -258,7 +258,6 @@ function sourceLine(x,src,y){x.fillStyle=MUTE;x.font='italic 400 18px '+FB;x.fil
 
 /* ============ LOCKED TEMPLATE RENDERERS ============ */
 function renderCover(t){
-  t._photo = IMG[t.photo];
   t.features = t.points.map(p => ({icon:'', title:'', desc:p}));
   t.quote = {line1: t.sowhat};
   const h=1350,[c,x]=mkCanvas(h);
@@ -693,6 +692,9 @@ function suggestPhoto(t){const map={ad:'reem','uk':'skyline',gold:'map',wynn:'wy
 /* ============ PACK BUILDER ============ */
 async function buildPack(t,container){
 container.innerHTML='<p style="color:#5A6662;font-style:italic">Generating pack for: '+t.title+'...</p>';
+// Preload photo image before rendering
+if(t.photo && IMG[t.photo]){ try{ t._photo = await loadImg(IMG[t.photo]); }catch(e){ t._photo = null; } }
+else { t._photo = null; }
 const grid=document.createElement('div');grid.className='figGrid';
 // Cover
 const cover=await renderCover(t);grid.appendChild(wrapFig(cover,'Cover (1080x1350)'));
