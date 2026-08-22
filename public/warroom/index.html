@@ -663,7 +663,7 @@ const GIVE_WITHHOLD=[
 ];
 
 /* ============ CANVAS HELPERS ============ */
-function mkCanvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
+function mkCanvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return [c,c.getContext('2d')];}
 function loadImg(src){
   return new Promise((res,rej)=>{
     const i=new Image();
