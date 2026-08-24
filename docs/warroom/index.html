@@ -103,6 +103,9 @@ h2.viewTitle{font-family:"Cormorant Garamond";font-weight:700;font-size:32px;mar
 <div class="tabs" id="tabs"></div>
 <div id="view"></div>
 <script>
+const W=1080,M=64;
+const IVORY='#F6F1E7',SLATE='#5A6662',SLATE_DK='#2E3835',TURQ='#0F6B62',TURQ_SOFT='#57A99F',SAND='#D9CDB8',SAND_SOFT='#EFE8DA',DARK='#123B37',MUTE='#8C9592',GOLD='#B08D4A';
+const FD='Cormorant Garamond',FH='Space Grotesk',FB='Inter';
 function bgBase(x,h){x.fillStyle=IVORY;x.fillRect(0,0,W,h);
   let g=x.createRadialGradient(W*.1,0,0,W*.1,0,W*.8);g.addColorStop(0,'rgba(217,205,184,.35)');g.addColorStop(1,'rgba(217,205,184,0)');x.fillStyle=g;x.fillRect(0,0,W,h);}
 function softWaves(x,h){
