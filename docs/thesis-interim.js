@@ -1,4 +1,4 @@
-/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.7)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.8)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
    purge, founder narrative corrections) and the Investor's Desk revamp
    WITHOUT a bundle rebuild, because the authenticated channels available
@@ -431,11 +431,15 @@
     var ok = el('div', 'display:none;max-width:620px;margin:36px auto 0;text-align:center;background:#EEE7DA;border:1px solid rgba(15,107,98,0.15);border-radius:8px;padding:40px 32px;', null, null);
     inner.appendChild(ok);
 
-    var nameI = deskInput('Full name *'), waI = deskInput('WhatsApp with country code * (e.g. +971...)', 'tel'), emI = deskInput('Email (optional)', 'email');
+    var nameI = deskInput('Full name *'), waI = deskInput('WhatsApp with country code * (e.g. +971...)', 'tel'), emI = deskInput('Email * (no disposable addresses)', 'email');
     var capS = deskSelect('Capital range (AED)', ['Prefer not to say', 'Under 250K', '250K to 1M', '1M to 5M', '5M+']);
     var timS = deskSelect('Timeline', ['Researching', '0 to 3 months', '3 to 6 months', '6 to 12 months']);
     var errP = el('p', 'color:#E74C3C;font-size:11px;margin:0;display:none;font-family:Inter,sans-serif;', null, '');
     var activeReport = null;
+
+    /* validation (principal 2026-09-27: no freebies to timewasters) */
+    var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+    var DISPOSABLE = ['mailinator.com', 'tempmail.com', 'temp-mail.org', 'temp-mail.com', '10minutemail.com', 'guerrillamail.com', 'guerrillamail.net', 'yopmail.com', 'yopmail.fr', 'throwawaymail.com', 'getnada.com', 'maildrop.cc', 'harakirimail.com', 'mohmal.com', 'sharklasers.com', 'spam4.me', 'trashmail.com', 'trashmail.net', 'emailondeck.com', 'mintemail.com', 'fakemail.net', 'dispostable.com', 'mailnesia.com', 'tempinbox.com', 'fakeinbox.com', 'getairmail.com', 'eyepaste.com', 'oneoffmail.com', 'mailcatch.com', 'mytemp.email', 'mailtemp.info', 'burnermail.io', 'tempail.com'];
 
     function showForm(r, cardEl) {
       activeReport = r;
@@ -444,7 +448,7 @@
       panel.innerHTML = '';
       var t = el('h3', 'font-size:17px;color:' + SLATE + ';margin-bottom:6px;font-family:"Space Grotesk",sans-serif;', null, 'REQUEST: ' + r.title);
       panel.appendChild(t);
-      panel.appendChild(el('p', 'color:rgba(90,102,98,0.75);font-size:12.5px;margin-bottom:20px;line-height:1.55;font-family:Inter,sans-serif;', null, 'One request, one reply. I read every submission myself. The full PDF lands on your WhatsApp within 24 hours. No spam, no listings blast.'));
+      panel.appendChild(el('p', 'color:rgba(90,102,98,0.75);font-size:12.5px;margin-bottom:20px;line-height:1.55;font-family:Inter,sans-serif;', null, 'One request, one reply. I read every submission myself. The full PDF lands on your WhatsApp within 24 hours. Valid email and WhatsApp required; throwaway details are ignored. No spam, no listings blast.'));
       [nameI, waI, emI, capS, timS].forEach(function (f) { var w = el('div', 'margin-bottom:12px;', null, null); w.appendChild(f); panel.appendChild(w); });
       errP.style.display = 'none';
       panel.appendChild(errP);
@@ -460,12 +464,16 @@
     function submitForm() {
       var digits = waI.value.replace(/\D/g, '');
       if (!nameI.value.trim()) { errP.textContent = 'Your name is required.'; errP.style.display = 'block'; return; }
-      if (digits.length < 10 || digits.length > 15 || digits[0] === '0') { errP.textContent = 'Valid WhatsApp number with country code required.'; errP.style.display = 'block'; return; }
+      if (digits.length < 10 || digits.length > 15 || digits[0] === '0' || /^(\d)\1+$/.test(digits)) { errP.textContent = 'Valid WhatsApp number with country code required.'; errP.style.display = 'block'; return; }
+      var em = emI.value.trim();
+      if (!EMAIL_RE.test(em)) { errP.textContent = 'A valid email is required.'; errP.style.display = 'block'; return; }
+      var domain = em.split('@')[1].toLowerCase();
+      if (DISPOSABLE.indexOf(domain) !== -1) { errP.textContent = 'Disposable email addresses are not accepted. Use your real email.'; errP.style.display = 'block'; return; }
       errP.style.display = 'none';
       var payload = {
         name: nameI.value.trim(),
         whatsapp: waI.value.trim(),
-        email: emI.value.trim() || 'Not provided',
+        email: em,
         report_requested: activeReport ? activeReport.title : 'Unknown',
         capital_range: capS.value || 'Not said',
         timeline: timS.value || 'Not said',
