@@ -1,7 +1,8 @@
-/* MRLC thesis bridge + copy sweep — INTERIM deploy mechanism (2026-09-27)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.2)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
    purge, founder narrative corrections) WITHOUT a bundle rebuild, because
-   the only authenticated GitHub channel cannot transport a 309 KB bundle.
+   the authenticated channels available right now cannot transport a 309 KB bundle
+   (handover token expired 2026-09-27; MCP OAuth has inline-content limits).
 
    Blocks:
    1. Hero sub-line swap + logo sizing
@@ -115,11 +116,11 @@
     ['PERSONAL ', 'CONVICTION '],
     ['Why institutional discipline matters in every allocation decision.', 'Why process matters in every allocation decision.'],
     ['I spent two decades designing and implementing strategies within financial institutions and freelance private portfolio management \u2014 navigating market cycles across three continents, and learning how big money actually moves. Not how it talks. How it moves.',
-     'Thirty-five years in Dubai. Three continents of market cycles behind me, and one lesson repeated everywhere: how big money actually moves. Not how it talks. How it moves.'],
+     'Thirty-five years in Dubai. Three continents of market cycles behind me. I have bought, built, and walked away more times than most agents have shown units. One lesson repeats everywhere: how big money actually moves. Not how it talks. How it moves.'],
     ['I started working at fourteen. Not because I had to \u2014 because I understood early that how you steward capital defines the life you live and the legacy you leave. Today, MR Living Capital exists because I believe investors deserve the same institutional-grade discipline that the big institutions use \u2014 but accessible to serious individuals and families building real wealth.',
      'I started working at fourteen. Not because I had to, but because I understood early that how you steward capital defines the life you live and the legacy you leave. Today, MR Living Capital exists because serious investors deserve that same discipline: measured, first-party, published with the misses included.'],
     ['This is not a property shop. This is real estate investment advisory engineered by someone who spent two decades inside the machine \u2014 designing strategies and managing private portfolios.',
-     'This is not a property shop. This is investment advisory built by an entrepreneur who invests his own money and answers to his own scoreboard.'],
+     'This is not a property shop. I don\'t sell listings; I filter them. Every opportunity I put in front of you has already passed my own capital test and a 100-point scorecard, because I invest my own money on the same scoreboard I recommend to you. I don\'t chase commissions. I architect capital. If the numbers don\'t make sense, we don\'t proceed. That is the only rule.'],
     /* Market intelligence */
     ['Dubai Land Department \u2014 H1 2026', 'Dubai Land Department \u00B7 H1 2026'],
     ['Dubai Land Department \u2014 Q1 2026 YoY (latest published)', 'Dubai Land Department \u00B7 Q1 2026 YoY (latest published)'],
