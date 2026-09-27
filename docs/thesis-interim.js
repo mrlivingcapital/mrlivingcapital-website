@@ -1,11 +1,11 @@
-/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.2)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.3)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
    purge, founder narrative corrections) WITHOUT a bundle rebuild, because
    the authenticated channels available right now cannot transport a 309 KB bundle
    (handover token expired 2026-09-27; MCP OAuth has inline-content limits).
 
    Blocks:
-   1. Hero sub-line swap + logo sizing
+   1. Hero sub-line swap + logo sizing (v3.3: logo enlarged past slogan, slogan -2px)
    2. Thesis strip injection (self-disabling if React #thesis exists)
    3. COPY SWEEP: targeted text replacements (em-dash purge per principal
       order 2026-09-27; finance narrative removed; emirates stat reframed)
@@ -21,13 +21,21 @@
   var HERO_FIND_2 = "I don't advise. I architect capital.";
   var HERO_NEW_1 = 'We run our own numbers on investment opportunities.';
   var HERO_NEW_2 = "First-party, measured, published with the misses included. The numbers make sense, or we don't proceed.";
-  var LOGO_HEIGHT = 'clamp(200px, 26vw, 320px)';
+  var LOGO_HEIGHT = 'clamp(260px, 32vw, 400px)';
+  var SLOGAN_SIZE = 'clamp(36px, 6.2vw, 66px)';
 
   function sizeLogo() {
     var img = document.querySelector('#hero img[alt="MR Living Capital"]') ||
               (document.getElementById('hero') || { querySelector: function () { return null; } }).querySelector('img');
     if (!img) return false;
     img.style.height = LOGO_HEIGHT;
+    return true;
+  }
+
+  function fixSlogan() {
+    var heads = document.querySelectorAll('#hero h1');
+    if (!heads.length) return false;
+    for (var i = 0; i < heads.length; i++) heads[i].style.fontSize = SLOGAN_SIZE;
     return true;
   }
 
@@ -192,14 +200,16 @@
   function run() {
     sweep(document.body);
     var logoDone = sizeLogo();
-    if (swapHero() && inject() && logoDone && fixStatNumber()) return;
+    var sloganDone = fixSlogan();
+    if (swapHero() && inject() && logoDone && sloganDone && fixStatNumber()) return;
     var tries = 0;
     var iv = setInterval(function () {
       sweep(document.body);
       var heroDone = swapHero();
       var lg = sizeLogo();
+      var sg = fixSlogan();
       var st = fixStatNumber();
-      if (inject() && heroDone && lg && st || ++tries > 24) clearInterval(iv);
+      if (inject() && heroDone && lg && sg && st || ++tries > 24) clearInterval(iv);
     }, 500);
     /* catch late-mounted content (FAQ accordion etc.) */
     var obs = new MutationObserver(function (muts) {
