@@ -1,4 +1,4 @@
-/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.2)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.5)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
    purge, founder narrative corrections) WITHOUT a bundle rebuild, because
    the authenticated channels available right now cannot transport a 309 KB bundle
@@ -226,9 +226,110 @@
     obs.observe(document.body, { childList: true, subtree: true, characterData: true });
   }
 
+  /* ============ 4. REAL GLOBE (country outlines, dependency-free canvas) ============ */
+  function upgradeGlobe() {
+    if (window.__mrlcGlobeDone) return true;
+    var holder = document.querySelector('div[style*="clamp(350px, 50vh, 480px)"]');
+    if (!holder) return false;
+    try {
+      var canvas = document.createElement('canvas');
+      var ctx = canvas.getContext('2d');
+      if (!ctx) return false;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var rot = 0, vel = 0.16, dragging = false, lastX = 0, lastInteract = 0;
+      var borders = null, t = 0;
+      var MARKERS = [[55.27, 25.2], [-0.12, 51.5], [-79.38, 43.65]];
+      function fit() {
+        var w = holder.clientWidth || 300, h = holder.clientHeight || 420;
+        canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+        canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
+      }
+      function proj(lng, lat, R, cx, cy) {
+        var lam = (lng + rot) * Math.PI / 180, phi = lat * Math.PI / 180;
+        var x = Math.cos(phi) * Math.sin(lam), y = Math.sin(phi), z = Math.cos(phi) * Math.cos(lam);
+        return [cx + R * x, cy - R * y, z];
+      }
+      function draw() {
+        requestAnimationFrame(draw);
+        t += 0.016;
+        if (!dragging) {
+          if (Date.now() - lastInteract > 1800) vel += (0.16 - vel) * 0.02;
+          rot += vel;
+        }
+        var w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        var cx = w / 2, cy = h / 2, R = Math.min(w, h) * 0.36;
+        ctx.beginPath(); ctx.arc(cx, cy, R * 1.14, 0, 6.2832);
+        var g = ctx.createRadialGradient(cx, cy, R * 0.95, cx, cy, R * 1.18);
+        g.addColorStop(0, 'rgba(87,169,159,0)');
+        g.addColorStop(0.55, 'rgba(87,169,159,0.16)');
+        g.addColorStop(1, 'rgba(87,169,159,0)');
+        ctx.fillStyle = g; ctx.fill();
+        var sg = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.35, R * 0.1, cx, cy, R);
+        sg.addColorStop(0, '#FBF8F1');
+        sg.addColorStop(0.75, '#F6F1E7');
+        sg.addColorStop(1, '#EDE5D6');
+        ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832);
+        ctx.fillStyle = sg; ctx.fill();
+        ctx.strokeStyle = 'rgba(15,107,98,0.25)'; ctx.lineWidth = dpr; ctx.stroke();
+        if (borders) {
+          ctx.save();
+          ctx.beginPath(); ctx.arc(cx, cy, R, 0, 6.2832); ctx.clip();
+          ctx.strokeStyle = 'rgba(15,107,98,0.42)';
+          ctx.lineWidth = 0.7 * dpr;
+          ctx.beginPath();
+          var drawn = 0;
+          for (var i = 0; i < borders.length; i++) {
+            var line = borders[i];
+            for (var j = 0; j < line.length - 1; j++) {
+              var a = proj(line[j][0] / 10, line[j][1] / 10, R, cx, cy);
+              var b = proj(line[j + 1][0] / 10, line[j + 1][1] / 10, R, cx, cy);
+              if (a[2] > 0 && b[2] > 0) { ctx.moveTo(a[0], a[1]); ctx.lineTo(b[0], b[1]); drawn++; }
+            }
+          }
+          ctx.stroke();
+          window.__mrlcGlobeStats = { lines: borders.length, segs: drawn };
+          ctx.restore();
+        }
+        for (var m = 0; m < MARKERS.length; m++) {
+          var p = proj(MARKERS[m][0], MARKERS[m][1], R, cx, cy);
+          if (p[2] <= 0) continue;
+          var ph = (t + m * 0.9) % 1.6;
+          ctx.beginPath(); ctx.arc(p[0], p[1], (2.2 + ph * 4) * dpr, 0, 6.2832);
+          ctx.strokeStyle = 'rgba(87,169,159,' + Math.max(0, 0.7 - ph * 0.44).toFixed(2) + ')';
+          ctx.lineWidth = dpr; ctx.stroke();
+          ctx.beginPath(); ctx.arc(p[0], p[1], 2 * dpr, 0, 6.2832);
+          ctx.fillStyle = '#0F6B62'; ctx.fill();
+        }
+      }
+      canvas.style.cursor = 'grab';
+      canvas.addEventListener('pointerdown', function (e) { dragging = true; lastX = e.clientX; });
+      window.addEventListener('pointermove', function (e) {
+        if (!dragging) return;
+        var dx = e.clientX - lastX; lastX = e.clientX;
+        rot += dx * 0.4; vel = dx * 0.12; lastInteract = Date.now();
+      });
+      window.addEventListener('pointerup', function () { dragging = false; lastInteract = Date.now(); });
+      fetch('/assets/globe/borders.json').then(function (r) { return r.json(); }).then(function (d) { borders = d; }).catch(function () {});
+      fit();
+      if (window.ResizeObserver) { var ro = new ResizeObserver(fit); ro.observe(holder); }
+      holder.innerHTML = '';
+      holder.appendChild(canvas);
+      draw();
+      window.__mrlcGlobeDone = true;
+      return true;
+    } catch (e) { return false; }
+  }
+
+  function globeInit() {
+    var tries = 0;
+    var iv = setInterval(function () { if (upgradeGlobe() || ++tries > 24) clearInterval(iv); }, 500);
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
   } else {
     run();
   }
+  globeInit();
 })();
