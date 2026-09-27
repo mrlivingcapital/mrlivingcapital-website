@@ -1,4 +1,4 @@
-/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.6)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.7)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
    purge, founder narrative corrections) and the Investor's Desk revamp
    WITHOUT a bundle rebuild, because the authenticated channels available
@@ -335,7 +335,7 @@
   /* ============ 5. INVESTOR'S DESK REVAMP + SOCIALS (2026-09-27, approved) ============ */
   var SOCIALS = [
     { n: 'IG', name: 'Instagram', url: 'https://instagram.com/mrlivingcapital' },
-    { n: 'IN', name: 'LinkedIn', url: 'https://www.linkedin.com/in/mrlivingcapital' },
+    { n: 'IN', name: 'LinkedIn', handleOnly: true },
     { n: 'X', name: 'X', url: 'https://x.com/mrlivingcapital' },
     { n: 'FB', name: 'Facebook', url: 'https://facebook.com/mrlivingcapital' },
     { n: 'TH', name: 'Threads', url: 'https://threads.net/@mrlivingcapital' },
@@ -347,8 +347,15 @@
   function socialRow(extraStyle) {
     var wrap = el('div', 'display:flex;gap:10px;flex-wrap:wrap;justify-content:center;' + (extraStyle || ''), null, null);
     SOCIALS.forEach(function (s) {
-      var a = el('a', 'width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,107,98,0.25);display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:600;color:#0F6B62;text-decoration:none;transition:border-color 0.25s ease,background 0.25s ease;', null, s.n);
-      a.href = s.url; a.target = '_blank'; a.rel = 'noopener'; a.setAttribute('aria-label', s.name + ' @mrlivingcapital');
+      var base = 'width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,107,98,0.25);display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:600;color:#0F6B62;text-decoration:none;transition:border-color 0.25s ease,background 0.25s ease;';
+      var a = el(s.handleOnly ? 'span' : 'a', base, null, s.n);
+      if (s.handleOnly) {
+        a.setAttribute('title', '@mrlivingcapital on ' + s.name + '. Search the handle.');
+        a.style.cursor = 'default';
+      } else {
+        a.href = s.url; a.target = '_blank'; a.rel = 'noopener';
+      }
+      a.setAttribute('aria-label', s.name + ' @mrlivingcapital');
       a.addEventListener('mouseenter', function () { a.style.borderColor = 'rgba(15,107,98,0.6)'; a.style.background = 'rgba(15,107,98,0.08)'; });
       a.addEventListener('mouseleave', function () { a.style.borderColor = 'rgba(15,107,98,0.25)'; a.style.background = 'transparent'; });
       wrap.appendChild(a);
@@ -529,11 +536,30 @@
     var iv = setInterval(function () { if (deskInit() || ++tries > 30) clearInterval(iv); }, 500);
   }
 
+  /* strip LinkedIn profile URLs everywhere (principal 2026-09-27: handle only, no profile links) */
+  function stripLinkedIn() {
+    var hits = document.querySelectorAll('a[href*="linkedin.com/in/mrlivingcapital"]');
+    for (var i = 0; i < hits.length; i++) {
+      var sp = document.createElement('span');
+      sp.textContent = hits[i].textContent + ' @mrlivingcapital';
+      sp.style.color = '#5A6662';
+      hits[i].parentNode.replaceChild(sp, hits[i]);
+    }
+    /* JSON-LD blocks referencing the profile URL */
+    var scripts = document.querySelectorAll('script[type="application/ld+json"]');
+    for (var j = 0; j < scripts.length; j++) {
+      if (scripts[j].textContent.indexOf('linkedin.com/in/mrlivingcapital') !== -1) {
+        scripts[j].textContent = scripts[j].textContent.replace(/"sameAs":\s*\[[^\]]*\]/, '"sameAs": []');
+      }
+    }
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
   } else {
     run();
   }
+  stripLinkedIn();
   globeInit();
   deskStart();
 })();
