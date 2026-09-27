@@ -45,7 +45,7 @@ export default function HeroSection() {
             src="/images/logo-transparent.png"
             alt="MR Living Capital"
             style={{
-              height: 'clamp(140px, 20vw, 260px)',
+              height: 'clamp(200px, 26vw, 320px)',
               width: 'auto',
               display: 'block',
               margin: '0 auto',
@@ -97,9 +97,9 @@ export default function HeroSection() {
             transition: 'opacity 0.8s ease 1s, transform 0.8s ease 1s',
           }}
         >
-          We run our own numbers on Dubai real estate. First-party, measured,
+          We run our own numbers on investment opportunities.
           <br />
-          published with the misses included. The numbers make sense, or we don't proceed.
+          First-party, measured, published with the misses included. The numbers make sense, or we don't proceed.
         </p>
 
         <p
