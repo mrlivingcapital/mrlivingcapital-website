@@ -1,7 +1,8 @@
-/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.5)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.6)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
-   purge, founder narrative corrections) WITHOUT a bundle rebuild, because
-   the authenticated channels available right now cannot transport a 309 KB bundle
+   purge, founder narrative corrections) and the Investor's Desk revamp
+   WITHOUT a bundle rebuild, because the authenticated channels available
+   right now cannot transport a 309 KB bundle
    (handover token expired 2026-09-27; MCP OAuth has inline-content limits).
 
    Blocks:
@@ -10,6 +11,11 @@
    3. COPY SWEEP: targeted text replacements (em-dash purge per principal
       order 2026-09-27; finance narrative removed; emirates stat reframed)
       applied to current text nodes AND future DOM mutations (accordions).
+   4. REAL GLOBE: country-outline canvas, self-hosted borders.json.
+   5. INVESTOR'S DESK REVAMP (principal approval 2026-09-27): legacy
+      #blog / #lead-magnet sections retired; new gated Desk, no PDF ever
+      exposed to the browser, manual WhatsApp delivery within 24h,
+      free-thesis strip + socials (@mrlivingcapital everywhere).
 
    Removal: once the proper build is pushed (git credentials restored),
    delete this file and its <script> tag; the bundle then carries all copy. */
@@ -326,10 +332,208 @@
     var iv = setInterval(function () { if (upgradeGlobe() || ++tries > 24) clearInterval(iv); }, 500);
   }
 
+  /* ============ 5. INVESTOR'S DESK REVAMP + SOCIALS (2026-09-27, approved) ============ */
+  var SOCIALS = [
+    { n: 'IG', name: 'Instagram', url: 'https://instagram.com/mrlivingcapital' },
+    { n: 'IN', name: 'LinkedIn', url: 'https://www.linkedin.com/in/mrlivingcapital' },
+    { n: 'X', name: 'X', url: 'https://x.com/mrlivingcapital' },
+    { n: 'FB', name: 'Facebook', url: 'https://facebook.com/mrlivingcapital' },
+    { n: 'TH', name: 'Threads', url: 'https://threads.net/@mrlivingcapital' },
+    { n: 'TG', name: 'Telegram', url: 'https://t.me/mrlivingcapital' },
+    { n: 'WA', name: 'WhatsApp', url: 'https://wa.me/971585899112' }
+  ];
+  var WA_DISPLAY = '+971 58 589 9112';
+
+  function socialRow(extraStyle) {
+    var wrap = el('div', 'display:flex;gap:10px;flex-wrap:wrap;justify-content:center;' + (extraStyle || ''), null, null);
+    SOCIALS.forEach(function (s) {
+      var a = el('a', 'width:38px;height:38px;border-radius:50%;border:1px solid rgba(15,107,98,0.25);display:flex;align-items:center;justify-content:center;font-family:"Space Grotesk",sans-serif;font-size:11px;font-weight:600;color:#0F6B62;text-decoration:none;transition:border-color 0.25s ease,background 0.25s ease;', null, s.n);
+      a.href = s.url; a.target = '_blank'; a.rel = 'noopener'; a.setAttribute('aria-label', s.name + ' @mrlivingcapital');
+      a.addEventListener('mouseenter', function () { a.style.borderColor = 'rgba(15,107,98,0.6)'; a.style.background = 'rgba(15,107,98,0.08)'; });
+      a.addEventListener('mouseleave', function () { a.style.borderColor = 'rgba(15,107,98,0.25)'; a.style.background = 'transparent'; });
+      wrap.appendChild(a);
+    });
+    return wrap;
+  }
+
+  var DESK_REPORTS = [
+    { tag: 'CORE', title: 'DUBAI H1 2026 MARKET INTELLIGENCE BRIEF', line: 'Verified DLD data. Corridor pricing. Off-plan vs ready, with the misses included.' },
+    { tag: 'CORE', title: "CASH BUYER'S GUIDE TO UAE REAL ESTATE 2026", line: 'Negotiating below market value. Price per sqft framework. Built for unleveraged capital.' },
+    { tag: 'GEO', title: 'DUBAI CASH BUYERS: THE 2026 WINDOW', line: 'DLD transaction breakdown by corridor. Cash advantage vs mortgage, priced per sqft.' },
+    { tag: 'GEO', title: 'LONDON TO DUBAI: THE 2026 CAPITAL SHIFT', line: 'London yields 3 to 4 percent. Dubai yields 6 to 9. The math is moving money south.' },
+    { tag: 'GEO', title: 'DUBAI VS TORONTO, PRICED FOR CANADIANS', line: 'Zero income tax, price per sqft Toronto cannot match, Golden Visa pathway.' },
+    { tag: 'GEO', title: 'FROM THE BALKANS TO DUBAI', line: 'Serbia, Croatia, Bosnia. Case studies, legal framework, the corridor picks.' },
+    { tag: 'GEO', title: 'DUBAI 2026 FOR THE FARSI SPEAKING DIASPORA', line: 'Golden Visa step by step, Farsi speaking corridors, negotiation strategy.' }
+  ];
+
+  function deskInput(ph, type) {
+    var i = document.createElement('input');
+    i.type = type || 'text';
+    i.placeholder = ph;
+    i.setAttribute('style', 'width:100%;padding:12px 16px;border-radius:6px;background:rgba(246,241,231,0.5);border:1px solid rgba(125,138,134,0.2);color:#5A6662;font-size:13px;outline:none;font-family:Inter,sans-serif;');
+    return i;
+  }
+
+  function deskSelect(ph, opts) {
+    var s = document.createElement('select');
+    s.setAttribute('style', 'width:100%;padding:12px 16px;border-radius:6px;background:rgba(246,241,231,0.5);border:1px solid rgba(125,138,134,0.2);color:#5A6662;font-size:13px;outline:none;font-family:Inter,sans-serif;');
+    var d = document.createElement('option');
+    d.value = ''; d.textContent = ph; d.disabled = true; d.selected = true;
+    s.appendChild(d);
+    opts.forEach(function (o) { var op = document.createElement('option'); op.value = o; op.textContent = o; s.appendChild(op); });
+    return s;
+  }
+
+  function buildDesk() {
+    var TEAL = '#0F6B62', SLATE = '#5A6662', IVORY = '#F6F1E7';
+    var sec = el('section', 'position:relative;z-index:2;background:' + IVORY + ';padding:120px 24px;', null, null);
+    var inner = el('div', 'max-width:1100px;margin:0 auto;', null, null);
+    sec.appendChild(inner);
+
+    /* header */
+    var head = el('div', 'text-align:center;margin-bottom:44px;', null, null);
+    head.appendChild(el('p', 'font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:' + TEAL + ';margin-bottom:16px;font-family:"Space Grotesk",sans-serif;', null, "INVESTOR'S DESK"));
+    var h2 = el('h2', 'font-size:clamp(28px,4vw,48px);color:' + SLATE + ';margin-bottom:12px;font-family:"Space Grotesk",sans-serif;line-height:1.15;', null, null);
+    h2.appendChild(document.createTextNode('THE '));
+    var sp = el('span', 'color:' + TEAL + ';', null, "INVESTOR'S DESK");
+    h2.appendChild(sp);
+    head.appendChild(h2);
+    head.appendChild(el('p', 'color:rgba(90,102,98,0.8);font-size:15px;max-width:640px;margin:0 auto;line-height:1.6;font-family:Inter,sans-serif;', null, 'Geo-specific market briefings for Dubai, London, Toronto, the Balkans, and the Farsi speaking diaspora. The thesis is free on Instagram and LinkedIn, updated weekly. The full PDFs, every table and source included, go to people who tell me who they are.'));
+    inner.appendChild(head);
+
+    /* free-thesis strip + socials */
+    var strip = el('div', 'display:flex;gap:32px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#EEE7DA;border:1px solid rgba(15,107,98,0.12);border-radius:8px;padding:28px 32px;margin-bottom:40px;', null, null);
+    var stxt = el('div', 'flex:1;min-width:260px;', null, null);
+    stxt.appendChild(el('p', 'font-size:12px;letter-spacing:0.18em;color:' + TEAL + ';margin-bottom:8px;font-family:"Space Grotesk",sans-serif;font-weight:600;', null, 'THE THESIS IS FREE. READ IT FIRST.'));
+    stxt.appendChild(el('p', 'color:rgba(90,102,98,0.85);font-size:13.5px;line-height:1.6;font-family:Inter,sans-serif;', null, 'Weekly market theses live on Instagram and LinkedIn. Same handle everywhere: @mrlivingcapital. When you want the complete instrument behind them, request it below.'));
+    strip.appendChild(stxt);
+    var socBox = el('div', 'text-align:center;', null, null);
+    socBox.appendChild(socialRow(''));
+    strip.appendChild(socBox);
+    inner.appendChild(strip);
+
+    /* card grid */
+    var grid = el('div', 'display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;', null, null);
+    inner.appendChild(grid);
+
+    /* form panel */
+    var panel = el('div', 'display:none;max-width:620px;margin:36px auto 0;background:#FFFDF8;border:1px solid rgba(15,107,98,0.15);border-radius:8px;padding:36px 32px;', null, null);
+    inner.appendChild(panel);
+
+    /* success panel */
+    var ok = el('div', 'display:none;max-width:620px;margin:36px auto 0;text-align:center;background:#EEE7DA;border:1px solid rgba(15,107,98,0.15);border-radius:8px;padding:40px 32px;', null, null);
+    inner.appendChild(ok);
+
+    var nameI = deskInput('Full name *'), waI = deskInput('WhatsApp with country code * (e.g. +971...)', 'tel'), emI = deskInput('Email (optional)', 'email');
+    var capS = deskSelect('Capital range (AED)', ['Prefer not to say', 'Under 250K', '250K to 1M', '1M to 5M', '5M+']);
+    var timS = deskSelect('Timeline', ['Researching', '0 to 3 months', '3 to 6 months', '6 to 12 months']);
+    var errP = el('p', 'color:#E74C3C;font-size:11px;margin:0;display:none;font-family:Inter,sans-serif;', null, '');
+    var activeReport = null;
+
+    function showForm(r, cardEl) {
+      activeReport = r;
+      ok.style.display = 'none';
+      panel.style.display = 'block';
+      panel.innerHTML = '';
+      var t = el('h3', 'font-size:17px;color:' + SLATE + ';margin-bottom:6px;font-family:"Space Grotesk",sans-serif;', null, 'REQUEST: ' + r.title);
+      panel.appendChild(t);
+      panel.appendChild(el('p', 'color:rgba(90,102,98,0.75);font-size:12.5px;margin-bottom:20px;line-height:1.55;font-family:Inter,sans-serif;', null, 'One request, one reply. I read every submission myself. The full PDF lands on your WhatsApp within 24 hours. No spam, no listings blast.'));
+      [nameI, waI, emI, capS, timS].forEach(function (f) { var w = el('div', 'margin-bottom:12px;', null, null); w.appendChild(f); panel.appendChild(w); });
+      errP.style.display = 'none';
+      panel.appendChild(errP);
+      var btn = el('button', 'width:100%;padding:13px 20px;border-radius:6px;border:none;background:' + TEAL + ';color:#F6F1E7;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;font-family:"Space Grotesk",sans-serif;font-weight:600;cursor:pointer;', null, 'REQUEST THE PDF');
+      btn.addEventListener('click', submitForm);
+      panel.appendChild(btn);
+      var back = el('a', 'display:inline-block;margin-top:14px;font-size:11px;letter-spacing:0.1em;color:' + TEAL + ';text-decoration:none;cursor:pointer;font-family:"Space Grotesk",sans-serif;', null, '\u2190 All reports');
+      back.addEventListener('click', function (e) { e.preventDefault(); panel.style.display = 'none'; });
+      panel.appendChild(back);
+      panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function submitForm() {
+      var digits = waI.value.replace(/\D/g, '');
+      if (!nameI.value.trim()) { errP.textContent = 'Your name is required.'; errP.style.display = 'block'; return; }
+      if (digits.length < 10 || digits.length > 15 || digits[0] === '0') { errP.textContent = 'Valid WhatsApp number with country code required.'; errP.style.display = 'block'; return; }
+      errP.style.display = 'none';
+      var payload = {
+        name: nameI.value.trim(),
+        whatsapp: waI.value.trim(),
+        email: emI.value.trim() || 'Not provided',
+        report_requested: activeReport ? activeReport.title : 'Unknown',
+        capital_range: capS.value || 'Not said',
+        timeline: timS.value || 'Not said',
+        source: "Investor's Desk (site)",
+        _subject: "Desk request: " + (activeReport ? activeReport.title : 'Unknown')
+      };
+      try {
+        fetch('https://formspree.io/f/xkokazvz', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(function () {});
+      } catch (e) { /* never block the success state */ }
+      panel.style.display = 'none';
+      ok.innerHTML = '';
+      ok.appendChild(el('h3', 'font-size:18px;color:' + TEAL + ';margin-bottom:10px;font-family:"Space Grotesk",sans-serif;', null, 'REQUEST RECEIVED'));
+      ok.appendChild(el('p', 'color:rgba(90,102,98,0.85);font-size:14px;line-height:1.65;font-family:Inter,sans-serif;', null, 'I review every submission personally. The full PDF lands on your WhatsApp within 24 hours. If it does not arrive, message me directly:'));
+      var wa = el('a', 'display:inline-block;margin-top:12px;font-size:15px;color:' + TEAL + ';text-decoration:none;font-family:"Space Grotesk",sans-serif;font-weight:600;', null, WA_DISPLAY);
+      wa.href = 'https://wa.me/971585899112'; wa.target = '_blank'; wa.rel = 'noopener';
+      ok.appendChild(wa);
+      ok.style.display = 'block';
+      ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    DESK_REPORTS.forEach(function (r) {
+      var card = el('div', 'background:#FFFDF8;border:1px solid rgba(15,107,98,0.12);border-top:2px solid ' + TEAL + ';border-radius:6px;padding:24px 22px;cursor:pointer;display:flex;flex-direction:column;justify-content:space-between;transition:transform 0.25s ease,border-color 0.25s ease;', null, null);
+      var top = el('div', null, null, null);
+      top.appendChild(el('span', 'font-size:10px;letter-spacing:0.18em;color:#B08D4A;font-family:"Space Grotesk",sans-serif;font-weight:600;', null, r.tag));
+      top.appendChild(el('h3', 'font-size:15px;color:' + SLATE + ';margin:10px 0 8px;line-height:1.35;font-family:"Space Grotesk",sans-serif;', null, r.title));
+      top.appendChild(el('p', 'font-size:12.5px;color:rgba(90,102,98,0.8);line-height:1.6;font-family:Inter,sans-serif;', null, r.line));
+      card.appendChild(top);
+      card.appendChild(el('span', 'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:' + TEAL + ';margin-top:16px;font-family:"Space Grotesk",sans-serif;font-weight:600;', null, 'Request full PDF \u2192'));
+      card.addEventListener('mouseenter', function () { card.style.transform = 'translateY(-3px)'; card.style.borderColor = 'rgba(15,107,98,0.4)'; });
+      card.addEventListener('mouseleave', function () { card.style.transform = 'translateY(0)'; card.style.borderColor = 'rgba(15,107,98,0.12)'; });
+      card.addEventListener('click', function () { showForm(r, card); });
+      grid.appendChild(card);
+    });
+
+    return sec;
+  }
+
+  function deskInit() {
+    if (window.__mrlcDeskDone) return true;
+    var blog = document.getElementById('blog');
+    if (!blog || !blog.parentNode) return false;
+    var magnet = document.getElementById('lead-magnet');
+    var desk = buildDesk();
+    desk.id = 'blog';
+    blog.id = 'blog-legacy';
+    blog.style.display = 'none';
+    blog.parentNode.insertBefore(desk, blog);
+    if (magnet) { magnet.id = 'lead-magnet-legacy'; magnet.style.display = 'none'; }
+    /* footer socials */
+    var footer = document.querySelector('footer') || document.querySelector('[class*="footer" i]');
+    if (footer && !document.getElementById('mrlc-footer-socials')) {
+      var box = el('div', 'text-align:center;padding:24px 16px 8px;', null, null);
+      box.id = 'mrlc-footer-socials';
+      box.appendChild(el('p', 'font-size:10px;letter-spacing:0.2em;color:rgba(125,138,134,0.7);margin-bottom:14px;font-family:"Space Grotesk",sans-serif;', null, '@MRLIVINGCAPITAL, EVERYWHERE'));
+      box.appendChild(socialRow(''));
+      footer.appendChild(box);
+    }
+    window.__mrlcDeskDone = true;
+    return true;
+  }
+
+  function deskStart() {
+    var tries = 0;
+    var iv = setInterval(function () { if (deskInit() || ++tries > 30) clearInterval(iv); }, 500);
+  }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', run);
   } else {
     run();
   }
   globeInit();
+  deskStart();
 })();
