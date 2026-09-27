@@ -136,7 +136,7 @@ export default function LeadMagnetSection() {
                     </h3>
                     <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 13, marginBottom: 20 }}>
                       {reportType === 'q1'
-                        ? 'Verified DLD data. Institutional-grade corridor analysis. Not public research — partner-only intelligence.'
+                        ? 'Verified DLD data. Corridor analysis. Not public research, partner-only intelligence.'
                         : 'Negotiating below market value. Price per sqft analysis. The same framework forged over two decades.'}
                     </p>
 

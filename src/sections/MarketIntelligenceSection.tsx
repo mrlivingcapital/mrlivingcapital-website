@@ -7,32 +7,32 @@ const stats = [
     prefix: 'AED ',
     suffix: 'B',
     label: 'H1 2026 Total Transactions',
-    source: 'Dubai Land Department — H1 2026',
+    source: 'Dubai Land Department · H1 2026',
   },
   {
     value: 146.7,
     prefix: 'AED ',
     suffix: 'B',
-    label: 'Ready Sales H1 — Largest Share',
-    source: 'Dubai Land Department — H1 2026',
+    label: 'Ready Sales H1 · Largest Share',
+    source: 'Dubai Land Department · H1 2026',
   },
   {
     value: 112850,
     suffix: '',
     label: 'Total Transactions H1',
-    source: 'Dubai Land Department — H1 2026',
+    source: 'Dubai Land Department · H1 2026',
   },
   {
     value: 26,
     prefix: '+', suffix: '%',
     label: 'Foreign Investment Growth',
-    source: 'Dubai Land Department — Q1 2026 YoY (latest published)',
+    source: 'Dubai Land Department · Q1 2026 YoY (latest published)',
   },
   {
     value: 48448,
     suffix: '',
     label: 'Total Investors',
-    source: 'Dubai Land Department — H1 2026',
+    source: 'Dubai Land Department · H1 2026',
   },
 ]
 
@@ -45,8 +45,8 @@ const offPlanEvolution = [
 
 
 const propertyTypeSplit = [
-  { pct: 80, label: 'Apartments', desc: 'Studios, 1–4 BR, penthouses', note: 'Primary market driver' },
-  { pct: 15, label: 'Townhouses', desc: '2–4 BR, gated communities', note: 'Family-focused growth' },
+  { pct: 80, label: 'Apartments', desc: 'Studios, 1-4 BR, penthouses', note: 'Primary market driver' },
+  { pct: 15, label: 'Townhouses', desc: '2-4 BR, gated communities', note: 'Family-focused growth' },
   { pct: 5, label: 'Villas', desc: 'Luxury standalone estates', note: 'Premium ultra-HNW segment' },
 ]
 
@@ -71,7 +71,7 @@ export default function MarketIntelligenceSection() {
               THE NUMBERS BEHIND <span style={{ color: '#0F6B62' }}>THE UAE 2026</span>
             </h2>
             <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
-              Dubai recorded AED 419.9B in H1 2026 transactions — and for the first time in years, ready homes (AED 146.7B) outsold off-plan (AED 139.8B) by value. Abu Dhabi accelerates with AED 71B in 2025 and Saadiyat Cultural District. Ras Al Khaimah delivers 7-9% yields — the highest in the UAE. This is a structural maturity shift across all three emirates.
+              Dubai recorded AED 419.9B in H1 2026 transactions. For the first time in years, ready homes (AED 146.7B) outsold off-plan (AED 139.8B) by value. Abu Dhabi accelerates with AED 71B in 2025 and Saadiyat Cultural District. Ras Al Khaimah delivers 7-9% yields, the highest in the UAE. This is a structural maturity shift across all three emirates.
             </p>
           </div>
         </ScrollReveal>
@@ -134,7 +134,7 @@ export default function MarketIntelligenceSection() {
               })}
             </div>
             <p className="font-body" style={{ color: 'rgba(125, 138, 134, 0.6)', fontSize: 12, textAlign: 'center', marginTop: 16, fontStyle: 'italic' }}>
-              Source: Dubai Land Department — H1 2026 (off-plan share of sales value: AED 139.8B of 286.4B)
+              Source: Dubai Land Department · H1 2026 (off-plan share of sales value: AED 139.8B of 286.4B)
             </p>
           </div>
         </ScrollReveal>
@@ -143,7 +143,7 @@ export default function MarketIntelligenceSection() {
         <ScrollReveal>
           <div style={{ marginBottom: 80 }}>
             <h3 className="font-heading" style={{ fontSize: 20, color: '#5A6662', textAlign: 'center', marginBottom: 12 }}>
-              OFF-PLAN H1 2026 — <span style={{ color: '#0F6B62' }}>RESIDENTIAL VS COMMERCIAL</span>
+              OFF-PLAN H1 2026 · <span style={{ color: '#0F6B62' }}>RESIDENTIAL VS COMMERCIAL</span>
             </h3>
             <p className="font-body" style={{ color: '#7D8A86', fontSize: 13, textAlign: 'center', marginBottom: 32 }}>
               Total market: AED 419.9B across residential + commercial (112,850 transactions) · Off-plan sales value: AED 139.8B
@@ -161,13 +161,13 @@ export default function MarketIntelligenceSection() {
                     COMMERCIAL OFF-PLAN (office-led): AED 13.1B · 1,668 deals
                   </div>
                   <div style={{ color: '#7D8A86', fontSize: 12, lineHeight: 1.5 }}>
-                    Record — more than 2019–2025 combined. Off-plan offices overtook ready offices for the first time since 2010.
+                    Record: more than 2019-2025 combined. Off-plan offices overtook ready offices for the first time since 2010.
                   </div>
                 </div>
               </div>
             </div>
             <p className="font-body" style={{ color: 'rgba(125, 138, 134, 0.6)', fontSize: 12, textAlign: 'center', marginTop: 16, fontStyle: 'italic' }}>
-              Source: Dubai Land Department · Gulf Business · Cavendish Maxwell — H1 2026
+              Source: Dubai Land Department · Gulf Business · Cavendish Maxwell · H1 2026
             </p>
           </div>
         </ScrollReveal>
@@ -203,7 +203,7 @@ export default function MarketIntelligenceSection() {
               ))}
             </div>
             <p className="font-body" style={{ color: 'rgba(125, 138, 134, 0.6)', fontSize: 12, textAlign: 'center', marginTop: 16, fontStyle: 'italic' }}>
-              Source: DXB Interact, Dubai Land Department — Off-Plan Transaction Analysis 2026
+              Source: DXB Interact, Dubai Land Department · Off-Plan Transaction Analysis 2026
             </p>
           </div>
         </ScrollReveal>

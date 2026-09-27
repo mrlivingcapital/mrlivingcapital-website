@@ -4,7 +4,7 @@ import ScrollReveal from '../components/ScrollReveal'
 const faqs = [
   {
     question: 'How do I obtain a mortgage if I don\'t want to pay all cash?',
-    answer: 'Mortgage financing is available across all three emirates. In Dubai, major banks including Emirates NBD, FAB, and HSBC offer up to 50% LTV for non-residents and up to 80% for UAE residents, with rates starting from 5.24% (as of Q2 2026). In Abu Dhabi, ADCB and First Abu Dhabi Bank provide competitive buy-to-let mortgages from 4.99% for investment properties. In Ras Al Khaimah, RAKBANK and National Bank of Ras Al Khaimah offer specialized financing for Al Marjan Island and Mina Al Arab developments with extended payment terms. We work directly with relationship managers at each institution to secure pre-approval before you commit to any purchase. All mortgage applications can be processed remotely — no UAE residency required for most investment products.',
+    answer: 'Mortgage financing is available across all three emirates. In Dubai, major banks including Emirates NBD, FAB, and HSBC offer up to 50% LTV for non-residents and up to 80% for UAE residents, with rates starting from 5.24% (as of Q2 2026). In Abu Dhabi, ADCB and First Abu Dhabi Bank provide competitive buy-to-let mortgages from 4.99% for investment properties. In Ras Al Khaimah, RAKBANK and National Bank of Ras Al Khaimah offer specialized financing for Al Marjan Island and Mina Al Arab developments with extended payment terms. We work directly with relationship managers at each institution to secure pre-approval before you commit to any purchase. All mortgage applications can be processed remotely, no UAE residency required for most investment products.',
   },
   {
     question: 'How do you verify your market data?',
@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     question: 'Can foreign investors own property in Dubai?',
-    answer: 'Yes. All three emirates — Dubai, Abu Dhabi, and Ras Al Khaimah — allow 100% freehold ownership for foreign nationals in designated investment zones. Foreigners can own outright with full title deed registration at the respective land department (DLD Dubai, DMT Abu Dhabi, or RAK DLD).',
+    answer: 'Yes. All three emirates (Dubai, Abu Dhabi, and Ras Al Khaimah) allow 100% freehold ownership for foreign nationals in designated investment zones. Foreigners can own outright with full title deed registration at the respective land department (DLD Dubai, DMT Abu Dhabi, or RAK DLD).',
   },
   {
     question: 'What payment plans are typically available?',

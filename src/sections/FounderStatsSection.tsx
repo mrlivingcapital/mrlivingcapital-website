@@ -2,9 +2,9 @@ import ScrollReveal from '../components/ScrollReveal'
 import StatCounter from '../components/StatCounter'
 
 const founderStats = [
-  { value: 2, suffix: '', label: 'DECADES INSTITUTIONAL FINANCE' },
-  { value: 3, suffix: '', label: 'COUNTRIES — OWN-MONEY INVESTOR' },
-  { value: 3, suffix: '', label: 'EMIRATES — ALLOCATION COVERAGE' },
+  { value: 35, suffix: '', label: 'YEARS IN DUBAI' },
+  { value: 3, suffix: '', label: 'COUNTRIES · OWN-MONEY INVESTOR' },
+  { value: 3, suffix: '', label: 'CONTINENTS · MARKET CYCLES NAVIGATED' },
   { value: 100, suffix: '%', label: 'STEWARD OF CAPITAL' },
 ]
 
@@ -53,7 +53,7 @@ export default function FounderStatsSection() {
         ))}
       </div>
       <p className="font-caption" style={{ textAlign: 'center', color: 'rgba(125, 138, 134, 0.75)', fontSize: 11, marginTop: 40, letterSpacing: '0.12em' }}>
-        LICENSED ADVISOR — STRADA UAE · DLD-VERIFIED RESEARCH
+        LICENSED ADVISOR · STRADA UAE · DLD-VERIFIED RESEARCH
       </p>
     </section>
   )

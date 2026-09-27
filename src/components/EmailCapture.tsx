@@ -66,7 +66,7 @@ export default function EmailCapture({ source, dark = false }: Props) {
       </button>
       {status === 'error' && (
         <span style={{ width: '100%', color: '#B08D4A', fontSize: 12 }}>
-          Something went wrong — try again or WhatsApp us directly.
+          Something went wrong, try again or WhatsApp us directly.
         </span>
       )}
       <span style={{ width: '100%', color: mute, fontSize: 11 }}>

@@ -23,7 +23,7 @@ export default function BurjKhalifa3D() {
     }
   }, [])
 
-  // 29 tiers — real Burj Khalifa proportions (width %, height px)
+  // 29 tiers: real Burj Khalifa proportions (width %, height px)
   const tiers = [
     { w: 42, h: 8 }, { w: 40, h: 7 }, { w: 38, h: 7 }, { w: 36, h: 7 },
     { w: 34, h: 7 }, { w: 32, h: 7 }, { w: 30, h: 7 }, { w: 28, h: 7 },

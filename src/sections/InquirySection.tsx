@@ -30,7 +30,7 @@ export default function InquirySection() {
         }),
       })
     } catch {
-      // Silently fail — still show success UI
+      // Silently fail: still show success UI
     }
     // Show success UI
     setSubmitted(true)

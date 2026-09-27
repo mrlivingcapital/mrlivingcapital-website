@@ -127,7 +127,7 @@ export default function Globe3D() {
 
         </div>
 
-        {/* Static center text — single horizontal line */}
+        {/* Static center text: single horizontal line */}
         <div
           style={{
             position: 'absolute',

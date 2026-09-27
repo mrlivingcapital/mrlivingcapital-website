@@ -17,7 +17,7 @@ export default function CorridorBriefSection() {
           </h2>
           <p className="font-body" style={{ color: 'rgba(246,241,231,0.7)', fontSize: 15, lineHeight: 1.7, marginBottom: 28 }}>
             Every Monday: DLD transactions, off-plan launches, corridor pricing and one
-            commercial insight — the same data we brief clients on. No noise, no listings spam.
+            commercial insight, the same data we brief clients on. No noise, no listings spam.
           </p>
           <EmailCapture source="homepage" dark />
         </div>

@@ -25,7 +25,7 @@ const uaeInfrastructureFacts = [
     facts: [
       { value: '80%', label: 'Daily Needs Within 20 Minutes', desc: 'Dubai 2040 20-minute city: residents reach 80% of daily services within 20 min via walking, cycling, or transit' },
       { value: '5', label: 'Urban Centers', desc: '60% of population concentrated into 5 urban centres: Deira/Bur Dubai, Downtown/Business Bay, Dubai Marina/JBR, Expo City, Dubai Silicon Oasis' },
-      { value: '60%', label: 'Protected Nature Reserve', desc: 'Over 60% of the emirate designated as nature reserve — balancing urban growth with environmental preservation' },
+      { value: '60%', label: 'Protected Nature Reserve', desc: 'Over 60% of the emirate designated as nature reserve,balancing urban growth with environmental preservation' },
       { value: 'AED 65B', label: 'National Housing Investment', desc: '17,000 new affordable housing units. Government-backed policy to meet residential demand across income levels' },
     ]
   },
@@ -33,17 +33,17 @@ const uaeInfrastructureFacts = [
     emirate: 'ABU DHABI',
     facts: [
       { value: 'AED 25B', label: 'Aldar Development Pipeline', desc: '15,000+ new residential units across master-planned communities including Saadiyat, Yas Island, and Al Reem Island by 2028' },
-      { value: '3 Museums', label: 'Saadiyat Cultural District', desc: 'Guggenheim Abu Dhabi, Zayed National Museum, and Natural History Museum opening 2025-2027 — attracting 5M+ cultural tourists annually' },
+      { value: '3 Museums', label: 'Saadiyat Cultural District', desc: 'Guggenheim Abu Dhabi, Zayed National Museum, and Natural History Museum opening 2025-2027,attracting 5M+ cultural tourists annually' },
       { value: '$1.1T', label: 'Non-Oil GDP Target by 2030', desc: 'Abu Dhabi Economic Vision 2030: diversification away from oil with massive investment in real estate, tourism, and financial services' },
-      { value: '45M', label: 'Zayed International Airport', desc: 'Expanded terminal capacity handling 45 million passengers annually — direct boost to short-term rental demand' },
+      { value: '45M', label: 'Zayed International Airport', desc: 'Expanded terminal capacity handling 45 million passengers annually,direct boost to short-term rental demand' },
     ]
   },
   {
     emirate: 'RAK',
     facts: [
-      { value: 'AED 12B', label: 'Wynn Al Marjan Resort', desc: 'First integrated gaming resort in the GCC, opening 2027. 1,500+ rooms, 24/7 gaming, entertainment venues — projected to attract 2.5M visitors annually' },
-      { value: '4.5 KM', label: 'Al Marjan Island Beachfront', desc: 'Master-planned island with 4.5km of beachfront, luxury hotels, residential towers, and marina — the premier tourism destination in Northern Emirates' },
-      { value: '+50%', label: 'Population Growth by 2030', desc: 'RAK population growing from 400K to 600K — 50% increase driving housing demand across all segments' },
+      { value: 'AED 12B', label: 'Wynn Al Marjan Resort', desc: 'First integrated gaming resort in the GCC, opening 2027. 1,500+ rooms, 24/7 gaming, entertainment venues,projected to attract 2.5M visitors annually' },
+      { value: '4.5 KM', label: 'Al Marjan Island Beachfront', desc: 'Master-planned island with 4.5km of beachfront, luxury hotels, residential towers, and marina,the premier tourism destination in Northern Emirates' },
+      { value: '+50%', label: 'Population Growth by 2030', desc: 'RAK population growing from 400K to 600K,50% increase driving housing demand across all segments' },
       { value: '7-9%', label: 'Highest Gross Yields in UAE', desc: 'Lowest entry point (AED 500-900/sqft) combined with highest rental yields makes RAK the purest risk-adjusted play in the UAE' },
     ]
   },
@@ -71,7 +71,7 @@ export default function InfrastructureSection() {
               WHY <span style={{ color: '#5A6662' }}>THESE</span> CORRIDORS?
             </h2>
             <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 16, maxWidth: 700, margin: '0 auto' }}>
-              Our allocation strategy is directly tied to sovereign-backed infrastructure across all three emirates: Dubai 2040, Abu Dhabi Economic Vision 2030, and Ras Al Khaimah's Wynn Al Marjan. Government projects drive capital appreciation — not market speculation.
+              Our allocation strategy is directly tied to sovereign-backed infrastructure across all three emirates: Dubai 2040, Abu Dhabi Economic Vision 2030, and Ras Al Khaimah's Wynn Al Marjan. Government projects drive capital appreciation,not market speculation.
             </p>
           </div>
         </ScrollReveal>
@@ -129,7 +129,7 @@ export default function InfrastructureSection() {
           </div>
         </ScrollReveal>
 
-        {/* UAE Infrastructure Facts — All 3 Emirates */}
+        {/* UAE Infrastructure Facts,All 3 Emirates */}
         {uaeInfrastructureFacts.map((emirateData, emirateIndex) => (
           <div key={emirateIndex}>
             <ScrollReveal>

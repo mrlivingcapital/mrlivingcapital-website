@@ -23,7 +23,7 @@ export default function DistressDealsSection() {
     const phoneOk = validPhone(phone)
 
     if (!emailOk && !phoneOk) {
-      setError('Leave a valid email or a phone number with country code — one is enough.')
+      setError('Leave a valid email or a phone number with country code, one is enough.')
       return
     }
     setError('')
@@ -38,7 +38,7 @@ export default function DistressDealsSection() {
           email: emailOk ? email.trim() : '',
           phone: phoneOk ? phone.trim() : '',
           source: 'distress-deals',
-          _subject: 'Distress Deals — serious inquiry',
+          _subject: 'Distress Deals · serious inquiry',
         }),
       })
       if (!res.ok) throw new Error('bad status')
@@ -60,8 +60,8 @@ export default function DistressDealsSection() {
               THE BEST DEALS NEVER REACH THE PORTALS.
             </h2>
             <p className="font-body" style={{ color: 'rgba(246, 241, 231, 0.68)', fontSize: 15, lineHeight: 1.7, maxWidth: 560, margin: '0 auto' }}>
-              Motivated sellers. Below-market entries. Off-market allocations. These move in hours, not weeks —
-              and they go to the people already on the list. No free report here. If you're serious, leave your
+              Motivated sellers. Below-market entries. Off-market allocations. These move in hours, not weeks.
+              They go to the people already on the list. No free report here. If you're serious, leave your
               details and we talk.
             </p>
           </div>
@@ -98,7 +98,7 @@ export default function DistressDealsSection() {
               )}
               {state === 'error' && (
                 <p style={{ color: '#E0A458', fontSize: 12, textAlign: 'center', marginBottom: 12 }}>
-                  Something went wrong — try again or WhatsApp +971 58 589 9112 directly.
+                  Something went wrong, try again or WhatsApp +971 58 589 9112 directly.
                 </p>
               )}
 
@@ -113,11 +113,11 @@ export default function DistressDealsSection() {
                   opacity: state === 'sending' ? 0.6 : 1, transition: 'opacity 0.2s ease',
                 }}
               >
-                {state === 'sending' ? 'SENDING...' : 'I\'M SERIOUS — LET\'S TALK'}
+                {state === 'sending' ? 'SENDING...' : 'I\'M SERIOUS · LET\'S TALK'}
               </button>
 
               <p className="font-body" style={{ color: 'rgba(246, 241, 231, 0.4)', fontSize: 11, textAlign: 'center', marginTop: 14 }}>
-                Email or phone — one is enough. Serious inquiries get a call, not a newsletter.
+                Email or phone, one is enough. Serious inquiries get a call, not a newsletter.
               </p>
             </form>
           ) : (

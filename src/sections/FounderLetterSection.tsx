@@ -34,15 +34,15 @@ export default function FounderLetterSection() {
               className="font-heading"
               style={{ fontSize: 'clamp(28px, 4vw, 44px)', color: '#5A6662', marginBottom: 12 }}
             >
-              INSTITUTIONAL <span style={{ color: '#0F6B62' }}>DISCIPLINE.</span>
+              DISCIPLINE <span style={{ color: '#0F6B62' }}>FIRST.</span>
               <br />
-              PERSONAL <span style={{ color: '#0F6B62' }}>CONVICTION.</span>
+              CONVICTION <span style={{ color: '#0F6B62' }}>ALWAYS.</span>
             </h2>
             <p
               className="font-body"
               style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}
             >
-              Why institutional discipline matters in every allocation decision.
+              Why process matters in every allocation decision.
             </p>
           </div>
         </ScrollReveal>
@@ -86,7 +86,7 @@ export default function FounderLetterSection() {
               className="font-body"
               style={{ color: 'rgba(90, 102, 98, 0.3)', fontSize: 12, marginTop: 12, fontStyle: 'italic' }}
             >
-              Two decades of institutional financial DNA.
+              Entrepreneur. Investor. Steward of capital.
             </p>
           </div>
         </ScrollReveal>
@@ -121,21 +121,21 @@ export default function FounderLetterSection() {
                 className="font-body"
                 style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
               >
-                I spent two decades designing and implementing strategies within financial institutions and freelance private portfolio management — navigating market cycles across three continents, and learning how big money actually moves. Not how it talks. How it moves.
+                Thirty-five years in Dubai. Three continents of market cycles behind me, and one lesson repeated everywhere: how big money actually moves. Not how it talks. How it moves.
               </p>
 
               <p
                 className="font-body"
                 style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
               >
-                I started working at fourteen. Not because I had to — because I understood early that how you steward capital defines the life you live and the legacy you leave. Today, MR Living Capital exists because I believe investors deserve the same institutional-grade discipline that the big institutions use — but accessible to serious individuals and families building real wealth.
+                I started working at fourteen. Not because I had to, but because I understood early that how you steward capital defines the life you live and the legacy you leave. Today, MR Living Capital exists because serious investors deserve that same discipline: measured, first-party, published with the misses included.
               </p>
 
               <p
                 className="font-body"
                 style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 28 }}
               >
-                This is not a property shop. This is real estate investment advisory engineered by someone who spent two decades inside the machine — designing strategies and managing private portfolios. I don&apos;t chase commissions. I architect capital. If the numbers don&apos;t make sense, we don&apos;t proceed. That is the only rule.
+                This is not a property shop. This is investment advisory built by an entrepreneur who invests his own money and answers to his own scoreboard. I don&apos;t chase commissions. I architect capital. If the numbers don&apos;t make sense, we don&apos;t proceed. That is the only rule.
               </p>
 
               {/* Signature */}

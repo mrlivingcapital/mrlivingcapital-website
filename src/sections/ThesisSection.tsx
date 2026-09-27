@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 /**
- * THESIS STRIP (2026-09-27) — the four MRLC messaging pillars.
+ * THESIS STRIP (2026-09-27): the four MRLC messaging pillars.
  * Bridges reel/social traffic into the site argument: each card is one
  * pillar of the unified cross-channel thesis and deep-links to its
  * destination. Copy follows studio lint: no em-dash, no invented stats.
