@@ -93,7 +93,7 @@
     <meta name="geo.region" content="AE" />
     <meta name="geo.placename" content="Dubai, Abu Dhabi, Ras Al Khaimah" />
     <meta name="geo.position" content="25.2048;55.2708" />
-    <meta name="ICBM" content="25.2048, 55.2708" />
+    <meta name="ICBM" content="25.2048,55.2708" />
 
     <!-- Security Headers (deployed via meta where HTTP headers unavailable) -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.facebook.com https://www.google-analytics.com; connect-src 'self' https://formspree.io https://www.facebook.com https://www.google-analytics.com https://analytics.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;" />
@@ -199,12 +199,12 @@
     <!-- Meta Pixel Code -->
     <script>
       !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      {if(f.fbq)return;n.fbq=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
       if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
       n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      t.src=v;b=f.getElementsByTagName(e)[0];
+      b.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       fbq('init', '1366298528654246');
       fbq('track', 'PageView');
@@ -339,5 +339,6 @@
       obs.observe(document.body, { childList: true, subtree: true, characterData: true });
     })();
     </script>
+  <script src="/thesis-interim.js" defer></script>
   </body>
 </html>
