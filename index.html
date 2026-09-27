@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MR Living Capital | UAE Real Estate Investment Advisory</title>
-    <meta name="description" content="Data-driven real estate investment advisory across Dubai, Abu Dhabi, and Ras Al Khaimah. Two decades of institutional financial management experience." />
+    <meta name="description" content="Independent real estate advisory in Dubai. Off-market access, corridor-level data, and straight answers across Dubai, Abu Dhabi, and Ras Al Khaimah." />
     <meta name="keywords" content="Dubai real estate investment, Abu Dhabi property investment, Ras Al Khaimah investment, UAE real estate advisory, Golden Visa UAE, Al Marjan Island, DLD data, off-plan Dubai, Wynn Al Marjan, Etihad Rail" />
     <meta name="author" content="MR Living Capital" />
     <meta name="robots" content="index, follow" />
@@ -55,7 +55,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mrlivingcapital.com" />
     <meta property="og:title" content="MR Living Capital | UAE Real Estate Investment Advisory" />
-    <meta property="og:description" content="Data-driven real estate investment advisory across Dubai, Abu Dhabi, and Ras Al Khaimah. Two decades of institutional financial management experience." />
+    <meta property="og:description" content="Independent real estate advisory in Dubai. Off-market access, corridor-level data, and straight answers across Dubai, Abu Dhabi, and Ras Al Khaimah." />
     <meta property="og:site_name" content="MR Living Capital" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://mrlivingcapital.com/images/og-image.png" />
@@ -241,7 +241,7 @@
         <p style="font-size:13px;color:#5A6662;opacity:0.8;">
           <strong>Fonts:</strong> Space Grotesk (display & headings), Inter (body text)<br/>
           <strong>Tone:</strong> Authoritative, contrarian, data-backed, institutional, transparent<br/>
-          <strong>Tagline:</strong> Independent. Data-Driven. Client-First.<br/>
+          <strong>Tagline:</strong> The numbers make sense, or we don't proceed.<br/>
           <strong>Contact:</strong> <span itemprop="email">Masoud@mrlivingcapital.com</span> | <span itemprop="telephone">+971 58 589 9112</span>
         </p>
       </div>
@@ -250,16 +250,20 @@
   <a href="/blog/" style="color:#0F6B62;text-decoration:none;font-size:1.1rem;font-weight:600;">Investor Intelligence (Blog)</a>
 </div>
 
-    <!-- Founder headshot 2026: swaps the About-section portrait to the latest studio photo.
-         The AVIF payload lives as base64 in /images/founder-2026.avif.part1-4.txt
-         (GitHub token cannot write binary; decoded client-side into a blob URL). -->
+    <!-- Founder headshot July 2026: latest studio photo, square frame with curved corners.
+         JPEG payload stored as base64 text parts (API cannot write binary);
+         decoded client-side into a blob URL. -->
     <script>
     (function () {
       var T = "masoud-founder.jpg";
-      var P = [1, 2, 3, 4].map(function (i) { return "/images/founder-2026.avif.part" + i + ".txt"; });
+      var P = [];
+      for (var n = 1; n <= 16; n++) P.push("/images/founder-2026.jpg.part" + n + ".txt");
       function swap(u) {
         var imgs = document.querySelectorAll('img[src*="' + T + '"]');
-        for (var i = 0; i < imgs.length; i++) imgs[i].src = u;
+        for (var i = 0; i < imgs.length; i++) {
+          imgs[i].src = u;
+          imgs[i].style.borderRadius = "20px";
+        }
         return imgs.length;
       }
       Promise.all(P.map(function (p) { return fetch(p).then(function (r) { return r.text(); }); }))
@@ -267,13 +271,71 @@
           var bin = atob(parts.join("").replace(/\s+/g, ""));
           var bytes = new Uint8Array(bin.length);
           for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-          var url = URL.createObjectURL(new Blob([bytes], { type: "image/avif" }));
+          var url = URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" }));
           if (!swap(url)) {
             var obs = new MutationObserver(function () { if (swap(url)) obs.disconnect(); });
             obs.observe(document.documentElement, { childList: true, subtree: true });
           }
         })
         .catch(function () { /* keep existing photo if payload unavailable */ });
+    })();
+    </script>
+    <!-- Brand cleanup July 2026: the broker license number is no longer public.
+         Strip legacy BRN strings rendered by the current JS bundle until the
+         next full rebuild ships without them. -->
+    <script>
+    (function () {
+      var RX = [
+        [/\.\s*BRN\s*94316\./g, "."],
+        [/\s*·\s*BRN:?\s*94316/g, ""],
+        [/BRN:?\s*94316\s*·\s*/g, ""],
+        [/\s*\|\s*BRN\s*94316/g, ""],
+        [/BRN\s*94316\s*\|\s*/g, ""],
+        [/\s*&middot;\s*BRN:?\s*94316/g, ""],
+        [/BRN:?\s*94316\s*&middot;\s*/g, ""],
+        [/BRN:?\s*94316/g, ""]
+      ];
+      function cleanText(s) {
+        var t = s;
+        for (var i = 0; i < RX.length; i++) t = t.replace(RX[i][0], RX[i][1]);
+        return t;
+      }
+      function sweep(root) {
+        var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+        var n, nodes = [];
+        while ((n = w.nextNode())) nodes.push(n);
+        for (var i = 0; i < nodes.length; i++) {
+          var c = cleanText(nodes[i].nodeValue);
+          if (c !== nodes[i].nodeValue) nodes[i].nodeValue = c;
+        }
+        var rows = root.querySelectorAll ? root.querySelectorAll("div") : [];
+        for (var r = 0; r < rows.length; r++) {
+          if (rows[r].children.length === 2 &&
+              rows[r].textContent.replace(/\s+/g, "") === "License") {
+            rows[r].style.display = "none";
+          }
+        }
+      }
+      sweep(document.body);
+      var obs = new MutationObserver(function (muts) {
+        for (var i = 0; i < muts.length; i++) {
+          var m = muts[i];
+          if (m.type === "characterData") {
+            var c = cleanText(m.target.nodeValue);
+            if (c !== m.target.nodeValue) m.target.nodeValue = c;
+          }
+          for (var j = 0; j < m.addedNodes.length; j++) {
+            var nd = m.addedNodes[j];
+            if (nd.nodeType === 3) {
+              var cc = cleanText(nd.nodeValue);
+              if (cc !== nd.nodeValue) nd.nodeValue = cc;
+            } else if (nd.nodeType === 1) {
+              sweep(nd);
+            }
+          }
+        }
+      });
+      obs.observe(document.body, { childList: true, subtree: true, characterData: true });
     })();
     </script>
   </body>

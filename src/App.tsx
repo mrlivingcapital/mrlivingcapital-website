@@ -5,6 +5,7 @@ import MarketTicker from './components/MarketTicker'
 import HeroSection from './sections/HeroSection'
 import FounderStatsSection from './sections/FounderStatsSection'
 import FounderLetterSection from './sections/FounderLetterSection'
+import ThesisSection from './sections/ThesisSection'
 import MarketIntelligenceSection from './sections/MarketIntelligenceSection'
 import CorridorsSection from './sections/CorridorsSection'
 import InfrastructureSection from './sections/InfrastructureSection'
@@ -60,6 +61,10 @@ function App() {
 
         {/* 3. TRUST — The story behind the brand */}
         <FounderLetterSection />
+        <div className="section-divider" />
+
+        {/* 3.5 THESIS — the four pillars, bridges social traffic into the argument */}
+        <ThesisSection />
         <div className="section-divider" />
 
         {/* 4. AUTHORITY — DLD-verified data, 3 emirates */}

@@ -97,9 +97,9 @@ export default function HeroSection() {
             transition: 'opacity 0.8s ease 1s, transform 0.8s ease 1s',
           }}
         >
-          Two decades of strategy design and implementation within financial institutions and freelance private portfolio management.
+          We run our own numbers on Dubai real estate. First-party, measured,
           <br />
-          I don't advise. I architect capital. Every allocation is intentional.
+          published with the misses included. The numbers make sense, or we don't proceed.
         </p>
 
         <p
