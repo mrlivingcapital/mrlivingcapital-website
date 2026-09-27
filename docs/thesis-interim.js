@@ -1,4 +1,4 @@
-/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.8)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.9)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
    purge, founder narrative corrections) and the Investor's Desk revamp
    WITHOUT a bundle rebuild, because the authenticated channels available
@@ -9,7 +9,8 @@
    1. Hero sub-line swap + logo sizing
    2. Thesis strip injection (self-disabling if React #thesis exists)
    3. COPY SWEEP: targeted text replacements (em-dash purge per principal
-      order 2026-09-27; finance narrative removed; emirates stat reframed)
+      order 2026-09-27; finance narrative removed; emirates stat reframed;
+      Strada/BRN banned per principal order 2026-09-27 21:17)
       applied to current text nodes AND future DOM mutations (accordions).
    4. REAL GLOBE: country-outline canvas, self-hosted borders.json.
    5. INVESTOR'S DESK REVAMP (principal approval 2026-09-27): legacy
@@ -123,7 +124,15 @@
     ['DECADES INSTITUTIONAL FINANCE', 'YEARS IN DUBAI'],
     ['COUNTRIES \u2014 OWN-MONEY INVESTOR', 'COUNTRIES \u00B7 OWN-MONEY INVESTOR'],
     ['EMIRATES \u2014 ALLOCATION COVERAGE', 'CONTINENTS \u00B7 MARKET CYCLES NAVIGATED'],
-    ['LICENSED ADVISOR \u2014 STRADA UAE', 'LICENSED ADVISOR \u00B7 STRADA UAE'],
+    ['LICENSED ADVISOR \u2014 STRADA UAE \u2014 DLD-VERIFIED RESEARCH', 'INDEPENDENT ADVISORY \u00B7 DLD-VERIFIED RESEARCH'],
+    ['LICENSED ADVISOR \u00B7 STRADA UAE \u00B7 DLD-VERIFIED RESEARCH', 'INDEPENDENT ADVISORY \u00B7 DLD-VERIFIED RESEARCH'],
+    ['LICENSED ADVISOR \u2014 STRADA UAE', 'INDEPENDENT ADVISORY'],
+    ['LICENSED ADVISOR \u00B7 STRADA UAE', 'INDEPENDENT ADVISORY'],
+    ['Now at Strada UAE.', ''],
+    ['Now at Strada UAE', ''],
+    ['Strada UAE', ''],
+    ['STRADA UAE', ''],
+    ['Strada', ''],
     /* Founder letter */
     ['Two decades of institutional financial DNA.', 'Entrepreneur. Investor. Steward of capital.'],
     ['INSTITUTIONAL ', 'DISCIPLINE '],
