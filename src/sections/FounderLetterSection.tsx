@@ -121,7 +121,7 @@ export default function FounderLetterSection() {
                 className="font-body"
                 style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
               >
-                Thirty-five years in Dubai. Three continents of market cycles behind me, and one lesson repeated everywhere: how big money actually moves. Not how it talks. How it moves.
+                Thirty-five years in Dubai. Three continents of market cycles behind me. I have bought, built, and walked away more times than most agents have shown units. One lesson repeats everywhere: how big money actually moves. Not how it talks. How it moves.
               </p>
 
               <p
@@ -135,7 +135,7 @@ export default function FounderLetterSection() {
                 className="font-body"
                 style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 28 }}
               >
-                This is not a property shop. This is investment advisory built by an entrepreneur who invests his own money and answers to his own scoreboard. I don&apos;t chase commissions. I architect capital. If the numbers don&apos;t make sense, we don&apos;t proceed. That is the only rule.
+                This is not a property shop. I don&apos;t sell listings; I filter them. Every opportunity I put in front of you has already passed my own capital test and a 100-point scorecard, because I invest my own money on the same scoreboard I recommend to you. I don&apos;t chase commissions. I architect capital. If the numbers don&apos;t make sense, we don&apos;t proceed. That is the only rule.
               </p>
 
               {/* Signature */}

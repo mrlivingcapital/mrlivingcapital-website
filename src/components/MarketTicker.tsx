@@ -7,7 +7,7 @@ const tickerItems = [
   { label: 'Transactions H1', value: '112,850', change: 'DLD 2026' },
   { label: 'Total Investors', value: '48,448', change: '+8% YoY' },
   { label: 'Avg Price/Sqft', value: 'AED 1,841', change: '+8.5% YoY' },
-  { label: 'Mortgage Rates', value: '4–6%', change: '2026 range' },
+  { label: 'Mortgage Rates', value: '4-6%', change: '2026 range' },
   { label: 'Gold Line', value: '18 Stations', change: '2032 Target' },
   { label: 'Etihad Rail', value: '2026', change: 'Passenger launch' },
   { label: 'Population 2040', value: '5.8M', change: '+45%' },

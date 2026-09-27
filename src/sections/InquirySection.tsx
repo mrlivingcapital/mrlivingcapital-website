@@ -165,9 +165,9 @@ export default function InquirySection() {
                   >
                     <option value="" disabled>Acquisition Timeline</option>
                     <option value="immediately">Immediately</option>
-                    <option value="2-4-weeks">2–4 Weeks</option>
+                    <option value="2-4-weeks">2-4 Weeks</option>
                     <option value="2-months">Within 2 Months</option>
-                    <option value="3-6-months">3–6 Months</option>
+                    <option value="3-6-months">3-6 Months</option>
                     <option value="6-months+">6 Months+</option>
                   </select>
                 </div>
