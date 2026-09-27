@@ -45,7 +45,7 @@ export default function HeroSection() {
             src="/images/logo-transparent.png"
             alt="MR Living Capital"
             style={{
-              height: 'clamp(200px, 26vw, 320px)',
+              height: 'clamp(260px, 32vw, 400px)',
               width: 'auto',
               display: 'block',
               margin: '0 auto',
@@ -66,7 +66,7 @@ export default function HeroSection() {
           <h1
             className="font-hero"
             style={{
-              fontSize: 'clamp(38px, 6.2vw, 68px)',
+              fontSize: 'clamp(36px, 6.2vw, 66px)',
               color: '#4A5552',
               marginBottom: 4,
             }}
@@ -76,7 +76,7 @@ export default function HeroSection() {
           <h1
             className="font-hero"
             style={{
-              fontSize: 'clamp(38px, 6.2vw, 68px)',
+              fontSize: 'clamp(36px, 6.2vw, 66px)',
               color: '#0F6B62',
             }}
           >
