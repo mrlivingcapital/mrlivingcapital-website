@@ -125,7 +125,6 @@
         "availableLanguage": ["English", "Persian"]
       },
       "sameAs": [
-        "https://www.linkedin.com/in/mrlivingcapital/",
         "https://www.instagram.com/mrlivingcapital/",
         "https://t.me/mrlivingcapital"
       ]
@@ -321,7 +320,7 @@
       var obs = new MutationObserver(function (muts) {
         for (var i = 0; i < muts.length; i++) {
           var m = muts[i];
-          if (m.type === "characterData") {
+          if (m.type === 'characterData') {
             var c = cleanText(m.target.nodeValue);
             if (c !== m.target.nodeValue) m.target.nodeValue = c;
           }
@@ -340,5 +339,6 @@
     })();
     </script>
   <script src="/thesis-interim.js" defer></script>
+  <script src="/footer-v37.js" defer></script>
   </body>
 </html>
