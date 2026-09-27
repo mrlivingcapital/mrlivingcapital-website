@@ -165,6 +165,8 @@
     for (var i = 0; i < R.length; i++) {
       if (v.indexOf(R[i][0]) !== -1) v = v.split(R[i][0]).join(R[i][1]);
     }
+    if (v.indexOf('\u2013') !== -1) v = v.split('\u2013').join('-');
+    if (v.indexOf('\u2014') !== -1) v = v.split('\u2014').join(', ');
     if (v !== node.nodeValue) node.nodeValue = v;
   }
 
@@ -179,10 +181,10 @@
   function fixStatNumber() {
     try {
       var grid = document.querySelector('#founder-stats > div');
-      if (!grid || !grid.children[0]) return false;
-      var numDiv = grid.children[0].querySelector('div');
+      if (!grid) return false;
+      var numDiv = grid.querySelector('div[style*="clamp(36px"]');
       if (numDiv && numDiv.textContent.trim() === '2') { numDiv.textContent = '35'; return true; }
-      return numDiv && numDiv.textContent.trim() === '35';
+      return !!numDiv && numDiv.textContent.trim() === '35';
     } catch (e) { return false; }
   }
 
