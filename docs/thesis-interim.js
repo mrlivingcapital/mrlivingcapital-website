@@ -15,8 +15,18 @@
   /* --- 1. Hero sub-line swap (unified thesis voice) --- */
   var HERO_FIND_1 = 'Two decades of strategy design and implementation';
   var HERO_FIND_2 = "I don't advise. I architect capital.";
-  var HERO_NEW_1 = 'We run our own numbers on Dubai real estate. First-party, measured,';
-  var HERO_NEW_2 = "published with the misses included. The numbers make sense, or we don't proceed.";
+  var HERO_NEW_1 = 'We run our own numbers on investment opportunities.';
+  var HERO_NEW_2 = "First-party, measured, published with the misses included. The numbers make sense, or we don't proceed.";
+  var LOGO_HEIGHT = 'clamp(200px, 26vw, 320px)';
+
+  /* --- 1b. Hero logo sizing: brand lockup should read larger than the slogan --- */
+  function sizeLogo() {
+    var img = document.querySelector('#hero img[alt="MR Living Capital"]') ||
+              (document.getElementById('hero') || { querySelector: function () { return null; } }).querySelector('img');
+    if (!img) return false;
+    img.style.height = LOGO_HEIGHT;
+    return true;
+  }
 
   function swapHero() {
     var w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
@@ -93,12 +103,14 @@
   }
 
   function run() {
-    if (swapHero() && inject()) return;
-    /* React 19 commits asynchronously; retry briefly until both land */
+    var logoDone = sizeLogo();
+    if (swapHero() && inject() && logoDone) return;
+    /* React 19 commits asynchronously; retry briefly until all land */
     var tries = 0;
     var iv = setInterval(function () {
       var heroDone = swapHero();
-      if (inject() && heroDone || ++tries > 20) clearInterval(iv);
+      var lg = sizeLogo();
+      if (inject() && heroDone && lg || ++tries > 20) clearInterval(iv);
     }, 500);
   }
 
