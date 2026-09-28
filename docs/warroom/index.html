@@ -760,7 +760,7 @@ function topicCard(t){
 const div=document.createElement('div');div.className='card';div.dataset.key=t.key;
 const pub=isPublished(t.key)?'<span class="publishedTag">PUBLISHED</span>':'';
 const faLabel=FA[t.key]?' · FA':'';
-div.innerHTML='<div class="prio"><span class="pnum">'+(t.key.match(/\d+/)||[''])[0]+'</span><span class="ptype '+t.type+'">'+t.type.toUpperCase()+'</span>'+pub+'</div><h3>'+t.title+'</h3><div class="pillar">'+t.pillar+' · '+(t.engine||'')+faLabel+'</div><div class="why">'+t.sub+'</div><div class="asof">As of: '+t.asof+'</div><div style="display:flex;gap:8px;margin-top:8px;"><button class="btn" onclick="generatePost(TOPICS.find(x=>x.key===\''+t.key+'\'))">Generate Pack</button><button class="btn ghost" onclick="viewSub(TOPICS.find(x=>x.key===\''+t.key+'\'))">View</button></div>';
+div.innerHTML='<div class="prio"><span class="pnum">'+(t.key.match(/\\d+/)||[''])[0]+'</span><span class="ptype '+t.type+'">'+t.type.toUpperCase()+'</span>'+pub+'</div><h3>'+t.title+'</h3><div class="pillar">'+t.pillar+' · '+(t.engine||'')+faLabel+'</div><div class="why">'+t.sub+'</div><div class="asof">As of: '+t.asof+'</div><div style="display:flex;gap:8px;margin-top:8px;"><button class="btn" onclick="generatePost(TOPICS.find(x=>x.key===\''+t.key+'\'))">Generate Pack</button><button class="btn ghost" onclick="viewSub(TOPICS.find(x=>x.key===\''+t.key+'\'))">View</button></div>';
 return div;
 }
 
