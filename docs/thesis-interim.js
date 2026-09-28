@@ -1,9 +1,11 @@
-/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-27, v3.9)
+/* MRLC thesis bridge + copy sweep: INTERIM deploy mechanism (2026-09-28, v4.0)
    Purpose: ship unified-messaging copy (hero line, 4-pillar strip, em-dash
    purge, founder narrative corrections) and the Investor's Desk revamp
    WITHOUT a bundle rebuild, because the authenticated channels available
    right now cannot transport a 309 KB bundle
    (handover token expired 2026-09-27; MCP OAuth has inline-content limits).
+   v4.0: desk cards swapped to the 7 studio-chassis packs (new titles,
+   descriptions, serials shown on card).
 
    Blocks:
    1. Hero sub-line swap + logo sizing
@@ -373,13 +375,13 @@
   }
 
   var DESK_REPORTS = [
-    { tag: 'CORE', title: 'DUBAI H1 2026 MARKET INTELLIGENCE BRIEF', line: 'Verified DLD data. Corridor pricing. Off-plan vs ready, with the misses included.' },
-    { tag: 'CORE', title: "CASH BUYER'S GUIDE TO UAE REAL ESTATE 2026", line: 'Negotiating below market value. Price per sqft framework. Built for unleveraged capital.' },
-    { tag: 'GEO', title: 'DUBAI CASH BUYERS: THE 2026 WINDOW', line: 'DLD transaction breakdown by corridor. Cash advantage vs mortgage, priced per sqft.' },
-    { tag: 'GEO', title: 'LONDON TO DUBAI: THE 2026 CAPITAL SHIFT', line: 'London yields 3 to 4 percent. Dubai yields 6 to 9. The math is moving money south.' },
-    { tag: 'GEO', title: 'DUBAI VS TORONTO, PRICED FOR CANADIANS', line: 'Zero income tax, price per sqft Toronto cannot match, Golden Visa pathway.' },
-    { tag: 'GEO', title: 'FROM THE BALKANS TO DUBAI', line: 'Serbia, Croatia, Bosnia. Case studies, legal framework, the corridor picks.' },
-    { tag: 'GEO', title: 'DUBAI 2026 FOR THE FARSI SPEAKING DIASPORA', line: 'Golden Visa step by step, Farsi speaking corridors, negotiation strategy.' }
+    { tag: 'CORE', title: 'H1 2026 DUBAI MARKET BRIEF', serial: 'MRLC-2026-H1B27-B', line: 'AED 419.9B across 112,850 deals. Ready beat off-plan on value for the first time in years. Corridor detail inside.' },
+    { tag: 'CORE', title: "THE CASH BUYER'S GUIDE", serial: 'MRLC-2026-CBG27-A', line: 'The metric board, the negotiation rules, and the three emirates. Built for unleveraged capital.' },
+    { tag: 'GEO', title: "DUBAI CASH BUYER'S REPORT, H1 2026", serial: 'MRLC-2026-DCB27-A', line: 'The data report behind the cash market. Where value moved, where demand is softening. Every figure DLD-verified.' },
+    { tag: 'GEO', title: "THE BRITISH INVESTOR'S GUIDE: LONDON TO DUBAI", serial: 'MRLC-2026-LDN27-A', line: 'UK landlords: up to 45% income tax, 28% CGT, 40% inheritance above 325K. UAE: zero. Net yield roughly double.' },
+    { tag: 'GEO', title: "THE CANADIAN INVESTOR'S GUIDE: TORONTO TO DUBAI", serial: 'MRLC-2026-TRT27-A', line: 'Foreign-buyer ban to January 2027, 25% Ontario speculation tax. UAE: full freehold, zero tax, hard-currency income.' },
+    { tag: 'GEO', title: "THE BALKAN INVESTOR'S GUIDE TO DUBAI", serial: 'MRLC-2026-BLK27-A', line: 'Zero tax, 5 to 6.5% net yields, USD-pegged dirham. Regional currencies lose 2 to 8% a year. The AED does not.' },
+    { tag: 'GEO', title: "THE FARSI-SPEAKING INVESTOR'S GUIDE TO DUBAI", serial: 'MRLC-2026-FAR27-A', line: 'Wealth preservation first. The 2026 rules: freehold is legal, power-of-attorney sales are banned, source of funds documented.' }
   ];
 
   function deskInput(ph, type) {
@@ -513,6 +515,7 @@
       top.appendChild(el('span', 'font-size:10px;letter-spacing:0.18em;color:#B08D4A;font-family:"Space Grotesk",sans-serif;font-weight:600;', null, r.tag));
       top.appendChild(el('h3', 'font-size:15px;color:' + SLATE + ';margin:10px 0 8px;line-height:1.35;font-family:"Space Grotesk",sans-serif;', null, r.title));
       top.appendChild(el('p', 'font-size:12.5px;color:rgba(90,102,98,0.8);line-height:1.6;font-family:Inter,sans-serif;', null, r.line));
+      if (r.serial) top.appendChild(el('p', 'font-size:10px;letter-spacing:0.14em;color:rgba(125,138,134,0.65);margin-top:10px;font-family:"Space Grotesk",sans-serif;', null, r.serial));
       card.appendChild(top);
       card.appendChild(el('span', 'font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:' + TEAL + ';margin-top:16px;font-family:"Space Grotesk",sans-serif;font-weight:600;', null, 'Request full PDF \u2192'));
       card.addEventListener('mouseenter', function () { card.style.transform = 'translateY(-3px)'; card.style.borderColor = 'rgba(15,107,98,0.4)'; });
