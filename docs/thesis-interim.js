@@ -9,7 +9,8 @@
    1. Hero sub-line swap + logo sizing
    2. Thesis strip injection (self-disabling if React #thesis exists)
    3. COPY SWEEP: targeted text replacements (em-dash purge per principal
-      order 2026-09-27; finance narrative removed; emirates stat reframed)
+      order 2026-09-27; finance narrative removed; emirates stat reframed;
+      Strada/BRN banned per principal order 2026-09-27 21:17)
       applied to current text nodes AND future DOM mutations (accordions).
    4. REAL GLOBE: country-outline canvas, self-hosted borders.json.
    5. INVESTOR'S DESK REVAMP (principal approval 2026-09-27): legacy
