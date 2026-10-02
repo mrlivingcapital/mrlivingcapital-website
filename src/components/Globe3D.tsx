@@ -106,8 +106,8 @@ function RealGlobe() {
         for (let i = 0; i < borders.length; i++) {
           const line = borders[i]
           for (let j = 0; j < line.length - 1; j++) {
-            const a = proj(line[j][0] / 10, line[j][1] / 10, R, cx, cy)
-            const b = proj(line[j + 1][0] / 10, line[j + 1][1] / 10, R, cx, cy)
+            const a = proj(line[j][0], line[j][1], R, cx, cy)
+            const b = proj(line[j + 1][0], line[j + 1][1], R, cx, cy)
             if (a[2] > 0 && b[2] > 0) {
               ctx.moveTo(a[0], a[1])
               ctx.lineTo(b[0], b[1])
