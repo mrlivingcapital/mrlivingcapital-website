@@ -338,10 +338,12 @@
     } catch (e) { return false; }
   }
 
-  function globeInit() {
-    var tries = 0;
-    var iv = setInterval(function () { if (upgradeGlobe() || ++tries > 24) clearInterval(iv); }, 500);
-  }
+  /* ============ 4. REAL GLOBE: RETIRED 2026-10-02 ============
+     The rebuilt production bundle (index-C3vnHLgC) now ships the corrected
+     orthographic globe in src/components/Globe3D.tsx. This interim override
+     also carried the /10 unit bug and hijacked the holder, hiding the fix.
+     Disabled: globeInit is a no-op so the bundle globe renders. */
+  function globeInit() { /* retired: bundle owns the globe since 2026-10-02 */ }
 
   /* ============ 5. INVESTOR'S DESK REVAMP + SOCIALS (2026-09-27, approved) ============ */
   var SOCIALS = [
