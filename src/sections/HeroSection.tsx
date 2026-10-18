@@ -8,216 +8,281 @@ export default function HeroSection() {
     return () => clearTimeout(timer)
   }, [])
 
+  const scrollTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section
       id="hero"
       style={{
         position: 'relative',
-        height: '100vh',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center',
         zIndex: 1,
+        background: '#161C1B',
+        overflow: 'hidden',
       }}
     >
-      {/* Dark vignette overlay for text readability */}
+      {/* Right-side intelligence globe visual */}
       <div
+        className="hero-globe-wrap"
         style={{
           position: 'absolute',
-          inset: 0,
-          background: 'radial-gradient(ellipse 60% 55% at 50% 50%, rgba(246, 241, 231, 0.88) 0%, rgba(246, 241, 231, 0.4) 50%, transparent 80%)',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: '58%',
+          opacity: loaded ? 1 : 0,
+          transition: 'opacity 1.6s ease 0.4s',
           pointerEvents: 'none',
-          zIndex: 0,
         }}
-      />
-
-      <div style={{ textAlign: 'center', maxWidth: 720, padding: '0 24px', position: 'relative', zIndex: 1 }}>
-        {/* Logo + brand */}
-        <div
+      >
+        <img
+          src="/images/hero-globe-a.jpg"
+          alt="Dubai as a living intelligence network"
           style={{
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s',
-            marginBottom: 10,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'center',
+            filter: 'saturate(1.05)',
           }}
-        >
-          <img
-            src="/images/logo-transparent.png"
-            alt="MR Living Capital"
-            style={{
-              height: 'clamp(260px, 32vw, 400px)',
-              width: 'auto',
-              display: 'block',
-              margin: '0 auto',
-            }}
-          />
-          <div style={{ width: 40, height: 1, background: 'rgba(15, 107, 98, 0.25)', margin: '10px auto 0' }} />
-        </div>
-
-        {/* Main Headline */}
-        <div
-          style={{
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(25px)',
-            transition: 'opacity 1s ease 0.6s, transform 1s ease 0.6s',
-            marginBottom: 10,
-          }}
-        >
-          <h1
-            className="font-hero"
-            style={{
-              fontSize: 'clamp(36px, 6.2vw, 66px)',
-              color: '#4A5552',
-              marginBottom: 4,
-            }}
-          >
-            LIVING PROOF.
-          </h1>
-          <h1
-            className="font-hero"
-            style={{
-              fontSize: 'clamp(36px, 6.2vw, 66px)',
-              color: '#0F6B62',
-            }}
-          >
-            LASTING LEGACY.
-          </h1>
-        </div>
-
-        {/* Tagline */}
-        <p
-          className="font-body"
-          style={{
-            fontSize: 'clamp(16px, 2.5vw, 19px)',
-            fontStyle: 'italic',
-            color: '#5A6662',
-            marginBottom: 6,
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 0.8s ease 1s, transform 0.8s ease 1s',
-          }}
-        >
-          We run our own numbers on investment opportunities.
-          <br />
-          First-party, measured, published with the misses included. The numbers make sense, or we don't proceed.
-        </p>
-
-        <p
-          className="font-body"
-          style={{
-            fontSize: 13,
-            color: 'rgba(90, 102, 98, 0.85)',
-            marginBottom: 24,
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s',
-          }}
-        >
-          Dubai · Real Estate Investment Advisory
-        </p>
-
-        {/* CTAs */}
-        <div
-          style={{
-            display: 'flex',
-            gap: 16,
-            justifyContent: 'center',
-            flexWrap: 'wrap',
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? 'translateY(0)' : 'translateY(15px)',
-            transition: 'opacity 0.8s ease 1.4s, transform 0.8s ease 1.4s',
-          }}
-        >
-          <a
-            href="https://wa.me/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-nav"
-            style={{
-              padding: '14px 28px',
-              borderRadius: 4,
-              background: '#0F6B62',
-              color: '#F6F1E7',
-              textDecoration: 'none',
-              fontSize: 12,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-              transition: 'all 0.3s ease',
-              letterSpacing: '0.06em',
-              fontWeight: 600,
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = '#2E8A80'
-              e.currentTarget.style.transform = 'scale(1.02)'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = '#0F6B62'
-              e.currentTarget.style.transform = 'scale(1)'
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 21l1.65-3.8a9 9 0 113.4 2.9L3 21" />
-              <path d="M9 12a1 1 0 001 0h0" />
-              <path d="M15 12a1 1 0 001 0h0" />
-              <path d="M10 15c.5 1 2.5 1.5 3.5 0" />
-            </svg>
-            WHATSAPP US
-          </a>
-
-          <a
-            href="#inquiry"
-            onClick={(e) => {
-              e.preventDefault()
-              document.getElementById('inquiry')?.scrollIntoView({ behavior: 'smooth' })
-            }}
-            className="font-nav"
-            style={{
-              padding: '14px 28px',
-              borderRadius: 4,
-              background: 'transparent',
-              color: '#5A6662',
-              border: '1px solid rgba(125, 138, 134, 0.4)',
-              textDecoration: 'none',
-              fontSize: 12,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 8,
-              transition: 'all 0.3s ease',
-              letterSpacing: '0.06em',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.45)'
-              e.currentTarget.style.color = '#0F6B62'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(125, 138, 134, 0.4)'
-              e.currentTarget.style.color = '#5A6662'
-            }}
-          >
-            START A CONVERSATION
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </a>
-        </div>
-
-        {/* Scroll indicator */}
+        />
+        {/* Fade the globe into the graphite ground */}
         <div
           style={{
             position: 'absolute',
-            bottom: 32,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            opacity: loaded ? 0.5 : 0,
-            transition: 'opacity 1s ease 2s',
+            inset: 0,
+            background:
+              'linear-gradient(90deg, #161C1B 0%, rgba(22, 28, 27, 0.85) 22%, rgba(22, 28, 27, 0.25) 55%, rgba(22, 28, 27, 0.05) 100%), linear-gradient(0deg, #161C1B 0%, transparent 22%), linear-gradient(180deg, rgba(22, 28, 27, 0.6) 0%, transparent 20%)',
           }}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7D8A86" strokeWidth="1.5">
-            <path d="M12 5v14M5 12l7 7 7-7" />
-          </svg>
+        />
+        {/* Soft teal ambience */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'radial-gradient(ellipse 55% 45% at 70% 45%, rgba(87, 169, 159, 0.10) 0%, transparent 70%)',
+          }}
+        />
+      </div>
+
+      {/* Content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 2,
+          maxWidth: 1200,
+          margin: '0 auto',
+          width: '100%',
+          padding: '140px 24px 90px',
+        }}
+      >
+        <div style={{ maxWidth: 700 }}>
+          {/* Kicker */}
+          <div
+            style={{
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? 'translateY(0)' : 'translateY(15px)',
+              transition: 'opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s',
+              marginBottom: 28,
+            }}
+          >
+            <span
+              className="font-nav"
+              style={{
+                color: '#C2A878',
+                fontSize: 11,
+                letterSpacing: '0.28em',
+                fontWeight: 600,
+              }}
+            >
+              INDEPENDENT REAL ESTATE INVESTMENT INTELLIGENCE
+            </span>
+          </div>
+
+          {/* Headline */}
+          <div
+            style={{
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? 'translateY(0)' : 'translateY(25px)',
+              transition: 'opacity 1s ease 0.55s, transform 1s ease 0.55s',
+              marginBottom: 26,
+            }}
+          >
+            <h1
+              className="font-hero"
+              style={{
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                color: '#F7F2E8',
+                lineHeight: 1.08,
+                marginBottom: 6,
+              }}
+            >
+              Property is the asset.
+            </h1>
+            <h1
+              className="font-hero"
+              style={{
+                fontSize: 'clamp(36px, 5vw, 56px)',
+                color: '#57A99F',
+                lineHeight: 1.08,
+                textShadow: '0 0 42px rgba(87, 169, 159, 0.35)',
+              }}
+            >
+              Intelligence is the edge.
+            </h1>
+          </div>
+
+          {/* Sub-copy */}
+          <p
+            className="font-body"
+            style={{
+              fontSize: 'clamp(15px, 1.8vw, 17px)',
+              color: 'rgba(247, 242, 232, 0.72)',
+              lineHeight: 1.75,
+              maxWidth: 480,
+              marginBottom: 14,
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? 'translateY(0)' : 'translateY(15px)',
+              transition: 'opacity 0.8s ease 0.9s, transform 0.8s ease 0.9s',
+            }}
+          >
+            We find what others miss. Market insight, first-party data and experience
+            applied to exceptional real estate opportunities, today and tomorrow.
+          </p>
+
+          <p
+            className="font-nav"
+            style={{
+              fontSize: 12,
+              letterSpacing: '0.18em',
+              color: 'rgba(194, 168, 120, 0.85)',
+              marginBottom: 36,
+              opacity: loaded ? 1 : 0,
+              transition: 'opacity 0.8s ease 1.05s',
+            }}
+          >
+            DUBAI · 25.2048° N, 55.2708° E
+          </p>
+
+          {/* CTAs */}
+          <div
+            style={{
+              display: 'flex',
+              gap: 14,
+              flexWrap: 'wrap',
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? 'translateY(0)' : 'translateY(15px)',
+              transition: 'opacity 0.8s ease 1.2s, transform 0.8s ease 1.2s',
+            }}
+          >
+            <button
+              onClick={() => scrollTo('market-intelligence')}
+              className="font-nav"
+              style={{
+                padding: '15px 30px',
+                borderRadius: 4,
+                background: '#0F6B62',
+                color: '#F7F2E8',
+                border: 'none',
+                cursor: 'pointer',
+                fontSize: 12,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                transition: 'all 0.3s ease',
+                letterSpacing: '0.08em',
+                fontWeight: 600,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#2E8A80'
+                e.currentTarget.style.transform = 'translateY(-2px)'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = '#0F6B62'
+                e.currentTarget.style.transform = 'translateY(0)'
+              }}
+            >
+              EXPLORE THE INTELLIGENCE
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7" />
+                <polyline points="7 7 17 7 17 17" />
+              </svg>
+            </button>
+
+            <button
+              onClick={() => scrollTo('founder-letter')}
+              className="font-nav"
+              style={{
+                padding: '15px 30px',
+                borderRadius: 4,
+                background: 'transparent',
+                color: 'rgba(247, 242, 232, 0.85)',
+                border: '1px solid rgba(194, 168, 120, 0.45)',
+                cursor: 'pointer',
+                fontSize: 12,
+                display: 'flex',
+                alignItems: 'center',
+                gap: 10,
+                transition: 'all 0.3s ease',
+                letterSpacing: '0.08em',
+                fontWeight: 600,
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = '#C2A878'
+                e.currentTarget.style.color = '#F7F2E8'
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = 'rgba(194, 168, 120, 0.45)'
+                e.currentTarget.style.color = 'rgba(247, 242, 232, 0.85)'
+              }}
+            >
+              MEET THE FOUNDER
+            </button>
+          </div>
         </div>
       </div>
+
+      {/* Bottom strip */}
+      <div
+        className="font-nav"
+        style={{
+          position: 'absolute',
+          bottom: 28,
+          left: 0,
+          right: 0,
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 28,
+          fontSize: 10,
+          letterSpacing: '0.24em',
+          color: 'rgba(247, 242, 232, 0.4)',
+          zIndex: 2,
+          opacity: loaded ? 1 : 0,
+          transition: 'opacity 1s ease 1.6s',
+          padding: '0 24px',
+          flexWrap: 'wrap',
+        }}
+      >
+        <span>REAL DATA</span>
+        <span style={{ color: 'rgba(194, 168, 120, 0.5)' }}>/</span>
+        <span>REAL ANALYSIS</span>
+        <span style={{ color: 'rgba(194, 168, 120, 0.5)' }}>/</span>
+        <span>SMARTER DECISIONS</span>
+      </div>
+
+      {/* Responsive: soften globe on small screens */}
+      <style>{`
+        @media (max-width: 900px) {
+          .hero-globe-wrap {
+            width: 100% !important;
+            opacity: 0.28 !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

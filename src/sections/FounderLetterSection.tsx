@@ -7,191 +7,210 @@ export default function FounderLetterSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#F6F1E7',
+        background: '#123B37',
         padding: '120px 24px',
+        overflow: 'hidden',
       }}
     >
-      {/* Subtle texture overlay */}
+      {/* Ambient teal glow */}
       <div
         style={{
           position: 'absolute',
           inset: 0,
-          background: 'radial-gradient(ellipse at 20% 50%, rgba(15, 107, 98, 0.03) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse 45% 55% at 18% 40%, rgba(87, 169, 159, 0.10) 0%, transparent 65%)',
           pointerEvents: 'none',
         }}
       />
 
-      <div style={{ maxWidth: 900, margin: '0 auto', position: 'relative' }}>
-        <ScrollReveal>
-          <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <span
-              className="font-caption"
-              style={{ color: '#0F6B62', fontSize: 12, letterSpacing: '0.15em', display: 'block', marginBottom: 16 }}
-            >
-              THE FOUNDER&apos;S LETTER
-            </span>
-            <h2
-              className="font-heading"
-              style={{ fontSize: 'clamp(28px, 4vw, 44px)', color: '#5A6662', marginBottom: 12 }}
-            >
-              DISCIPLINE <span style={{ color: '#0F6B62' }}>FIRST.</span>
-              <br />
-              CONVICTION <span style={{ color: '#0F6B62' }}>ALWAYS.</span>
-            </h2>
-            <p
-              className="font-body"
-              style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}
-            >
-              Why process matters in every allocation decision.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        {/* Founder Photo */}
-        <ScrollReveal delay={0.12}>
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <div
-              style={{
-                display: 'inline-block',
-                position: 'relative',
-              }}
-            >
-              <img
-                src="/images/masoud-founder.jpg"
-                alt="Masoud, Founder of MR Living Capital"
-                style={{
-                  width: 200,
-                  height: 200,
-                  objectFit: 'cover',
-                  borderRadius: 20,
-                  border: '2px solid #0F6B62',
-                  boxShadow: '0 0 30px rgba(15, 107, 98, 0.12)',
-                }}
-                loading="eager"
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: 4,
-                  right: 4,
-                  width: 20,
-                  height: 20,
-                  background: '#0F6B62',
-                  borderRadius: '50%',
-                  border: '3px solid #F6F1E7',
-                }}
-              />
-            </div>
-            <p
-              className="font-body"
-              style={{ color: 'rgba(90, 102, 98, 0.3)', fontSize: 12, marginTop: 12, fontStyle: 'italic' }}
-            >
-              Entrepreneur. Investor. Steward of capital.
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={0.15}>
-          <div
-            className="glass-card"
-            style={{
-              padding: '56px 48px',
-              position: 'relative',
-              borderLeft: '3px solid #0F6B62',
-            }}
-          >
-            {/* Decorative quote mark */}
-            <div
-              style={{
-                position: 'absolute',
-                top: 24,
-                left: 36,
-                fontSize: 96,
-                color: 'rgba(15, 107, 98, 0.08)',
-                fontFamily: 'Georgia, serif',
-                lineHeight: 1,
-                userSelect: 'none',
-              }}
-            >
-              &ldquo;
-            </div>
-
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <p
-                className="font-body"
-                style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
-              >
-                Thirty-five years in Dubai. Three continents of market cycles behind me. I have bought, built, and walked away more times than most agents have shown units. One lesson repeats everywhere: how big money actually moves. Not how it talks. How it moves.
-              </p>
-
-              <p
-                className="font-body"
-                style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 20 }}
-              >
-                I started working at fourteen. Not because I had to, but because I understood early that how you steward capital defines the life you live and the legacy you leave. Today, MR Living Capital exists because serious investors deserve that same discipline: measured, first-party, published with the misses included.
-              </p>
-
-              <p
-                className="font-body"
-                style={{ color: 'rgba(90, 102, 98, 0.7)', fontSize: 16, lineHeight: 1.85, marginBottom: 28 }}
-              >
-                This is not a property shop. I don&apos;t sell listings; I filter them. Every opportunity I put in front of you has already passed my own capital test and a 100-point scorecard, because I invest my own money on the same scoreboard I recommend to you. I don&apos;t chase commissions. I architect capital. If the numbers don&apos;t make sense, we don&apos;t proceed. That is the only rule.
-              </p>
-
-              {/* Signature */}
-              <div
-                style={{
-                  borderTop: '1px solid rgba(125, 138, 134, 0.15)',
-                  paddingTop: 24,
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: 16,
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      color: '#0F6B62',
-                      fontSize: 18,
-                      fontWeight: 600,
-                      fontFamily: 'Space Grotesk, sans-serif',
-                      letterSpacing: '0.08em',
-                      marginBottom: 4,
-                    }}
-                  >
-                    MASOUD
-                  </div>
-                  <div
-                    style={{
-                      color: '#7D8A86',
-                      fontSize: 12,
-                      fontFamily: 'Space Grotesk, sans-serif',
-                      letterSpacing: '0.1em',
-                    }}
-                  >
-                    FOUNDER
+      <div style={{ maxWidth: 1150, margin: '0 auto', position: 'relative' }}>
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'minmax(300px, 420px) 1fr',
+            gap: 72,
+            alignItems: 'start',
+          }}
+          className="founder-grid"
+        >
+          {/* LEFT — Founder photo */}
+          <div style={{ position: 'relative' }}>
+            <ScrollReveal delay={0.15}>
+              <div style={{ position: 'relative', maxWidth: 420, margin: '0 auto' }}>
+                {/* Gold hairline frame */}
+                <div style={{ borderRadius: 22, border: '1px solid rgba(194, 168, 120, 0.4)', padding: 10 }}>
+                  <div style={{ borderRadius: 14, overflow: 'hidden', position: 'relative' }}>
+                    <img
+                      src="/images/masoud-founder-2026.jpg"
+                      alt="Masoud Rahemi, Founder of MR Living Capital"
+                      style={{
+                        width: '100%',
+                        aspectRatio: '1/1',
+                        objectFit: 'cover',
+                        display: 'block',
+                        filter: 'contrast(1.03)',
+                      }}
+                      loading="lazy"
+                    />
+                    {/* Subtle bottom vignette for the name plate */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: 'linear-gradient(180deg, transparent 70%, rgba(18, 59, 55, 0.55) 100%)',
+                        pointerEvents: 'none',
+                      }}
+                    />
                   </div>
                 </div>
 
-                <div style={{ textAlign: 'right' }}>
+                {/* Teal glow behind frame */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: -24,
+                    borderRadius: 34,
+                    background: 'radial-gradient(ellipse at center, rgba(87, 169, 159, 0.12) 0%, transparent 70%)',
+                    zIndex: -1,
+                    pointerEvents: 'none',
+                  }}
+                />
+
+                {/* Name block */}
+                <div style={{ textAlign: 'center', marginTop: 26 }}>
                   <div
+                    className="font-nav"
                     style={{
-                      color: 'rgba(90, 102, 98, 0.35)',
-                      fontSize: 11,
-                      fontFamily: 'Space Grotesk, sans-serif',
-                      fontStyle: 'italic',
+                      color: '#F7F2E8',
+                      fontSize: 18,
+                      fontWeight: 600,
+                      letterSpacing: '0.14em',
+                      marginBottom: 6,
                     }}
                   >
-                    Dubai, UAE
+                    MASOUD RAHEMI
+                  </div>
+                  <div
+                    className="font-nav"
+                    style={{
+                      color: '#C2A878',
+                      fontSize: 11,
+                      letterSpacing: '0.22em',
+                      fontWeight: 600,
+                    }}
+                  >
+                    FOUNDER · MR LIVING CAPITAL
                   </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           </div>
-        </ScrollReveal>
+
+          {/* RIGHT — The story */}
+          <div>
+            <ScrollReveal>
+              <span
+                className="font-nav"
+                style={{ color: '#57A99F', fontSize: 11, letterSpacing: '0.28em', display: 'block', marginBottom: 22, fontWeight: 600 }}
+              >
+                FOUNDER · MR LIVING CAPITAL
+              </span>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.1}>
+              <h2
+                style={{
+                  fontFamily: "'Cormorant Garamond', Georgia, serif",
+                  fontSize: 'clamp(30px, 3.8vw, 46px)',
+                  color: '#F7F2E8',
+                  lineHeight: 1.15,
+                  marginBottom: 28,
+                  fontWeight: 600,
+                }}
+              >
+                THE NAME IS THE THESIS.
+              </h2>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <p
+                className="font-body"
+                style={{ color: 'rgba(247, 242, 232, 0.85)', fontSize: 15.5, lineHeight: 1.85, marginBottom: 18 }}
+              >
+                Living capital is capital that outlives the transaction. A broker sells
+                you a unit and closes the file. I built MR Living Capital on the opposite
+                idea: the asset is the start of the relationship, not the end of a sale.
+                The name carries two obligations. Living: every allocation is
+                stress-tested against verified DLD data before a single dirham moves,
+                because advice that cannot survive scrutiny is not advice. Capital: your
+                money has a job, and my job is to protect it first and grow it second.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.3}>
+              <p
+                className="font-body"
+                style={{ color: 'rgba(247, 242, 232, 0.78)', fontSize: 15.5, lineHeight: 1.85, marginBottom: 18 }}
+              >
+                I am Masoud Rahemi, Founder of MR Living Capital. Thirty-five years in
+                Dubai. Own money in the market across three countries. A career spent
+                learning how decisions actually get made under uncertainty. Not finance.
+                Judgment. That is why I built XAI, our in-house investment engine: so no
+                client of mine ever bets life savings on a brochure. The same process I
+                run on my own capital, run on yours.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.4}>
+              <p
+                className="font-body"
+                style={{ color: 'rgba(247, 242, 232, 0.72)', fontSize: 15.5, lineHeight: 1.85, marginBottom: 34 }}
+              >
+                The brand line is a biography, not a slogan. When I was forty days old, a
+                surgeon told my father I would not survive without an operation, and my
+                father said yes. One courageous, informed decision made under the worst
+                possible uncertainty, and every decade since has validated it. That is
+                what Living Proof. Lasting Legacy. means. Evidence over hope. The
+                discipline to let the numbers speak. We bring that same discipline to
+                every allocation we architect.
+              </p>
+            </ScrollReveal>
+
+            {/* Highlight box (one per view, per studio standard) */}
+            <ScrollReveal delay={0.5}>
+              <div
+                style={{
+                  display: 'inline-block',
+                  background: '#B08D4A',
+                  borderRadius: 6,
+                  padding: '18px 28px',
+                }}
+              >
+                <span
+                  className="font-nav"
+                  style={{
+                    color: '#181A1C',
+                    fontSize: 13,
+                    letterSpacing: '0.14em',
+                    fontWeight: 700,
+                  }}
+                >
+                  WE DON&apos;T GUESS. WE CALCULATE.
+                </span>
+              </div>
+            </ScrollReveal>
+          </div>
+        </div>
       </div>
+
+      {/* Responsive styles */}
+      <style>{`
+        @media (max-width: 900px) {
+          .founder-grid {
+            grid-template-columns: 1fr !important;
+            gap: 52px !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

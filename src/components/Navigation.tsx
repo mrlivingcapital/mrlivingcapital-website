@@ -59,9 +59,9 @@ export default function Navigation() {
                 key={item.id}
                 onClick={() => scrollTo(item.id)}
                 className="font-nav transition-colors duration-300"
-                style={{ color: '#5A6662', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', opacity: 0.85 }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = '#0F6B62'; e.currentTarget.style.opacity = '1' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = '#5A6662'; e.currentTarget.style.opacity = '0.85' }}
+                style={{ color: scrolled || mobileOpen ? '#5A6662' : '#F7F2E8', background: 'none', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 600, letterSpacing: '0.06em', opacity: 0.85 }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = scrolled || mobileOpen ? '#0F6B62' : '#57A99F'; e.currentTarget.style.opacity = '1' }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = scrolled || mobileOpen ? '#5A6662' : '#F7F2E8'; e.currentTarget.style.opacity = '0.85' }}
               >
                 {item.label}
               </button>
@@ -124,7 +124,7 @@ export default function Navigation() {
                 display: 'block',
                 width: 22,
                 height: 2,
-                background: mobileOpen ? '#0F6B62' : '#5A6662',
+                background: (mobileOpen || scrolled) ? '#0F6B62' : '#F7F2E8',
                 transition: 'all 0.3s ease',
                 transform: mobileOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none',
               }} />
@@ -132,7 +132,7 @@ export default function Navigation() {
                 display: 'block',
                 width: 22,
                 height: 2,
-                background: mobileOpen ? '#0F6B62' : '#5A6662',
+                background: (mobileOpen || scrolled) ? '#0F6B62' : '#F7F2E8',
                 transition: 'all 0.3s ease',
                 opacity: mobileOpen ? 0 : 1,
               }} />
@@ -140,7 +140,7 @@ export default function Navigation() {
                 display: 'block',
                 width: 22,
                 height: 2,
-                background: mobileOpen ? '#0F6B62' : '#5A6662',
+                background: (mobileOpen || scrolled) ? '#0F6B62' : '#F7F2E8',
                 transition: 'all 0.3s ease',
                 transform: mobileOpen ? 'rotate(-45deg) translate(5px, -5px)' : 'none',
               }} />
