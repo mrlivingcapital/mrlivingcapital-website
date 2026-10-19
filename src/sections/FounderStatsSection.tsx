@@ -15,7 +15,7 @@ export default function FounderStatsSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: '#F6F1E7',
+        background: 'rgba(246, 241, 231, 0.92)',
         padding: '80px 24px',
       }}
     >

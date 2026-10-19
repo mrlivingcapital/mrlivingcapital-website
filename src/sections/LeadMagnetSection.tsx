@@ -79,7 +79,7 @@ export default function LeadMagnetSection() {
   }
 
   return (
-    <section id="lead-magnet" style={{ position: 'relative', zIndex: 2, background: '#F6F1E7', padding: '100px 24px' }}>
+    <section id="lead-magnet" style={{ position: 'relative', zIndex: 2, background: 'rgba(246, 241, 231, 0.92)', padding: '100px 24px' }}>
       <div style={{ maxWidth: 720, margin: '0 auto' }}>
         <ScrollReveal>
           <div className="glass-card" style={{ padding: '48px 40px', position: 'relative', overflow: 'hidden' }}>

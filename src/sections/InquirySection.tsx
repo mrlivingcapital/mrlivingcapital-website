@@ -55,7 +55,7 @@ export default function InquirySection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: 'linear-gradient(180deg, #F6F1E7 0%, #D9CDB8 50%, #F6F1E7 100%)',
+        background: 'linear-gradient(180deg, rgba(246, 241, 231, 0.92) 0%, rgba(217, 205, 184, 0.92) 50%, rgba(246, 241, 231, 0.92) 100%)',
         padding: '160px 24px',
       }}
     >

@@ -136,7 +136,7 @@ export default function BlogSection() {
   }
 
   return (
-    <section id="blog" style={{ position: 'relative', zIndex: 2, background: '#F6F1E7', padding: '120px 24px' }}>
+    <section id="blog" style={{ position: 'relative', zIndex: 2, background: 'rgba(246, 241, 231, 0.92)', padding: '120px 24px' }}>
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>

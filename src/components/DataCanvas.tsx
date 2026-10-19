@@ -217,7 +217,7 @@ export default function DataCanvas() {
       style={{
         position: 'absolute',
         inset: 0,
-        background: '#F6F1E7',
+        background: 'rgba(246, 241, 231, 0.92)',
         cursor: 'crosshair',
       }}
     >
