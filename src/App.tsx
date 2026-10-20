@@ -6,6 +6,7 @@ import HeroSection from './sections/HeroSection'
 import FounderStatsSection from './sections/FounderStatsSection'
 import FounderLetterSection from './sections/FounderLetterSection'
 import ThesisSection from './sections/ThesisSection'
+import LayersSection from './sections/LayersSection'
 import MarketIntelligenceSection from './sections/MarketIntelligenceSection'
 import CorridorsSection from './sections/CorridorsSection'
 import InfrastructureSection from './sections/InfrastructureSection'
@@ -65,6 +66,10 @@ function App() {
 
         {/* 3.5 THESIS:the four pillars, bridges social traffic into the argument */}
         <ThesisSection />
+        <div className="section-divider" />
+
+        {/* 3.5 THE 5 LAYERS:signature scroll stage, the intelligence model made visual */}
+        <LayersSection />
         <div className="section-divider" />
 
         {/* 4. AUTHORITY:DLD-verified data, 3 emirates */}
