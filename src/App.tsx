@@ -74,58 +74,40 @@ function App() {
           <ThesisSection />
           <LayersSection />
         </div>
-        <div className="section-divider" />
 
-        {/* 3.6 DECISION LAB:interactive scenario model, qualifies intent before the data wall */}
-        <DecisionLabSection />
+        {/* CHAPTER 04 · THE PROOF:DLD-verified data, then the Living Map */}
+        <div className="chapter" id="ch-04-the-proof">
+          <MarketIntelligenceSection />
+          <LivingMapSection />
+        </div>
 
-        {/* 4. AUTHORITY:DLD-verified data, 3 emirates */}
-        <MarketIntelligenceSection />
-        <div className="section-divider" />
+        {/* CHAPTER 05 · THE LAB:interactive scenario model */}
+        <div className="chapter" id="ch-05-the-lab">
+          <DecisionLabSection />
+        </div>
 
-        {/* 5. GATED REPORT:H1 2026 brief, email + mobile required */}
-        <LeadMagnetSection />
-        <div className="section-divider" />
+        {/* CHAPTER 06 · THE OPPORTUNITIES:allocation corridors, then the hidden gems */}
+        <div className="chapter" id="ch-06-opportunities">
+          <CorridorsSection />
+          <HiddenGemsSection />
+        </div>
 
-        {/* 6. PRODUCT:Generational Wealth Allocation Zones */}
-        <CorridorsSection />
-        <div className="section-divider" />
+        {/* CHAPTER 07 · THE KNOWLEDGE:the why, field notes, then what's next */}
+        <div className="chapter" id="ch-07-knowledge">
+          <InfrastructureSection />
+          <BlogSection />
+          <IntelligenceTeaserSection />
+        </div>
 
-        {/* 6.5 HIDDEN GEMS:curated districts we track closely */}
-        <HiddenGemsSection />
-
-        {/* 7. HIGH-INTENT CAPTURE:Distress deals, serious buyers only */}
-        <DistressDealsSection />
-        <div className="section-divider" />
-
-        {/* 8. WHY:Government strategy immediately after corridors */}
-        <InfrastructureSection />
-        <div className="section-divider" />
-
-        {/* 9. INTELLIGENCE:Regional market briefings */}
-        <BlogSection />
-        <div className="section-divider" />
-
-        {/* 8.5 LIVING MAP:the intelligence layer made visible, interactive nodes */}
-        <LivingMapSection />
-
-        {/* 8.6 WHAT'S NEXT:XAI engine teaser, positions the proprietary platform */}
-        <IntelligenceTeaserSection />
-
-        {/* 10. OBJECTIONS:Handle concerns before conversion */}
-        <FAQSection />
-        <div className="section-divider" />
-
-        {/* 11. HARD CONVERSION:Partnership conversation */}
-        <InquirySection />
-        <div className="section-divider" />
-
-        {/* 12. REINFORCE:Live data ticker */}
-        <MarketTicker />
-        <div className="section-divider" />
-
-        {/* 13. SOFT CAPTURE:Corridor Brief email subscription */}
-        <CorridorBriefSection />
+        {/* CHAPTER 08 · THE CONVERSATION:everything conversion, one closing chapter */}
+        <div className="chapter" id="ch-08-conversation">
+          <LeadMagnetSection />
+          <DistressDealsSection />
+          <FAQSection />
+          <InquirySection />
+          <MarketTicker />
+          <CorridorBriefSection />
+        </div>
       </main>
 
       <FooterSection />
