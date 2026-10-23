@@ -40,7 +40,12 @@ const PILLARS = [
 
 export default function ThesisSection() {
   const ref = useRef<HTMLElement>(null)
+  const rowRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
+
+  const scrollRow = (dir: number) => {
+    rowRef.current?.scrollBy({ left: dir * 320, behavior: 'smooth' })
+  }
 
   useEffect(() => {
     const el = ref.current
@@ -96,11 +101,42 @@ export default function ThesisSection() {
         </p>
       </div>
 
+      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8, marginBottom: 14 }}>
+        <button
+          type="button"
+          aria-label="Previous pillar"
+          onClick={() => scrollRow(-1)}
+          style={{
+            width: 34, height: 34, borderRadius: 4, cursor: 'pointer',
+            border: '1px solid rgba(15, 107, 98, 0.3)', background: 'rgba(246, 241, 231, 0.7)',
+            color: '#0F6B62', fontSize: 15, lineHeight: 1,
+          }}
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          aria-label="Next pillar"
+          onClick={() => scrollRow(1)}
+          style={{
+            width: 34, height: 34, borderRadius: 4, cursor: 'pointer',
+            border: '1px solid rgba(15, 107, 98, 0.3)', background: 'rgba(246, 241, 231, 0.7)',
+            color: '#0F6B62', fontSize: 15, lineHeight: 1,
+          }}
+        >
+          →
+        </button>
+      </div>
+
       <div
+        ref={rowRef}
+        className="no-scrollbar"
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))',
+          display: 'flex',
           gap: 16,
+          overflowX: 'auto',
+          scrollSnapType: 'x proximity',
+          paddingBottom: 8,
         }}
       >
         {PILLARS.map((p, i) => (
@@ -108,6 +144,8 @@ export default function ThesisSection() {
             key={p.n}
             href={p.link}
             style={{
+              flex: '0 0 290px',
+              scrollSnapAlign: 'start',
               background: '#EEE7DA',
               border: '1px solid rgba(15, 107, 98, 0.12)',
               borderRadius: 6,

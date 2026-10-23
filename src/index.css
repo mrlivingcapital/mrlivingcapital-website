@@ -330,3 +330,21 @@
     font-size: 10px !important;
   }
 }
+
+/* CHAPTER STORY MODE (2026-10-23): snap scrolling + horizontal panels */
+html {
+  scroll-snap-type: y proximity;
+}
+
+.chapter {
+  scroll-snap-align: start;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}

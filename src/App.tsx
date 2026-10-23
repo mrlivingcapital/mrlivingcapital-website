@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react'
 import Navigation from './components/Navigation'
+import ChapterRail from './components/ChapterRail'
 import FloatingSocials from './components/FloatingSocials'
 import MarketTicker from './components/MarketTicker'
 import HeroSection from './sections/HeroSection'
@@ -53,27 +54,26 @@ function App() {
       </Suspense>
 
       <Navigation />
+      <ChapterRail />
       <FloatingSocials />
 
       <main>
-        {/* 1. HOOK:Founder DNA first impression */}
-        <HeroSection />
-        <div className="section-divider" />
+        {/* CHAPTER 01 · THE HOOK */}
+        <div className="chapter" id="ch-01-hook">
+          <HeroSection />
+        </div>
 
-        {/* 2. CREDIBILITY:The numbers that matter */}
-        <FounderStatsSection />
-        <div className="section-divider" />
+        {/* CHAPTER 02 · THE MAN:instant trust, then the story behind the brand */}
+        <div className="chapter" id="ch-02-the-man">
+          <FounderStatsSection />
+          <FounderLetterSection />
+        </div>
 
-        {/* 3. TRUST:The story behind the brand */}
-        <FounderLetterSection />
-        <div className="section-divider" />
-
-        {/* 3.5 THESIS:the four pillars, bridges social traffic into the argument */}
-        <ThesisSection />
-        <div className="section-divider" />
-
-        {/* 3.5 THE 5 LAYERS:signature scroll stage, the intelligence model made visual */}
-        <LayersSection />
+        {/* CHAPTER 03 · THE METHOD:the four pillars, then the 5 layers scroll stage */}
+        <div className="chapter" id="ch-03-the-method">
+          <ThesisSection />
+          <LayersSection />
+        </div>
         <div className="section-divider" />
 
         {/* 3.6 DECISION LAB:interactive scenario model, qualifies intent before the data wall */}
