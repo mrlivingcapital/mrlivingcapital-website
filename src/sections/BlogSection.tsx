@@ -141,10 +141,10 @@ export default function BlogSection() {
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 56 }}>
             <span className="font-caption" style={{ color: '#0F6B62', fontSize: 12, letterSpacing: '0.12em', display: 'block', marginBottom: 16 }}>
-              INVESTOR'S DESK
+              FIELD NOTES
             </span>
             <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662', marginBottom: 12 }}>
-              THE <span style={{ color: '#0F6B62' }}>INVESTOR&apos;S DESK</span>
+              IDEAS. <span style={{ color: '#0F6B62' }}>OBSERVATIONS.</span> MARKET INSIGHTS.
             </h2>
             <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 560, margin: '0 auto' }}>
               Geo-specific market briefings for Dubai, London, Toronto, the Balkans, and the Farsi Speaking Diaspora. Data-driven. DLD-verified.
@@ -277,7 +277,7 @@ export default function BlogSection() {
                   All inquiries handled personally by Masoud &middot; Dubai, UAE
                 </p>
                 <p style={{ color: 'rgba(15, 107, 98, 0.6)', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', marginTop: 2 }}>
-                  2 decades of institutional strategy &amp; private portfolio management
+                  Two decades of Dubai market execution &amp; private portfolio stewardship
                 </p>
               </div>
 

@@ -72,7 +72,7 @@ export default function LandmarksSection() {
             {/* Image */}
             <img
               src={currentLm.image}
-              alt={`${currentLm.name} — ${currentLm.location}`}
+              alt={`${currentLm.name}, ${currentLm.location}`}
               style={{
                 width: '100%',
                 height: '100%',

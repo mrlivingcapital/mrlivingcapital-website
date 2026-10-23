@@ -29,7 +29,7 @@ const allocations = [
     corridor: 'MBR CITY / SOBHA',
     country: 'UAE',
     entry: 'AED 2,000/sqft',
-    thesis: 'Green corridor premium aligned with Dubai 2040 sustainability mandates. AED 6.1B in 2025 sales validates institutional demand.',
+    thesis: 'Green corridor premium aligned with Dubai 2040 sustainability mandates. AED 6.1B in 2025 sales validates sustained end-user and investor demand.',
     status: 'SELECTIVE ENTRY',
     horizon: '2026-2030',
   },
@@ -62,7 +62,7 @@ export default function PortfolioAnalysisSection() {
               className="font-body"
               style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, maxWidth: 620, margin: '0 auto' }}
             >
-              Not what I&apos;m selling you — how I manage my own family portfolio through market cycles. This is the same discipline forged over 19 years of institutional financial management.
+              Not what I&apos;m selling you. This is how I manage my own family portfolio through market cycles, the same discipline built over two decades of Dubai market execution.
             </p>
           </div>
         </ScrollReveal>

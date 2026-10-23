@@ -1,4 +1,17 @@
+import { useEffect, useState } from 'react'
+
 export default function FloatingSocials() {
+  const [hidden, setHidden] = useState(false)
+
+  useEffect(() => {
+    const check = () => setHidden(window.innerWidth < 640)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  if (hidden) return null
+
   const socials = [
     {
       href: 'https://wa.me/971585899112?app_absent=0',

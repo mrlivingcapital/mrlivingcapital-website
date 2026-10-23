@@ -7,6 +7,7 @@ import FounderStatsSection from './sections/FounderStatsSection'
 import FounderLetterSection from './sections/FounderLetterSection'
 import ThesisSection from './sections/ThesisSection'
 import LayersSection from './sections/LayersSection'
+import DecisionLabSection from './sections/DecisionLabSection'
 import MarketIntelligenceSection from './sections/MarketIntelligenceSection'
 import CorridorsSection from './sections/CorridorsSection'
 import InfrastructureSection from './sections/InfrastructureSection'
@@ -15,6 +16,9 @@ import FAQSection from './sections/FAQSection'
 import LeadMagnetSection from './sections/LeadMagnetSection'
 import DistressDealsSection from './sections/DistressDealsSection'
 import CorridorBriefSection from './sections/CorridorBriefSection'
+import HiddenGemsSection from './sections/HiddenGemsSection'
+import LivingMapSection from './sections/LivingMapSection'
+import IntelligenceTeaserSection from './sections/IntelligenceTeaserSection'
 import InquirySection from './sections/InquirySection'
 import FooterSection from './sections/FooterSection'
 
@@ -52,7 +56,7 @@ function App() {
       <FloatingSocials />
 
       <main>
-        {/* 1. HOOK:Institutional DNA first impression */}
+        {/* 1. HOOK:Founder DNA first impression */}
         <HeroSection />
         <div className="section-divider" />
 
@@ -72,6 +76,9 @@ function App() {
         <LayersSection />
         <div className="section-divider" />
 
+        {/* 3.6 DECISION LAB:interactive scenario model, qualifies intent before the data wall */}
+        <DecisionLabSection />
+
         {/* 4. AUTHORITY:DLD-verified data, 3 emirates */}
         <MarketIntelligenceSection />
         <div className="section-divider" />
@@ -84,6 +91,9 @@ function App() {
         <CorridorsSection />
         <div className="section-divider" />
 
+        {/* 6.5 HIDDEN GEMS:curated districts we track closely */}
+        <HiddenGemsSection />
+
         {/* 7. HIGH-INTENT CAPTURE:Distress deals, serious buyers only */}
         <DistressDealsSection />
         <div className="section-divider" />
@@ -95,6 +105,12 @@ function App() {
         {/* 9. INTELLIGENCE:Regional market briefings */}
         <BlogSection />
         <div className="section-divider" />
+
+        {/* 8.5 LIVING MAP:the intelligence layer made visible, interactive nodes */}
+        <LivingMapSection />
+
+        {/* 8.6 WHAT'S NEXT:XAI engine teaser, positions the proprietary platform */}
+        <IntelligenceTeaserSection />
 
         {/* 10. OBJECTIONS:Handle concerns before conversion */}
         <FAQSection />

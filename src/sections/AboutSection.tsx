@@ -9,7 +9,7 @@ const reasons = [
       </svg>
     ),
     title: 'Institutional Discipline, Not Sales Pressure',
-    desc: 'Every allocation is stress-tested against verified DLD data and your risk profile before a single dirham is committed. The same process I forged over two decades within financial institutions and private portfolio management.'
+    desc: 'Every allocation is stress-tested against verified DLD data and your risk profile before a single dirham is committed. The same process I forged over two decades of Dubai market execution.'
   },
   {
     icon: (
@@ -19,7 +19,7 @@ const reasons = [
       </svg>
     ),
     title: 'Stewardship, Not Commission-Chasing.',
-    desc: 'Brokers push inventory that pays them best. We independently verify every corridor and developer — allocating only where DLD data confirms generational outperformance. Your capital is the priority, never the transaction.'
+    desc: 'Brokers push inventory that pays them best. We independently verify every corridor and developer, allocating only where DLD data confirms generational outperformance. Your capital is the priority, never the transaction.'
   },
   {
     icon: (
@@ -28,8 +28,8 @@ const reasons = [
         <path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3" />
       </svg>
     ),
-    title: 'First-Mover, Institutional-Grade',
-    desc: 'We identify corridors before they hit the mainstream — the same institutional foresight I developed over two decades. Our partners enter at pre-launch pricing while others browse listed inventory.'
+    title: 'First-Mover Advantage',
+    desc: 'We identify corridors before they hit the mainstream, the same market foresight I developed over two decades. Our partners enter at pre-launch pricing while others browse listed inventory.'
   },
   {
     icon: (
@@ -92,7 +92,7 @@ export default function AboutSection() {
                 className="font-body"
                 style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 15, lineHeight: 1.7, marginBottom: 16 }}
               >
-                I spent two decades designing and implementing strategies within financial institutions and freelance private portfolio management, managing capital across three continents. I survived what should have killed me. Then I built MR Living Capital to bring that same institutional discipline to serious investors building real wealth in the UAE. Cold-blooded analysis. Zero sales agenda.
+                I spent two decades on the ground in Dubai, reading the market cycle by cycle and managing private capital across three continents. I survived what should have killed me. Then I built MR Living Capital to bring that same discipline to serious investors building real wealth in the UAE. Cold-blooded analysis. Zero sales agenda.
               </p>
             </ScrollReveal>
 
@@ -101,7 +101,7 @@ export default function AboutSection() {
                 className="font-body"
                 style={{ color: 'rgba(90, 102, 98, 0.8)', fontSize: 15, lineHeight: 1.7, marginBottom: 40 }}
               >
-                Every engagement begins with one question: what does your capital need to achieve? From there, we build a tailor-made investment roadmap — not a sales pitch. The same rigorous process I forged over two decades, now applied across the UAE&apos;s highest-growth corridors in Dubai, Abu Dhabi, and Ras Al Khaimah.
+                Every engagement begins with one question: what does your capital need to achieve? From there, we build a tailor-made investment roadmap, not a sales pitch. The same rigorous process I forged over two decades, now applied across the UAE&apos;s highest-growth corridors in Dubai, Abu Dhabi, and Ras Al Khaimah.
               </p>
             </ScrollReveal>
 
