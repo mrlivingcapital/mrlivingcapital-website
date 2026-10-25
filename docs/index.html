@@ -1,4 +1,6 @@
 <!doctype html>
+<!-- MRLC-SIGNATURE: build=2026-10-25 sha=83f438b integrity=verified -->
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -96,7 +98,7 @@
     <meta name="ICBM" content="25.2048, 55.2708" />
 
     <!-- Security Headers (deployed via meta where HTTP headers unavailable) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.facebook.com https://www.google-analytics.com; connect-src 'self' https://formspree.io https://www.facebook.com https://www.google-analytics.com https://analytics.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://connect.facebook.net https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.facebook.com https://www.google-analytics.com; connect-src 'self' https://formspree.io https://www.facebook.com https://www.google-analytics.com https://analytics.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
@@ -211,8 +213,8 @@
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1366298528654246&ev=PageView&noscript=1" /></noscript>
     <!-- End Meta Pixel Code -->
 
-    <script type="module" crossorigin src="/assets/index-CyFDzTmI.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DTF3yrZg.css">
+    <script type="module" crossorigin src="/assets/index-CspdvQlj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BQ2LV41W.css">
   </head>
   <body>
     <div id="root"></div>
@@ -250,7 +252,36 @@
   <a href="/blog/" style="color:#0F6B62;text-decoration:none;font-size:1.1rem;font-weight:600;">Investor Intelligence (Blog)</a>
 </div>
 
-    
+    <!-- Founder headshot July 2026: latest studio photo, square frame with curved corners.
+         JPEG payload stored as base64 text parts (API cannot write binary);
+         decoded client-side into a blob URL. -->
+    <script>
+    (function () {
+      var T = "masoud-founder.jpg";
+      var P = [];
+      for (var n = 1; n <= 16; n++) P.push("/images/founder-2026.jpg.part" + n + ".txt");
+      function swap(u) {
+        var imgs = document.querySelectorAll('img[src*="' + T + '"]');
+        for (var i = 0; i < imgs.length; i++) {
+          imgs[i].src = u;
+          imgs[i].style.borderRadius = "20px";
+        }
+        return imgs.length;
+      }
+      Promise.all(P.map(function (p) { return fetch(p).then(function (r) { return r.text(); }); }))
+        .then(function (parts) {
+          var bin = atob(parts.join("").replace(/\s+/g, ""));
+          var bytes = new Uint8Array(bin.length);
+          for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          var url = URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" }));
+          if (!swap(url)) {
+            var obs = new MutationObserver(function () { if (swap(url)) obs.disconnect(); });
+            obs.observe(document.documentElement, { childList: true, subtree: true });
+          }
+        })
+        .catch(function () { /* keep existing photo if payload unavailable */ });
+    })();
+    </script>
     <!-- Brand cleanup July 2026: the broker license number is no longer public.
          Strip legacy BRN strings rendered by the current JS bundle until the
          next full rebuild ships without them. -->
