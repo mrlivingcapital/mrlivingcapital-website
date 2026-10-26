@@ -33,7 +33,6 @@ export default function Navigation() {
   const socials = [
     { label: 'WhatsApp', href: 'https://wa.me/971585899112?app_absent=0' },
     { label: 'Instagram', href: 'https://instagram.com/mrlivingcapital' },
-    { label: 'Telegram', href: 'https://t.me/mrlivingcapital' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mrlivingcapital/' },
   ]
 

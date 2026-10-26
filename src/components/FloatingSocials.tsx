@@ -37,15 +37,6 @@ export default function FloatingSocials() {
       ),
     },
     {
-      href: 'https://t.me/mrlivingcapital',
-      label: 'Telegram',
-      icon: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21.2 3.2L2.5 10.8c-.7.3-.7 1.2.1 1.5l4.7 1.5 1.8 5.6c.2.5.8.7 1.2.3l2.5-2.5 4.9 3.6c.6.4 1.4.1 1.5-.6L21.9 4c.1-.7-.6-1.3-1.2-.9l-6.5 4.5-4.6-1.5c-.5-.2-.5-.8 0-1l10.4-1.9z" />
-        </svg>
-      ),
-    },
-    {
       href: 'https://www.linkedin.com/in/mrlivingcapital/',
       label: 'LinkedIn',
       icon: (
