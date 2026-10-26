@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect, useState } from 'react'
 import Navigation from './components/Navigation'
 import ChapterRail from './components/ChapterRail'
 import FloatingSocials from './components/FloatingSocials'
@@ -24,6 +24,7 @@ import InquirySection from './sections/InquirySection'
 import FooterSection from './sections/FooterSection'
 
 const ParticleGrid = lazy(() => import('./components/ParticleGrid'))
+const MotionLab = lazy(() => import('./lab/MotionLab'))
 
 /**
  * SECTION SEQUENCE v2:Lean conversion spine (July 2026 optimization)
@@ -47,8 +48,55 @@ const ParticleGrid = lazy(() => import('./components/ParticleGrid'))
  */
 
 function App() {
+  const [labOpen, setLabOpen] = useState(() => window.location.hash === '#lab')
+
+  useEffect(() => {
+    const onHash = () => setLabOpen(window.location.hash === '#lab')
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
+  const openLab = () => {
+    window.location.hash = '#lab'
+    setLabOpen(true)
+  }
+  const closeLab = () => {
+    history.pushState('', '', window.location.pathname + window.location.search)
+    setLabOpen(false)
+  }
+
+  if (labOpen) {
+    return (
+      <Suspense fallback={null}>
+        <MotionLab onClose={closeLab} />
+      </Suspense>
+    )
+  }
+
   return (
     <div style={{ background: '#F6F1E7', minHeight: '100vh' }}>
+      <button
+        type="button"
+        onClick={openLab}
+        className="font-caption"
+        style={{
+          position: 'fixed',
+          bottom: 22,
+          left: 22,
+          zIndex: 45,
+          background: '#0B2925',
+          color: '#B08D4A',
+          border: '1px solid rgba(176, 141, 74, 0.55)',
+          borderRadius: 6,
+          padding: '12px 18px',
+          fontSize: 10,
+          letterSpacing: '0.18em',
+          cursor: 'pointer',
+          boxShadow: '0 12px 32px rgba(11, 41, 37, 0.35)',
+        }}
+      >
+        ◆ SEE THE NEXT LEVEL →
+      </button>
       <Suspense fallback={null}>
         <ParticleGrid />
       </Suspense>
