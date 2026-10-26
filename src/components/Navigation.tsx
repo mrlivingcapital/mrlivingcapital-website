@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { scrollToElement } from '../lib/motion'
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
@@ -15,7 +16,7 @@ export default function Navigation() {
   const scrollTo = (id: string) => {
     const el = document.getElementById(id)
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
+      scrollToElement(el)
       setMobileOpen(false)
     }
   }

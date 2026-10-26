@@ -331,13 +331,12 @@
   }
 }
 
-/* CHAPTER STORY MODE (2026-10-23): snap scrolling + horizontal panels */
-html {
-  scroll-snap-type: y proximity;
-}
-
+/* CHAPTER STORY MODE (2026-10-23): full-height chapters.
+ * CSS scroll-snap removed 2026-10-26: it fights the Lenis smooth-scroll
+ * engine (src/lib/motion.ts). Chapter landing feel is now handled by
+ * Lenis easing at the end of each scroll gesture. */
 .chapter {
-  scroll-snap-align: start;
+  scroll-snap-align: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {

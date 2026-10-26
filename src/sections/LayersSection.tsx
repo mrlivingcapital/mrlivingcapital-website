@@ -196,7 +196,7 @@ export default function LayersSection() {
                   {/* city image on the middle plate */}
                   {i === 2 && (
                     <img
-                      src="/images/living-map-intelligence.jpg"
+                      src="/images/section-layers-aerial-v2.png"
                       alt="Dubai intelligence layer, aerial view with data overlays"
                       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', opacity: 0.72 }}
                     />

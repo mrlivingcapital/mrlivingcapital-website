@@ -33,7 +33,7 @@ export default function IntelligenceTeaserSection() {
         </div>
 
         <div style={{ position: 'relative', borderRadius: 12, overflow: 'hidden', border: '1px solid rgba(87, 169, 159, 0.28)', boxShadow: '0 30px 80px rgba(0, 0, 0, 0.4)' }}>
-          <img src="/images/intelligence-layers.jpg" alt="XAI intelligence layers over Dubai aerial view" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.92 }} />
+          <img src="/images/section-xai-core.png" alt="XAI intelligence core visualized as a sphere of light" data-parallax="0.08" style={{ display: 'block', width: '100%', height: 'auto', opacity: 0.95 }} />
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 55%, rgba(11, 41, 37, 0.85) 100%)', pointerEvents: 'none' }} />
           <div style={{ position: 'absolute', bottom: 16, left: 18, right: 18 }}>
             <div className="font-caption" style={{ color: '#57A99F', fontSize: 9.5, letterSpacing: '0.18em', marginBottom: 6 }}>

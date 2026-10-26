@@ -40,11 +40,12 @@ export default function HeroSection() {
         }}
       >
         <img
-          src="/images/hero-globe-a.jpg"
+          src="/images/AI-dubai-network-hero.png"
           alt="Dubai as a living intelligence network"
+          data-parallax="0.10"
           style={{
             width: '100%',
-            height: '100%',
+            height: '112%',
             objectFit: 'cover',
             objectPosition: 'center',
             filter: 'saturate(1.05)',

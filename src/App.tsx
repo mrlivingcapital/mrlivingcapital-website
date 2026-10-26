@@ -1,4 +1,5 @@
 import { Suspense, lazy, useEffect, useState } from 'react'
+import { initMotion } from './lib/motion'
 import Navigation from './components/Navigation'
 import ChapterRail from './components/ChapterRail'
 import FloatingSocials from './components/FloatingSocials'
@@ -55,6 +56,8 @@ function App() {
     window.addEventListener('hashchange', onHash)
     return () => window.removeEventListener('hashchange', onHash)
   }, [])
+
+  useEffect(() => initMotion(), [])
 
   const openLab = () => {
     window.location.hash = '#lab'

@@ -40,23 +40,25 @@ export default function FounderLetterSection() {
                 <div style={{ borderRadius: 22, border: '1px solid rgba(194, 168, 120, 0.4)', padding: 10 }}>
                   <div style={{ borderRadius: 14, overflow: 'hidden', position: 'relative' }}>
                     <img
-                      src="/images/masoud-founder-2026.jpg"
+                      src="/images/masoud-founder-chess-2026.jpg"
                       alt="Masoud Rahemi, Founder of MR Living Capital"
                       style={{
                         width: '100%',
-                        aspectRatio: '1/1',
+                        aspectRatio: '4/5',
                         objectFit: 'cover',
+                        objectPosition: 'center 20%',
                         display: 'block',
-                        filter: 'contrast(1.03)',
+                        filter: 'contrast(1.03) saturate(0.92)',
                       }}
                       loading="lazy"
                     />
-                    {/* Subtle bottom vignette for the name plate */}
+                    {/* Dark luxury treatment: graphite grade into the deep teal plate */}
                     <div
                       style={{
                         position: 'absolute',
                         inset: 0,
-                        background: 'linear-gradient(180deg, transparent 70%, rgba(18, 59, 55, 0.55) 100%)',
+                        background:
+                          'linear-gradient(180deg, rgba(18, 59, 55, 0.18) 0%, transparent 30%, transparent 62%, rgba(18, 59, 55, 0.62) 100%)',
                         pointerEvents: 'none',
                       }}
                     />
