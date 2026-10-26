@@ -39,10 +39,10 @@ export default function InquirySection() {
   const inputStyle: React.CSSProperties = {
     width: '100%',
     padding: '14px 16px',
-    background: 'rgba(125, 138, 134, 0.08)',
-    border: '1px solid rgba(125, 138, 134, 0.2)',
+    background: '#131A18',
+    border: '1px solid rgba(87, 169, 159, 0.2)',
     borderRadius: 8,
-    color: '#5A6662',
+    color: 'rgba(246, 241, 231, 0.78)',
     fontSize: 15,
     fontFamily: 'Inter, sans-serif',
     outline: 'none',
@@ -55,17 +55,17 @@ export default function InquirySection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: 'linear-gradient(180deg, rgba(246, 241, 231, 0.92) 0%, rgba(217, 205, 184, 0.92) 50%, rgba(246, 241, 231, 0.92) 100%)',
+        background: 'linear-gradient(180deg, #131A18 0%, rgba(18, 59, 55, 0.5) 50%, #131A18 100%)',
         padding: '160px 24px',
       }}
     >
       <div style={{ maxWidth: 600, margin: '0 auto' }}>
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 56px)', color: '#5A6662', marginBottom: 16 }}>
-              THE <span style={{ color: '#0F6B62' }}>PARTNERSHIP</span> CONVERSATION
+            <h2 className="font-heading" style={{ fontSize: 'clamp(32px, 5vw, 56px)', color: 'rgba(246, 241, 231, 0.78)', marginBottom: 16 }}>
+              THE <span style={{ color: '#57A99F' }}>PARTNERSHIP</span> CONVERSATION
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 16, maxWidth: 520, margin: '0 auto' }}>
+            <p className="font-body" style={{ color: 'rgba(246, 241, 231, 0.85)', fontSize: 16, maxWidth: 520, margin: '0 auto' }}>
               Enter your capital allocation objectives for a tailored briefing. All inquiries handled with complete discretion. I review every submission personally.
             </p>
           </div>
@@ -81,10 +81,10 @@ export default function InquirySection() {
               }}
             >
               <div style={{ fontSize: 48, marginBottom: 16 }}>✦</div>
-              <h3 className="font-heading" style={{ fontSize: 24, color: '#0F6B62', marginBottom: 12 }}>
+              <h3 className="font-heading" style={{ fontSize: 24, color: '#57A99F', marginBottom: 12 }}>
                 INQUIRY RECEIVED
               </h3>
-              <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 15 }}>
+              <p className="font-body" style={{ color: 'rgba(246, 241, 231, 0.85)', fontSize: 15 }}>
                 We will contact you within 24 hours.
               </p>
             </div>
@@ -100,8 +100,8 @@ export default function InquirySection() {
                     onChange={handleChange}
                     required
                     style={inputStyle}
-                    onFocus={(e) => (e.target.style.borderColor = 'rgba(15, 107, 98, 0.45)')}
-                    onBlur={(e) => (e.target.style.borderColor = 'rgba(125, 138, 134, 0.2)')}
+                    onFocus={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.45)')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.2)')}
                   />
                   <input
                     type="email"
@@ -111,8 +111,8 @@ export default function InquirySection() {
                     onChange={handleChange}
                     required
                     style={inputStyle}
-                    onFocus={(e) => (e.target.style.borderColor = 'rgba(15, 107, 98, 0.45)')}
-                    onBlur={(e) => (e.target.style.borderColor = 'rgba(125, 138, 134, 0.2)')}
+                    onFocus={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.45)')}
+                    onBlur={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.2)')}
                   />
                 </div>
 
@@ -123,8 +123,8 @@ export default function InquirySection() {
                   value={formData.phone}
                   onChange={handleChange}
                   style={inputStyle}
-                  onFocus={(e) => (e.target.style.borderColor = 'rgba(15, 107, 98, 0.45)')}
-                  onBlur={(e) => (e.target.style.borderColor = 'rgba(125, 138, 134, 0.2)')}
+                  onFocus={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.45)')}
+                  onBlur={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.2)')}
                 />
 
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 16 }}>
@@ -182,8 +182,8 @@ export default function InquirySection() {
                     ...inputStyle,
                     resize: 'vertical',
                   }}
-                  onFocus={(e) => (e.target.style.borderColor = 'rgba(15, 107, 98, 0.45)')}
-                  onBlur={(e) => (e.target.style.borderColor = 'rgba(125, 138, 134, 0.2)')}
+                  onFocus={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.45)')}
+                  onBlur={(e) => (e.target.style.borderColor = 'rgba(87, 169, 159, 0.2)')}
                 />
               </div>
 
@@ -194,7 +194,7 @@ export default function InquirySection() {
                   width: '100%',
                   padding: '18px',
                   borderRadius: 8,
-                  background: '#0F6B62',
+                  background: '#57A99F',
                   color: '#F6F1E7',
                   border: 'none',
                   fontSize: 13,
@@ -203,10 +203,10 @@ export default function InquirySection() {
                   transition: 'all 0.3s ease',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.background = '#2E8A80'
+                  e.currentTarget.style.background = '#57A99F'
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.background = '#0F6B62'
+                  e.currentTarget.style.background = '#57A99F'
                 }}
               >
                 SUBMIT INQUIRY →
@@ -215,7 +215,7 @@ export default function InquirySection() {
               <p
                 className="font-caption"
                 style={{
-                  color: '#7D8A86',
+                  color: 'rgba(246, 241, 231, 0.55)',
                   fontSize: 11,
                   textAlign: 'center',
                   marginTop: 16,
@@ -244,7 +244,7 @@ export default function InquirySection() {
               { label: 'Location', value: 'Dubai, UAE', href: undefined },
             ].map((item, i) => (
               <div key={i}>
-                <div className="font-caption" style={{ color: '#7D8A86', fontSize: 11, marginBottom: 4 }}>
+                <div className="font-caption" style={{ color: 'rgba(246, 241, 231, 0.55)', fontSize: 11, marginBottom: 4 }}>
                   {item.label}
                 </div>
                 {item.href ? (
@@ -253,18 +253,18 @@ export default function InquirySection() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
-                      color: i === 0 || i === 1 ? '#0F6B62' : '#5A6662',
+                      color: i === 0 || i === 1 ? '#57A99F' : 'rgba(246, 241, 231, 0.78)',
                       fontSize: 14,
                       textDecoration: 'none',
                       transition: 'color 0.3s ease',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = '#0F6B62')}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = i === 0 || i === 1 ? '#0F6B62' : '#5A6662')}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = '#57A99F')}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = i === 0 || i === 1 ? '#57A99F' : 'rgba(246, 241, 231, 0.78)')}
                   >
                     {item.value}
                   </a>
                 ) : (
-                  <div style={{ color: '#5A6662', fontSize: 14 }}>{item.value}</div>
+                  <div style={{ color: 'rgba(246, 241, 231, 0.78)', fontSize: 14 }}>{item.value}</div>
                 )}
               </div>
             ))}

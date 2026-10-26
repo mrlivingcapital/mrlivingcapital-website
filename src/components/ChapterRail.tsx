@@ -89,7 +89,7 @@ export default function ChapterRail() {
               style={{
                 fontSize: 9,
                 letterSpacing: '0.12em',
-                color: isActive ? '#B08D4A' : '#7D8A86',
+                color: isActive ? '#B08D4A' : 'rgba(246, 241, 231, 0.4)',
                 minWidth: 16,
                 textAlign: 'right',
               }}
@@ -100,7 +100,7 @@ export default function ChapterRail() {
               style={{
                 width: isActive ? 26 : 14,
                 height: 1,
-                background: isActive ? '#B08D4A' : 'rgba(125, 138, 134, 0.6)',
+                background: isActive ? '#B08D4A' : 'rgba(87, 169, 159, 0.35)',
                 transition: 'width 0.35s ease, background 0.35s ease',
               }}
             />
@@ -110,7 +110,7 @@ export default function ChapterRail() {
                 fontSize: 9,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
-                color: isActive ? '#38413E' : '#7D8A86',
+                color: isActive ? '#F6F1E7' : 'rgba(246, 241, 231, 0.4)',
                 opacity: isActive ? 1 : 0,
                 width: isActive ? 'auto' : 0,
                 overflow: 'hidden',

@@ -15,7 +15,7 @@ export default function FounderStatsSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: 'rgba(246, 241, 231, 0.92)',
+        background: '#131A18',
         padding: '80px 24px',
       }}
     >
@@ -36,7 +36,7 @@ export default function FounderStatsSection() {
                 style={{
                   fontSize: 'clamp(36px, 5vw, 56px)',
                   fontWeight: 700,
-                  color: '#0F6B62',
+                  color: '#57A99F',
                   fontFamily: 'Space Grotesk, sans-serif',
                   lineHeight: 1,
                   marginBottom: 8,
@@ -45,14 +45,14 @@ export default function FounderStatsSection() {
                 <StatCounter end={stat.value} duration={2.5} />
                 <span style={{ fontSize: '0.6em' }}>{stat.suffix}</span>
               </div>
-              <div className="font-caption" style={{ color: '#7D8A86', fontSize: 11 }}>
+              <div className="font-caption" style={{ color: 'rgba(246, 241, 231, 0.55)', fontSize: 11 }}>
                 {stat.label}
               </div>
             </div>
           </ScrollReveal>
         ))}
       </div>
-      <p className="font-caption" style={{ textAlign: 'center', color: 'rgba(125, 138, 134, 0.75)', fontSize: 11, marginTop: 40, letterSpacing: '0.12em' }}>
+      <p className="font-caption" style={{ textAlign: 'center', color: 'rgba(246, 241, 231, 0.75)', fontSize: 11, marginTop: 40, letterSpacing: '0.12em' }}>
         INDEPENDENT ADVISORY · DLD-VERIFIED RESEARCH
       </p>
     </section>

@@ -77,7 +77,7 @@ function App() {
   }
 
   return (
-    <div style={{ background: '#F6F1E7', minHeight: '100vh' }}>
+    <div style={{ background: '#161C1B', minHeight: '100vh' }}>
       <button
         type="button"
         onClick={openLab}

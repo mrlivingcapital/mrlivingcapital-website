@@ -114,7 +114,7 @@ function ParticleField() {
 
   return (
     <group ref={groupRef}>
-      <fog attach="fog" args={['#F6F1E7', 50, 140]} />
+      <fog attach="fog" args={['#161C1B', 50, 140]} />
       <instancedMesh ref={meshRef} args={[undefined, undefined, INSTANCE_COUNT]}>
         <planeGeometry args={[0.2, 0.2]}>
           <instancedBufferAttribute attach="attributes-color" args={[colors, 3]} />
@@ -135,7 +135,7 @@ export default function ParticleGrid() {
         width: '100%',
         height: '100%',
         zIndex: 0,
-        background: 'radial-gradient(ellipse at center, #FFFFFF 0%, #F6F1E7 70%)',
+        background: 'radial-gradient(ellipse at center, #1A2422 0%, #161C1B 70%)',
       }}
     >
       <Canvas

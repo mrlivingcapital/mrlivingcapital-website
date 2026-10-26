@@ -84,7 +84,7 @@ export default function ThesisSection() {
             fontSize: 11,
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
-            color: '#0F6B62',
+            color: '#57A99F',
             marginBottom: 12,
           }}
         >
@@ -92,11 +92,11 @@ export default function ThesisSection() {
         </p>
         <h2
           className="font-hero"
-          style={{ fontSize: 'clamp(26px, 4vw, 40px)', color: '#38413E', marginBottom: 10 }}
+          style={{ fontSize: 'clamp(26px, 4vw, 40px)', color: '#E9E2D3', marginBottom: 10 }}
         >
           The numbers make sense, or we don't proceed.
         </h2>
-        <p className="font-body" style={{ fontSize: 15, color: '#5A6662', maxWidth: 620, margin: '0 auto' }}>
+        <p className="font-body" style={{ fontSize: 15, color: 'rgba(246, 241, 231, 0.78)', maxWidth: 620, margin: '0 auto' }}>
           Four principles, one scoreboard. Everything we publish, from briefings to corridors, runs through them.
         </p>
       </div>
@@ -108,8 +108,8 @@ export default function ThesisSection() {
           onClick={() => scrollRow(-1)}
           style={{
             width: 34, height: 34, borderRadius: 4, cursor: 'pointer',
-            border: '1px solid rgba(15, 107, 98, 0.3)', background: 'rgba(246, 241, 231, 0.7)',
-            color: '#0F6B62', fontSize: 15, lineHeight: 1,
+            border: '1px solid rgba(87, 169, 159, 0.3)', background: '#131A18',
+            color: '#57A99F', fontSize: 15, lineHeight: 1,
           }}
         >
           ←
@@ -120,8 +120,8 @@ export default function ThesisSection() {
           onClick={() => scrollRow(1)}
           style={{
             width: 34, height: 34, borderRadius: 4, cursor: 'pointer',
-            border: '1px solid rgba(15, 107, 98, 0.3)', background: 'rgba(246, 241, 231, 0.7)',
-            color: '#0F6B62', fontSize: 15, lineHeight: 1,
+            border: '1px solid rgba(87, 169, 159, 0.3)', background: '#131A18',
+            color: '#57A99F', fontSize: 15, lineHeight: 1,
           }}
         >
           →
@@ -146,8 +146,8 @@ export default function ThesisSection() {
             style={{
               flex: '0 0 290px',
               scrollSnapAlign: 'start',
-              background: '#EEE7DA',
-              border: '1px solid rgba(15, 107, 98, 0.12)',
+              background: '#1D2A27',
+              border: '1px solid rgba(87, 169, 159, 0.12)',
               borderRadius: 6,
               padding: '24px 20px',
               textDecoration: 'none',
@@ -157,10 +157,10 @@ export default function ThesisSection() {
               transition: `opacity 0.6s ease ${0.1 + i * 0.1}s, transform 0.6s ease ${0.1 + i * 0.1}s, border-color 0.3s ease`,
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.45)'
+              e.currentTarget.style.borderColor = 'rgba(87, 169, 159, 0.45)'
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = 'rgba(15, 107, 98, 0.12)'
+              e.currentTarget.style.borderColor = 'rgba(87, 169, 159, 0.12)'
             }}
           >
             <div
@@ -176,16 +176,16 @@ export default function ThesisSection() {
             </div>
             <h3
               className="font-hero"
-              style={{ fontSize: 17, color: '#0F6B62', marginBottom: 10, lineHeight: 1.3 }}
+              style={{ fontSize: 17, color: '#57A99F', marginBottom: 10, lineHeight: 1.3 }}
             >
               {p.title}
             </h3>
-            <p className="font-body" style={{ fontSize: 13.5, color: '#5A6662', lineHeight: 1.65, marginBottom: 16 }}>
+            <p className="font-body" style={{ fontSize: 13.5, color: 'rgba(246, 241, 231, 0.78)', lineHeight: 1.65, marginBottom: 16 }}>
               {p.line}
             </p>
             <span
               className="font-nav"
-              style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#0F6B62' }}
+              style={{ fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#57A99F' }}
             >
               {p.cta} →
             </span>

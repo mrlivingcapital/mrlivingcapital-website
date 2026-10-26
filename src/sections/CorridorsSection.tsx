@@ -16,7 +16,7 @@ const emirates = [
       'D33 Agenda: AED 32 trillion GDP target by 2033,1M new jobs',
       'Freehold: 100% foreign ownership in designated zones, full title deed at DLD',
     ],
-    accentColor: '#0F6B62',
+    accentColor: '#57A99F',
     stats: { transactions: '112,850', value: 'AED 419.9B', priceSqft: 'AED 1,300-4,200+', population: '3.8M → 5.8M (2040)' },
   },
   {
@@ -33,7 +33,7 @@ const emirates = [
       'No property tax, no income tax, 100% foreign ownership in investment zones',
       'Etihad Rail direct link: Abu Dhabi-Dubai in 57 minutes from Q2 2026',
     ],
-    accentColor: '#0F6B62',
+    accentColor: '#57A99F',
     stats: { transactions: '12,500+', value: 'AED 71B', priceSqft: 'AED 900-2,500', population: '3.8M → 5M (2030)' },
   },
   {
@@ -50,7 +50,7 @@ const emirates = [
       'Population growing 400K → 600K by 2030,50% increase in housing demand',
       'No property tax, no income tax, 100% foreign ownership, streamlined DLD process',
     ],
-    accentColor: '#7D8A86',
+    accentColor: 'rgba(246, 241, 231, 0.55)',
     stats: { transactions: '3,200+', value: 'AED 8.5B', priceSqft: 'AED 1,000-1,600', population: '400K → 600K (2030)' },
   },
 ]
@@ -66,7 +66,7 @@ export default function CorridorsSection() {
       style={{
         position: 'relative',
         zIndex: 2,
-        background: 'rgba(246, 241, 231, 0.92)',
+        background: '#131A18',
         padding: '120px 24px',
       }}
     >
@@ -74,15 +74,15 @@ export default function CorridorsSection() {
         {/* Header */}
         <ScrollReveal>
           <div style={{ textAlign: 'center', marginBottom: 64 }}>
-            <span className="font-caption" style={{ color: '#0F6B62', display: 'block', marginBottom: 16, fontSize: 12, letterSpacing: '0.12em' }}>
+            <span className="font-caption" style={{ color: '#57A99F', display: 'block', marginBottom: 16, fontSize: 12, letterSpacing: '0.12em' }}>
               CAPITAL ALLOCATION
             </span>
-            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: '#5A6662' }}>
-              THREE <span style={{ color: '#0F6B62' }}>EMIRATES.</span>
+            <h2 className="font-heading" style={{ fontSize: 'clamp(28px, 4vw, 48px)', color: 'rgba(246, 241, 231, 0.78)' }}>
+              THREE <span style={{ color: '#57A99F' }}>EMIRATES.</span>
               <br />
-              ONE <span style={{ color: '#0F6B62' }}>ALLOCATION STRATEGY.</span>
+              ONE <span style={{ color: '#57A99F' }}>ALLOCATION STRATEGY.</span>
             </h2>
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.85)', maxWidth: 700, margin: '24px auto 0', fontSize: 16 }}>
+            <p className="font-body" style={{ color: 'rgba(246, 241, 231, 0.85)', maxWidth: 700, margin: '24px auto 0', fontSize: 16 }}>
               Dubai for liquidity and infrastructure. Abu Dhabi for stability and cultural capital. Ras Al Khaimah for yield and the Wynn catalyst. Each emirate serves a different function in a diversified UAE portfolio.
             </p>
           </div>
@@ -98,9 +98,9 @@ export default function CorridorsSection() {
                 style={{
                   padding: '12px 28px',
                   borderRadius: 4,
-                  border: activeEmirate === i ? '1px solid #0F6B62' : '1px solid rgba(125, 138, 134, 0.2)',
-                  background: activeEmirate === i ? 'rgba(15, 107, 98, 0.08)' : 'transparent',
-                  color: activeEmirate === i ? '#0F6B62' : '#7D8A86',
+                  border: activeEmirate === i ? '1px solid #57A99F' : '1px solid rgba(87, 169, 159, 0.2)',
+                  background: activeEmirate === i ? 'rgba(87, 169, 159, 0.08)' : 'transparent',
+                  color: activeEmirate === i ? '#57A99F' : 'rgba(246, 241, 231, 0.55)',
                   fontFamily: 'Space Grotesk, sans-serif',
                   fontSize: 13,
                   fontWeight: 600,
@@ -127,43 +127,43 @@ export default function CorridorsSection() {
           >
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 24, marginBottom: 20 }}>
               <div>
-                <div className="font-caption" style={{ color: '#0F6B62', fontSize: 12, marginBottom: 8 }}>
+                <div className="font-caption" style={{ color: '#57A99F', fontSize: 12, marginBottom: 8 }}>
                   {emirates[activeEmirate].tag}
                 </div>
-                <h3 className="font-heading" style={{ fontSize: 28, color: '#5A6662', textTransform: 'uppercase' }}>
+                <h3 className="font-heading" style={{ fontSize: 28, color: 'rgba(246, 241, 231, 0.78)', textTransform: 'uppercase' }}>
                   {emirates[activeEmirate].name}
                 </h3>
               </div>
               <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
                 <div>
-                  <div style={{ color: '#7D8A86', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>GROWTH</div>
-                  <div style={{ color: '#0F6B62', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].growth}</div>
+                  <div style={{ color: 'rgba(246, 241, 231, 0.55)', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>GROWTH</div>
+                  <div style={{ color: '#57A99F', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].growth}</div>
                 </div>
                 <div>
-                  <div style={{ color: '#7D8A86', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>YIELD</div>
-                  <div style={{ color: '#0F6B62', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].yield}</div>
+                  <div style={{ color: 'rgba(246, 241, 231, 0.55)', fontSize: 10, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em' }}>YIELD</div>
+                  <div style={{ color: '#57A99F', fontSize: 16, fontWeight: 600 }}>{emirates[activeEmirate].yield}</div>
                 </div>
               </div>
             </div>
 
-            <p className="font-body" style={{ color: 'rgba(90, 102, 98, 0.65)', fontSize: 15, lineHeight: 1.7, marginBottom: 20 }}>
+            <p className="font-body" style={{ color: 'rgba(246, 241, 231, 0.65)', fontSize: 15, lineHeight: 1.7, marginBottom: 20 }}>
               {emirates[activeEmirate].description}
             </p>
 
             {/* Key Stats Row */}
-            <div className="emirate-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24, padding: '16px 0', borderTop: '1px solid rgba(125, 138, 134, 0.1)', borderBottom: '1px solid rgba(125, 138, 134, 0.1)' }}>
+            <div className="emirate-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, marginBottom: 24, padding: '16px 0', borderTop: '1px solid rgba(87, 169, 159, 0.1)', borderBottom: '1px solid rgba(87, 169, 159, 0.1)' }}>
               {Object.entries(emirates[activeEmirate].stats).map(([key, value]) => (
                 <div key={key} style={{ textAlign: 'center' }}>
-                  <div className="stat-label" style={{ color: '#7D8A86', fontSize: 9, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{key.replace(/([A-Z])/g, ' $1').trim()}</div>
-                  <div className="stat-value" style={{ color: '#5A6662', fontSize: 13, fontWeight: 600, fontFamily: 'Space Grotesk, sans-serif' }}>{value}</div>
+                  <div className="stat-label" style={{ color: 'rgba(246, 241, 231, 0.55)', fontSize: 9, fontFamily: 'Space Grotesk, sans-serif', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{key.replace(/([A-Z])/g, ' $1').trim()}</div>
+                  <div className="stat-value" style={{ color: 'rgba(246, 241, 231, 0.78)', fontSize: 13, fontWeight: 600, fontFamily: 'Space Grotesk, sans-serif' }}>{value}</div>
                 </div>
               ))}
             </div>
 
             <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
               {emirates[activeEmirate].bullets.map((b, i) => (
-                <li key={i} style={{ color: 'rgba(90, 102, 98, 0.85)', fontSize: 14, marginBottom: 8, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                  <span style={{ color: '#0F6B62', fontSize: 12, marginTop: 2 }}>✦</span>
+                <li key={i} style={{ color: 'rgba(246, 241, 231, 0.85)', fontSize: 14, marginBottom: 8, display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                  <span style={{ color: '#57A99F', fontSize: 12, marginTop: 2 }}>✦</span>
                   {b}
                 </li>
               ))}
