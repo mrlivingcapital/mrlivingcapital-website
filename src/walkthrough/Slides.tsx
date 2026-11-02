@@ -1,4 +1,4 @@
-import { useState, type FormEvent, type KeyboardEvent, type ReactNode } from 'react'
+import { useState, type FormEvent, type ReactNode } from 'react'
 import { ArrowRight, ArrowUpRight, Mail, MessageCircle, Plus } from 'lucide-react'
 import Globe3D from '../components/Globe3D'
 import { DecisionLab } from '../architecture/components/DecisionLab'
@@ -144,21 +144,7 @@ function IntelligenceChart({ type }: { type: string }) {
   )
 }
 
-export function LayersSlide({ step, onStep }: { step: number; onStep: (step: number) => void }) {
-  const activeLayer = LAYERS[step]
-  const handleLayerKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-    let next = index
-    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = (index + 1) % LAYERS.length
-    else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') next = (index - 1 + LAYERS.length) % LAYERS.length
-    else if (event.key === 'Home') next = 0
-    else if (event.key === 'End') next = LAYERS.length - 1
-    else return
-    event.preventDefault()
-    event.stopPropagation()
-    onStep(next)
-    event.currentTarget.closest('[role="tablist"]')?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[next]?.focus()
-  }
-
+export function LayersSlide() {
   return (
     <div className="slide-layout layers-layout command-layout">
       <div className="command-heading">
@@ -184,33 +170,25 @@ export function LayersSlide({ step, onStep }: { step: number; onStep: (step: num
           <small>COMMAND CENTER</small>
         </div>
 
-        <div className="command-nodes" role="tablist" aria-label="Intelligence layers">
+        <div className="command-nodes" role="list" aria-label="Five active intelligence layers">
           {LAYERS.map((layer, index) => (
-            <button
-              type="button"
-              role="tab"
-              id={`layer-tab-${index}`}
-              aria-controls="layer-detail"
-              aria-selected={step === index}
-              tabIndex={step === index ? 0 : -1}
-              className={`command-node command-node-${index + 1} ${step === index ? 'active' : ''}`}
-              key={layer.n}
-              onClick={() => onStep(index)}
-              onKeyDown={(event) => handleLayerKey(event, index)}
-            >
+            <div role="listitem" className={`command-node command-node-${index + 1} active`} key={layer.n}>
               <span className="command-node-number">{layer.n}</span>
               <IntelligenceChart type={layer.visual} />
               <strong>{layer.title}</strong>
               <small>{layer.tags[0]} · {layer.tags[1]}</small>
-            </button>
+            </div>
           ))}
         </div>
       </div>
 
-      <div className="command-detail reveal-item" id="layer-detail" role="tabpanel" aria-labelledby={`layer-tab-${step}`} aria-live="polite">
-        <span>{activeLayer.n} / 05</span>
-        <div><h3>{activeLayer.title}</h3><p>{activeLayer.desc}</p></div>
-        <div className="command-detail-tags">{activeLayer.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+      <div className="command-detail reveal-item" id="layer-detail">
+        <span>05 / 05</span>
+        <div>
+          <h3>One integrated decision framework</h3>
+          <p>Market evidence establishes the baseline. Infrastructure and community context test delivery and demand. Capital scenarios expose the downside. Property intelligence connects the resulting thesis to the individual asset, income and exit.</p>
+        </div>
+        <div className="command-detail-tags"><span>MEASURE</span><span>VERIFY</span><span>STRESS-TEST</span><span>SELECT</span></div>
       </div>
     </div>
   )
@@ -278,7 +256,7 @@ export function CorridorsSlide() {
         <div className="corridor-detail reveal-item" aria-live="polite">
           <span>0{active + 1} / 03</span><h3>{CORRIDORS[active].title}</h3><p>{CORRIDORS[active].line}</p>
         </div>
-        <a className="text-link reveal-item" href="/corridors/index.html">Read the corridor briefings<ArrowRight size={16} /></a>
+        <a className="text-link reveal-item" href="/corridors/">Read the corridor briefings<ArrowRight size={16} /></a>
       </div>
     </div>
   )

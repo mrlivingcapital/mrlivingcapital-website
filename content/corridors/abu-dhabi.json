@@ -1,0 +1,21 @@
+{
+  "slug": "abu-dhabi",
+  "city": "Abu Dhabi",
+  "serial": "MRLC-2026-CD-AUH",
+  "version": "2026.11",
+  "as_of": "2026-05-20",
+  "thesis": "Stability and institutional depth.",
+  "canonical_url": "https://mrlivingcapital.com/corridors/abu-dhabi/",
+  "pdf_url": "https://mrlivingcapital.com/corridors/abu-dhabi/mrlc-2026-abu-dhabi-corridor-brief.pdf",
+  "source": "MR Living Capital, Three Emirates Comparison, 20 May 2026; qualitative editorial thesis",
+  "sections": [
+    {"id": "cover", "title": "Abu Dhabi", "body": "Stability and institutional depth.", "farsi": "ثبات و عمق نهادی."},
+    {"id": "market-function", "title": "Market function", "body": "Use Abu Dhabi when the allocation prioritises institutional continuity, long-range planning and a measured holding period. Assess whether the individual community and tenant profile support that stability thesis.", "farsi": "ابوظبی می‌تواند نقش ثبات و برنامه‌ریزی بلندمدت را در سبد ایفا کند."},
+    {"id": "demand-drivers", "title": "Demand drivers", "body": "Evaluate durable employment, community use and the depth of the regional tenant and buyer base. Do not mistake a stable institutional backdrop for guaranteed occupancy or resale.", "farsi": "تقاضای پایدار به اشتغال، کیفیت جامعه و عمق بازار اجاره و فروش بستگی دارد."},
+    {"id": "connectivity", "title": "Connectivity", "body": "Review delivered transport, community services and access to employment centres. Measure the journey that residents actually make and separate operational infrastructure from planned capacity.", "farsi": "زیرساخت عملیاتی و دسترسی به مراکز اشتغال باید سنجیده شود."},
+    {"id": "supply", "title": "Supply", "body": "Compare available stock and credible completions within the same community and tenant segment. Entry value depends on the alternatives facing future tenants and buyers, not on a city-wide stability label.", "farsi": "عرضه رقابتی باید در سطح هر جامعه و گروه مستاجر بررسی شود."},
+    {"id": "risks", "title": "Risks", "body": "The principal risks are a smaller exit audience, slower resale than a global gateway market and assuming institutional backing removes asset-level risk. Test income, fees and time to exit conservatively.", "farsi": "محدودیت خریداران آینده و زمان فروش مجدد از خطرهای اصلی است."},
+    {"id": "investor-fit", "title": "Investor fit", "body": "Best aligned with patient investors seeking institutional context and stable community demand. Less aligned with strategies requiring the fastest possible resale or a globally deep buyer pool.", "farsi": "این مسیر برای سرمایه‌گذار صبور و بلندمدت مناسب‌تر است."},
+    {"id": "verdict", "title": "Verdict", "body": "Abu Dhabi can serve as the stability component of a UAE allocation. Confirm community demand, net economics and exit depth before treating the institutional thesis as an investment conclusion. This is general market intelligence, not personalised financial advice.", "farsi": "ابوظبی می‌تواند جزء پایدار سبد باشد؛ اقتصاد واحد و خروج باید بررسی شود."}
+  ]
+}

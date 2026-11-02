@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- MRLC-SIGNATURE: build=2026-10-27 sha=0452a04 integrity=verified -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -88,9 +87,8 @@
     <meta name="ICBM" content="25.2048, 55.2708" />
 
     <!-- Security Headers (deployed via meta where HTTP headers unavailable) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://analytics.google.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https://www.google-analytics.com; connect-src 'self' https://formspree.io https://www.google-analytics.com https://analytics.google.com; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=()" />
 
@@ -154,10 +152,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
 
     <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-B651X4S3J7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      if (location.hostname === 'mrlivingcapital.com' || location.hostname === 'www.mrlivingcapital.com') {
+        const analyticsScript = document.createElement('script');
+        analyticsScript.async = true;
+        analyticsScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B651X4S3J7';
+        document.head.appendChild(analyticsScript);
       gtag('js', new Date());
       gtag('config', 'G-B651X4S3J7', {
         send_page_view: true,
@@ -168,6 +170,7 @@
           'dimension3': 'form_type',
         }
       });
+      }
       // Track PDF downloads as events
       function trackDownload(reportName, geo) {
         gtag('event', 'download', {
@@ -187,8 +190,8 @@
       }
     </script>
 
-    <script type="module" crossorigin src="/assets/index-BG0_25Lq.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DrBGAleI.css">
+    <script type="module" crossorigin src="/assets/index-CDScwEvh.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-lMJ5K-EU.css">
   </head>
   <body>
     <div id="root"></div>
@@ -226,68 +229,5 @@
   <a href="/blog/" style="color:#0F6B62;text-decoration:none;font-size:1.1rem;font-weight:600;">Investor Intelligence (Blog)</a>
 </div>
 
-    <!-- Founder headshot July 2026: latest studio photo, square frame with curved corners.
-         JPEG payload stored as base64 text parts (API cannot write binary);
-         decoded client-side into a blob URL. -->
-    
-    <!-- Brand cleanup July 2026: the broker license number is no longer public.
-         Strip legacy BRN strings rendered by the current JS bundle until the
-         next full rebuild ships without them. -->
-    <script>
-    (function () {
-      var RX = [
-        [/\.\s*BRN\s*94316\./g, "."],
-        [/\s*·\s*BRN:?\s*94316/g, ""],
-        [/BRN:?\s*94316\s*·\s*/g, ""],
-        [/\s*\|\s*BRN\s*94316/g, ""],
-        [/BRN\s*94316\s*\|\s*/g, ""],
-        [/\s*&middot;\s*BRN:?\s*94316/g, ""],
-        [/BRN:?\s*94316\s*&middot;\s*/g, ""],
-        [/BRN:?\s*94316/g, ""]
-      ];
-      function cleanText(s) {
-        var t = s;
-        for (var i = 0; i < RX.length; i++) t = t.replace(RX[i][0], RX[i][1]);
-        return t;
-      }
-      function sweep(root) {
-        var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
-        var n, nodes = [];
-        while ((n = w.nextNode())) nodes.push(n);
-        for (var i = 0; i < nodes.length; i++) {
-          var c = cleanText(nodes[i].nodeValue);
-          if (c !== nodes[i].nodeValue) nodes[i].nodeValue = c;
-        }
-        var rows = root.querySelectorAll ? root.querySelectorAll("div") : [];
-        for (var r = 0; r < rows.length; r++) {
-          if (rows[r].children.length === 2 &&
-              rows[r].textContent.replace(/\s+/g, "") === "License") {
-            rows[r].style.display = "none";
-          }
-        }
-      }
-      sweep(document.body);
-      var obs = new MutationObserver(function (muts) {
-        for (var i = 0; i < muts.length; i++) {
-          var m = muts[i];
-          if (m.type === "characterData") {
-            var c = cleanText(m.target.nodeValue);
-            if (c !== m.target.nodeValue) m.target.nodeValue = c;
-          }
-          for (var j = 0; j < m.addedNodes.length; j++) {
-            var nd = m.addedNodes[j];
-            if (nd.nodeType === 3) {
-              var cc = cleanText(nd.nodeValue);
-              if (cc !== nd.nodeValue) nd.nodeValue = cc;
-            } else if (nd.nodeType === 1) {
-              sweep(nd);
-            }
-          }
-        }
-      });
-      obs.observe(document.body, { childList: true, subtree: true, characterData: true });
-    })();
-    </script>
-      <script src="/thesis-interim.js?v=43" defer></script>
   </body>
 </html>

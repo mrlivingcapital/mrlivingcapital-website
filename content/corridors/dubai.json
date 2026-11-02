@@ -1,0 +1,21 @@
+{
+  "slug": "dubai",
+  "city": "Dubai",
+  "serial": "MRLC-2026-CD-DXB",
+  "version": "2026.11",
+  "as_of": "2026-05-20",
+  "thesis": "Liquidity and global gateway function.",
+  "canonical_url": "https://mrlivingcapital.com/corridors/dubai/",
+  "pdf_url": "https://mrlivingcapital.com/corridors/dubai/mrlc-2026-dubai-corridor-brief.pdf",
+  "source": "MR Living Capital, Three Emirates Comparison, 20 May 2026; qualitative editorial thesis",
+  "sections": [
+    {"id": "cover", "title": "Dubai", "body": "Liquidity and global gateway function.", "farsi": "دبی؛ نقدشوندگی و دروازه‌ای جهانی."},
+    {"id": "market-function", "title": "Market function", "body": "Use Dubai when the allocation requires a deep buyer pool, established transaction infrastructure and a comparatively clear exit audience. Judge each asset by verified activity rather than the strength of the city narrative.", "farsi": "نقش دبی در سبد سرمایه‌گذاری، نقدشوندگی و دسترسی به خریداران بین‌المللی است."},
+    {"id": "demand-drivers", "title": "Demand drivers", "body": "Test the depth and diversity of real demand for the specific district and unit. Separate end-user needs from investor momentum and identify who is likely to rent or buy the asset after the current owner.", "farsi": "تقاضای واقعی هر منطقه و هر واحد باید جدا از هیجان بازار سنجیده شود."},
+    {"id": "connectivity", "title": "Connectivity", "body": "Measure operational access, daily journey times and delivered infrastructure. Treat announced connections as future scenarios until their funding, construction and opening are independently verified.", "farsi": "دسترسی عملیاتی و زمان واقعی سفر از وعده‌های آینده مهم‌تر است."},
+    {"id": "supply", "title": "Supply", "body": "Compare competing ready stock with realistic future completions at district and unit-type level. A liquid city can still contain an oversupplied micro-market, so entry price must reflect the alternatives available to the next buyer.", "farsi": "عرضه باید در سطح منطقه و نوع واحد سنجیده شود، نه فقط در سطح شهر."},
+    {"id": "risks", "title": "Risks", "body": "The principal risks are paying a liquidity premium without receiving liquidity at asset level, overestimating net income and underestimating competing supply. Pressure-test service costs, resale time and the exit buyer pool.", "farsi": "هزینه‌های خدمات، مدت فروش مجدد و عمق تقاضا باید با دقت ارزیابی شوند."},
+    {"id": "investor-fit", "title": "Investor fit", "body": "Best aligned with investors who value exit optionality, a broad buyer audience and an established market process. Less aligned with strategies whose return case depends only on a high headline yield.", "farsi": "این مسیر برای سرمایه‌گذاری مناسب است که گزینه خروج و عمق بازار را در اولویت می‌گذارد."},
+    {"id": "verdict", "title": "Verdict", "body": "Dubai can serve as the liquidity component of a UAE allocation. The city thesis is not sufficient: the district, unit, net economics and realistic exit must each survive independent review. This is general market intelligence, not personalised financial advice.", "farsi": "دبی می‌تواند جزء نقدشونده یک سبد باشد؛ تصمیم نهایی به واحد و خروج واقعی بستگی دارد."}
+  ]
+}

@@ -13,7 +13,7 @@ const SLIDES = [
   { id: 'architecture', label: 'Introduction', short: 'Opening', steps: 1 },
   { id: 'founder-letter', label: 'The Founder', short: 'Founder', steps: 1 },
   { id: 'investor-intelligence', label: 'Investor Intelligence', short: 'Method', steps: 1 },
-  { id: 'intelligence-layers', label: 'The Intelligence Layer', short: 'Five Layers', steps: 5 },
+  { id: 'intelligence-layers', label: 'The Intelligence Layer', short: 'Five Layers', steps: 1 },
   { id: 'market-intelligence', label: 'Market Intelligence', short: 'Evidence', steps: 1 },
   { id: 'decision-lab', label: 'Investment Decision Lab', short: 'Decision Lab', steps: 1 },
   { id: 'corridors', label: 'Why These Corridors', short: 'Corridors', steps: 1 },
@@ -214,7 +214,7 @@ export default function Walkthrough() {
       case 'architecture': return <OpeningSlide onNext={() => navigate(1)} />
       case 'founder-letter': return <FounderSlide onNavigate={goTo} />
       case 'investor-intelligence': return <ThesisSlide onNavigate={goTo} />
-      case 'intelligence-layers': return <LayersSlide step={step} onStep={(next) => setStep(Math.max(0, Math.min(4, next)))} />
+      case 'intelligence-layers': return <LayersSlide />
       case 'market-intelligence': return <MarketSlide />
       case 'decision-lab': return <DecisionLabSlide />
       case 'corridors': return <CorridorsSlide />
@@ -223,8 +223,6 @@ export default function Walkthrough() {
       default: return null
     }
   }
-
-  const isLayerStep = SLIDES[active].id === 'intelligence-layers' && step < 4
 
   return (
     <main ref={rootRef} className={`walkthrough ${menuOpen ? 'menu-is-open' : ''}`} aria-label="MR Living Capital cinematic walkthrough">
@@ -270,12 +268,12 @@ export default function Walkthrough() {
       </div>
 
       <div className={`gesture-cue ${active === SLIDES.length - 1 ? 'is-complete' : ''}`} aria-hidden="true">
-        <span>{isLayerStep ? `NEXT LAYER · ${step + 1}/5` : active === SLIDES.length - 1 ? 'THE CONVERSATION STARTS HERE' : 'SCROLL · SWIPE TO EXPLORE'}</span>
+        <span>{active === SLIDES.length - 1 ? 'THE CONVERSATION STARTS HERE' : 'SCROLL · SWIPE TO EXPLORE'}</span>
         {active !== SLIDES.length - 1 && <div className="gesture-line"><i /><i /><i /></div>}
       </div>
 
       <div className="scene-mode" aria-hidden="true"><i />{webgl ? 'LIVE FORM + DIGITAL VEIL' : 'LIGHTWEIGHT MODE'}</div>
-      <div className="sr-only" aria-live="polite">{SLIDES[active].label}{SLIDES[active].steps > 1 ? `, layer ${step + 1} of 5` : ''}</div>
+      <div className="sr-only" aria-live="polite">{SLIDES[active].label}</div>
 
       {menuOpen && (
         <div className="scene-menu" ref={menuRef} role="dialog" aria-modal="true" aria-label="Scene navigation">
