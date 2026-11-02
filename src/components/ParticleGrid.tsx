@@ -19,20 +19,14 @@ function ParticleField() {
   const groupRef = useRef<THREE.Group>(null)
   const mouseRef = useRef({ x: 0, y: 0 })
 
-  const { grid, dummy } = useMemo(() => {
-    const grid: GridCell[] = []
-    for (let i = 0; i < INSTANCE_COUNT; i++) {
-      const col = i % GRID_SIZE
-      const row = Math.floor(i / GRID_SIZE)
-      grid.push({
-        x: col - GRID_SIZE / 2,
-        y: row - GRID_SIZE / 2,
-        z: 0,
-        speed: 0,
-      })
-    }
-    return { grid, dummy: new THREE.Object3D() }
-  }, [])
+  const gridRef = useRef<GridCell[]>(Array.from({ length: INSTANCE_COUNT }, (_, i) => ({
+    x: (i % GRID_SIZE) - GRID_SIZE / 2,
+    y: Math.floor(i / GRID_SIZE) - GRID_SIZE / 2,
+    z: 0,
+    speed: 0,
+  })))
+  const grid = gridRef.current
+  const dummy = useMemo(() => new THREE.Object3D(), [])
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {

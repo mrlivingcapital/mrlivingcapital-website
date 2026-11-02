@@ -329,22 +329,7 @@ footer p{margin:0 auto 6px;max-width:720px}
 </a>
 
 <!-- Latest studio headshot: decoded client-side from the repo payload -->
-<script>
-(function () {
-  var PARTS = [];
-  for (var i = 1; i <= 16; i++) PARTS.push("https://mrlivingcapital.com/images/founder-2026.jpg.part" + i + ".txt");
-  Promise.all(PARTS.map(function (p) { return fetch(p).then(function (r) { return r.text(); }); }))
-    .then(function (parts) {
-      var bin = atob(parts.join("").replace(/\s+/g, ""));
-      var bytes = new Uint8Array(bin.length);
-      for (var j = 0; j < bin.length; j++) bytes[j] = bin.charCodeAt(j);
-      var url = URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" }));
-      var img = document.getElementById("founder-photo");
-      if (img) img.src = url;
-    })
-    .catch(function () { /* keeps default photo if payload unavailable */ });
-})();
-</script>
+
 
 <script>
 (function () {

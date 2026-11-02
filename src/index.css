@@ -6,9 +6,9 @@
   :root {
     /* UNIFIED DARK THEME (2026-10-26): intelligence at night.
        Charcoal + deep teal ground, ivory text, gold accents, sea-teal data glow. */
-    --deep-forest: #131A18;
-    --deep-forest-80: rgba(19, 26, 24, 0.88);
-    --deep-forest-light: #1A2422;
+    --deep-forest: #060D0B;
+    --deep-forest-80: rgba(6, 13, 11, 0.88);
+    --deep-forest-light: #0A1512;
     --gold: #B08D4A;
     --gold-light: #C9A96A;
     --gold-muted: rgba(176, 141, 74, 0.15);
@@ -348,4 +348,14 @@
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;
+}
+
+.app-loading {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  background: #060D0B;
+  color: #79C8B5;
+  font: 500 10px 'Space Grotesk', sans-serif;
+  letter-spacing: .2em;
 }

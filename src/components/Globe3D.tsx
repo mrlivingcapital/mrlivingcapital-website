@@ -1,10 +1,11 @@
 import { useRef, useEffect, useState } from 'react'
+import borderData from '../data/globe/borders.json'
 
 /**
- * Revolving globe with real country outlines (Natural Earth data, self-hosted
- * at /assets/globe/borders.json). Dependency-free canvas orthographic projection:
+ * Revolving globe with real country outlines (Natural Earth data bundled
+ * locally). Dependency-free canvas orthographic projection:
  * zero CDN reliance, graceful fallback to a static sphere if data or canvas
- * is unavailable. Brand-locked: ivory sphere, turquoise borders, teal glow.
+ * is unavailable. Brand-locked: dark sphere, light-green borders, teal glow.
  */
 
 type BorderLine = number[][][] // array of lines, points as [lng*10, lat*10]
@@ -31,7 +32,8 @@ function RealGlobe() {
     let lastX = 0
     let lastInteract = 0
     let t = 0
-    let borders: BorderLine | null = null
+    const borders = borderData as BorderLine
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const canvas = document.createElement('canvas')
     const ctx = canvas.getContext('2d')
@@ -60,7 +62,7 @@ function RealGlobe() {
       if (disposed) return
       raf = requestAnimationFrame(draw)
       t += 0.016
-      if (!dragging) {
+      if (!dragging && !reducedMotion) {
         if (Date.now() - lastInteract > 1800) vel += (0.16 - vel) * 0.02
         rot += vel
       }
@@ -81,16 +83,16 @@ function RealGlobe() {
       ctx.fillStyle = glow
       ctx.fill()
 
-      /* Ivory sphere with soft shading */
+      /* Near-black sphere with soft green shading */
       const shade = ctx.createRadialGradient(cx - R * 0.35, cy - R * 0.35, R * 0.1, cx, cy, R)
-      shade.addColorStop(0, '#FBF8F1')
-      shade.addColorStop(0.75, '#F6F1E7')
-      shade.addColorStop(1, '#EDE5D6')
+      shade.addColorStop(0, '#152A23')
+      shade.addColorStop(0.75, '#091511')
+      shade.addColorStop(1, '#050C0A')
       ctx.beginPath()
       ctx.arc(cx, cy, R, 0, 6.2832)
       ctx.fillStyle = shade
       ctx.fill()
-      ctx.strokeStyle = 'rgba(15,107,98,0.25)'
+      ctx.strokeStyle = 'rgba(121,200,181,0.42)'
       ctx.lineWidth = dpr
       ctx.stroke()
 
@@ -100,8 +102,8 @@ function RealGlobe() {
         ctx.beginPath()
         ctx.arc(cx, cy, R, 0, 6.2832)
         ctx.clip()
-        ctx.strokeStyle = 'rgba(15,107,98,0.42)'
-        ctx.lineWidth = 0.7 * dpr
+        ctx.strokeStyle = 'rgba(121,200,181,0.78)'
+        ctx.lineWidth = 0.82 * dpr
         ctx.beginPath()
         for (let i = 0; i < borders.length; i++) {
           const line = borders[i]
@@ -130,7 +132,7 @@ function RealGlobe() {
         ctx.stroke()
         ctx.beginPath()
         ctx.arc(p[0], p[1], 2 * dpr, 0, 6.2832)
-        ctx.fillStyle = '#0F6B62'
+        ctx.fillStyle = '#C2A878'
         ctx.fill()
       })
     }
@@ -155,15 +157,6 @@ function RealGlobe() {
     canvas.addEventListener('pointerdown', onDown)
     window.addEventListener('pointermove', onMove)
     window.addEventListener('pointerup', onUp)
-
-    fetch('/assets/globe/borders.json')
-      .then((r) => r.json())
-      .then((d: BorderLine) => {
-        if (!disposed) borders = d
-      })
-      .catch(() => {
-        /* offline: sphere + markers still render */
-      })
 
     fit()
     const ro = new ResizeObserver(fit)
@@ -233,9 +226,9 @@ export default function Globe3D() {
     try {
       const c = document.createElement('canvas')
       const cx = c.getContext('2d')
-      if (!cx) setCanvasOk(false)
-    } catch (e) {
-      setCanvasOk(false)
+      if (!cx) queueMicrotask(() => setCanvasOk(false))
+    } catch {
+      queueMicrotask(() => setCanvasOk(false))
     }
   }, [])
   return canvasOk ? <RealGlobe /> : <FallbackGlobe />

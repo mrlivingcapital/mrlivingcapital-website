@@ -36,8 +36,8 @@ export default function DataCanvas() {
 
     const colors = ['#0F6B62', '#2E8A80', '#0D5F57', '#5A6662']
     let particles: Particle[] = []
-    let mouse = { x: -1, y: -1 }
-    let cursor = { x: 0.5, y: 0.5 }
+    const mouse = { x: -1, y: -1 }
+    const cursor = { x: 0.5, y: 0.5 }
     let smoothSpeed = 0
     let animId: number
 

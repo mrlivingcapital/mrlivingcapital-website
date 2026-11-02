@@ -68,7 +68,7 @@ export default function FloatingSocials() {
           href={s.href}
           target="_blank"
           rel="noopener noreferrer"
-          title=""
+          aria-label={s.label}
           style={{
             width: 44,
             height: 44,
@@ -92,7 +92,7 @@ export default function FloatingSocials() {
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.color = 'rgba(246, 241, 231, 0.55)'
-            e.currentTarget.style.background = 'rgba(246, 241, 231, 0.6)'
+            e.currentTarget.style.background = 'rgba(19, 26, 24, 0.75)'
           }}
         >
           {s.icon}

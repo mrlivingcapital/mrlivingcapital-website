@@ -1,11 +1,11 @@
 import { useState } from 'react'
 
 const HOTSPOTS = [
-  { id: 'infra', x: 30, y: 30, label: 'INFRASTRUCTURE', value: '+12% Value Uplift', note: 'Metro expansion, road corridors, utility upgrades priced into district growth.' },
-  { id: 'trans', x: 62, y: 38, label: 'TRANSACTIONS', value: 'AED 8.4M Avg Price', note: '+18% year on year. Volume and velocity tell us where the money actually goes.' },
-  { id: 'flows', x: 24, y: 55, label: 'CAPITAL FLOWS', value: '+25% Capital Inflow', note: 'Quarter on quarter. Funds and family offices rotating into prime corridors.' },
-  { id: 'dist', x: 55, y: 66, label: 'DISTRICTS', value: 'Dubai Marina · High Growth', note: 'Supply pipeline, absorption rates and rental depth scored district by district.' },
-  { id: 'risk', x: 44, y: 84, label: 'RISK', value: 'Stable · Low Volatility', note: 'Market, political and environmental scenarios stress tested before we proceed.' },
+  { id: 'infra', x: 30, y: 30, label: 'INFRASTRUCTURE', value: 'CONNECTIVITY CONTEXT', note: 'A research checklist for transport, utilities and public-realm changes. No uplift is inferred without a dated source.' },
+  { id: 'trans', x: 62, y: 38, label: 'TRANSACTIONS', value: 'EVIDENCE FIRST', note: 'A conceptual view of how verified transaction evidence would be organised. No live transaction feed is connected.' },
+  { id: 'flows', x: 24, y: 55, label: 'CAPITAL FLOWS', value: 'ORIGIN + DESTINATION', note: 'A framework for reviewing capital movement and liquidity. Directional claims require separately verified evidence.' },
+  { id: 'dist', x: 55, y: 66, label: 'DISTRICTS', value: 'SUPPLY + DEMAND', note: 'Compare district context, supply pipeline and rental depth without reducing a location to a single growth label.' },
+  { id: 'risk', x: 44, y: 84, label: 'RISK', value: 'SCENARIO REVIEW', note: 'Make market, liquidity and asset-specific assumptions explicit before drawing an investment conclusion.' },
 ]
 
 /**
@@ -45,7 +45,7 @@ export default function LivingMapSection() {
             <span style={{ color: '#57A99F' }}>See the connections.</span>
           </h2>
           <p className="font-body" style={{ color: 'rgba(246, 241, 231, 0.62)', fontSize: 15, lineHeight: 1.7, maxWidth: 440, margin: '0 0 28px' }}>
-            A dynamic layer of property, infrastructure, transactions, capital and risk, all connected so you can make smarter decisions. Touch the nodes to read each layer.
+            A conceptual interface showing how property, infrastructure, transactions, capital and risk can be reviewed together. Select a node to read each research layer.
           </p>
 
           {/* Active hotspot readout */}
@@ -66,11 +66,11 @@ export default function LivingMapSection() {
 
           <div style={{ marginTop: 28 }}>
             <a
-              href="#inquiry"
+              href="#architecture"
               className="font-caption"
               style={{ display: 'inline-block', color: '#0A211E', background: '#57A99F', fontSize: 11, letterSpacing: '0.14em', padding: '13px 24px', borderRadius: 5, textDecoration: 'none', fontWeight: 600 }}
             >
-              EXPLORE THE FULL MAP →
+              ENTER THE 3D CITY →
             </a>
           </div>
         </div>
@@ -103,7 +103,7 @@ export default function LivingMapSection() {
             />
           ))}
           <span className="font-caption" style={{ position: 'absolute', bottom: 10, right: 14, fontSize: 9, letterSpacing: '0.16em', color: 'rgba(246, 241, 231, 0.55)', background: 'rgba(10, 33, 30, 0.7)', padding: '3px 8px', borderRadius: 3 }}>
-            DUBAI · 25.2048° N, 55.2708° E
+            CONCEPTUAL INTERFACE · NOT LIVE MARKET DATA
           </span>
         </div>
       </div>

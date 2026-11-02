@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { scrollToElement } from '../lib/motion'
 
-export default function Navigation() {
+export default function Navigation({ onOpenLab }: { onOpenLab: () => void }) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -9,6 +9,7 @@ export default function Navigation() {
     const handleScroll = () => {
       setScrolled(window.scrollY > window.innerHeight * 0.5)
     }
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -36,6 +37,8 @@ export default function Navigation() {
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/mrlivingcapital/' },
   ]
 
+  if (!scrolled && !mobileOpen) return null
+
   return (
     <>
       <nav
@@ -49,8 +52,10 @@ export default function Navigation() {
         }}
       >
         <div className="mx-auto flex items-center justify-between h-full" style={{ maxWidth: 1200, padding: '0 24px' }}>
-          {/* Left: empty (logo removed from nav per client request) */}
-          <div />
+          <div className="hidden md:flex items-center" style={{ gap: 16 }}>
+            <button type="button" onClick={() => scrollTo('architecture')} className="font-nav" style={{ color: '#F6F1E7', background: 'none', border: 'none', cursor: 'pointer', fontSize: 11, letterSpacing: '0.08em', padding: '12px 0' }}>3D CITY</button>
+            <button type="button" onClick={onOpenLab} className="font-caption" style={{ color: '#B08D4A', background: 'none', border: 'none', cursor: 'pointer', fontSize: 10, letterSpacing: '0.12em', padding: '12px 0' }}>MOTION LAB</button>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center" style={{ gap: 32 }}>
@@ -195,6 +200,8 @@ export default function Navigation() {
                 NAVIGATION
               </div>
 
+              <button type="button" onClick={() => { setMobileOpen(false); scrollTo('architecture') }} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '14px 0', background: 'none', border: 'none', borderBottom: '1px solid rgba(125, 138, 134, 0.15)', color: '#57A99F', fontSize: 14, fontWeight: 600, letterSpacing: '0.08em', cursor: 'pointer', fontFamily: 'Space Grotesk, sans-serif' }}>3D CITY</button>
+              <button type="button" onClick={() => { setMobileOpen(false); onOpenLab() }} style={{ display: 'block', width: '100%', textAlign: 'left', padding: '14px 0', background: 'none', border: 'none', borderBottom: '1px solid rgba(125, 138, 134, 0.15)', color: '#B08D4A', fontSize: 14, fontWeight: 600, letterSpacing: '0.08em', cursor: 'pointer', fontFamily: 'Space Grotesk, sans-serif' }}>MOTION LAB</button>
               {navItems.map((item) => (
                 <button
                   key={item.id}
