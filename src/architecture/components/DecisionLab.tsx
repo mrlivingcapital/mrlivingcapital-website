@@ -1,21 +1,9 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Calculator, Info, RotateCcw } from 'lucide-react'
+import { readJourney, saveLab, type LabInputs, type ScenarioName } from '../../lib/journey'
 
 const currency = new Intl.NumberFormat('en-AE', { style: 'currency', currency: 'AED', maximumFractionDigits: 0 })
 const number = new Intl.NumberFormat('en-AE', { maximumFractionDigits: 1 })
-
-interface LabInputs {
-  category: string
-  price: number
-  rent: number
-  expenses: number
-  years: number
-  appreciation: number
-  deposit: number
-  rate: number
-  risk: string
-  liquidity: string
-}
 
 const DEFAULTS: LabInputs = {
   category: 'Residential apartment',
@@ -30,13 +18,19 @@ const DEFAULTS: LabInputs = {
   liquidity: 'Medium',
 }
 
-type Scenario = 'stress' | 'base' | 'upside'
+type Scenario = ScenarioName
 
 export function DecisionLab() {
-  const [inputs, setInputs] = useState<LabInputs>(DEFAULTS)
-  const [scenario, setScenario] = useState<Scenario>('base')
+  const [inputs, setInputs] = useState<LabInputs>(() => readJourney().lab?.inputs ?? DEFAULTS)
+  const [scenario, setScenario] = useState<Scenario>(() => readJourney().lab?.scenario ?? 'base')
   const [showFormulas, setShowFormulas] = useState(false)
   const [mobilePanel, setMobilePanel] = useState<'assumptions' | 'results' | 'sensitivity'>('assumptions')
+  const hydrated = useRef(false)
+
+  useEffect(() => {
+    if (!hydrated.current) { hydrated.current = true; return }
+    saveLab({ inputs, scenario })
+  }, [inputs, scenario])
 
   const update = <K extends keyof LabInputs>(key: K, value: LabInputs[K]) => {
     setInputs((current) => ({ ...current, [key]: value }))

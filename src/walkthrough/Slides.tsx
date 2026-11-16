@@ -1,7 +1,10 @@
-import { useState, type FormEvent, type ReactNode } from 'react'
-import { ArrowRight, ArrowUpRight, Mail, MessageCircle, Plus } from 'lucide-react'
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from 'react'
+import { ArrowRight, ArrowUpRight, Mail, MessageCircle, Plus, X } from 'lucide-react'
 import Globe3D from '../components/Globe3D'
 import { DecisionLab } from '../architecture/components/DecisionLab'
+import { clearJourneyPart, CORRIDOR_NAMES, labSummary, onJourneyChange, readJourney, saveCorridor, type JourneyContext } from '../lib/journey'
+import { submitInquiry, type InquiryForm } from '../lib/inquiry'
+import { prefetchHtmlOnIntent } from '../lib/intent'
 import '../architecture/architecture.css'
 
 export type Navigate = (id: string) => void
@@ -243,7 +246,13 @@ const CORRIDORS = [
 ]
 
 export function CorridorsSlide() {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(() => Math.max(0, CORRIDOR_NAMES.indexOf(readJourney().corridor || 'Dubai')))
+  const briefingLink = useRef<HTMLAnchorElement>(null)
+  useEffect(() => prefetchHtmlOnIntent(briefingLink.current, '/corridors/'), [])
+  const selectCorridor = (index: number) => {
+    setActive(index)
+    saveCorridor(CORRIDOR_NAMES[index])
+  }
   return (
     <div className="slide-layout corridors-layout">
       <div className="corridor-globe reveal-item"><Globe3D /><span>DRAG TO ROTATE · ALLOCATION CORRIDORS</span></div>
@@ -251,12 +260,12 @@ export function CorridorsSlide() {
         <Eyebrow>CAPITAL ALLOCATION · WHY THESE CORRIDORS?</Eyebrow>
         <h2 className="slide-title reveal-item">Three markets.<br /><em>Different functions.</em></h2>
         <div className="corridor-tabs reveal-item" role="tablist" aria-label="Allocation corridors">
-          {CORRIDORS.map((corridor, index) => <button type="button" role="tab" aria-selected={active === index} className={active === index ? 'active' : ''} onClick={() => setActive(index)} key={corridor.tag}>{corridor.tag}</button>)}
+          {CORRIDORS.map((corridor, index) => <button type="button" role="tab" aria-selected={active === index} className={active === index ? 'active' : ''} onClick={() => selectCorridor(index)} key={corridor.tag}>{corridor.tag}</button>)}
         </div>
         <div className="corridor-detail reveal-item" aria-live="polite">
           <span>0{active + 1} / 03</span><h3>{CORRIDORS[active].title}</h3><p>{CORRIDORS[active].line}</p>
         </div>
-        <a className="text-link reveal-item" href="/corridors/">Read the corridor briefings<ArrowRight size={16} /></a>
+        <a ref={briefingLink} className="text-link reveal-item" href="/corridors/">Read the corridor briefings<ArrowRight size={16} /></a>
       </div>
     </div>
   )
@@ -313,21 +322,38 @@ const FAQS = [
 
 type ContactStatus = 'idle' | 'sending' | 'done' | 'error'
 
+const EMPTY_FORM: InquiryForm = { name: '', email: '', phone: '', interest: '', message: '', gotcha: '' }
+
 export function ContactSlide() {
   const [status, setStatus] = useState<ContactStatus>('idle')
-  const [form, setForm] = useState({ name: '', email: '', phone: '', interest: '', message: '' })
+  const [journey, setJourney] = useState<JourneyContext>(readJourney)
+  const autoMessage = useRef(journey.lab ? labSummary(journey.lab) : '')
+  const [form, setForm] = useState<InquiryForm>(() => ({
+    ...EMPTY_FORM,
+    interest: journey.corridor ? 'Portfolio strategy' : '',
+    message: journey.lab ? labSummary(journey.lab) : '',
+  }))
+
+  useEffect(() => onJourneyChange((next) => {
+    setJourney(next)
+    setForm((current) => {
+      const nextMessage = next.lab ? labSummary(next.lab) : ''
+      const shouldUpdateMessage = current.message === autoMessage.current
+      autoMessage.current = nextMessage
+      return {
+        ...current,
+        interest: current.interest || (next.corridor ? 'Portfolio strategy' : ''),
+        message: shouldUpdateMessage ? nextMessage : current.message,
+      }
+    })
+  }), [])
 
   const submit = async (event: FormEvent) => {
     event.preventDefault()
     if (status === 'sending') return
     setStatus('sending')
     try {
-      const response = await fetch('https://formspree.io/f/xkokazvz', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({ ...form, source: 'Cinematic Walkthrough Inquiry', _subject: 'New Inquiry - MR Living Capital' }),
-      })
-      if (!response.ok) throw new Error('Inquiry failed')
+      await submitInquiry(form, journey)
       setStatus('done')
     } catch {
       setStatus('error')
@@ -348,26 +374,31 @@ export function ContactSlide() {
       </div>
       <div className="contact-form-wrap reveal-item">
         {status === 'done' ? (
-          <div className="contact-success" role="status"><span>INQUIRY RECEIVED</span><h3>Thank you.</h3><p>Your inquiry has been sent for personal review.</p><button type="button" className="text-link" onClick={() => { setForm({ name: '', email: '', phone: '', interest: '', message: '' }); setStatus('idle') }}>Send another inquiry<ArrowRight size={16} /></button></div>
+          <div className="contact-success" role="status"><span>INQUIRY RECEIVED</span><h3>Thank you.</h3><p>Your inquiry has been sent for personal review.</p><button type="button" className="text-link" onClick={() => { setForm({ ...EMPTY_FORM, interest: journey.corridor ? 'Portfolio strategy' : '', message: journey.lab ? labSummary(journey.lab) : '' }); setStatus('idle') }}>Send another inquiry<ArrowRight size={16} /></button></div>
         ) : (
           <form className="contact-form" onSubmit={submit}>
             <div className="form-topline"><span>PRIVATE INQUIRY</span><span>ALL FIELDS MARKED * ARE REQUIRED</span></div>
+            {(journey.corridor || journey.lab) && <div className="inquiry-context" aria-label="Your carried journey context">
+              {journey.corridor && <div data-journey-context="corridor"><span>CORRIDOR</span><strong>{journey.corridor}</strong><button type="button" onClick={() => clearJourneyPart('corridor')} aria-label="Remove corridor context"><X size={13} /></button></div>}
+              {journey.lab && <div data-journey-context="lab"><span>DECISION LAB</span><strong>{labSummary(journey.lab)}</strong><button type="button" onClick={() => clearJourneyPart('lab')} aria-label="Remove Decision Lab context"><X size={13} /></button></div>}
+            </div>}
             <div className="form-row">
-              <label>Name *<input required name="name" autoComplete="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></label>
-              <label>Email *<input required type="email" name="email" autoComplete="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></label>
+              <label>Name *<input required name="name" autoComplete="name" maxLength={120} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></label>
+              <label>Email *<input required type="email" name="email" autoComplete="email" maxLength={200} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} /></label>
             </div>
             <div className="form-row">
-              <label>Phone / WhatsApp<input type="tel" name="phone" autoComplete="tel" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></label>
+              <label>Phone / WhatsApp<input type="tel" name="phone" autoComplete="tel" maxLength={80} value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></label>
               <label>Investment interest *
                 <select required name="interest" value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })}>
                   <option value="" disabled>Select one</option><option>Off-plan acquisition</option><option>Ready / secondary market</option><option>Portfolio strategy</option><option>Research conversation</option>
                 </select>
               </label>
             </div>
-            <label>Objective or additional context<textarea name="message" rows={3} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} /></label>
+            <label>Objective or additional context<textarea name="message" rows={3} maxLength={4000} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} /></label>
+            <label className="form-honeypot" aria-hidden="true">Leave this field empty<input name="gotcha" tabIndex={-1} autoComplete="off" value={form.gotcha} onChange={(e) => setForm({ ...form, gotcha: e.target.value })} /></label>
             {status === 'error' && <p className="form-error" role="alert">The inquiry could not be sent. Please use WhatsApp or email directly.</p>}
             <button type="submit" className="submit-inquiry" disabled={status === 'sending'}>{status === 'sending' ? 'SENDING…' : 'SUBMIT PRIVATE INQUIRY'}<ArrowUpRight size={17} /></button>
-            <small>No test submissions are made by the website. Your inquiry is sent only when you submit this form.</small>
+            <small>Journey continuity stores no personal data. Your inquiry is sent only when you submit this form.</small>
           </form>
         )}
       </div>

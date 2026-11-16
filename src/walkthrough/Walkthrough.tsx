@@ -5,9 +5,12 @@ import {
   FounderSlide, LayersSlide, LetsTalkSlide, MarketSlide,
   OpeningSlide, ThesisSlide,
 } from './Slides'
+import PhaseOneDemo from './PhaseOneDemo'
 import './Walkthrough.css'
 
 const ExperienceCanvas = lazy(() => import('./ExperienceCanvas'))
+const MansionRScene = lazy(() => import('./MansionRScene'))
+const CINEMATIC_DEMO = new URLSearchParams(window.location.search).get('walkthrough-demo') === '1'
 
 const SLIDES = [
   { id: 'architecture', label: 'Introduction', short: 'Opening', steps: 1 },
@@ -17,6 +20,7 @@ const SLIDES = [
   { id: 'market-intelligence', label: 'Market Intelligence', short: 'Evidence', steps: 1 },
   { id: 'decision-lab', label: 'Investment Decision Lab', short: 'Decision Lab', steps: 1 },
   { id: 'corridors', label: 'Why These Corridors', short: 'Corridors', steps: 1 },
+  { id: 'mansionr', label: 'MansionR · The Architecture of Living Capital', short: 'MansionR', steps: 1 },
   { id: 'lets-talk', label: 'Let’s Talk & Common Questions', short: 'Let’s Talk', steps: 1 },
   { id: 'inquiry', label: 'The Partnership Conversation', short: 'Contact', steps: 1 },
 ]
@@ -27,6 +31,7 @@ const ALIASES: Record<string, string> = {
   'hidden-gems': 'lets-talk', 'private-opportunities': 'lets-talk',
   'distress-deals': 'lets-talk', 'whats-next': 'lets-talk', faq: 'lets-talk',
   market: 'market-intelligence', contact: 'inquiry', 'corridor-brief': 'inquiry',
+  mansion: 'mansionr', 'mansion-r': 'mansionr', residence: 'mansionr', flagship: 'mansionr',
 }
 
 function indexForHash(hash: string) {
@@ -55,7 +60,17 @@ export default function Walkthrough() {
   const [step, setStep] = useState(0)
   const [menuOpen, setMenuOpen] = useState(false)
   const [webgl] = useState(supportsWebGL)
+  const [motionPaused, setMotionPaused] = useState(() => {
+    try { return window.localStorage.getItem('mrlc-motion-paused') === 'true' } catch { return false }
+  })
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const toggleMotion = useCallback(() => {
+    setMotionPaused((current) => {
+      const next = !current
+      try { window.localStorage.setItem('mrlc-motion-paused', String(next)) } catch { /* Session state still works. */ }
+      return next
+    })
+  }, [])
 
   const lock = useCallback((duration: number) => {
     window.clearTimeout(lockTimer.current)
@@ -143,6 +158,11 @@ export default function Walkthrough() {
       const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY
       if (Math.abs(delta) < 12) return
       const target = event.target instanceof Element ? event.target : null
+      if (target?.closest('.mansionr-stage')) {
+        const assembly = Number(document.querySelector('[data-slide="mansionr"]')?.getAttribute('data-assembly') ?? 0)
+        const atBoundary = (assembly <= 0 && delta < 0) || (assembly >= 1 && delta > 0)
+        if (!atBoundary) return
+      }
       const nativeScroll = target?.closest<HTMLElement>('[data-native-scroll], .slide-layout')
       if (nativeScroll && nativeScroll.scrollHeight > nativeScroll.clientHeight + 2) {
         const canMove = delta > 0
@@ -218,6 +238,7 @@ export default function Walkthrough() {
       case 'market-intelligence': return <MarketSlide />
       case 'decision-lab': return <DecisionLabSlide />
       case 'corridors': return <CorridorsSlide />
+      case 'mansionr': return index === active ? <Suspense fallback={<div className="scene-loading">ASSEMBLING MANSIONR…</div>}><MansionRScene /></Suspense> : null
       case 'lets-talk': return <LetsTalkSlide onNavigate={goTo} />
       case 'inquiry': return <ContactSlide />
       default: return null
@@ -225,8 +246,8 @@ export default function Walkthrough() {
   }
 
   return (
-    <main ref={rootRef} className={`walkthrough ${menuOpen ? 'menu-is-open' : ''}`} aria-label="MR Living Capital cinematic walkthrough">
-      {webgl ? <Suspense fallback={<div className="scene-loading">FORMING THE INTELLIGENCE TOWER…</div>}><ExperienceCanvas activeSlide={active} /></Suspense> : <div className={`tower-fallback ${active === 0 ? 'active' : ''}`} aria-hidden="true"><i /><i /><i /></div>}
+    <main ref={rootRef} className={`walkthrough ${menuOpen ? 'menu-is-open' : ''}`} data-motion-paused={motionPaused} data-cinematic-demo={CINEMATIC_DEMO} data-active-scene={SLIDES[active].id} aria-label="MR Living Capital cinematic walkthrough">
+      {webgl ? <Suspense fallback={<div className="scene-loading">FORMING THE INTELLIGENCE TOWER…</div>}><ExperienceCanvas activeSlide={active} motionPaused={motionPaused} /></Suspense> : <div className={`tower-fallback ${active === 0 ? 'active' : ''}`} aria-hidden="true"><i /><i /><i /></div>}
       <div className="scene-shade" aria-hidden="true" />
       <div className="scene-grain" aria-hidden="true" />
 
@@ -274,12 +295,16 @@ export default function Walkthrough() {
 
       <div className="scene-mode" aria-hidden="true"><i />{webgl ? 'LIVE FORM + DIGITAL VEIL' : 'LIGHTWEIGHT MODE'}</div>
       <div className="sr-only" aria-live="polite">{SLIDES[active].label}</div>
+      <PhaseOneDemo motionPaused={motionPaused} onToggleMotion={toggleMotion} />
 
       {menuOpen && (
         <div className="scene-menu" ref={menuRef} role="dialog" aria-modal="true" aria-label="Scene navigation">
           <div className="menu-topline"><span>MR LIVING CAPITAL · SCENE INDEX</span><button type="button" onClick={() => setMenuOpen(false)} aria-label="Close scene menu"><X size={22} /></button></div>
           <nav>{SLIDES.map((slide, index) => <button type="button" key={slide.id} className={active === index ? 'active' : ''} onClick={() => goTo(slide.id)}><span>{String(index + 1).padStart(2, '0')}</span>{slide.label}<ArrowRight size={18} /></button>)}</nav>
-          <div className="menu-footer"><span>WHEEL / SWIPE / ARROW KEYS</span><a href="/blog/">RESEARCH LIBRARY</a></div>
+          <div className="menu-footer">
+            <button type="button" className="menu-motion-toggle" onClick={toggleMotion} aria-pressed={motionPaused}>{motionPaused ? 'Resume motion' : 'Pause motion'}</button>
+            <a href="/blog/">RESEARCH LIBRARY</a>
+          </div>
         </div>
       )}
     </main>

@@ -60,6 +60,7 @@ export interface HoverState {
 
 export interface SceneMetrics {
   fps: number
+  dpr?: number
   drawCalls: number
   triangles: number
   landmarks: number

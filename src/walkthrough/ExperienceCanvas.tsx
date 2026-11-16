@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import { PerformanceMonitor } from '@react-three/drei'
 import { Bloom, EffectComposer } from '@react-three/postprocessing'
 import * as THREE from 'three'
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js'
@@ -7,6 +8,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js'
 const TOWER_HEIGHT = 33
 const CAPTURE = new URLSearchParams(window.location.search).has('capture')
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+const RENDER_METRICS = { dpr: 1.25, fps: 60, quality: 'adaptive' }
 
 type PointerInput = { current: { x: number; y: number } }
 
@@ -603,7 +605,9 @@ function SignatureTower({ active, animate, input }: { active: boolean; animate: 
     const group = groupRef.current
     if (!group || !active) return
     const time = animate ? clock.getElapsedTime() : 0
-    const target = -0.08 + (animate ? Math.sin(time * 0.12) * 0.025 + input.current.x * 0.025 : 0)
+    const target = -0.08 + (animate
+      ? Math.sin(time * (mobile ? 0.18 : 0.12)) * (mobile ? 0.075 : 0.025) + input.current.x * 0.025
+      : 0)
     group.rotation.y = animate ? group.rotation.y + (target - group.rotation.y) * 0.035 : target
   })
 
@@ -758,28 +762,25 @@ function CameraRig({ active, animate, input }: { active: boolean; animate: boole
 }
 
 function ReadySignal() {
-  const frames = useRef(0)
   const { gl } = useThree()
-  useFrame(() => {
-    frames.current += 1
-    if (frames.current === 3) {
-      window.__SCENE_READY__ = true
-      window.__CITY_METRICS__ = () => ({
-        drawCalls: gl.info.render.calls,
-        triangles: gl.info.render.triangles,
-        landmarks: COMPANIONS.length + 1,
-        fps: 0,
-        quality: 'high',
-      })
-    }
-  })
+  useEffect(() => {
+    window.__SCENE_READY__ = true
+    window.__CITY_METRICS__ = () => ({
+      drawCalls: gl.info.render.calls,
+      triangles: gl.info.render.triangles,
+      landmarks: COMPANIONS.length + 1,
+      ...RENDER_METRICS,
+    })
+  }, [gl])
   return null
 }
 
-function ExperienceScene({ activeSlide }: { activeSlide: number }) {
+function ExperienceScene({ activeSlide, motionPaused }: { activeSlide: number; motionPaused: boolean }) {
   const input = useRef({ x: 0, y: 0 })
+  const { size } = useThree()
+  const mobile = size.width < 768
   const active = activeSlide === 0
-  const animate = !REDUCED && !CAPTURE
+  const animate = !REDUCED && !CAPTURE && !motionPaused
 
   useEffect(() => {
     const onPointer = (event: PointerEvent) => {
@@ -804,17 +805,27 @@ function ExperienceScene({ activeSlide }: { activeSlide: number }) {
       <CameraRig active={active} animate={animate} input={input} />
       <ReadySignal />
       <EffectComposer multisampling={0}>
-        <Bloom intensity={0.46} luminanceThreshold={0.78} luminanceSmoothing={0.58} mipmapBlur />
+        <Bloom intensity={mobile ? 0.85 : 0.46} luminanceThreshold={mobile ? 0.55 : 0.78} luminanceSmoothing={0.58} mipmapBlur />
       </EffectComposer>
     </>
   )
 }
 
-export default function ExperienceCanvas({ activeSlide }: { activeSlide: number }) {
+export default function ExperienceCanvas({ activeSlide, motionPaused }: { activeSlide: number; motionPaused: boolean }) {
+  const [dpr, setDpr] = useState(() => window.innerWidth < 768 ? 1.25 : 1.5)
+  const [pageVisible, setPageVisible] = useState(() => !document.hidden)
+
+  useEffect(() => {
+    const onVisibility = () => setPageVisible(!document.hidden)
+    document.addEventListener('visibilitychange', onVisibility)
+    return () => document.removeEventListener('visibilitychange', onVisibility)
+  }, [])
+
   return (
-    <div className="experience-canvas" aria-hidden="true">
+    <div className="experience-canvas" aria-hidden="true" data-page-visible={pageVisible}>
       <Canvas
-        dpr={[1, 1.5]}
+        dpr={dpr}
+        frameloop={motionPaused || REDUCED || CAPTURE || !pageVisible ? 'demand' : 'always'}
         camera={{ position: [25, 21, 88], fov: 42, near: 0.1, far: 180 }}
         gl={{ antialias: true, alpha: false, powerPreference: 'high-performance' }}
         onCreated={({ gl }) => {
@@ -823,7 +834,20 @@ export default function ExperienceCanvas({ activeSlide }: { activeSlide: number 
           gl.outputColorSpace = THREE.SRGBColorSpace
         }}
       >
-        <ExperienceScene activeSlide={activeSlide} />
+        <PerformanceMonitor
+          flipflops={3}
+          onChange={({ factor, fps }) => {
+            const nextDpr = Math.round((1 + factor * 0.5) * 20) / 20
+            RENDER_METRICS.dpr = nextDpr
+            RENDER_METRICS.fps = Math.round(fps)
+            setDpr(nextDpr)
+          }}
+          onFallback={() => {
+            RENDER_METRICS.dpr = 1
+            setDpr(1)
+          }}
+        />
+        <ExperienceScene activeSlide={activeSlide} motionPaused={motionPaused} />
       </Canvas>
     </div>
   )
