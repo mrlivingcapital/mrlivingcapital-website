@@ -71,7 +71,7 @@
         {"@type": "Question", "name": "Is ready or off-plan property better in Dubai in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "H1 2026 was the first period in years where ready sales (AED 146.7B) exceeded off-plan (AED 139.8B). Ready suits yield-focused buyers at ~6.6% average returns; off-plan suits capital-growth buyers in prime corridors. Corridor selection matters more than the label."}},
         {"@type": "Question", "name": "What returns do Dubai commercial properties pay?", "acceptedAnswer": {"@type": "Answer", "text": "Small prime offices yield roughly 7-8% with Grade A vacancy under 5% in DIFC, Business Bay and Downtown. Logistics assets pay 8-10% net. Residential averages 6.58% gross."}},
         {"@type": "Question", "name": "What does it cost to buy property in Dubai beyond the price?", "acceptedAnswer": {"@type": "Answer", "text": "Budget roughly 6-7% on top: 4% DLD transfer fee, 2% agency fee, trustee and registration fees, plus annual service charges that vary by community and directly affect net yield."}},
-        {"@type": "Question", "name": "How is buyer money protected in off-plan purchases?", "acceptedAnswer": {"@type": "Answer", "text": "Payments must go into a RERA-verified project escrow account, not to the developer directly. Since June 2025, power-of-attorney sales are banned: the deed, Emirates ID and bank account must match."}}
+        {"@type": "Question", "name": "How is buyer money protected in off-plan purchases?", "acceptedAnswer": {"@type": "Answer", "text": "Payments for off-plan purchases must go into a RERA-verified project escrow account, not to the developer directly. POA representation is subject to document verification and transaction-specific DLD acceptance. Sale proceeds must be paid to the registered owner’s account matching the title deed, not to a POA holder. Confirm current DLD and banking requirements before transacting."}}
       ]
     }
     </script>
@@ -89,7 +89,7 @@
     <meta name="ICBM" content="25.2048, 55.2708" />
 
     <!-- Security Headers (deployed via meta where HTTP headers unavailable) -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://www.google-analytics.com; connect-src 'self' blob: https://formspree.io https://www.google-analytics.com https://analytics.google.com; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'sha256-u/72Y3qaYL9dlAZFpkVzMmCejHxrAyL8M1RSQs6NLOM=' 'sha256-AN5UCznZ/35anyTXDO6hAZKl/W8KUaCmNVNcSyRKYyM=' 'sha256-FedbzDnsOgBCqYf0YL+Rb3a1bdXQocLXTUXXQcuHltQ='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://www.google-analytics.com; connect-src 'self' blob: https://formspree.io https://www.google-analytics.com https://analytics.google.com; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests;" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=(), usb=(), magnetometer=(), gyroscope=()" />
@@ -153,44 +153,8 @@
     <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link href="/fonts/fonts.css" rel="stylesheet" />
 
-    <!-- Google Analytics 4 -->
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      if (location.hostname === 'mrlivingcapital.com' || location.hostname === 'www.mrlivingcapital.com') {
-        const analyticsScript = document.createElement('script');
-        analyticsScript.async = true;
-        analyticsScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B651X4S3J7';
-        document.head.appendChild(analyticsScript);
-      gtag('js', new Date());
-      gtag('config', 'G-B651X4S3J7', {
-        send_page_view: true,
-        cookie_flags: 'SameSite=None;Secure',
-        custom_map: {
-          'dimension1': 'report_download',
-          'dimension2': 'geo_region',
-          'dimension3': 'form_type',
-        }
-      });
-      }
-      // Track PDF downloads as events
-      function trackDownload(reportName, geo) {
-        gtag('event', 'download', {
-          event_category: 'report',
-          event_label: reportName,
-          report_download: reportName,
-          geo_region: geo || 'unknown',
-        });
-      }
-      // Track form submissions
-      function trackFormSubmit(formType) {
-        gtag('event', 'submit', {
-          event_category: 'form',
-          event_label: formType,
-          form_type: formType,
-        });
-      }
-    </script>
+    <!-- Google Analytics 4: same-origin initialization preserves the production-only guard. -->
+    <script src="/analytics.js"></script>
 
     <script type="module" src="/src/main.tsx"></script>
   </head>
@@ -203,7 +167,7 @@
         <h1 itemprop="name" style="color:#0F6B62;font-size:32px;text-transform:uppercase;margin-bottom:8px;">MR Living Capital</h1>
         <p style="color:#0F6B62;font-size:14px;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;">Dubai, UAE</p>
         <p itemprop="description" style="font-size:16px;line-height:1.7;margin-bottom:20px;">
-          <strong style="color:#0F6B62;">Two decades of strategy design and implementation.</strong>
+          <strong style="color:#0F6B62;">Thirty-five years of Dubai market execution.</strong>
           Independent real estate investment advisory across Dubai, Abu Dhabi, and Ras Al Khaimah.
           Data-driven corridor selection. Portfolio strategy. Capital architecture.
           We don't sell properties. We design capital strategies that happen to use real estate as the vehicle.

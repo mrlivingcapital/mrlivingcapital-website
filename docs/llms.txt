@@ -1,120 +1,43 @@
-# MR Living Capital — Dubai Real Estate Investment Advisory
+# MR Living Capital — UAE Real Estate Investment Advisory
 
-> Data-driven real estate investment advisory in Dubai's highest-growth corridors. Two decades of institutional financial management experience.
+> Independent, data-driven real estate investment intelligence across Dubai, Abu Dhabi and Ras Al Khaimah.
 
-## About
+## Positioning
 
-MR Living Capital is a Dubai-based real estate investment advisory built on two decades of strategic financial management across three continents. We don't sell properties. We engineer investment outcomes.
+MR Living Capital is an independent real estate investment advisory built on 35 years in Dubai, own-money investing across three countries and three continents, and first-hand strategy design and implementation.
 
-Every client engagement begins with a fundamental question: what does your capital need to achieve? From there, we build a tailor-made investment roadmap — not a sales pitch.
-
-- **License**: RERA-registered advisory
-- **Languages**: English, Persian (Farsi)
-- **Contact**: Masoud@mrlivingcapital.com
-- **WhatsApp**: +971 58 589 9112
+The advisory does not sell properties. It designs capital strategies that may use real estate as the vehicle. Each engagement begins with the client’s objectives, liquidity needs, risk tolerance and time horizon.
 
 ## Services
 
-- Real Estate Investment Advisory — Data-driven corridor selection and portfolio strategy
-- Property Portfolio Strategy — Tailored allocation across Dubai's highest-growth zones
-- Market Intelligence — DLD-verified data, developer track records, price-per-sqft analysis
-- Golden Visa Advisory — Property investment linked to 10-year UAE residency (ANY purchase now qualifies as of 2026)
+- Real estate investment advisory and portfolio strategy.
+- Corridor-level market intelligence and comparative research.
+- Ready and off-plan purchase analysis, including costs, risks and exit considerations.
+- Residency-related property guidance, including the AED 2 million Golden Visa route. Eligibility is conditional and subject to current authority requirements; it is not automatic with every purchase.
 
-## Priority Investment Corridors
+## Research
 
-### Dubai (The Global Gateway)
-- Entry: ~AED 1,300-4,200+/sqft | H1 2026: AED 419.9B transactions | Income: 6.5-9%
-- Al Maktoum Airport — AED 128B, 5x capacity by 2030. 750,000+ jobs. Expo City legacy. Metro Gold Line 18 stations by 2032.
+- Investor Intelligence library: https://mrlivingcapital.com/blog/
+- UAE city corridor briefs: https://mrlivingcapital.com/corridors/
+- Ready and off-plan intelligence: https://mrlivingcapital.com/off-plan/
+- Golden Visa research guide: https://mrlivingcapital.com/blog/uae-golden-visa-real-estate-2026-guide.html
+- Persian-language guidance: https://mrlivingcapital.com/fa/
 
-### Abu Dhabi (The Capital of Capital)
-- Entry: ~AED 900-2,500/sqft | Growth: +18% YoY | Income: 5-7%
-- Saadiyat Cultural District (Guggenheim, Natural History Museum). Aldar AED 25B pipeline, 15,000+ units by 2028.
-
-### Ras Al Khaimah (The High-Yield Frontier)
-- Entry: ~AED 500-900/sqft | Growth: +35% YoY | Income: 7-9% (highest in UAE)
-- Wynn Al Marjan — first GCC gaming resort, AED 12B, opening 2027. 4.5km beachfront. Lowest entry, highest yield.
-
-## Market Data (2026)
-
-### Dubai
-- **Q1 Transaction Value**: AED 252 billion (+31% YoY)
-- **Total Transactions**: 60,303
-- **Gross Yield**: 5-8%
-- **Entry**: AED 800-3,000+/sqft
-
-### Abu Dhabi
-- **2025 Transaction Value**: AED 71 billion (+18% YoY)
-- **Aldar Pipeline**: AED 25B, 15,000+ units by 2028
-- **Gross Yield**: 5-7%
-- **Entry**: AED 900-2,500/sqft
-
-### Ras Al Khaimah
-- **2025 Transaction Value**: AED 8.5 billion (+35% YoY)
-- **Gross Yield**: 7-9% (highest in UAE)
-- **Entry**: AED 500-900/sqft
-
-### UAE Combined
-- **Active Investors**: 48,448+ (+8% YoY)
-- **New Investors**: 29,312 (+14% YoY)
-- **Foreign Investment**: AED 148.35B+ (+26% YoY)
-- **Women Investors**: 15,540+ registered
-- **Off-Plan Market Share**: 73% of transactions
-- **2026 Forecast**: 5-9% annual price growth across all three emirates
-
-## Dubai 2040 Strategic Framework
-
-- **Metro Gold Line**: 18 stations, AED 15B+, completion 2032
-- **Etihad Rail**: Q2 2026 passenger launch, Dubai-Abu Dhabi in 57 mins
-- **Al Maktoum Airport**: AED 128B expansion, completion 2030
-- **20-Minute City**: AED 65B, all corridors benefit
-- **D33 Agenda**: AED 32 trillion GDP target by 2033
-- **Population Target**: 5.8 million by 2040 (from 3.8M today)
-
-## Golden Visa Update (2026)
-
-Under the updated Federal Decree-Law, ANY real estate purchase in the UAE now qualifies the investor, spouse, children, and both sets of parents for a 10-year renewable residency visa. The previous AED 750,000 minimum threshold has been removed.
-
-## Downloadable Reports
-
-1. **Dubai H1 2026 Market Intelligence Brief** — DLD-verified data, corridor analysis, price/sqft breakdowns (July 2026)
-2. **Cash Buyer's Guide to UAE Real Estate** (5 pages) — Negotiating below market value, price analysis, corridors
-3. **Dubai Cash Buyers Report** (4 pages) — Q1 summary, Golden Visa update, 4 corridors
-4. **London to Dubai Guide** (5 pages) — UK tax comparison, Dubai 2030/2040, corridor analysis
-5. **Toronto to Dubai Guide** (5 pages) — Canada tax comparison, currency strategy, positive leverage
-6. **Balkans to Dubai Guide** (5 pages) — 7-country tax comparison, currency risk analysis
-7. **Farsi Investment Guide** (6 pages) — Bilingual Persian/English, Iranian community data
-
-## Key Tax Advantages (Dubai vs Global Markets)
-
-| Tax Type | UK | Canada | Balkans (Avg) | Dubai |
-|----------|-----|--------|---------------|-------|
-| Income Tax | 20-45% | 15-33% + provincial | 10-25% | **0%** |
-| Capital Gains | 18-28% | 50% inclusion | 10-20% | **0%** |
-| Stamp/Transfer Duty | 3-17% | Up to 5% | 2-5% | **4% DLD** |
-| Property Tax (Annual) | Council Tax | 0.5-2.5% | 0.1-1% | **0%** |
-| Inheritance Tax | 40% | Varies | Varies | **0%** |
+Research pages provide textual content, canonical links, structured metadata and downloadable reports where available. The sitemap is https://mrlivingcapital.com/sitemap.xml.
 
 ## Contact
 
-- **Website**: https://mrlivingcapital.com
-- **Email**: mrlivingcapital@gmail.com
-- **WhatsApp**: +971 58 589 9112
-- **LinkedIn**: https://www.linkedin.com/in/mrlivingcapital/
-- **Instagram**: https://instagram.com/mrlivingcapital
-- **Telegram**: https://t.me/mrlivingcapital
-- **Location**: Dubai, UAE
-- **License**: RERA-registered advisory
+- Website: https://mrlivingcapital.com
+- Email: Masoud@mrlivingcapital.com
+- WhatsApp: +971 58 589 9112
+- LinkedIn: https://www.linkedin.com/in/mrlivingcapital/
+- Instagram: https://www.instagram.com/mrlivingcapital/
+- Location: Dubai, United Arab Emirates
 
-## Sources
+## Content policy
 
-All data sourced from: Dubai Land Department (DLD), DXB Interact, REIDIN, RERA, fäm Properties, Springfield Properties, Bayut, Property Finder, Dubai Statistics Center.
+Research is general market intelligence, not personalised financial, legal, tax or immigration advice. Regulatory, financing and residency eligibility depends on the investor, property and current authority requirements. Verify transaction-specific requirements with the relevant UAE authorities and qualified professionals.
 
----
-*Last updated: May 9, 2026*
+Crawler preferences are published at https://mrlivingcapital.com/robots.txt. User-invoked access remains available under those rules; selected training crawlers are restricted.
 
-## Off-Plan & Corridors
-- https://mrlivingcapital.com/off-plan/ — Off-plan intelligence hub (residential + commercial, H1 2026)
-- https://mrlivingcapital.com/corridors/ — Corridor investment guides (Dubai South, Business Bay, JVC, Marina, Creek Harbour, DIFC)
-## Farsi / فارسی
-- https://mrlivingcapital.com/fa/golden-visa-dubai.html — گلدن ویزا ۲۰۲۶
-- https://mrlivingcapital.com/fa/buying-property-dubai.html — خرید ملک در دبی
+Last updated: 2026-11-19
