@@ -37,3 +37,17 @@ test('MansionR has no project identity or property-sales wording', async ({ page
   expect(content).not.toMatch(/mews|meydan|nad al sheba|discuss this residence/i)
   expect(content).toContain('ARCHITECTURAL GAMIFICATION & ILLUSTRATION')
 })
+
+test('MansionR wheel handling is non-passive and emits no browser warning', async ({ page }) => {
+  const warnings: string[] = []
+  page.on('console', (message) => {
+    if (message.text().includes('Unable to preventDefault inside passive event listener')) warnings.push(message.text())
+  })
+  await openMansion(page)
+  const scene = page.locator('[data-slide="mansionr"]')
+  await page.locator('.mansionr-stage').evaluate((stage) => {
+    stage.dispatchEvent(new WheelEvent('wheel', { deltaY: 120, bubbles: true, cancelable: true }))
+  })
+  await expect(scene).not.toHaveAttribute('data-assembly', '0')
+  expect(warnings).toEqual([])
+})

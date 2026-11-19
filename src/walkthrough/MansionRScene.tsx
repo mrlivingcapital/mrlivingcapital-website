@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type TouchEvent, type WheelEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type TouchEvent } from 'react'
 import { Canvas, useFrame, useThree, type ThreeEvent } from '@react-three/fiber'
 import { OrbitControls } from '@react-three/drei'
 import * as THREE from 'three'
@@ -139,18 +139,25 @@ export default function MansionRScene() {
   const [hovered, setHovered] = useState<MansionPart | null>(null)
   const [componentCount, setComponentCount] = useState(0)
   const touch = useRef<{ x: number; y: number } | null>(null)
+  const stageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     document.querySelector('[data-slide="mansionr"]')?.setAttribute('data-assembly', String(progress))
   }, [progress])
 
-  const onWheel = (event: WheelEvent<HTMLDivElement>) => {
-    if (reducedMotion) return
-    if ((progress === 0 && event.deltaY < 0) || (progress === 1 && event.deltaY > 0)) return
-    event.preventDefault()
-    event.stopPropagation()
-    setProgress((current) => clamp(current + event.deltaY * 0.0022))
-  }
+  useEffect(() => {
+    const stage = stageRef.current
+    if (!stage || reducedMotion) return
+    const onWheel = (event: globalThis.WheelEvent) => {
+      if ((progress === 0 && event.deltaY < 0) || (progress === 1 && event.deltaY > 0)) return
+      event.preventDefault()
+      event.stopPropagation()
+      setProgress((current) => clamp(current + event.deltaY * 0.0022))
+    }
+    stage.addEventListener('wheel', onWheel, { passive: false })
+    return () => stage.removeEventListener('wheel', onWheel)
+  }, [progress, reducedMotion])
+
   const onTouchStart = (event: TouchEvent<HTMLDivElement>) => {
     touch.current = { x: event.touches[0].clientX, y: event.touches[0].clientY }
   }
@@ -169,7 +176,7 @@ export default function MansionRScene() {
   const frustumWidth = mobile ? 86 : 56 * (window.innerWidth / window.innerHeight)
 
   return (
-    <div className="mansionr-stage" data-native-scroll onWheel={onWheel} onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+    <div ref={stageRef} className="mansionr-stage" data-native-scroll onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
       <div className="mansionr-copy">
         <span className="slide-eyebrow">MANSIONR · THE ARCHITECTURE OF LIVING CAPITAL</span>
         <h2>The architecture of<br /><em>living capital.</em></h2>
