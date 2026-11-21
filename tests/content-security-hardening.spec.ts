@@ -32,6 +32,12 @@ test('security contact file exists with branded contact and expiry', () => {
   expect(security).toContain('Canonical: https://mrlivingcapital.com/.well-known/security.txt')
 })
 
+test('GitHub Pages preserves dot-directory security resources', () => {
+  for (const path of ['public/.nojekyll', 'docs/.nojekyll']) {
+    expect(existsSync(new URL(`../${path}`, import.meta.url))).toBe(true)
+  }
+})
+
 test('homepage loads external analytics without unsafe-inline scripts or CSP errors', async ({ page }) => {
   const errors: string[] = []
   page.on('console', message => {
