@@ -6,6 +6,7 @@ import {
   OpeningSlide, ThesisSlide,
 } from './Slides'
 import PhaseOneDemo from './PhaseOneDemo'
+import { trackMandateClick } from '../lib/conversions'
 import './Walkthrough.css'
 
 const ExperienceCanvas = lazy(() => import('./ExperienceCanvas'))
@@ -260,7 +261,7 @@ export default function Walkthrough() {
           <button type="button" onClick={() => goTo('lets-talk')}>LET’S TALK</button>
         </nav>
         <div className="walk-header-actions">
-          <button type="button" className="header-inquiry" onClick={() => goTo('inquiry')}>PRIVATE INQUIRY<ArrowRight size={14} /></button>
+          <button type="button" className="header-inquiry" onClick={() => { trackMandateClick('header'); goTo('decision-lab') }}>START YOUR PRIVATE MANDATE<ArrowRight size={14} /></button>
           <button type="button" className="menu-toggle" onClick={() => setMenuOpen(true)} aria-label="Open scene menu"><Menu size={20} /></button>
         </div>
       </header>
@@ -301,6 +302,7 @@ export default function Walkthrough() {
         <div className="scene-menu" ref={menuRef} role="dialog" aria-modal="true" aria-label="Scene navigation">
           <div className="menu-topline"><span>MR LIVING CAPITAL · SCENE INDEX</span><button type="button" onClick={() => setMenuOpen(false)} aria-label="Close scene menu"><X size={22} /></button></div>
           <nav>{SLIDES.map((slide, index) => <button type="button" key={slide.id} className={active === index ? 'active' : ''} onClick={() => goTo(slide.id)}><span>{String(index + 1).padStart(2, '0')}</span>{slide.label}<ArrowRight size={18} /></button>)}</nav>
+          <button type="button" className="menu-mandate" onClick={() => { trackMandateClick('header'); goTo('decision-lab') }}>START YOUR PRIVATE MANDATE<ArrowRight size={16} /></button>
           <div className="menu-footer">
             <button type="button" className="menu-motion-toggle" onClick={toggleMotion} aria-pressed={motionPaused}>{motionPaused ? 'Resume motion' : 'Pause motion'}</button>
             <a href="/blog/">RESEARCH LIBRARY</a>

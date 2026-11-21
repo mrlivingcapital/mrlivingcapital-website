@@ -33,6 +33,20 @@
   related.innerHTML = '<strong>Continue your research</strong><a href="/blog/">Research library</a><a href="/corridors/">Corridor briefings</a><a href="/#inquiry">Private inquiry</a>'
   root.parentNode.insertBefore(related, root.nextSibling)
 
+  const mandate = document.createElement('aside')
+  mandate.className = 'mrlc-mandate-cta'
+  mandate.setAttribute('aria-label', 'Private investor mandate')
+  mandate.innerHTML = `
+    <strong>PRIVATE INVESTOR MANDATE</strong>
+    <p>Bring your objectives, capital range, timing and constraints. Start with an evidence-first scenario, then book a direct investor-fit call if the numbers merit a conversation.</p>
+    <div><a data-mandate-link data-mandate-source="research" href="/#decision-lab">Start Your Private Mandate</a><a data-booking-source="research" href="https://wa.me/971585899112?text=Hello%20Masoud%2C%20I%20would%20like%20to%20book%20a%2020-minute%20investor-fit%20call.%20My%20preferred%20date%2C%20time%20and%20time%20zone%20are%3A%20" target="_blank" rel="noopener noreferrer">Book a 20-minute investor-fit call</a></div>`
+  root.parentNode.insertBefore(mandate, related)
+  if (!document.querySelector('script[src="/research/mandate-events.js"]')) {
+    const events = document.createElement('script')
+    events.src = '/research/mandate-events.js'
+    document.head.appendChild(events)
+  }
+
   tools.querySelector('.mrlc-print').addEventListener('click', () => window.print())
   let scheduled = false
   const update = () => {

@@ -4,6 +4,7 @@ import Globe3D from '../components/Globe3D'
 import { DecisionLab } from '../architecture/components/DecisionLab'
 import { clearJourneyPart, CORRIDOR_NAMES, labSummary, onJourneyChange, readJourney, saveCorridor, type JourneyContext } from '../lib/journey'
 import { submitInquiry, type InquiryForm } from '../lib/inquiry'
+import { trackBookingClick, trackDecisionLabComplete, trackInquiryStart, trackInquirySuccess } from '../lib/conversions'
 import { prefetchHtmlOnIntent } from '../lib/intent'
 import '../architecture/architecture.css'
 
@@ -232,7 +233,7 @@ export function DecisionLabSlide() {
         <DecisionLab />
         <div className="decision-lab-actions">
           <span>Educational scenario model · no data is transmitted or stored.</span>
-          <a href="https://wa.me/971585899112?text=I%20ran%20an%20illustrative%20scenario%20and%20want%20to%20discuss%20the%20assumptions" target="_blank" rel="noopener noreferrer">Discuss your assumptions →</a>
+          <a href="https://wa.me/971585899112?text=Hello%20Masoud%2C%20I%20would%20like%20to%20book%20a%2020-minute%20investor-fit%20call.%20My%20preferred%20date%2C%20time%20and%20time%20zone%20are%3A%20" target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick('decision_lab')}>BOOK A 20-MINUTE INVESTOR-FIT CALL</a>
         </div>
       </div>
     </div>
@@ -328,11 +329,20 @@ export function ContactSlide() {
   const [status, setStatus] = useState<ContactStatus>('idle')
   const [journey, setJourney] = useState<JourneyContext>(readJourney)
   const autoMessage = useRef(journey.lab ? labSummary(journey.lab) : '')
+  const inquiryStarted = useRef(false)
+  const labTracked = useRef(false)
   const [form, setForm] = useState<InquiryForm>(() => ({
     ...EMPTY_FORM,
     interest: journey.corridor ? 'Portfolio strategy' : '',
     message: journey.lab ? labSummary(journey.lab) : '',
   }))
+
+  useEffect(() => {
+    if (journey.lab && !labTracked.current) {
+      trackDecisionLabComplete()
+      labTracked.current = true
+    }
+  }, [journey.lab])
 
   useEffect(() => onJourneyChange((next) => {
     setJourney(next)
@@ -354,6 +364,7 @@ export function ContactSlide() {
     setStatus('sending')
     try {
       await submitInquiry(form, journey)
+      trackInquirySuccess()
       setStatus('done')
     } catch {
       setStatus('error')
@@ -370,13 +381,23 @@ export function ContactSlide() {
           <a href="mailto:Masoud@mrlivingcapital.com"><Mail size={17} />Masoud@mrlivingcapital.com</a>
           <a href="https://wa.me/971585899112" target="_blank" rel="noopener noreferrer"><MessageCircle size={17} />WhatsApp Masoud directly</a>
         </div>
+        <div className="engagement-process reveal-item" aria-label="How the engagement works">
+          <ol><li><strong>Mandate</strong><span>Objectives, capital, timing and constraints.</span></li><li><strong>Evidence & shortlist</strong><span>Corridor, asset and downside comparison.</span></li><li><strong>Execution</strong><span>Written scope and transaction-specific checks.</span></li></ol>
+          <p>Advisory or brokerage remuneration and referral arrangements are agreed in writing before execution. Introducers never receive client funds.</p>
+          <a className="booking-link" href="https://wa.me/971585899112?text=Hello%20Masoud%2C%20I%20would%20like%20to%20book%20a%2020-minute%20investor-fit%20call.%20My%20preferred%20date%2C%20time%20and%20time%20zone%20are%3A%20" target="_blank" rel="noopener noreferrer" onClick={() => trackBookingClick('contact')}>BOOK A 20-MINUTE INVESTOR-FIT CALL<ArrowUpRight size={14} /></a>
+        </div>
         <small className="contact-location reveal-item">DUBAI, UAE · ENGLISH / FARSI</small>
       </div>
       <div className="contact-form-wrap reveal-item">
         {status === 'done' ? (
           <div className="contact-success" role="status"><span>INQUIRY RECEIVED</span><h3>Thank you.</h3><p>Your inquiry has been sent for personal review.</p><button type="button" className="text-link" onClick={() => { setForm({ ...EMPTY_FORM, interest: journey.corridor ? 'Portfolio strategy' : '', message: journey.lab ? labSummary(journey.lab) : '' }); setStatus('idle') }}>Send another inquiry<ArrowRight size={16} /></button></div>
         ) : (
-          <form className="contact-form" onSubmit={submit}>
+          <form className="contact-form" onSubmit={submit} onFocusCapture={() => {
+            if (!inquiryStarted.current) {
+              trackInquiryStart()
+              inquiryStarted.current = true
+            }
+          }}>
             <div className="form-topline"><span>PRIVATE INQUIRY</span><span>ALL FIELDS MARKED * ARE REQUIRED</span></div>
             {(journey.corridor || journey.lab) && <div className="inquiry-context" aria-label="Your carried journey context">
               {journey.corridor && <div data-journey-context="corridor"><span>CORRIDOR</span><strong>{journey.corridor}</strong><button type="button" onClick={() => clearJourneyPart('corridor')} aria-label="Remove corridor context"><X size={13} /></button></div>}

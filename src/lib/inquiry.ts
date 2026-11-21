@@ -1,4 +1,5 @@
 import { labSummary, type JourneyContext } from './journey'
+import { readReferralSource } from './conversions'
 
 export interface InquiryForm {
   name: string
@@ -24,6 +25,7 @@ export async function submitInquiry(form: InquiryForm, journey: JourneyContext) 
       ...clean,
       corridor: journey.corridor || '',
       scenario_context: journey.lab ? labSummary(journey.lab) : '',
+      referral_source: readReferralSource(),
       source: 'Cinematic Walkthrough Inquiry',
       _subject: 'New Inquiry - MR Living Capital',
       _gotcha: form.gotcha,
