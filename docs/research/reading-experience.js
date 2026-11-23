@@ -47,6 +47,18 @@
     document.head.appendChild(events)
   }
 
+  if (!document.querySelector('link[href="/research/social-rail.css"]')) {
+    const styles = document.createElement('link')
+    styles.rel = 'stylesheet'
+    styles.href = '/research/social-rail.css'
+    document.head.appendChild(styles)
+  }
+  if (!document.querySelector('script[src="/research/social-rail.js"]')) {
+    const socials = document.createElement('script')
+    socials.src = '/research/social-rail.js'
+    document.body.appendChild(socials)
+  }
+
   tools.querySelector('.mrlc-print').addEventListener('click', () => window.print())
   let scheduled = false
   const update = () => {

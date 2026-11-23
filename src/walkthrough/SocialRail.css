@@ -1,0 +1,16 @@
+.mrlc-social-rail { position: fixed; z-index: 34; display: flex; flex-direction: row; align-items: center; padding: 4px; border: 1px solid rgba(121,200,181,.24); background: rgba(6,13,11,.88); box-shadow: 0 12px 36px rgba(0,0,0,.28); backdrop-filter: blur(12px); }
+.mrlc-social-rail a { display: grid; place-items: center; width: 40px; height: 40px; color: rgba(241,236,223,.64); text-decoration: none; transition: color .2s ease, background .2s ease, transform .2s ease; }
+.mrlc-social-rail a + a { border-left: 1px solid rgba(121,200,181,.14); }
+.mrlc-social-rail a:hover, .mrlc-social-rail a:focus-visible { color: var(--mint); background: rgba(121,200,181,.1); transform: translateY(-1px); }
+.mrlc-social-rail svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.walkthrough-social-rail { left: 50%; bottom: 22px; transform: translateX(-50%); }
+@media (max-width: 767px) {
+  .mrlc-social-rail a { width: 37px; height: 37px; }
+  .walkthrough-social-rail { bottom: 58px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mrlc-social-rail a { transition: none; }
+}
+@media print {
+  .mrlc-social-rail { display: none !important; }
+}

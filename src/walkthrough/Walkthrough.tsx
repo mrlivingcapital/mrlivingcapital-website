@@ -6,6 +6,7 @@ import {
   OpeningSlide, ThesisSlide,
 } from './Slides'
 import PhaseOneDemo from './PhaseOneDemo'
+import SocialRail from './SocialRail'
 import { trackMandateClick } from '../lib/conversions'
 import './Walkthrough.css'
 
@@ -297,6 +298,7 @@ export default function Walkthrough() {
       <div className="scene-mode" aria-hidden="true"><i />{webgl ? 'LIVE FORM + DIGITAL VEIL' : 'LIGHTWEIGHT MODE'}</div>
       <div className="sr-only" aria-live="polite">{SLIDES[active].label}</div>
       <PhaseOneDemo motionPaused={motionPaused} onToggleMotion={toggleMotion} />
+      <SocialRail />
 
       {menuOpen && (
         <div className="scene-menu" ref={menuRef} role="dialog" aria-modal="true" aria-label="Scene navigation">
